@@ -57,30 +57,6 @@ Zen_RTS_F_East_BarracksDestructor = {
     deleteVehicle (_buildingObjData select 2);
 };
 
-Zen_RTS_F_East_BarracksUpgrade01 = {
-    player sideChat str "East barracks update 01 called";
-    player sideChat str _this;
-
-    _buildingData = _this select 0;
-
-    _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_East_Marksman;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_ATSoldier;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_AASoldier;
-
-    if (Zen_RTS_TechFlag_East_BuildEnemy) then {
-        // ... to do;
-    };
-
-    {
-        (RTS_Used_Asset_Types select 0) pushBack _x;
-    } forEach _assetsToAdd;
-    publicVariable "RTS_Used_Asset_Types";
-
-    0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal;
-    (true)
-};
-
 #define UPGRADE(N, A) \
 N = { \
     player sideChat str (#N + " called"); \
