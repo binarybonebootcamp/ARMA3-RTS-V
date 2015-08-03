@@ -59,15 +59,12 @@ Zen_RTS_F_West_BarracksDestructor = {
 
 #define UPGRADE(N, A) \
 N = { \
-    player sideChat str "West" + #N + " called"; \
+    player sideChat str #N + " called"; \
     player sideChat str _this; \
     _buildingData = _this select 0; \
     _assetsToAdd = A; \
     if (Zen_RTS_TechFlag_West_BuildEnemy) then { \
     }; \
-    { \
-        (RTS_Used_Asset_Types select 0) pushBack _x; \
-    } forEach _assetsToAdd; \
     publicVariable "RTS_Used_Asset_Types"; \
     0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal; \
     (true) \
@@ -80,7 +77,7 @@ UPGRADE(Zen_RTS_F_West_BarracksUpgrade01, ASSETS)
 UPGRADE(Zen_RTS_F_West_BarracksUpgrade02, ASSETS)
 
 Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen_RTS_F_West_BarracksDestructor", ["Zen_RTS_F_West_BarracksUpgrade01", "Zen_RTS_F_West_BarracksUpgrade02"], "Barracks", "C1000, T10, Ppictures\zen.paa,", 1000] call Zen_RTS_StrategicBuildingCreate;
-(RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_Barracks;
+(RTS_Used_Building_Types select 0) pshBack Zen_RTS_BuildingType_West_Barracks;
 
 /////////////////////////////////
 // Assets
@@ -88,11 +85,11 @@ Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen
 
 #define INFANTRY_CONSTRUCTOR(N, T, S, W) \
     N = { \
-        player sideChat str ("West " + T + " asset constructor called"); \
+        player sideChat str (#N + " asset constructor called"); \
         player sideChat str _this; \
         sleep W; \
-        _group = [(_this select 2), "B_Soldier_02_f"] call Zen_SpawnGroup; \
-        0 = [_group, "infantry"] call Zen_SetAISkill; \
+        _group = [(_this select 2), T] call Zen_SpawnGroup; \
+        0 = [_group, S] call Zen_SetAISkill; \
         (units _group) join (_this select 2); \
     };
 
