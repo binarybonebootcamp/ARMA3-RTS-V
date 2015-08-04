@@ -71,13 +71,13 @@ N = { \
     (true) \
 };
 
-#define ASSETS [Zen_RTS_F_East_AssetMarksman, Zen_RTS_F_East_AssetATSoldier]
-UPGRADE(Zen_RTS_F_West_BarracksUpgrade01, ASSETS)
+#define ASSETS [Zen_RTS_Asset_East_Marksman, Zen_RTS_Asset_East_ATSoldier]
+UPGRADE(Zen_RTS_F_East_BarracksUpgrade01, ASSETS)
 
-#define ASSETS [Zen_RTS_F_East_AssetAASoldier]
-UPGRADE(Zen_RTS_F_West_BarracksUpgrade02, ASSETS)
+#define ASSETS [Zen_RTS_Asset_East_AASoldier]
+UPGRADE(Zen_RTS_F_East_BarracksUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01", "Zen_RTS_F_West_BarracksUpgrade02"], "Barracks", "C1000, T10,", 1000] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01", "Zen_RTS_F_East_BarracksUpgrade02"], "Barracks", "C1000, T10,", 1000] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_Barracks;
 
 /////////////////////////////////
@@ -94,11 +94,11 @@ Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen
         (units _group) join (_this select 2); \
     };
 
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetRifleman, "O_G_Soldier_F", "infantry", 10)
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetGLSoldier, "O_G_Soldier_GL_F", "infantry", 10)
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetAutorifleman, "O_G_Soldier_AR_F", "infantry", 10)
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetMedic, "O_G_medic_F", "infantry", 10)
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetMarksman, "O_G_Soldier_M_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetRifleman, "O_Soldier_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetGLSoldier, "O_Soldier_GL_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetAutorifleman, "O_Soldier_AR_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetMedic, "O_medic_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetMarksman, "O_Soldier_M_F", "infantry", 10)
 INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetATSoldier, "O_Soldier_AT_F", "infantry", 10)
 INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetAASoldier, "O_Soldier_AA_F", "infantry", 10)
 
