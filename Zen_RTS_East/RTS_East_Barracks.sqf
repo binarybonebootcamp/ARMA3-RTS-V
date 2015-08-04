@@ -57,31 +57,27 @@ Zen_RTS_F_East_BarracksDestructor = {
     deleteVehicle (_buildingObjData select 2);
 };
 
-Zen_RTS_F_East_BarracksUpgrade01 = {
-    player sideChat str "East barracks update 01 called";
-    player sideChat str _this;
-
-    _buildingData = _this select 0;
-
-    _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_East_Marksman;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_ATSoldier;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_AASoldier;
-
-    if (Zen_RTS_TechFlag_East_BuildEnemy) then {
-        // ... to do;
-    };
-
-    {
-        (RTS_Used_Asset_Types select 0) pushBack _x;
-    } forEach _assetsToAdd;
-    publicVariable "RTS_Used_Asset_Types";
-
-    0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal;
-    (true)
+#define UPGRADE(N, A) \
+N = { \
+    player sideChat str (#N + " called"); \
+    player sideChat str _this; \
+    _buildingData = _this select 0; \
+    _assetsToAdd = A; \
+    { \
+        (RTS_Used_Asset_Types select 0) pushBack _x; \
+    } forEach _assetsToAdd; \
+    publicVariable "RTS_Used_Asset_Types"; \
+    0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal; \
+    (true) \
 };
 
-Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01"], "Barracks", "C1000, T10,", 1000] call Zen_RTS_StrategicBuildingCreate;
+#define ASSETS [Zen_RTS_Asset_East_Marksman, Zen_RTS_Asset_East_ATSoldier]
+UPGRADE(Zen_RTS_F_East_BarracksUpgrade01, ASSETS)
+
+#define ASSETS [Zen_RTS_Asset_East_AASoldier]
+UPGRADE(Zen_RTS_F_East_BarracksUpgrade02, ASSETS)
+
+Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01", "Zen_RTS_F_East_BarracksUpgrade02"], "Barracks", "C1000, T10,", 1000] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_Barracks;
 
 /////////////////////////////////
@@ -90,19 +86,19 @@ Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen
 
 #define INFANTRY_CONSTRUCTOR(N, T, S, W) \
     N = { \
-        player sideChat str ("East " + T + " asset constructor called"); \
+        player sideChat str (#N + " asset constructor called"); \
         player sideChat str _this; \
         sleep W; \
-        _group = [(_this select 2), "B_Soldier_02_f"] call Zen_SpawnGroup; \
-        0 = [_group, "infantry"] call Zen_SetAISkill; \
+        _group = [(_this select 2), T] call Zen_SpawnGroup; \
+        0 = [_group, S] call Zen_SetAISkill; \
         (units _group) join (_this select 2); \
     };
 
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetRifleman, "O_G_Soldier_F", "infantry", 10)
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetGLSoldier, "O_G_Soldier_GL_F", "infantry", 10)
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetAutorifleman, "O_G_Soldier_AR_F", "infantry", 10)
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetMedic, "O_G_medic_F", "infantry", 10)
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetMarksman, "O_G_Soldier_M_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetRifleman, "O_Soldier_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetGLSoldier, "O_Soldier_GL_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetAutorifleman, "O_Soldier_AR_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetMedic, "O_medic_F", "infantry", 10)
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetMarksman, "O_Soldier_M_F", "infantry", 10)
 INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetATSoldier, "O_Soldier_AT_F", "infantry", 10)
 INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_AssetAASoldier, "O_Soldier_AA_F", "infantry", 10)
 
@@ -113,3 +109,4 @@ Zen_RTS_Asset_East_Medic = ["Zen_RTS_F_East_AssetMedic", "Medic", "C150, T10,", 
 Zen_RTS_Asset_East_Marksman  = ["Zen_RTS_F_East_AssetMarksman", "Marksman", "C150, T10,", 150] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_ATSoldier = ["Zen_RTS_F_East_AssetATSoldier", "AT Soldier", "C150, T10,", 150] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_AASoldier = ["Zen_RTS_F_East_AssetAASoldier", "AA Soldier", "C150, T10,", 150] call Zen_RTS_StrategicAssetCreate;
+
