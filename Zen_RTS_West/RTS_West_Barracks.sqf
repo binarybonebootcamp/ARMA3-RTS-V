@@ -77,7 +77,7 @@ UPGRADE(Zen_RTS_F_West_BarracksUpgrade01, ASSETS)
 UPGRADE(Zen_RTS_F_West_BarracksUpgrade02, ASSETS)
 
 Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen_RTS_F_West_BarracksDestructor", ["Zen_RTS_F_West_BarracksUpgrade01", "Zen_RTS_F_West_BarracksUpgrade02"], "Barracks", "C1000, T10, Ppictures\zen.paa,", 1000] call Zen_RTS_StrategicBuildingCreate;
-(RTS_Used_Building_Types select 0) pshBack Zen_RTS_BuildingType_West_Barracks;
+(RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_Barracks;
 
 /////////////////////////////////
 // Assets
