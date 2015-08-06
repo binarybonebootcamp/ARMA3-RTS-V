@@ -73,6 +73,9 @@
     buttonSetAction [_idbuildsquad, "[2000, 2025, true, true] call Zen_RTS_BuildUnit"];
     buttonSetAction [_idBtnCustom, "[2000, 2030, true, false] call Zen_RTS_BuildUnit"];
 
+    if ((_buildingData select 4) isEqualTo "Barracks") then {
+        ctrlShow [_iBuildManned, FALSE]
+    };
     {
         ctrlShow [ _x, FALSE];
     } forEach [_idBgdCustom, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ];

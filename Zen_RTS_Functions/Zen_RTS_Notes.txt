@@ -92,7 +92,9 @@ RTS menu
     // view distance fix
     // building unit dialog called from action per building
     // only allow unit purchase within radius from building
+    // Disband unit
     give money to another player
+    AI fly height
 Revive
     see ZK
 Economy
