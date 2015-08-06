@@ -1,7 +1,8 @@
 Strategic
     // MP working data
     // Split data
-    Remove Cost parameter, use 'Cost: ' from description
+    // Remove Cost parameter, use 'Cost: ' from description
+    // Use correct time delay
 
     Features
         // build for squad
@@ -18,7 +19,7 @@ Strategic
         // constructor macros
         // constructors placement
         // custom assets check building upgrades
-        upgrades for commander only
+        // upgrades for commander only
         repair vehicle
         auto tank
             tracked vehicles
@@ -30,8 +31,9 @@ Strategic
         // force HQ first
         // check commander in vehicle while placing
         // Improve building placement checks
+        // MCU recycle building destructor
+        handle destroyed buildings
         custom squads per building
-        MCU recycle building destructor (check distance)
         buildings come out of ground
 
         Barracks

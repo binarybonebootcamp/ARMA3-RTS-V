@@ -26,7 +26,7 @@
 
     _buildingData = [_type] call Zen_RTS_StrategicBuildingTypeGetData;
     _descrRaw = _buildingData select 5;
-    _cost = _buildingData select 6;
+    _cost = call compile  ([_descrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart);
     if (playerMoney < _cost) exitWith {
         player sideChat "Insufficient funds.";
     };

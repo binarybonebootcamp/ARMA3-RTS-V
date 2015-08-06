@@ -16,7 +16,7 @@
     _side2 = [east, west] select ([west, east] find _side);
     _squadNames = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot"];
 
-    _buildingData = [_buildingType] call Zen_RTS_StrategicBuildingTypeGetData;
+    _buildingTypeData = [_buildingType] call Zen_RTS_StrategicBuildingTypeGetData;
     _buildingObjDataGlobal = [_buildingType, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
 
     if (count _buildingObjDataGlobal < 1) exitWith {
@@ -73,7 +73,7 @@
     buttonSetAction [_idbuildsquad, "[2000, 2025, true, true] call Zen_RTS_BuildUnit"];
     buttonSetAction [_idBtnCustom, "[2000, 2030, true, false] call Zen_RTS_BuildUnit"];
 
-    if ((_buildingData select 4) isEqualTo "Barracks") then {
+    if ((_buildingTypeData select 4) isEqualTo "Barracks") then {
         ctrlShow [_iBuildManned, FALSE]
     };
     {
@@ -103,7 +103,7 @@
     } forEach _stats;
 
     while {ctrlVisible _idlist && {alive player}} do {
-        _info = ((_buildingData select 4) + " - Level " + str (_buildingObjDataGlobal select 3));
+        _info = ((_buildingTypeData select 4) + " - Level " + str (_buildingObjDataGlobal select 3));
         ctrlSetText [_idtitle, _info];
 
         lbClear _idlist;
@@ -114,7 +114,7 @@
         {
             _assetData = [_x] call Zen_RTS_StrategicAssetGetData;
             _descrRaw = _assetData select 3;
-            _access = _assetData select 5;
+            _access = _assetData select 4;
 
             if ((toUpper _access isEqualTo "ALL") || {player in [WestCommander, EastCommander]}) then {
                 _descrText = ("Cost: " + ([_descrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)) + (", Time: " + ([_descrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
