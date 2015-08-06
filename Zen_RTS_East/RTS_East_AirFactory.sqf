@@ -53,29 +53,29 @@ Zen_RTS_F_East_AirFactoryDestructor = {
     deleteVehicle (_buildingObjData select 2);
 };
 
-Zen_RTS_F_East_AirFactoryUpgrade01 = {
-    player sideChat str "East barracks update 01 called";
-    player sideChat str _this;
-
-    _buildingData = _this select 0;
-
-    _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_Mi8MTV3;
-
-    if (Zen_RTS_TechFlag_East_BuildEnemy) then {
-        // ... to do;
-    };
-
-    {
-        (RTS_Used_Asset_Types select 0) pushBack _x;
-    } forEach _assetsToAdd;
-    publicVariable "RTS_Used_Asset_Types";
-
-    0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal;
-    (true)
+#define UPGRADE(N, A) \
+N = { \
+    player sideChat str (#N + " called"); \
+    player sideChat str _this; \
+    _buildingData = _this select 0; \
+    _assetsToAdd = A; \
+    if (Zen_RTS_TechFlag_East_BuildEnemy) then { \
+    }; \
+    { \
+        (RTS_Used_Asset_Types select 0) pushBack _x; \
+    } forEach _assetsToAdd; \
+    publicVariable "RTS_Used_Asset_Types"; \
+    0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal; \
+    (true) \
 };
 
-Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", "Zen_RTS_F_East_AirFactoryDestructor", ["Zen_RTS_F_East_AirFactoryUpgrade01"], "Air Factory", "C2000, T10,", 2000] call Zen_RTS_StrategicBuildingCreate;
+#define ASSETS [Zen_RTS_Asset_Mi8MTV3]
+UPGRADE(Zen_RTS_F_East_AirFactoryUpgrade01, ASSETS)
+
+// #define ASSETS [Zen_RTS_Asset_East_AASoldier]
+// UPGRADE(Zen_RTS_F_East_AirFactoryUpgrade02, ASSETS)
+
+Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", "Zen_RTS_F_East_AirFactoryDestructor", ["Zen_RTS_F_East_AirFactoryUpgrade01"], "Air Factory", "Cost: 2000, Time: 10,", 2000] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_AirFactory;
 
 /////////////////////////////////
@@ -115,7 +115,7 @@ AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_Mi8MTV, "RHS_Mi8MTV3_vvsc", 10, CREW_UNITS)
 #define CREW_UNITS ["rhs_pilot_combat_heli", "rhs_pilot_combat_heli"]
 AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_Ka52, "RHS_Ka52_vvsc", 10, CREW_UNITS)
 
-Zen_RTS_Asset_Ka60 = ["Zen_RTS_F_East_Asset_Ka60", "Ka-60 Unarmed", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Mi8MT = ["Zen_RTS_F_East_Asset_Mi8MT", "Mi-8 Unarmed", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Mi8MTV3 = ["Zen_RTS_F_East_Asset_Mi8MTV", "Mi-8 Rockets", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Ka52 = ["Zen_RTS_F_East_Asset_Ka52", "Ka-52", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Ka60 = ["Zen_RTS_F_East_Asset_Ka60", "Ka-60 Unarmed", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Mi8MT = ["Zen_RTS_F_East_Asset_Mi8MT", "Mi-8 Unarmed", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Mi8MTV3 = ["Zen_RTS_F_East_Asset_Mi8MTV", "Mi-8 Rockets", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Ka52 = ["Zen_RTS_F_East_Asset_Ka52", "Ka-52", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;

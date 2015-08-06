@@ -55,30 +55,26 @@ Zen_RTS_F_West_TankFactoryDestructor = {
     deleteVehicle (_buildingObjData select 2);
 };
 
-Zen_RTS_F_West_TankFactoryUpgrade01 = {
-    player sideChat str "West Tank_factory update 01 called";
-    player sideChat str _this;
-
-    _buildingData = _this select 0;
-
-    _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_West_OffroadArmed;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_HunterHMG;
-
-    // if (Zen_RTS_TechFlag_West_BuildEnemy) then {
-        // /// ... to do;
-    // };
-
-    {
-        (RTS_Used_Asset_Types select 0) pushBack _x;
-    } forEach _assetsToAdd;
-    publicVariable "RTS_Used_Asset_Types";
-
-    0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal;
-    (true)
+#define UPGRADE(N, A) \
+N = { \
+    player sideChat str (#N + " called"); \
+    player sideChat str _this; \
+    _buildingData = _this select 0; \
+    _assetsToAdd = A; \
+    if (Zen_RTS_TechFlag_West_BuildEnemy) then { \
+    }; \
+    publicVariable "RTS_Used_Asset_Types"; \
+    0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal; \
+    (true) \
 };
 
-Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor", "Zen_RTS_F_West_TankFactoryDestructor", ["Zen_RTS_F_West_TankFactoryUpgrade01"], "Tank factory", "C2000, T10,", 2000] call Zen_RTS_StrategicBuildingCreate;
+#define ASSETS [Zen_RTS_Asset_West_OffroadArmed, Zen_RTS_Asset_West_HunterHMG]
+UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade01, ASSETS)
+
+// #define ASSETS []
+// UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade02, ASSETS)
+
+Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor", "Zen_RTS_F_West_TankFactoryDestructor", ["Zen_RTS_F_West_TankFactoryUpgrade01"], "Tank factory", "Cost: 2000, Time: 10,", 2000] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_TankFactory;
 
 /////////////////////////////////
@@ -118,9 +114,9 @@ VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_HEMTT_Repair, "B_Truck_01_Repair_F", 10
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_Quadbike, "B_Quadbike_01_F", 10, CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetOffroad, "B_G_Offroad_01_F", 10, CREW_UNITS)
 
-Zen_RTS_Asset_West_HEMTT_Repair = ["Zen_RTS_F_West_Asset_HEMTT_Repair","Repair", "C100, T10,", 100] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_Quadbike = ["Zen_RTS_F_West_Asset_Quadbike", "Quadbike", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_Offroad = ["Zen_RTS_F_West_AssetOffroad", "OffRoad", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_OffroadArmed = ["Zen_RTS_F_West_AssetOffroadArmed", "OffRoad armed", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_HunterHMG = ["Zen_RTS_F_West_AssetHunterHMG", "Hunter HMG","C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_M1025d = ["Zen_RTS_F_West_AssetM1025d","M1025 (M2)", "C100, T10,", 100] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_HEMTT_Repair = ["Zen_RTS_F_West_Asset_HEMTT_Repair","Repair", "Cost: 100, Time: 10,", 100] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_Quadbike = ["Zen_RTS_F_West_Asset_Quadbike", "Quadbike", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_Offroad = ["Zen_RTS_F_West_AssetOffroad", "OffRoad", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_OffroadArmed = ["Zen_RTS_F_West_AssetOffroadArmed", "OffRoad armed", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_HunterHMG = ["Zen_RTS_F_West_AssetHunterHMG", "Hunter HMG","Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_M1025d = ["Zen_RTS_F_West_AssetM1025d","M1025 (M2)", "Cost: 100, Time: 10,", 100] call Zen_RTS_StrategicAssetCreate;

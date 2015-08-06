@@ -156,9 +156,9 @@
             lbSetData [_idassetlist, _index, _x];
             lbSetValue [_idassetlist, _index, _forEachIndex];
 
-            _pic = [_descrRaw, "P,"] call Zen_StringGetDelimitedPart;
+            _pic = [_descrRaw, "Picture: ", ","] call Zen_StringGetDelimitedPart;
             if (_pic == "") then {
-                _type = [_descrRaw, "O,"] call Zen_StringGetDelimitedPart;
+                _type = [_descrRaw, "Classname: ", ","] call Zen_StringGetDelimitedPart;
                 if (_type != "") then {
                     _pic = getText (configFile >> "CfgVehicles" >> _type >> "picture");
                     // player sidechat str _pic; // debug

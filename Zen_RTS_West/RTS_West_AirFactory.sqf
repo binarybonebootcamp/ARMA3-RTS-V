@@ -52,30 +52,26 @@ Zen_RTS_F_West_AirFactoryDestructor = {
     deleteVehicle (_buildingObjData select 2);
 };
 
-Zen_RTS_F_West_AirFactoryUpgrade01 = {
-    player sideChat str "West barracks update 01 called";
-    player sideChat str _this;
-
-    _buildingData = _this select 0;
-
-    _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_AH_9_Pawnee;
-    _assetsToAdd pushBack Zen_RTS_Asset_UH_80_Ghost;
-
-    if (Zen_RTS_TechFlag_West_BuildEnemy) then {
-        // ... to do;
-    };
-
-    {
-        (RTS_Used_Asset_Types select 0) pushBack _x;
-    } forEach _assetsToAdd;
-    publicVariable "RTS_Used_Asset_Types";
-
-    0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal;
-    (true)
+#define UPGRADE(N, A) \
+N = { \
+    player sideChat str (#N + " called"); \
+    player sideChat str _this; \
+    _buildingData = _this select 0; \
+    _assetsToAdd = A; \
+    if (Zen_RTS_TechFlag_West_BuildEnemy) then { \
+    }; \
+    publicVariable "RTS_Used_Asset_Types"; \
+    0 = [(_buildingData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal; \
+    (true) \
 };
 
-Zen_RTS_BuildingType_West_AirFactory = ["Zen_RTS_F_West_AirFactoryConstructor", "Zen_RTS_F_West_AirFactoryDestructor", ["Zen_RTS_F_West_AirFactoryUpgrade01"], "Air Factory", "C2000, T10,", 2000] call Zen_RTS_StrategicBuildingCreate;
+#define ASSETS [Zen_RTS_Asset_AH_9_Pawnee, Zen_RTS_Asset_UH_80_Ghost]
+UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade01, ASSETS)
+
+// #define ASSETS []
+// UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade02, ASSETS)
+
+Zen_RTS_BuildingType_West_AirFactory = ["Zen_RTS_F_West_AirFactoryConstructor", "Zen_RTS_F_West_AirFactoryDestructor", ["Zen_RTS_F_West_AirFactoryUpgrade01"], "Air Factory", "Cost: 2000, Time: 10,", 2000] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_AirFactory;
 
 /////////////////////////////////
@@ -113,8 +109,8 @@ AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_AH_9_Pawnee, "B_Heli_Light_01_armed_F", 10,
 #define CREW_UNITS ["rhsusf_army_ucp_helipilot", "rhsusf_army_ucp_helipilot", "rhsusf_army_ucp_helicrew", "rhsusf_army_ucp_helicrew"]
 AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_UH_80_Ghost, "RHS_UH60M", 10, CREW_UNITS)
 
-Zen_RTS_Asset_Hummingbird = ["Zen_RTS_F_West_Asset_Hummingbird", "MH6 Little Bird", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Hummingbird_stripped = ["Zen_RTS_F_West_Asset_Hummingbird_stripped", "MH6 Little Bird", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_AH_9_Pawnee = ["Zen_RTS_F_West_Asset_AH_9_Pawnee", "AH6 Little Bird", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_UH_80_Ghost = ["Zen_RTS_F_West_Asset_UH_80_Ghost", "UH60 Blackhawk", "C200, T10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Hummingbird = ["Zen_RTS_F_West_Asset_Hummingbird", "MH6 Little Bird", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Hummingbird_stripped = ["Zen_RTS_F_West_Asset_Hummingbird_stripped", "MH6 Little Bird", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_AH_9_Pawnee = ["Zen_RTS_F_West_Asset_AH_9_Pawnee", "AH6 Little Bird", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_UH_80_Ghost = ["Zen_RTS_F_West_Asset_UH_80_Ghost", "UH60 Blackhawk", "Cost: 200, Time: 10,", 200] call Zen_RTS_StrategicAssetCreate;
 

@@ -53,7 +53,7 @@ Zen_RTS_F_East_HQDestructor = {
     deleteVehicle (_buildingObjData select 2);
 };
 
-Zen_RTS_BuildingType_East_HQ = ["Zen_RTS_F_East_HQConstructor", "Zen_RTS_F_East_HQDestructor", [], "HQ", "C1000, T10,", 1000] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_HQ = ["Zen_RTS_F_East_HQConstructor", "Zen_RTS_F_East_HQDestructor", [], "HQ", "Cost: 1000, Time: 10,", 1000] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_HQ;
 
 /////////////////////////////////
@@ -108,7 +108,7 @@ UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_TankFactory, Zen_RTS_BuildingTyp
 UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_Barracks, Zen_RTS_BuildingType_East_Barracks, Zen_RTS_Asset_Tech_East_Upgrade_Barracks)
 UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_Barracks_AirFactory, Zen_RTS_BuildingType_East_AirFactory, Zen_RTS_Asset_Tech_East_Upgrade_AirFactory)
 
-Zen_RTS_Asset_Tech_East_Enemy = ["Zen_RTS_F_East_Tech_Enemy", "Build Enemy Units", "C50, T10,", 50] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Tech_East_Upgrade_TankFactory = ["Zen_RTS_F_East_Tech_Upgrade_TankFactory", "Upgrade Tank Factory", "C50, T10,", 50] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Tech_East_Upgrade_Barracks = ["Zen_RTS_F_East_Tech_Upgrade_Barracks", "Upgrade Barracks", "C50, T10,", 50] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Tech_East_Upgrade_AirFactory = ["Zen_RTS_F_East_Tech_Upgrade_Barracks_AirFactory", "Upgrade Air Factory", "C50, T10,", 50] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Tech_East_Enemy = ["Zen_RTS_F_East_Tech_Enemy", "Build Enemy Units", "Cost: 50, Time: 10,", 50] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Tech_East_Upgrade_TankFactory = ["Zen_RTS_F_East_Tech_Upgrade_TankFactory", "Upgrade Tank Factory", "Cost: 50, Time: 10,", 50] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Tech_East_Upgrade_Barracks = ["Zen_RTS_F_East_Tech_Upgrade_Barracks", "Upgrade Barracks", "Cost: 50, Time: 10,", 50] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Tech_East_Upgrade_AirFactory = ["Zen_RTS_F_East_Tech_Upgrade_Barracks_AirFactory", "Upgrade Air Factory", "Cost: 50, Time: 10,", 50] call Zen_RTS_StrategicAssetCreate;
