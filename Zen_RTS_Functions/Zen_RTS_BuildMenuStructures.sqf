@@ -115,16 +115,16 @@
             _bldData = [_x] call Zen_RTS_StrategicBuildingTypeGetData;
             _descrRaw = _bldData select 5;
 
-            _descrText = ("Cost: " + ([_descrRaw, "C,"] call Zen_StringGetDelimitedPart)) + (", Time: " + ([_descrRaw, "T,"] call Zen_StringGetDelimitedPart));
+            _descrText = ("Cost: " + ([_descrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)) + (", Time: " + ([_descrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
             _info = (_bldData select 4) + ", " + _descrText;
 
             _index = lbAdd [_idlist, _info];
             lbSetData [_idlist, _index, _x];
             // lbSetValue [_idlist, _index, _bldTime]
 
-            _pic = [_descrRaw, "P,"] call Zen_StringGetDelimitedPart;
+            _pic = [_descrRaw, "Picture: ", ","] call Zen_StringGetDelimitedPart;
             if (_pic == "") then {
-                _type = [_descrRaw, "O,"] call Zen_StringGetDelimitedPart;
+                _type = [_descrRaw, "Classname", ","] call Zen_StringGetDelimitedPart;
                 if (_type != "") then {
                     _pic = getText (configFile >> "CfgVehicles" >> _type >> "picture");
                     // player sidechat str _pic; // debug

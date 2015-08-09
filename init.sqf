@@ -25,7 +25,7 @@ Zen_RTS_BuildMenuStructures = compileFinal preprocessFileLineNumbers "Zen_RTS_Fu
 Zen_RTS_BuildStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_BuildStructure.sqf";
 Zen_RTS_BuildMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_BuildMenu.sqf";
 Zen_RTS_BuildUnit = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_BuildUnit.sqf";
-// Zen_RTS_BuildMenuQueue = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_BuildMenuQueue.sqf";
+Zen_RTS_DisbandUnit = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DisbandUnit.sqf";
 Zen_RTS_DestroyStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DestroyStructure.sqf";
 Zen_RTS_EconomyManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_EconomyManager.sqf";
 Zen_RTS_SquadsMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SquadsMenu.sqf";
@@ -126,6 +126,8 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 // Zen RTS Strategic
 /////////
 
+#define ZEN_RTS_STRATEGIC_BUIDLING_DESTRUCTOR_REFUND_COEFF 0.5
+
 #define ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(N, I) \
     _objIndexes = [Zen_RTS_Strategic_Building_Objects_Global, N, 0] call Zen_ArrayGetNestedIndex; \
     I = ""; \
@@ -139,7 +141,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 RTS_Used_Building_Types = [[], []]; // global
 
 // all asset types must be added here, or they will not be considered for custom squads
-// must be [[east asset types, [east '']]
+// must be [[west asset types, [east '']]
 RTS_Used_Asset_Types = [[], []]; // global
 
 // 0 = [] spawn Zen_RTS_BuildMenuQueue;

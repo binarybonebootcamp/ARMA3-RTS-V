@@ -434,7 +434,7 @@ class DlgStatus
 
 		class Button_Release : RscButtonSmall
 		{
-			idc = -1;
+			idc = 1025;
 			x = 0.78;
 			y = 0.865;
 			w = 0.20;
