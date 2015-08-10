@@ -44,7 +44,8 @@ Zen_RTS_F_West_TankFactoryConstructor = {
     _building setVariable ["side", side player, true];
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_building, ["Purchase Units", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
+    _args = ["addAction", [_building, ["<img size='3'  
+      image='pictures\build_ca.paa'/>", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
     (_building)
 };

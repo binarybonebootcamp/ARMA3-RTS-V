@@ -58,7 +58,7 @@
     // _idNavalQButton = 1042;
 
     createDialog "DlgStatus";
-    ctrlSetText [_idtitle, "Deployment Status"];
+    ctrlSetText [_idtitle, "RTS V Mission Status"];
     // ctrlSetText [_idselect, "Purchase Units"];
     // buttonSetAction [_idselect, "[1000] call Zen_RTS_BuildMenu"];
     buttonSetAction [_idCustomSquadsMenu, "call Zen_RTS_SquadsMenu"];
