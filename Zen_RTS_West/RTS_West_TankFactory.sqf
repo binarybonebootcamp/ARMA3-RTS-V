@@ -113,6 +113,7 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
         _pos = [_building, 20, getDir _building + _phi] call Zen_ExtendPosition; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
+        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_manned) then { \
             _crewGroup = [_vehicle, U] call Zen_SpawnGroup; \
             0 = [_crewGroup, "crew"] call Zen_SetAISkill; \

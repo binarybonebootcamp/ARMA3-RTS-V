@@ -110,6 +110,7 @@ Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", 
         _pos = [_building, [20, 75], [], 1, [3, 15], 0, [1, 20, 0], 0, [1, 20], [1, 15, 10], [1, [0, 1, -1], 20], 0, 2] call Zen_FindGroundPosition; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
+        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_manned) then { \
             _crewGroup = [_vehicle, U] call Zen_SpawnGroup; \
             0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
