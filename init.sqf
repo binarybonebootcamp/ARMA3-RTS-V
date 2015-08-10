@@ -7,6 +7,7 @@ enableSaving [false, false];
 #include "Zen_RTS_Functions\Zen_RTS_ParseParams.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_JIPSync.sqf"
 #include "functions\RTS_FNC_INIT_PLAYERACTIONS.sqf"
+#include "functions\RTS_FNC_flipACTIONS.sqf"
 
 sleep 1;
 

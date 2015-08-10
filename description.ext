@@ -1,13 +1,13 @@
 respawn = 3;
 respawndelay = 3; 
 respawnDialog = false;
-author = "KaRR | Dr Death jm | ZEN"; 
-overviewText = "Overview Text.";
-overviewTextLocked = "Overview Text Locked.";
-overviewPicture = "pictures\RTSframe.jpg"; 
+author = "Dr Death jm | ZEN"; 
+overviewText = "Original mission By KaRRiLLioN ofp 2003.";
+overviewTextLocked = "Original mission By KaRRiLLioN ofp 2003";
+overviewPicture = "pictures\rtsload.paa"; 
 onLoadName = "Warfare Unleashed"; 
 onLoadMission = "Warfare Unleashed: Arma3 Edition";
-loadScreen = "pictures\RTSframe.jpg";
+loadScreen = "pictures\rtsload.paa";
 saving = 0;
 
 briefing = 1; 

@@ -103,7 +103,7 @@
     } forEach _stats;
 
     while {ctrlVisible _idlist && {alive player}} do {
-        _info = ((_buildingTypeData select 4) + " - Level " + str (_buildingObjDataGlobal select 3));
+        _info = ((_buildingTypeData select 4) + " - level " + str (_buildingObjDataGlobal select 3));
         ctrlSetText [_idtitle, _info];
 
         lbClear _idlist;
