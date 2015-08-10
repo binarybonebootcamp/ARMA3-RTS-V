@@ -109,3 +109,4 @@ Zen_RTS_Asset_East_Medic = ["Zen_RTS_F_East_AssetMedic", "Medic", "C150, T10,", 
 Zen_RTS_Asset_East_Marksman  = ["Zen_RTS_F_East_AssetMarksman", "Marksman", "C150, T10,", 150] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_ATSoldier = ["Zen_RTS_F_East_AssetATSoldier", "AT Soldier", "C150, T10,", 150] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_AASoldier = ["Zen_RTS_F_East_AssetAASoldier", "AA Soldier", "C150, T10,", 150] call Zen_RTS_StrategicAssetCreate;
+
