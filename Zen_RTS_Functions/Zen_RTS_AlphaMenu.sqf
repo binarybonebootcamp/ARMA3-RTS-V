@@ -37,6 +37,7 @@
     _idviewsel = 1010;
     _idviewlist = 1015;
     _idgroupList = 1020;
+    _idDisband = 1025;
     _groupListIndex = 0;
     _idtitle = 1050;
     _idstats = 500;
@@ -57,10 +58,11 @@
     // _idNavalQButton = 1042;
 
     createDialog "DlgStatus";
-    ctrlSetText [_idtitle, "Deployment Status"];
+    ctrlSetText [_idtitle, "RTS V Mission Status"];
     // ctrlSetText [_idselect, "Purchase Units"];
     // buttonSetAction [_idselect, "[1000] call Zen_RTS_BuildMenu"];
     buttonSetAction [_idCustomSquadsMenu, "call Zen_RTS_SquadsMenu"];
+    buttonSetAction [_idDisband, "[1020] call Zen_RTS_DisbandUnit"];
 
     // ;;ctrlShow [_idScramble, FALSE];
     // ;;ctrlShow [_idsatellite,FALSE];
@@ -76,7 +78,13 @@
         // ctrlShow [_iddestruct, FALSE];
     };
 
-    _viewDistSteps = ["500","900","1200","1500","1800","2000","2200","2500","3000","3500","4000","4500"];
+    _viewDistSteps = [];
+    for "_i" from 1 to 8 do {
+        _viewDistSteps pushBack str (_i * 500);
+    };
+    for "_i" from 5 to 10 do {
+        _viewDistSteps pushBack str (_i * 1000);
+    };
     {
         _index = lbAdd [_idviewlist, _x];
         lbSetValue [_idviewlist, _index, call compile _x];
@@ -156,9 +164,9 @@
             lbSetData [_idassetlist, _index, _x];
             lbSetValue [_idassetlist, _index, _forEachIndex];
 
-            _pic = [_descrRaw, "P,"] call Zen_StringGetDelimitedPart;
+            _pic = [_descrRaw, "Picture: ", ","] call Zen_StringGetDelimitedPart;
             if (_pic == "") then {
-                _type = [_descrRaw, "O,"] call Zen_StringGetDelimitedPart;
+                _type = [_descrRaw, "Classname: ", ","] call Zen_StringGetDelimitedPart;
                 if (_type != "") then {
                     _pic = getText (configFile >> "CfgVehicles" >> _type >> "picture");
                     // player sidechat str _pic; // debug

@@ -32,29 +32,23 @@
         _customAssets = RTS_Custom_Squads_Assets select _customSquadIndex;
         {
             _assetData = [_x] call Zen_RTS_StrategicAssetGetData;
-            _cost = _assetData select 4;
 
-            if (playerMoney < _cost) exitWith {
-                player sideChat "Insufficient funds";
-            };
+            #define PROCESS_PURCHASE \
+                _cost = call compile  ([(_assetData select 3), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
+                if (playerMoney < _cost) exitWith { \
+                    player sideChat "Insufficient funds."; \
+                }; \
+                playerMoney = playerMoney - _cost;
 
-            // closeDialog 0;
-            playerMoney = playerMoney - _cost;
-
+            PROCESS_PURCHASE
             0 = [_buildintObjId, _x, player, _manned] call Zen_RTS_StrategicAssetInvoke;
         } forEach _customAssets;
     } else {
         _assetType = lbData [_idAssetList, _index];
         _assetData = [_assetType] call Zen_RTS_StrategicAssetGetData;
-        _cost = _assetData select 4;
 
-        if (playerMoney < _cost) exitWith {
-            player sideChat "Insufficient funds";
-        };
-
+        PROCESS_PURCHASE
         // closeDialog 0;
-        playerMoney = playerMoney - _cost;
-
         _buildingObjDataLocal set [3, (_buildingObjDataLocal select 3) + 1];
 
         if (_forSquad) then {

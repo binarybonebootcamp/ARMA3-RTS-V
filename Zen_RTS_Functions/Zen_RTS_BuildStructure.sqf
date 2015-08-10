@@ -26,7 +26,7 @@
 
     _buildingData = [_type] call Zen_RTS_StrategicBuildingTypeGetData;
     _descrRaw = _buildingData select 5;
-    _cost = _buildingData select 6;
+    _cost = call compile  ([_descrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart);
     if (playerMoney < _cost) exitWith {
         player sideChat "Insufficient funds.";
     };
@@ -47,7 +47,7 @@
     Zen_RTS_Show_Preview = true;
     player addAction ["Confirm Building Placement", {Zen_RTS_Show_Preview = false; (_this select 0) removeAction (_this select 2);}];
 
-    _objectType = [_descrRaw, "O,"] call Zen_StringGetDelimitedPart;
+    _objectType = [_descrRaw, "Classname", ","] call Zen_StringGetDelimitedPart;
     _objectType = if (_objectType == "") then {("Land_HelipadCivil_F")};
 
     scopeName "main";
