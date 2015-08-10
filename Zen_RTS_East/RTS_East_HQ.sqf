@@ -41,6 +41,8 @@ Zen_RTS_F_East_HQConstructor = {
     _building = [_spawnPos, "Land_Research_HQ_F"] call Zen_SpawnVehicle;
     _building setVariable ["side", side player, true];
 
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_HQ)
+
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["Purchase Technologies", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
@@ -51,11 +53,17 @@ Zen_RTS_F_East_HQDestructor = {
     player sideChat str "East HQ destructor";
 
     _buildingObjData = _this select 0;
-    deleteVehicle (_buildingObjData select 2);
+    player commandChat str (_buildingObjData select 2);
+    player commandChat str (isNull (_buildingObjData select 2));
+    player commandChat str (alive (_buildingObjData select 2));
+    player commandChat str (getPosATL (_buildingObjData select 2));
 
-    _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart);
-    playerMoney = playerMoney + _cost * ZEN_RTS_STRATEGIC_BUIDLING_DESTRUCTOR_REFUND_COEFF;
+    // (_buildingObjData select 2) removeAllEventHandlers "Killed";
+    (_buildingObjData select 2) setDamage 1;
+
+    // _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
+    // _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart);
+    // playerMoney = playerMoney + _cost * ZEN_RTS_STRATEGIC_BUIDLING_DESTRUCTOR_REFUND_COEFF;
 };
 
 Zen_RTS_BuildingType_East_HQ = ["Zen_RTS_F_East_HQConstructor", "Zen_RTS_F_East_HQDestructor", [], "HQ", "Cost: 1000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;

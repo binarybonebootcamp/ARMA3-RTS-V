@@ -137,6 +137,33 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
         I = _objData select 1; \
     };
 
+#define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T) \
+    _building addEventHandler ["Killed", { \
+        0 = _this spawn { \
+            _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
+            _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
+            _buildingObjData = [T, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal; \
+            if (count _buildingObjData > 0) then { \
+                0 = [(_buildingObjData select 1)] call Zen_RTS_StrategicBuildingDestroy; \
+            }; \
+            _building = _this select 0; \
+            _pos = getPosATL _building; \
+            _objects = nearestObjects [_pos, ["building"], 5]; \
+            _deadBuilding = objNull; \
+            { \
+                if !(alive _x) exitWith { \
+                    _deadBuilding = _x; \
+                }; \
+            } forEach _objects; \
+            if !(isNull _deadBuilding) then { \
+                _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
+                _deadBuilding setVariable ["Zen_RTS_StrategicDebrisValue", _cost, true]; \
+            } else { \
+                player sidechat ("Destroyed Building" + str _building + " has no dead object"); \
+            }; \
+        }; \
+    }];
+
 // all building types must be added here, or they will not be considered
 // must be [[west building types], [east '']]
 RTS_Used_Building_Types = [[], []]; // global
@@ -159,3 +186,4 @@ RTS_Used_Asset_Types = [[], []]; // global
 
 publicVariable "RTS_Used_Building_Types";
 // publicVariable "RTS_Used_Asset_Types";
+
