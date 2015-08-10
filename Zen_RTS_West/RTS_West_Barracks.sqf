@@ -45,33 +45,7 @@ Zen_RTS_F_West_BarracksConstructor = {
     _building = [_spawnPos, "Land_Cargo_House_V1_F"] call Zen_SpawnVehicle;
     _building setVariable ["side", side player, true];
 
-    _building addEventHandler ["Killed", {
-        0 = _this spawn {
-            _buildingTypeData = [Zen_RTS_BuildingType_West_Barracks] call Zen_RTS_StrategicBuildingTypeGetData;
-            _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart);
-
-            _buildingObjData = [Zen_RTS_BuildingType_West_Barracks, true] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
-            0 = [(_buildingObjData select 1)] call Zen_RTS_StrategicBuildingDestroy;
-
-            _building = _this select 0;
-            _pos = getPosATL _building;
-
-            _objects = nearestObjects [_pos, ["building"], 5];
-            _deadBuilding = objNull;
-            {
-                if !(alive _x) exitWith {
-                    _deadBuilding = _x;
-                };
-            } forEach _objects;
-
-            if !(isNull _deadBuilding) then {
-                _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true];
-                _deadBuilding setVariable ["Zen_RTS_StrategicDebrisValue", _cost, true];
-            } else {
-                player sidechat ("Destroyed Building" + str _building + " has no dead object");// debug
-            };
-        };
-    }];
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_Barracks)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["Purchase Units", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
@@ -83,14 +57,12 @@ Zen_RTS_F_West_BarracksDestructor = {
     player sideChat str "West barracks destructor";
 
     _buildingObjData = _this select 0;
-
-    player commandChat "Building destructor";
     player commandChat str (_buildingObjData select 2);
     player commandChat str (isNull (_buildingObjData select 2));
     player commandChat str (alive (_buildingObjData select 2));
     player commandChat str (getPosATL (_buildingObjData select 2));
 
-    (_buildingObjData select 2) removeAllEventHandlers "Killed";
+    // (_buildingObjData select 2) removeAllEventHandlers "Killed";
     (_buildingObjData select 2) setDamage 1;
 
     // _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;

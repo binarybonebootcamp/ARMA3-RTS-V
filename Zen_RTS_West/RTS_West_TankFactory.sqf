@@ -43,6 +43,8 @@ Zen_RTS_F_West_TankFactoryConstructor = {
     _building = [_spawnPos, "Land_dp_smallFactory_F"] call Zen_SpawnVehicle;
     _building setVariable ["side", side player, true];
 
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_TankFactory)
+
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["<img size='3'  
       image='pictures\build_ca.paa'/>", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
@@ -54,11 +56,17 @@ Zen_RTS_F_West_TankFactoryDestructor = {
     player sideChat str "West Tank_factory destructor";
 
     _buildingObjData = _this select 0;
-    deleteVehicle (_buildingObjData select 2);
+    player commandChat str (_buildingObjData select 2);
+    player commandChat str (isNull (_buildingObjData select 2));
+    player commandChat str (alive (_buildingObjData select 2));
+    player commandChat str (getPosATL (_buildingObjData select 2));
 
-    _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart);
-    playerMoney = playerMoney + _cost * ZEN_RTS_STRATEGIC_BUIDLING_DESTRUCTOR_REFUND_COEFF;
+    // (_buildingObjData select 2) removeAllEventHandlers "Killed";
+    (_buildingObjData select 2) setDamage 1;
+
+    // _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
+    // _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart);
+    // playerMoney = playerMoney + _cost * ZEN_RTS_STRATEGIC_BUIDLING_DESTRUCTOR_REFUND_COEFF;
 };
 
 #define UPGRADE(N, A) \
@@ -105,6 +113,7 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
         _pos = [_building, 20, getDir _building + _phi] call Zen_ExtendPosition; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
+        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_manned) then { \
             _crewGroup = [_vehicle, U] call Zen_SpawnGroup; \
             0 = [_crewGroup, "crew"] call Zen_SetAISkill; \

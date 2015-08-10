@@ -58,7 +58,7 @@
         _clutter = [_pos, 20] call Zen_GetAmbientClutterCount;
         _objects = nearestObjects [_pos, [""], 20];
 
- if ((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)}) then {
+        if ((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)}) then {
             _heliPad setPosATL _pos;
             if !(Zen_RTS_Show_Preview) then {
                 _blfObjID = [_type, _pos] call Zen_RTS_StrategicBuildingInvoke;
