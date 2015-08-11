@@ -188,11 +188,13 @@ RTS_Used_Asset_Types = [[], []]; // global
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"
 #include "Zen_RTS_West\RTS_West_TankFactory.sqf"
 #include "Zen_RTS_West\RTS_West_AirFactory.sqf"
+#include "Zen_RTS_West\RTS_West_NavalFactory.sqf"
 
 #include "Zen_RTS_East\RTS_East_HQ.sqf"
 #include "Zen_RTS_East\RTS_East_Barracks.sqf"
 #include "Zen_RTS_East\RTS_East_TankFactory.sqf"
 #include "Zen_RTS_East\RTS_East_AirFactory.sqf"
+#include "Zen_RTS_East\RTS_East_NavalFactory.sqf"
 
 publicVariable "RTS_Used_Building_Types";
 // publicVariable "RTS_Used_Asset_Types";
