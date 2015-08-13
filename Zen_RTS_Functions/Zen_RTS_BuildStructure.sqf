@@ -50,7 +50,7 @@
             _exit = true;
         };
 
-        if ((([vehicle player, _HQObject] call Zen_Find2dDistance) > 200) && {!(_buildingType == Zen_RTS_BuildingType_West_NavalFactory)}) exitWith {
+        if ((([vehicle player, _HQObject] call Zen_Find2dDistance) > 200) && {!(_buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory])}) exitWith {
             player sideChat "This building must be constructed within 200 meters of the HQ.";
             _exit = true;
         };
@@ -78,13 +78,18 @@
         _clutter = [_pos, 20] call Zen_GetAmbientClutterCount;
         _objects = nearestObjects [_pos, [""], 20];
 
-        _bool = (if (_buildingType == Zen_RTS_BuildingType_West_NavalFactory) then {
-            (surfaceIsWater _pos)
+        _bool = (if (_buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory]) then {
+            // player sidechat "--------";
+            // player sidechat str (!(surfaceIsWater _pos));
+            // player sidechat str (([_pos, 25, "water"] call Zen_IsNearTerrain));
+            // player sidechat str (((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)}));
+            ((!(surfaceIsWater _pos) && {([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)})})
         } else {
-            ((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})
+            ((!(surfaceIsWater _pos) && {!([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})})
+            // ((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})
         });
         if (_bool) then {
-            if (_buildingType == Zen_RTS_BuildingType_West_NavalFactory) then {
+            if (_buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory]) then {
                 _heliPad setPosASL _pos;
             } else {
                 _heliPad setPosATL _pos;
@@ -95,7 +100,7 @@
                 breakTo "main";
             };
         } else {
-            if (([_pos, _HQObject] call Zen_Find2dDistance) > 200) then {
+            if ((([_pos, _HQObject] call Zen_Find2dDistance) > 200) && {(_buildingType in  [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory])}) then {
                 hintSilent "Placing this building more than 200m from the HQ is not allowed.";
             };
             _heliPad setPosATL [0,0,0];

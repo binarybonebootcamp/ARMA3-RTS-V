@@ -32,7 +32,7 @@ Zen_RTS_F_West_NavalConstructor = {
     };
 
     sleep (call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart));
-    _building = [_spawnPos, "Land_dp_smallFactory_F"] call Zen_SpawnVehicle;
+    _building = [_spawnPos, "Land_Cargo_House_V1_F"] call Zen_SpawnVehicle;
     _building setVariable ["side", side player, true];
 
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_NavalFactory)
@@ -102,7 +102,7 @@ Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Ze
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 20, getDir _building + _phi] call Zen_ExtendPosition; \
+        _pos = [_building, [10, 30], 0, 2] call Zen_FindGroundPosition; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
