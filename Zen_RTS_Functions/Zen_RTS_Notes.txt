@@ -7,8 +7,10 @@ Strategic
     Features
         // build for squad
         // custom squads
-        CJ/MCU vehicle recycling
-        AI mobile recyclers?
+        // CJ/MCU vehicle recycling
+            AI automated recyclers
+        repairing
+        explosive barrels
         AI fire on buildings and unmanned vehicles
         AI extraction/insertion from action menu (see ZK)
         Building Hacking
@@ -28,11 +30,17 @@ Strategic
     Buildings
         // Delete building
         // HQ and building upgrades
-        // force HQ first
         // check commander in vehicle while placing
         // Improve building placement checks
         // MCU recycle building destructor
-        handle destroyed buildings
+        // handle destroyed buildings
+            // remove strategic building
+            // mark ruin as recyclable clutter, include value
+            // no purchasing from building
+            // shown as offline in RTS menu
+        // force HQ first
+            // wait for full construction
+            // only allow within 200m of HQ (except naval)
         custom squads per building
         buildings come out of ground
 
@@ -50,14 +58,19 @@ Strategic
             // Level 2: utility/multi-purpose helicopters, unarmed aircraft
             Level 3: attack helicopters
             Level 4: attack aircraft
+        Naval
+            // Level 1: Transport
+            // Level 2: Armed Patrol boats
+            Level 3: ??
         HQ
             Research upgrades to all factories, CJ, and Radar (Commander only)
             FOB upgrade
             Research special technologies: (Individual only)
+                // HALO
                 Build enemy units (only at Level 4 Air/Tank factory)
                 VTOL
                 auto-tank
-                // HALO
+                FOB
                 Faster/cheaper building of units ??
         Radar
             Level 1: 1km, 200m floor
@@ -80,23 +93,23 @@ Strategic
 Territory
     // anyone can cap
     // faster capping
-    capping with certain vehicles gives fob
-    spawn AI defenders on capture
     Sub-Territory System
         Zen_RTS_SubTerritorySearch
             level bounds
             current level resource value bounds
             fob status bounds
         Zen_RTS_SubTerritoryRemove
-        FOB
-            retroactively apply FOB
+    FOB
+        spawn AI defenders on capture
+        capping with certain vehicles gives fob
+        each flag upgraded individually by FOB vehicle
 RTS menu
     // view distance fix
     // building unit dialog called from action per building
     // only allow unit purchase within radius from building
     // Disband unit
-    give money to another player
     AI fly height
+    give money to another player
 Revive
     see ZK
 Economy

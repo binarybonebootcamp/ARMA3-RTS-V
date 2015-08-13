@@ -1,16 +1,11 @@
 /**
     Level 1:
-        Zen_RTS_Asset_West_HEMTT_Repair
-        Zen_RTS_Asset_West_Quadbike
-        Zen_RTS_Asset_West_Offroad
-    Level 2:
-        Zen_RTS_Asset_West_OffroadArmed
-        Zen_RTS_Asset_West_HunterHMG
+        
 //*/
 
 // (_this select 1) : Array, spawn position
-Zen_RTS_F_West_TankFactoryConstructor = {
-    player sideChat str "West Tank_factory constructor called";
+Zen_RTS_F_West_NavalConstructor = {
+    player sideChat str "West Naval constructor called";
     player sideChat str _this;
 
     _buildingObjData = _this select 0;
@@ -18,10 +13,7 @@ Zen_RTS_F_West_TankFactoryConstructor = {
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_West_HEMTT_Repair;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_Quadbike;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_Offroad;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_M1025d;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_Zodiac;
 
     // if (Zen_RTS_TechFlag_West_BuildEnemy) then {
         // ... to do
@@ -36,14 +28,14 @@ Zen_RTS_F_West_TankFactoryConstructor = {
 
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(Zen_RTS_BuildingType_West_HQ, _ID)
     if (_ID != "") then {
-        0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_TankFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
+        0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_NavalFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
     sleep (call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart));
     _building = [_spawnPos, "Land_Cargo_House_V1_F"] call Zen_SpawnVehicle;
     _building setVariable ["side", side player, true];
 
-    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_TankFactory)
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_NavalFactory)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["<img size='3'  
@@ -52,8 +44,8 @@ Zen_RTS_F_West_TankFactoryConstructor = {
     (_building)
 };
 
-Zen_RTS_F_West_TankFactoryDestructor = {
-    player sideChat str "West Tank_factory destructor";
+Zen_RTS_F_West_NavalDestructor = {
+    player sideChat str "West Naval destructor";
 
     _buildingObjData = _this select 0;
     player commandChat str (_buildingObjData select 2);
@@ -85,14 +77,14 @@ N = { \
     (true) \
 };
 
-#define ASSETS [Zen_RTS_Asset_West_OffroadArmed, Zen_RTS_Asset_West_HunterHMG]
-UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade01, ASSETS)
+#define ASSETS [Zen_RTS_Asset_West_GunBoat]
+UPGRADE(Zen_RTS_F_West_NavalUpgrade01, ASSETS)
 
 // #define ASSETS []
-// UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade02, ASSETS)
+// UPGRADE(Zen_RTS_F_West_NavalUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor", "Zen_RTS_F_West_TankFactoryDestructor", ["Zen_RTS_F_West_TankFactoryUpgrade01"], "Tank factory", "Cost: 2000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
-(RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_TankFactory;
+Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Zen_RTS_F_West_NavalDestructor", ["Zen_RTS_F_West_NavalUpgrade01"], "Naval Factory", "Cost: 2000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
+(RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_NavalFactory;
 
 /////////////////////////////////
 // Assets
@@ -110,7 +102,7 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 20, getDir _building + _phi] call Zen_ExtendPosition; \
+        _pos = [_building, [10, 30], 0, 2] call Zen_FindGroundPosition; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
@@ -124,18 +116,10 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
     };
 
 #define CREW_UNITS ["rhsusf_army_ocp_driver", "rhsusf_army_ocp_rifleman"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetM1025d, "rhsusf_m1025_d_m2", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetOffroadArmed, "B_G_Offroad_01_armed_F", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetHunterHMG, "B_MRAP_01_hmg_F", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetGunBoat, "B_Boat_Armed_01_minigun_F", CREW_UNITS)
 
 #define CREW_UNITS ["rhsusf_army_ocp_driver"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_HEMTT_Repair, "B_Truck_01_Repair_F", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_Quadbike, "B_Quadbike_01_F", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetOffroad, "B_G_Offroad_01_F", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetZodiac, "B_Boat_Transport_01_F", CREW_UNITS)
 
-Zen_RTS_Asset_West_HEMTT_Repair = ["Zen_RTS_F_West_Asset_HEMTT_Repair","Repair", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_Quadbike = ["Zen_RTS_F_West_Asset_Quadbike", "Quadbike", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_Offroad = ["Zen_RTS_F_West_AssetOffroad", "OffRoad", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_OffroadArmed = ["Zen_RTS_F_West_AssetOffroadArmed", "OffRoad armed", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_HunterHMG = ["Zen_RTS_F_West_AssetHunterHMG", "Hunter HMG","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_M1025d = ["Zen_RTS_F_West_AssetM1025d","M1025 (M2)", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_Zodiac = ["Zen_RTS_F_West_AssetZodiac","Zodiac", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_GunBoat = ["Zen_RTS_F_West_AssetGunBoat","Armed Patrol Boat", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
