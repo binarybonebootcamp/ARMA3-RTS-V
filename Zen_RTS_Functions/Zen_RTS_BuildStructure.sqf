@@ -25,6 +25,7 @@
     };
 
     _buildingData = [_type] call Zen_RTS_StrategicBuildingTypeGetData;
+    _buildingType = _buildingData select 0;
     _descrRaw = _buildingData select 5;
     _cost = call compile  ([_descrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart);
     if (playerMoney < _cost) exitWith {
@@ -33,10 +34,29 @@
 
     _buildingTypeHQ = missionNamespace getVariable ("Zen_RTS_BuildingType_" + (str side player) + "_HQ");
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(_buildingTypeHQ, _ID)
-    if ((_ID == "") && {_type != _buildingTypeHQ}) exitWith {
-        player sideChat "HQ must be built first.";
+
+    _exit = false;
+    _HQObject = vehicle player;
+    if (_type != _buildingTypeHQ) then {
+        if (_ID == "") exitWith {
+            player sideChat "HQ must be built first.";
+            _exit = true;
+        };
+
+        _buildingObjData = [_ID] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
+        _HQObject = _buildingObjData select 2;
+        if (isNull _HQObject) exitWith {
+            player sideChat "HQ is not finished building.";
+            _exit = true;
+        };
+
+        if ((([vehicle player, _HQObject] call Zen_Find2dDistance) > 200) && {!(_buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory])}) exitWith {
+            player sideChat "This building must be constructed within 200 meters of the HQ.";
+            _exit = true;
+        };
     };
 
+    if (_exit) exitWith {};
     cLoseDialog 0;
     playerMoney = playerMoney - _cost;
 
@@ -52,19 +72,37 @@
 
     scopeName "main";
     while {true} do {
-        _pos = [_vehicle, 25, getDir _vehicle] call Zen_ExtendPosition;
+        _pos = [_vehicle, 25, getDir _vehicle, "compass", 0] call Zen_ExtendPosition;
 
         _slope = [_pos, 15] call Zen_FindTerrainSlope;
         _clutter = [_pos, 20] call Zen_GetAmbientClutterCount;
         _objects = nearestObjects [_pos, [""], 20];
 
-        if ((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)}) then {
-            _heliPad setPosATL _pos;
+        _bool = (if (_buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory]) then {
+            // player sidechat "--------";
+            // player sidechat str (!(surfaceIsWater _pos));
+            // player sidechat str (([_pos, 25, "water"] call Zen_IsNearTerrain));
+            // player sidechat str (((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)}));
+            ((!(surfaceIsWater _pos) && {([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)})})
+        } else {
+            ((!(surfaceIsWater _pos) && {!([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})})
+            // ((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})
+        });
+        if (_bool) then {
+            if (_buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory]) then {
+                _heliPad setPosASL _pos;
+            } else {
+                _heliPad setPosATL _pos;
+            };
+
             if !(Zen_RTS_Show_Preview) then {
                 _blfObjID = [_type, _pos] call Zen_RTS_StrategicBuildingInvoke;
                 breakTo "main";
             };
         } else {
+            if ((([_pos, _HQObject] call Zen_Find2dDistance) > 200) && {(_buildingType in  [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory])}) then {
+                hintSilent "Placing this building more than 200m from the HQ is not allowed.";
+            };
             _heliPad setPosATL [0,0,0];
             if !(Zen_RTS_Show_Preview) then {
                 player sideChat "Building here is not allowed";
