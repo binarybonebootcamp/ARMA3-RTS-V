@@ -22,6 +22,7 @@ Strategic
         // constructors placement
         // custom assets check building upgrades
         // upgrades for commander only
+        check building destroyed while waiting
         repair vehicle
         auto tank
             tracked vehicles
@@ -41,7 +42,7 @@ Strategic
         // force HQ first
             // wait for full construction
             // only allow within 200m of HQ (except naval)
-        custom squads per building
+        custom squads per building ??
         buildings come out of ground
 
         Barracks
@@ -62,6 +63,8 @@ Strategic
             // Level 1: Transport
             // Level 2: Armed Patrol boats
             Level 3: ??
+        Support
+            ??
         HQ
             Research upgrades to all factories, CJ, and Radar (Commander only)
             FOB upgrade
