@@ -131,6 +131,12 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 
 // #define ZEN_RTS_STRATEGIC_BUIDLING_DESTRUCTOR_REFUND_COEFF 0.5
 
+#define DETECT_BUILDING(B, U) \
+    ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
+    if (_ID != "") then { \
+        _assetsToAdd pushBack U; \
+    };
+
 #define ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(N, I) \
     _objIndexes = [Zen_RTS_Strategic_Building_Objects_Global, N, 0] call Zen_ArrayGetNestedIndex; \
     I = ""; \
@@ -189,12 +195,14 @@ RTS_Used_Asset_Types = [[], []]; // global
 #include "Zen_RTS_West\RTS_West_TankFactory.sqf"
 #include "Zen_RTS_West\RTS_West_AirFactory.sqf"
 #include "Zen_RTS_West\RTS_West_NavalFactory.sqf"
+#include "Zen_RTS_West\RTS_West_SupportFactory.sqf"
 
 #include "Zen_RTS_East\RTS_East_HQ.sqf"
 #include "Zen_RTS_East\RTS_East_Barracks.sqf"
 #include "Zen_RTS_East\RTS_East_TankFactory.sqf"
 #include "Zen_RTS_East\RTS_East_AirFactory.sqf"
 #include "Zen_RTS_East\RTS_East_NavalFactory.sqf"
+#include "Zen_RTS_East\RTS_East_SupportFactory.sqf"
 
 publicVariable "RTS_Used_Building_Types";
 // publicVariable "RTS_Used_Asset_Types";
