@@ -9,6 +9,7 @@ Strategic
         // custom squads
         // CJ/MCU vehicle recycling
             AI automated recyclers
+        Custom squads for vehicle crew
         repairing
         explosive barrels
         AI fire on buildings and unmanned vehicles
@@ -22,7 +23,7 @@ Strategic
         // constructors placement
         // custom assets check building upgrades
         // upgrades for commander only
-        check building destroyed while waiting
+        // check building destroyed while waiting
         repair vehicle
         auto tank
             tracked vehicles
@@ -42,8 +43,8 @@ Strategic
         // force HQ first
             // wait for full construction
             // only allow within 200m of HQ (except naval)
-        custom squads per building ??
-        buildings come out of ground
+        // buildings come out of ground
+        // update to current level when rebuilding
 
         Barracks
             // Level 1: standard infantry (rifleman, AR, etc.)

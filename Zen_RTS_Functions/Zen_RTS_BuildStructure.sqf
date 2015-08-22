@@ -97,7 +97,16 @@
             };
 
             if !(Zen_RTS_Show_Preview) then {
-                _blfObjID = [_type, _pos] call Zen_RTS_StrategicBuildingInvoke;
+                _level = 0;
+                _index = [_type, (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
+                if (_index == -1) then {
+                    _index = [_type, (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
+                    _level = (RTS_Building_Type_Levels select 1) select _index;
+                } else {
+                    _level = (RTS_Building_Type_Levels select 0) select _index;
+                };
+
+                _blfObjID = [_type, [_pos, _level]] call Zen_RTS_StrategicBuildingInvoke;
                 breakTo "main";
             };
         } else {

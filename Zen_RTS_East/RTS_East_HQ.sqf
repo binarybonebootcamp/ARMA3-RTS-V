@@ -10,7 +10,10 @@ Zen_RTS_F_East_HQConstructor = {
     player sideChat str _this;
 
     _buildingObjData = _this select 0;
-    _spawnPos = _this select 1;
+    _args = _this select 1;
+
+    _spawnPos = _args select 0;
+    _level = _args select 1;
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
@@ -28,10 +31,7 @@ Zen_RTS_F_East_HQConstructor = {
     _args = [(_buildingObjData select 1), _assetsToAddLocal];
     ZEN_FMW_MP_RENonDedicated("Zen_RTS_F_StrategicAddAssetLocal", _args, call)
 
-    sleep (call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart));
-    _building = [_spawnPos, "Land_Research_HQ_F"] call Zen_SpawnVehicle;
-    _building setVariable ["side", side player, true];
-
+    BUILDING_VISUALS("Land_Research_HQ_F", 1)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_HQ)
 
     // to-do: || false condition needs building hacking logic

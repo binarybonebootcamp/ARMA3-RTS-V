@@ -180,9 +180,33 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
         }; \
     }];
 
+#define BUILDING_VISUALS(T, O) \
+    _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
+    _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
+    _building setVariable ["side", side player, true]; \
+    _height = ZEN_STD_OBJ_BBZ(_building) - O; \
+    ZEN_STD_OBJ_TransformATL(_building, 0, 0, -( _height + 5)) \
+    _heightStep = (2 / _buildTime * (_height + 5)); \
+    _timeStep = 2; \
+    for "_i" from 0 to _buildTime step _timeStep do { \
+        sleep _timeStep; \
+        _building setPosATL ((getPosATL _building) vectorAdd [0, 0, _heightStep]); \
+    };
+
 // all building types must be added here, or they will not be considered
 // must be [[west building types], [east '']]
 RTS_Used_Building_Types = [[], []]; // global
+
+// the level of each building type for when the object is destroyed
+// must be [[west building levels], [east '']]
+RTS_Building_Type_Levels = [[], []]; // global
+
+{
+    _array = _x;
+    for "_i" from 1 to 6 do {
+        _array pushBack 0;
+    };
+} forEach RTS_Building_Type_Levels;
 
 // all asset types must be added here, or they will not be considered for custom squads
 // must be [[west asset types, [east '']]
@@ -205,5 +229,6 @@ RTS_Used_Asset_Types = [[], []]; // global
 #include "Zen_RTS_East\RTS_East_SupportFactory.sqf"
 
 publicVariable "RTS_Used_Building_Types";
+publicVariable "RTS_Building_Type_Levels";
 // publicVariable "RTS_Used_Asset_Types";
 
