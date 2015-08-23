@@ -16,33 +16,29 @@ Zen_RTS_F_East_RadarConstructor = {
 
     0 = [(_buildingObjData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal;
 
-      ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(Zen_RTS_BuildingType_East_HQ, _ID)
+    ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(Zen_RTS_BuildingType_East_HQ, _ID)
     if (_ID != "") then {
        0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_Radar]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    sleep (call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart));
-    _building = [_spawnPos, "rhs_prv13"] call Zen_SpawnVehicle;
-    _building setVariable ["side", side player, true];
-	
+    BUILDING_VISUALS("rhs_prv13", 1)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_Radar)
+
+    (_building)
 };
 
 Zen_RTS_F_East_RadarDestructor = {
     player sideChat str "East Radar destructor";
 
     _buildingObjData = _this select 0;
-    player commandChat str (_buildingObjData select 2);
-    player commandChat str (isNull (_buildingObjData select 2));
-    player commandChat str (alive (_buildingObjData select 2));
-    player commandChat str (getPosATL (_buildingObjData select 2));
+    _level = _buildingObjData select 3;
+    player commandChat str _level;
 
-    // (_buildingObjData select 2) removeAllEventHandlers "Killed";
+    _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
+    _array = RTS_Building_Type_Levels select 0;
+    _array set [_index, _level];
+
     (_buildingObjData select 2) setDamage 1;
-
-    // _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    // _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart);
-    // playerMoney = playerMoney + _cost * ZEN_RTS_STRATEGIC_BUIDLING_DESTRUCTOR_REFUND_COEFF;
 };
 
 #define UPGRADE(N, A) \
@@ -66,7 +62,6 @@ UPGRADE(Zen_RTS_F_East_RadarUpgrade01, ASSETS)
 
 // #define ASSETS []
 // UPGRADE(Zen_RTS_F_East_RadarUpgrade02, ASSETS)
-
 
 Zen_RTS_BuildingType_East_Radar = ["Zen_RTS_F_East_RadarConstructor", "Zen_RTS_F_East_RadarDestructor", ["Zen_RTS_F_East_RadarUpgrade01"], "Radar", "Cost: 2000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_Radar;
