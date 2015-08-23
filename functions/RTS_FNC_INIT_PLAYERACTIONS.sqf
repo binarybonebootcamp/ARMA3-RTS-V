@@ -18,6 +18,7 @@ RTS_FNC_INIT_PLAYERACTIONS = {
     actionid = _playerunit addAction ["<img size='1' color='#f42a13' shadow='2' image='\A3\ui_f\data\gui\cfg\Hints\actionmenu_ca.paa' /><t size='1.5' shadow='2' color=""#136db2"">" + ("OPEN CHUTE") + "</t><img size='2' color='#f42a13' shadow='1' image='\A3\ui_f\data\gui\cfg\Hints\actionmenu_ca.paa'/>", "openParachute.sqf", [], 20, true, true, "", "vehicle player == player && (getPos player) select 2 > 2.5"];
 	
 execvm "RTS_JUMPACTIONS.sqf";	
+onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
 
     if (Side _unit == west) then {
         _msg = "Checking command status";

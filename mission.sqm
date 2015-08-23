@@ -30,6 +30,7 @@ class Mission
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
 		"A3_Characters_F_OPFOR",
+		"A3_Characters_F_INDEP",
 		"A3_Soft_F_Gamma_TruckHeavy",
 		"A3_Structures_F_Mil_Flags",
 		"A3_Soft_F_Gamma_HEMTT",
@@ -55,7 +56,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=27;
+		items=28;
 		class Item0
 		{
 			side="LOGIC";
@@ -668,6 +669,24 @@ class Mission
 				};
 			};
 		};
+		class Item27
+		{
+			side="GUER";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={12860.5,21.692337,17650.91};
+					id=27;
+					side="GUER";
+					vehicle="I_soldier_F";
+					leader=1;
+					skill=0.2;
+					text="dick";
+				};
+			};
+		};
 	};
 	class Vehicles
 	{
@@ -677,7 +696,7 @@ class Mission
 			position[]={14552.243,11.721425,6257.1826};
 			azimut=-39.319801;
 			special="NONE";
-			id=27;
+			id=28;
 			side="EMPTY";
 			vehicle="O_Truck_02_medical_F";
 			skill=1;
@@ -688,7 +707,7 @@ class Mission
 		class Item1
 		{
 			position[]={3341.6396,39.297024,17953.736};
-			id=28;
+			id=29;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -698,7 +717,7 @@ class Mission
 		class Item2
 		{
 			position[]={6697.5381,206.49287,19578.277};
-			id=29;
+			id=30;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -709,7 +728,7 @@ class Mission
 		{
 			position[]={23055.742,48.754719,7300.6416};
 			azimut=180.9183;
-			id=30;
+			id=31;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -719,7 +738,7 @@ class Mission
 		class Item4
 		{
 			position[]={14147.133,60.74704,21354.762};
-			id=31;
+			id=32;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -730,7 +749,7 @@ class Mission
 		{
 			position[]={22206.201,12.968179,5036.4688};
 			azimut=-136.12904;
-			id=32;
+			id=33;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -741,7 +760,7 @@ class Mission
 		{
 			position[]={20002.277,27.570713,13564.859};
 			azimut=-136.12904;
-			id=33;
+			id=34;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -751,7 +770,7 @@ class Mission
 		class Item7
 		{
 			position[]={17993.572,55.290016,12517.807};
-			id=34;
+			id=35;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -761,7 +780,7 @@ class Mission
 		class Item8
 		{
 			position[]={21480.006,1.8614185,11895.932};
-			id=35;
+			id=36;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -771,7 +790,7 @@ class Mission
 		class Item9
 		{
 			position[]={7095.8608,2.32498,10953.727};
-			id=36;
+			id=37;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -781,7 +800,7 @@ class Mission
 		class Item10
 		{
 			position[]={23646.354,3.1900001,18283.133};
-			id=37;
+			id=38;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -791,7 +810,7 @@ class Mission
 		class Item11
 		{
 			position[]={2713.7468,4.2494926,22074.916};
-			id=38;
+			id=39;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -801,7 +820,7 @@ class Mission
 		class Item12
 		{
 			position[]={23722.594,5.25,16222.499};
-			id=39;
+			id=40;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -811,7 +830,7 @@ class Mission
 		class Item13
 		{
 			position[]={9372.6016,52.855564,8634.8604};
-			id=40;
+			id=41;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -821,7 +840,7 @@ class Mission
 		class Item14
 		{
 			position[]={11033.801,196.93086,7317.4507};
-			id=41;
+			id=42;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -832,7 +851,7 @@ class Mission
 		{
 			position[]={11562.97,18.731169,9608.2246};
 			azimut=-35.453369;
-			id=42;
+			id=43;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -843,7 +862,7 @@ class Mission
 		{
 			position[]={5948.3057,101.40961,12459.232};
 			azimut=-35.453369;
-			id=43;
+			id=44;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -854,7 +873,7 @@ class Mission
 		{
 			position[]={21174.371,18.54785,7550.6079};
 			azimut=180.9183;
-			id=44;
+			id=45;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -865,7 +884,7 @@ class Mission
 		{
 			position[]={5342.6343,128.82004,10312.71};
 			azimut=-35.453369;
-			id=45;
+			id=46;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -875,7 +894,7 @@ class Mission
 		class Item19
 		{
 			position[]={12409.493,77.484955,19860.311};
-			id=46;
+			id=47;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -886,7 +905,7 @@ class Mission
 		{
 			position[]={21341.654,3.4593835,10416.786};
 			azimut=180.9183;
-			id=47;
+			id=48;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -896,7 +915,7 @@ class Mission
 		class Item21
 		{
 			position[]={4426.415,0,7281.9302};
-			id=48;
+			id=49;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -906,7 +925,7 @@ class Mission
 		class Item22
 		{
 			position[]={5773.0396,0,7287.9673};
-			id=49;
+			id=50;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -916,7 +935,7 @@ class Mission
 		class Item23
 		{
 			position[]={7109.4419,0,7285.9888};
-			id=50;
+			id=51;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -927,7 +946,7 @@ class Mission
 		{
 			position[]={8422.0439,109.31248,25092.129};
 			azimut=-129.069;
-			id=51;
+			id=52;
 			side="EMPTY";
 			vehicle="B_Truck_01_medical_F";
 			leader=1;
@@ -940,7 +959,7 @@ class Mission
 		{
 			position[]={15006.073,17.91,16472.965};
 			azimut=115.04237;
-			id=52;
+			id=53;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -951,7 +970,7 @@ class Mission
 		{
 			position[]={16060.396,56.607388,18270.754};
 			azimut=115.04237;
-			id=53;
+			id=54;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -962,7 +981,7 @@ class Mission
 		{
 			position[]={9379.9492,17.442463,21546.576};
 			azimut=115.04237;
-			id=54;
+			id=55;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -973,7 +992,7 @@ class Mission
 		{
 			position[]={11523.633,22.20792,11546.625};
 			azimut=-223.51463;
-			id=55;
+			id=56;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -983,7 +1002,7 @@ class Mission
 		class Item29
 		{
 			position[]={27179.789,19.353275,24656.143};
-			id=56;
+			id=57;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -993,7 +1012,7 @@ class Mission
 		class Item30
 		{
 			position[]={19442.377,19.523785,15391.674};
-			id=57;
+			id=58;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -1003,7 +1022,7 @@ class Mission
 		class Item31
 		{
 			position[]={23470.455,90.503571,21136.09};
-			id=58;
+			id=59;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -1013,7 +1032,7 @@ class Mission
 		class Item32
 		{
 			position[]={25233.15,10.829477,20083.574};
-			id=59;
+			id=60;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -1023,7 +1042,7 @@ class Mission
 		class Item33
 		{
 			position[]={27165.455,22.744196,21513.975};
-			id=60;
+			id=61;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -1033,7 +1052,7 @@ class Mission
 		class Item34
 		{
 			position[]={9014.001,212.75212,17959.162};
-			id=61;
+			id=62;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -1043,7 +1062,7 @@ class Mission
 		class Item35
 		{
 			position[]={7010.4346,68.329781,15878.144};
-			id=62;
+			id=63;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -1053,7 +1072,7 @@ class Mission
 		class Item36
 		{
 			position[]={10496.872,85.29274,15413.441};
-			id=63;
+			id=64;
 			side="EMPTY";
 			vehicle="FlagPole_F";
 			skill=0.60000002;
@@ -1063,7 +1082,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=43;
+		items=44;
 		class Item0
 		{
 			position[]={14443.622,25.562315,6181.209};
@@ -1494,6 +1513,12 @@ class Mission
 			a=15;
 			b=15;
 			angle=-357.22;
+		};
+		class Item43
+		{
+			position[]={12860.498,21.694286,17650.957};
+			name="dick is here";
+			type="mil_box";
 		};
 	};
 	class Sensors
