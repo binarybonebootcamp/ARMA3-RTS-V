@@ -1,16 +1,16 @@
 /**
     Level 1:
-        Zen_RTS_Asset_East_Tempest_Repair
-        Zen_RTS_Asset_East_Quadbike
-        Zen_RTS_Asset_East_Offroad
+     Zen_RTS_Asset_East_rhs_gaz66_repair_msv;
+     Zen_RTS_Asset_East_rhs_typhoon_vdv;
+     Zen_RTS_Asset_East_RHS_Ural_VDV_01;
     Level 2:
-        Zen_RTS_Asset_East_OffroadArmed
+        Zen_RTS_Asset_East_rhs_prp3_vdv
         Zen_RTS_Asset_East_IfritHMG
 //*/
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_SupportFactoryConstructor = {
-    player sideChat str "East Tank_factory constructor called";
+    player sideChat str "East Support_factory constructor called";
     player sideChat str _this;
 
     _buildingObjData = _this select 0;
@@ -21,8 +21,11 @@ Zen_RTS_F_East_SupportFactoryConstructor = {
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_East_Tempest_Repair;
-
+    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_ammo_msv;	
+    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_repair_msv;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_Fuel_MSV_01;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_typhoon_vdv;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_VDV_01;
     // if (Zen_RTS_TechFlag_East_BuildEnemy) then {
         // ... to do
     // };
@@ -81,13 +84,13 @@ N = { \
     (true) \
 };
 
-#define ASSETS []
+#define ASSETS [Zen_RTS_Asset_East_rhs_prp3_vdv, Zen_RTS_Asset_East_rhs_gaz66_r142_vdv]
 UPGRADE(Zen_RTS_F_East_SupportFactoryUpgrade01, ASSETS)
 
-// #define ASSETS []
-// UPGRADE(Zen_RTS_F_East_SupportFactoryUpgrade02, ASSETS)
+ #define ASSETS [Zen_RTS_Asset_East_RHS_BM21_MSV_01, Zen_RTS_Asset_East_rhs_9k79, Zen_RTS_Asset_East_rhs_9k79_K, Zen_RTS_Asset_East_rhs_9k79_B]
+ UPGRADE(Zen_RTS_F_East_SupportFactoryUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstructor", "Zen_RTS_F_East_SupportFactoryDestructor", ["Zen_RTS_F_East_SupportFactoryUpgrade01"], "Support factory", "Cost: 2000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstructor", "Zen_RTS_F_East_SupportFactoryDestructor", ["Zen_RTS_F_East_SupportFactoryUpgrade01", "Zen_RTS_F_East_SupportFactoryUpgrade02"], "Support factory", "Cost: 2000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_SupportFactory;
 
 /////////////////////////////////
@@ -96,7 +99,7 @@ Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstr
 
 #define VEHCILE_CONSTRUCTOR(N, T, U) \
     N = { \
-        player sideChat str ("West " + T + " asset constructor called"); \
+        player sideChat str ("East " + T + " asset constructor called"); \
         player sideChat str _this; \
         _buildingObjData = _this select 0; \
         _assetData = _this select 1; \
@@ -120,6 +123,32 @@ Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstr
     };
 
 #define CREW_UNITS ["rhs_msv_driver"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_Tempest_Repair, "O_Truck_03_repair_F", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_ammo_msv, "rhs_gaz66_ammo_msv", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_repair_msv, "rhs_gaz66_repair_msv", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Ural_Fuel_MSV_01,"RHS_Ural_Fuel_MSV_01", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_typhoon_vdv, "rhs_typhoon_vdv", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Ural_VDV_01, "RHS_Ural_VDV_01", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_r142_vdv, "rhs_gaz66_r142_vdv", CREW_UNITS)
 
-Zen_RTS_Asset_East_Tempest_Repair = ["Zen_RTS_F_East_Asset_Tempest_Repair","Repair", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+#define CREW_UNITS ["rhs_msv_driver", "rhs_msv_crew", "rhs_msv_crew"]
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_BM21_MSV_01, "RHS_BM21_MSV_01", CREW_UNITS)
+
+#define CREW_UNITS ["rhs_vdv_driver_armored", "rhs_vdv_crew_commander", "rhs_vdv_armoredcrew", "rhs_vdv_combatcrew","rhs_vdv_combatcrew"]
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_prp3_vdv, "rhs_prp3_vdv", CREW_UNITS)
+
+#define CREW_UNITS ["rhs_vdv_driver_armored", "rhs_vdv_crew_commander", "rhs_vdv_armoredcrew", "rhs_vdv_combatcrew"]
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_9k79, "rhs_9k79", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_9k79_K, "rhs_9k79_k", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_9k79_B, "rhs_9k79_B", CREW_UNITS)
+
+Zen_RTS_Asset_East_rhs_gaz66_ammo_msv = ["Zen_RTS_F_East_Asset_rhs_gaz66_ammo_msv","Ammo", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_rhs_gaz66_repair_msv = ["Zen_RTS_F_East_Asset_rhs_gaz66_repair_msv","Repair", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_RHS_Ural_Fuel_MSV_01 = ["Zen_RTS_F_East_Asset_RHS_Ural_Fuel_MSV_01","ReFuel", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_rhs_typhoon_vdv = ["Zen_RTS_F_East_Asset_rhs_typhoon_vdv", "typhoon", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_RHS_Ural_VDV_01 = ["Zen_RTS_F_East_Asset_RHS_Ural_VDV_01", "Ural","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_rhs_prp3_vdv = ["Zen_RTS_F_East_Asset_rhs_prp3_vdv", "prp3_vdv","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_rhs_gaz66_r142_vdv = ["Zen_RTS_F_East_Asset_rhs_gaz66_r142_vdv", "Gaz (future radar extention)", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_RHS_BM21_MSV_01 = ["Zen_RTS_F_East_Asset_RHS_BM21_MSV_01", "test","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_rhs_9k79 = ["Zen_RTS_F_East_Asset_rhs_9k79", "missile","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_rhs_9k79_K = ["Zen_RTS_F_East_Asset_rhs_9k79_K", "missile","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_rhs_9k79_B = ["Zen_RTS_F_East_Asset_rhs_9k79_B", "NUKE","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate; 
