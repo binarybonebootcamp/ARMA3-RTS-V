@@ -2,27 +2,30 @@
     Level 1:
      Zen_RTS_Asset_East_rhs_gaz66_repair_msv;
      Zen_RTS_Asset_East_rhs_typhoon_vdv;
-	 Zen_RTS_Asset_East_RHS_Ural_VDV_01;
+     Zen_RTS_Asset_East_RHS_Ural_VDV_01;
     Level 2:
         Zen_RTS_Asset_East_rhs_prp3_vdv
         Zen_RTS_Asset_East_IfritHMG
 //*/
 
-// (_this select 1) : Array, spawn position
+// (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_SupportFactoryConstructor = {
     player sideChat str "East Support_factory constructor called";
     player sideChat str _this;
 
     _buildingObjData = _this select 0;
-    _spawnPos = _this select 1;
+    _args = _this select 1;
+
+    _spawnPos = _args select 0;
+    _level = _args select 1;
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_ammo_msv;	
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_repair_msv;
-	_assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_Fuel_MSV_01;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_Fuel_MSV_01;
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_typhoon_vdv;
-	_assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_VDV_01;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_VDV_01;
     // if (Zen_RTS_TechFlag_East_BuildEnemy) then {
         // ... to do
     // };
@@ -39,10 +42,7 @@ Zen_RTS_F_East_SupportFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_SupportFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    sleep (call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart));
-    _building = [_spawnPos, "rhs_2P3_1"] call Zen_SpawnVehicle;
-    _building setVariable ["side", side player, true];
-
+    BUILDING_VISUALS("Land_Cargo_House_V1_F", 1)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_SupportFactory)
 
     // to-do: || false condition needs building hacking logic

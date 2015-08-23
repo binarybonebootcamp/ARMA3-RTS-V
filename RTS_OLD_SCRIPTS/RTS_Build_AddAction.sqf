@@ -8,7 +8,6 @@ sleep 1;
 
 MCUWest = westTruck;
 MCUEast = eastTruck;
-newBuilding = objNull;
 
 MCUWest addAction ["<t color='#D80000'>" + (format ["Base Construction Menu", westMCUName]) + "</t>", Zen_RTS_BuildMenuStructures, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'B_Truck_01_medical_F'"];
 MCUWest addAction ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'B_Truck_01_medical_F'"];
@@ -18,6 +17,7 @@ MCUEast addAction ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 100, f
 
 // This appears to be deprecated with the old territory system
 /**
+newBuilding = objNull;
 while {true} do {
     waitUntil {
         sleep 2;

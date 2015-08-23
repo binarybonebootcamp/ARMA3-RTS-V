@@ -8,13 +8,16 @@
         Zen_RTS_Asset_West_HunterHMG
 //*/
 
-// (_this select 1) : Array, spawn position
+// (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_West_SupportFactoryConstructor = {
     player sideChat str "West Tank_factory constructor called";
     player sideChat str _this;
 
     _buildingObjData = _this select 0;
-    _spawnPos = _this select 1;
+    _args = _this select 1;
+
+    _spawnPos = _args select 0;
+    _level = _args select 1;
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
@@ -36,10 +39,7 @@ Zen_RTS_F_West_SupportFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_TankFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    sleep (call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart));
-    _building = [_spawnPos, "rhs_2P3_2"] call Zen_SpawnVehicle;
-    _building setVariable ["side", side player, true];
-
+    BUILDING_VISUALS("Land_Research_HQ_F", 1)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_SupportFactory)
 
     // to-do: || false condition needs building hacking logic
