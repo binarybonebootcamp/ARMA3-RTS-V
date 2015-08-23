@@ -8,7 +8,7 @@
         Zen_RTS_Asset_Ka52
 //*/
 
-// (_this select 1) : Array, spawn position
+// (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_AirFactoryConstructor = {
     player sideChat str "East Air_factory constructor called";
     player sideChat str _this;

@@ -8,9 +8,9 @@ Strategic
         // build for squad
         // custom squads
         // CJ/MCU vehicle recycling
-            AI automated recyclers
-        Custom squads for vehicle crew
-        repairing
+        // Repairing
+        Custom crew count for manned vehicles
+        AI automated recyclers
         explosive barrels
         AI fire on buildings and unmanned vehicles
         AI extraction/insertion from action menu (see ZK)
@@ -24,7 +24,7 @@ Strategic
         // custom assets check building upgrades
         // upgrades for commander only
         // check building destroyed while waiting
-        repair vehicle
+        // CJ, with repair and recycle
         auto tank
             tracked vehicles
         base-in-a-box
@@ -88,7 +88,7 @@ Strategic
             Houses, H-barriers
         CJ
             medical
-            static MG
+            // static MG
             ammo crate
             barbed wire
             beacons (tracker)
@@ -112,10 +112,12 @@ RTS menu
     // building unit dialog called from action per building
     // only allow unit purchase within radius from building
     // Disband unit
+    Fix blinking
+    Fix unit group list text
     AI fly height
     give money to another player
-Revive
-    see ZK
+Revive/Respawn
+    Get correct respawn positions
 Economy
     // Territories have resource value
     // total team resource value gives money increase
@@ -126,3 +128,4 @@ AI
     commander
     individual
     human commander gives orders/units/money
+Ranking

@@ -3,7 +3,7 @@
         
 //*/
 
-// (_this select 1) : Array, spawn position
+// (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_NavalConstructor = {
     player sideChat str "East Naval constructor called";
     player sideChat str _this;

@@ -10,7 +10,7 @@
         Zen_RTS_Asset_West_AASoldier
 //*/
 
-// (_this select 1) : Array, spawn position
+// (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_West_BarracksConstructor = {
     player sideChat str "West barracks constructor called";
     player sideChat str _this;

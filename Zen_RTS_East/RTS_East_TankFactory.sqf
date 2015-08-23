@@ -8,7 +8,7 @@
         Zen_RTS_Asset_East_IfritHMG
 //*/
 
-// (_this select 1) : Array, spawn position
+// (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_TankFactoryConstructor = {
     player sideChat str "East Tank_factory constructor called";
     player sideChat str _this;

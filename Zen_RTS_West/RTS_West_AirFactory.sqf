@@ -7,7 +7,7 @@
          Zen_RTS_F_West_UH_80_Ghost
 //*/
 
-// (_this select 1) : Array, spawn position
+// (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_West_AirFactoryConstructor = {
     player sideChat str "West Air_factory constructor called";
     player sideChat str _this;
