@@ -257,6 +257,7 @@ RTS_Used_Asset_Types = [[], []]; // global
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"
+#include "Zen_RTS_West\RTS_West_Radar.sqf"
 #include "Zen_RTS_West\RTS_West_TankFactory.sqf"
 #include "Zen_RTS_West\RTS_West_AirFactory.sqf"
 #include "Zen_RTS_West\RTS_West_NavalFactory.sqf"
