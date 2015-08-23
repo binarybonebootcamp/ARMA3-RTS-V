@@ -83,6 +83,8 @@ ZKS_Revive_Init = compileFinal preprocessFileLineNumbers "ZKS\Revive\INIT_Start.
 //[] exec "rts-build-serverSideMonitor.sqs";
 // rts_hq sideChat "Global Scripts and Variables Initialized";
 rts_Initialized = TRUE;
+execVM "R3F_LOG\init.sqf";
+[] execVM "VCOM_Driving\init.sqf";
 // --------------------------
 
 // Zen Server ------------------
@@ -263,6 +265,7 @@ RTS_Used_Asset_Types = [[], []]; // global
 
 #include "Zen_RTS_East\RTS_East_HQ.sqf"
 #include "Zen_RTS_East\RTS_East_Barracks.sqf"
+#include "Zen_RTS_East\RTS_East_Radar.sqf"
 #include "Zen_RTS_East\RTS_East_TankFactory.sqf"
 #include "Zen_RTS_East\RTS_East_AirFactory.sqf"
 #include "Zen_RTS_East\RTS_East_NavalFactory.sqf"
