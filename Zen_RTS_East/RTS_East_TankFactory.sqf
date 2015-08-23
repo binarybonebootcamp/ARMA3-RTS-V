@@ -47,7 +47,7 @@ Zen_RTS_F_East_TankFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_TankFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_Cargo_House_V1_F", 1)
+    BUILDING_VISUALS("Land_i_Garage_V1_F", 1)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_TankFactory)
 
     // to-do: || false condition needs building hacking logic
@@ -60,17 +60,14 @@ Zen_RTS_F_East_TankFactoryDestructor = {
     player sideChat str "East Tank_factory destructor";
 
     _buildingObjData = _this select 0;
-    player commandChat str (_buildingObjData select 2);
-    player commandChat str (isNull (_buildingObjData select 2));
-    player commandChat str (alive (_buildingObjData select 2));
-    player commandChat str (getPosATL (_buildingObjData select 2));
+    _level = _buildingObjData select 3;
+    player commandChat str _level;
 
-    // (_buildingObjData select 2) removeAllEventHandlers "Killed";
+    _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
+    _array = RTS_Building_Type_Levels select 0;
+    _array set [_index, _level];
+
     (_buildingObjData select 2) setDamage 1;
-
-    // _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    // _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart);
-    // playerMoney = playerMoney + _cost * ZEN_RTS_STRATEGIC_BUIDLING_DESTRUCTOR_REFUND_COEFF;
 };
 
 #define UPGRADE(N, A) \
