@@ -5,8 +5,6 @@ class Mission
 	{
 		"A3_Characters_F_Civil",
 		"a3_map_altis",
-		"A3_Soft_F_MRAP_01",
-		"A3_Soft_F_MRAP_02",
 		"a3_soft_f_truckheavy",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_OPFOR",
@@ -95,7 +93,6 @@ class Mission
 					rank="CORPORAL";
 					skill=1;
 					text="west1";
-					init="GroupWest1 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Commander";
 				};
 			};
@@ -118,7 +115,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west2";
-					init="GroupWest2 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -141,7 +137,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west3";
-					init="GroupWest3 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -164,7 +159,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west4";
-					init="GroupWest4 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -187,7 +181,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west5";
-					init="GroupWest5 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -210,7 +203,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west6";
-					init="GroupWest6 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -233,7 +225,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west7";
-					init="GroupWest7 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -256,7 +247,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west8";
-					init="GroupWest8= Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -279,7 +269,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west9";
-					init="GroupWest9 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -302,7 +291,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west10";
-					init="GroupWest10 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -325,7 +313,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west11";
-					init="GroupWest11 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -348,7 +335,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west12";
-					init="GroupWest12 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -371,7 +357,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="west13";
-					init="GroupWest13 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -394,7 +379,6 @@ class Mission
 					rank="COLONEL";
 					skill=1;
 					text="east1";
-					init="GroupEast1 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Commander";
 					syncId=0;
 					synchronizations[]={0};
@@ -419,7 +403,6 @@ class Mission
 					rank="CORPORAL";
 					skill=1;
 					text="east3";
-					init="GroupEast3 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Corporal";
 				};
 			};
@@ -442,7 +425,6 @@ class Mission
 					rank="CORPORAL";
 					skill=1;
 					text="east4";
-					init="GroupEast4 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Corporal";
 				};
 			};
@@ -465,7 +447,6 @@ class Mission
 					rank="CORPORAL";
 					skill=1;
 					text="east5";
-					init="GroupEast5 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Corporal";
 				};
 			};
@@ -487,7 +468,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="east6";
-					init="GroupEast6 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -509,7 +489,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="east7";
-					init="GroupEast7 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -531,7 +510,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="east8";
-					init="GroupEast8 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -553,7 +531,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="east9";
-					init="GroupEast9 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -575,7 +552,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="east10";
-					init="GroupEast10 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -597,7 +573,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="east11";
-					init="GroupEast11 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -619,7 +594,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="east12";
-					init="GroupEast12 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -641,7 +615,6 @@ class Mission
 					leader=1;
 					skill=1;
 					text="east13";
-					init="GroupEast13 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Solder";
 				};
 			};
@@ -664,7 +637,6 @@ class Mission
 					rank="CORPORAL";
 					skill=1;
 					text="east2";
-					init="GroupEast2 = Group this;_nil = this execVM ""ZKS\Revive\INIT_Start.sqf"";";
 					description="RTS-Corporal";
 				};
 			};
@@ -1523,7 +1495,7 @@ class Mission
 	};
 	class Sensors
 	{
-		items=42;
+		items=40;
 		class Item0
 		{
 			position[]={4373.9897,-2.4978774e-006,5847.0527};
@@ -1585,21 +1557,6 @@ class Mission
 		};
 		class Item4
 		{
-			position[]={5750.2852,2.9354178e-006,5850.5259};
-			a=10;
-			b=10;
-			angle=45;
-			rectangular=1;
-			repeating=1;
-			age="UNKNOWN";
-			expCond="!alive player";
-			expActiv="STR player exec ""rts-init-DeployPlayer.sqs""";
-			class Effects
-			{
-			};
-		};
-		class Item5
-		{
 			position[]={5542.4512,3.8651106e-006,5116.6455};
 			a=10;
 			b=10;
@@ -1615,7 +1572,7 @@ class Mission
 			{
 			};
 		};
-		class Item6
+		class Item5
 		{
 			position[]={21174.393,18.546427,7550.6978};
 			a=5;
@@ -1630,7 +1587,7 @@ class Mission
 			{
 			};
 		};
-		class Item7
+		class Item6
 		{
 			position[]={4426.2979,0,7281.6899};
 			a=5;
@@ -1643,7 +1600,7 @@ class Mission
 			{
 			};
 		};
-		class Item8
+		class Item7
 		{
 			position[]={5773.9341,0,7287.397};
 			a=5;
@@ -1657,7 +1614,7 @@ class Mission
 			{
 			};
 		};
-		class Item9
+		class Item8
 		{
 			position[]={7109.4927,0,7285.9829};
 			a=5;
@@ -1670,7 +1627,7 @@ class Mission
 			{
 			};
 		};
-		class Item10
+		class Item9
 		{
 			position[]={12409.552,77.476936,19860.17};
 			a=5;
@@ -1684,7 +1641,7 @@ class Mission
 			{
 			};
 		};
-		class Item11
+		class Item10
 		{
 			position[]={5342.8374,128.81775,10312.679};
 			a=5;
@@ -1699,7 +1656,7 @@ class Mission
 			{
 			};
 		};
-		class Item12
+		class Item11
 		{
 			position[]={6697.5732,206.49796,19578.021};
 			a=5;
@@ -1713,7 +1670,7 @@ class Mission
 			{
 			};
 		};
-		class Item13
+		class Item12
 		{
 			position[]={3341.6396,39.313507,17953.35};
 			a=5;
@@ -1727,7 +1684,7 @@ class Mission
 			{
 			};
 		};
-		class Item14
+		class Item13
 		{
 			position[]={23055.709,48.756756,7300.6475};
 			a=5;
@@ -1742,7 +1699,7 @@ class Mission
 			{
 			};
 		};
-		class Item15
+		class Item14
 		{
 			position[]={21341.762,3.4421751,10416.575};
 			a=5;
@@ -1757,7 +1714,7 @@ class Mission
 			{
 			};
 		};
-		class Item16
+		class Item15
 		{
 			position[]={5948.3135,101.40721,12459.131};
 			a=5;
@@ -1772,7 +1729,7 @@ class Mission
 			{
 			};
 		};
-		class Item17
+		class Item16
 		{
 			position[]={9372.6816,52.873451,8634.7393};
 			a=5;
@@ -1786,7 +1743,7 @@ class Mission
 			{
 			};
 		};
-		class Item18
+		class Item17
 		{
 			position[]={11033.736,196.93987,7317.5718};
 			a=5;
@@ -1800,7 +1757,7 @@ class Mission
 			{
 			};
 		};
-		class Item19
+		class Item18
 		{
 			position[]={11563.022,18.728731,9608.2598};
 			a=5;
@@ -1815,7 +1772,7 @@ class Mission
 			{
 			};
 		};
-		class Item20
+		class Item19
 		{
 			position[]={22206.32,12.977129,5036.4805};
 			a=5;
@@ -1829,7 +1786,7 @@ class Mission
 			{
 			};
 		};
-		class Item21
+		class Item20
 		{
 			position[]={14147.043,60.753754,21354.734};
 			a=5;
@@ -1843,7 +1800,7 @@ class Mission
 			{
 			};
 		};
-		class Item22
+		class Item21
 		{
 			position[]={20002.461,27.570395,13564.943};
 			a=5;
@@ -1858,7 +1815,7 @@ class Mission
 			{
 			};
 		};
-		class Item23
+		class Item22
 		{
 			position[]={7095.8608,2.3074446,10953.524};
 			a=5;
@@ -1872,7 +1829,7 @@ class Mission
 			{
 			};
 		};
-		class Item24
+		class Item23
 		{
 			position[]={23646.35,3.1900001,18282.832};
 			a=5;
@@ -1886,7 +1843,7 @@ class Mission
 			{
 			};
 		};
-		class Item25
+		class Item24
 		{
 			position[]={23722.352,5.2483912,16221.292};
 			a=5;
@@ -1900,7 +1857,7 @@ class Mission
 			{
 			};
 		};
-		class Item26
+		class Item25
 		{
 			position[]={2713.6218,4.2420402,22074.803};
 			a=5;
@@ -1914,7 +1871,7 @@ class Mission
 			{
 			};
 		};
-		class Item27
+		class Item26
 		{
 			position[]={17993.643,55.314987,12517.656};
 			a=5;
@@ -1928,7 +1885,7 @@ class Mission
 			{
 			};
 		};
-		class Item28
+		class Item27
 		{
 			position[]={21479.998,1.8606677,11895.889};
 			a=5;
@@ -1942,22 +1899,7 @@ class Mission
 			{
 			};
 		};
-		class Item29
-		{
-			position[]={7933.8467,-1.7945022e-006,5732.9512};
-			a=10;
-			b=10;
-			angle=45;
-			rectangular=1;
-			repeating=1;
-			age="UNKNOWN";
-			expCond="alive player;";
-			expActiv="tmp = [Player,player,0] spawn RTS_FNC_INIT_PLAYERACTIONS";
-			class Effects
-			{
-			};
-		};
-		class Item30
+		class Item28
 		{
 			position[]={16060.322,56.602257,18270.822};
 			a=5;
@@ -1972,7 +1914,7 @@ class Mission
 			{
 			};
 		};
-		class Item31
+		class Item29
 		{
 			position[]={15006.058,17.91,16472.936};
 			a=5;
@@ -1987,7 +1929,7 @@ class Mission
 			{
 			};
 		};
-		class Item32
+		class Item30
 		{
 			position[]={9379.3848,17.432901,21546.736};
 			a=5;
@@ -2002,7 +1944,7 @@ class Mission
 			{
 			};
 		};
-		class Item33
+		class Item31
 		{
 			position[]={11524.271,22.221493,11547.34};
 			a=5;
@@ -2016,7 +1958,7 @@ class Mission
 			{
 			};
 		};
-		class Item34
+		class Item32
 		{
 			position[]={27179.723,19.355661,24656.146};
 			a=5;
@@ -2030,7 +1972,7 @@ class Mission
 			{
 			};
 		};
-		class Item35
+		class Item33
 		{
 			position[]={19442.311,19.524042,15391.678};
 			a=5;
@@ -2044,7 +1986,7 @@ class Mission
 			{
 			};
 		};
-		class Item36
+		class Item34
 		{
 			position[]={23470.322,90.50341,21135.701};
 			a=5;
@@ -2058,7 +2000,7 @@ class Mission
 			{
 			};
 		};
-		class Item37
+		class Item35
 		{
 			position[]={25233.084,10.830917,20083.578};
 			a=5;
@@ -2072,7 +2014,7 @@ class Mission
 			{
 			};
 		};
-		class Item38
+		class Item36
 		{
 			position[]={27165.389,22.744362,21513.979};
 			a=5;
@@ -2086,7 +2028,7 @@ class Mission
 			{
 			};
 		};
-		class Item39
+		class Item37
 		{
 			position[]={9013.9346,212.7523,17959.166};
 			a=5;
@@ -2100,7 +2042,7 @@ class Mission
 			{
 			};
 		};
-		class Item40
+		class Item38
 		{
 			position[]={7010.4014,68.327965,15878.084};
 			a=5;
@@ -2114,7 +2056,7 @@ class Mission
 			{
 			};
 		};
-		class Item41
+		class Item39
 		{
 			position[]={10496.806,85.293411,15413.445};
 			a=5;

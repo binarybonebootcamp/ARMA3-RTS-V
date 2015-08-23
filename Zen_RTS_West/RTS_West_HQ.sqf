@@ -10,8 +10,10 @@ Zen_RTS_F_West_HQConstructor = {
     player sideChat str _this;
 
     _buildingObjData = _this select 0;
-    _spawnPos = _this select 1;
-    _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
+    _args = _this select 1;
+
+    _spawnPos = _args select 0;
+    _level = _args select 1;
 
     _assetsToAdd = [];
     _assetsToAddLocal = [];
@@ -28,10 +30,8 @@ Zen_RTS_F_West_HQConstructor = {
     _args = [(_buildingObjData select 1), _assetsToAddLocal];
     ZEN_FMW_MP_RENonDedicated("Zen_RTS_F_StrategicAddAssetLocal", _args, call)
 
-    sleep (call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart));
-    _building = [_spawnPos, "Land_Research_HQ_F"] call Zen_SpawnVehicle;
-    _building setVariable ["side", side player, true];
-
+    _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
+    BUILDING_VISUALS("Land_Research_HQ_F", -1.5)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_HQ)
 
     // to-do: || false condition needs building hacking logic
@@ -44,10 +44,10 @@ Zen_RTS_F_West_HQDestructor = {
     player sideChat str "West HQ destructor";
 
     _buildingObjData = _this select 0;
-    player commandChat str (_buildingObjData select 2);
-    player commandChat str (isNull (_buildingObjData select 2));
-    player commandChat str (alive (_buildingObjData select 2));
-    player commandChat str (getPosATL (_buildingObjData select 2));
+    // player commandChat str (_buildingObjData select 2);
+    // player commandChat str (isNull (_buildingObjData select 2));
+    // player commandChat str (alive (_buildingObjData select 2));
+    // player commandChat str (getPosATL (_buildingObjData select 2));
 
     // (_buildingObjData select 2) removeAllEventHandlers "Killed";
     (_buildingObjData select 2) setDamage 1;
