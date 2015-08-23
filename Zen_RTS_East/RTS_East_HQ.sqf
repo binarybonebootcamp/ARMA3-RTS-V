@@ -19,6 +19,7 @@ Zen_RTS_F_East_HQConstructor = {
 
     DETECT_BUILDING( Zen_RTS_BuildingType_East_TankFactory , Zen_RTS_Asset_Tech_East_Upgrade_TankFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_East_Barracks , Zen_RTS_Asset_Tech_East_Upgrade_Barracks )
+	DETECT_BUILDING( Zen_RTS_BuildingType_East_Radar , Zen_RTS_Asset_Tech_East_Upgrade_Radar )
     DETECT_BUILDING( Zen_RTS_BuildingType_East_AirFactory , Zen_RTS_Asset_Tech_East_Upgrade_AirFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_East_NavalFactory , Zen_RTS_Asset_Tech_East_Upgrade_NavalFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_East_SupportFactory , Zen_RTS_Asset_Tech_East_Upgrade_SupportFactory )
@@ -113,13 +114,15 @@ Zen_RTS_F_East_Tech_Enemy = {
 
 UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_TankFactory, Zen_RTS_BuildingType_East_TankFactory, Zen_RTS_Asset_Tech_East_Upgrade_TankFactory)
 UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_Barracks, Zen_RTS_BuildingType_East_Barracks, Zen_RTS_Asset_Tech_East_Upgrade_Barracks)
-UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_Barracks_AirFactory, Zen_RTS_BuildingType_East_AirFactory, Zen_RTS_Asset_Tech_East_Upgrade_AirFactory)
-UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_Barracks_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory, Zen_RTS_Asset_Tech_East_Upgrade_NavalFactory)
-UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_Barracks_SupportFactory, Zen_RTS_BuildingType_East_SupportFactory, Zen_RTS_Asset_Tech_East_Upgrade_SupportFactory)
+UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_Radar, Zen_RTS_BuildingType_East_Radar, Zen_RTS_Asset_Tech_East_Upgrade_Radar)
+UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_AirFactory, Zen_RTS_BuildingType_East_AirFactory, Zen_RTS_Asset_Tech_East_Upgrade_AirFactory)
+UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory, Zen_RTS_Asset_Tech_East_Upgrade_NavalFactory)
+UPGRADE_CONSTRUCTOR(Zen_RTS_F_East_Tech_Upgrade_SupportFactory, Zen_RTS_BuildingType_East_SupportFactory, Zen_RTS_Asset_Tech_East_Upgrade_SupportFactory)
 
 Zen_RTS_Asset_Tech_East_Enemy = ["Zen_RTS_F_East_Tech_Enemy", "Build Enemy Units", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_Tech_East_Upgrade_TankFactory = ["Zen_RTS_F_East_Tech_Upgrade_TankFactory", "Upgrade Tank Factory", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_Tech_East_Upgrade_Barracks = ["Zen_RTS_F_East_Tech_Upgrade_Barracks", "Upgrade Barracks", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Tech_East_Upgrade_AirFactory = ["Zen_RTS_F_East_Tech_Upgrade_Barracks_AirFactory", "Upgrade Air Factory", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Tech_East_Upgrade_NavalFactory = ["Zen_RTS_F_East_Tech_Upgrade_Barracks_NavalFactory", "Upgrade Naval Factory", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_Tech_East_Upgrade_SupportFactory = ["Zen_RTS_F_East_Tech_Upgrade_Barracks_SupportFactory", "Upgrade Naval Factory", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Tech_East_Upgrade_Radar = ["Zen_RTS_F_East_Tech_Upgrade_Radar", "Upgrade Radar", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Tech_East_Upgrade_AirFactory = ["Zen_RTS_F_East_Tech_Upgrade_AirFactory", "Upgrade Air Factory", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Tech_East_Upgrade_NavalFactory = ["Zen_RTS_F_East_Tech_Upgrade_NavalFactory", "Upgrade Naval Factory", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Tech_East_Upgrade_SupportFactory = ["Zen_RTS_F_East_Tech_Upgrade_SupportFactory", "Upgrade SupportFactory", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;

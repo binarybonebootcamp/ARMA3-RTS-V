@@ -51,6 +51,8 @@ if !(isServer) exitWith {};
 [] exec "rts-init-commandermonitor.sqs";
 [] exec "test.sqs";
 //[] exec "rts-build-serverSideMonitor.sqs";
+execVM "R3F_LOG\init.sqf";
+[] execVM "VCOM_Driving\init.sqf";
 aiLimit = 10;
 {
     call compile format ["xp%1 = 0", _x];
@@ -199,6 +201,7 @@ RTS_Used_Asset_Types = [[], []]; // global
 
 #include "Zen_RTS_East\RTS_East_HQ.sqf"
 #include "Zen_RTS_East\RTS_East_Barracks.sqf"
+#include "Zen_RTS_East\RTS_East_Radar.sqf"
 #include "Zen_RTS_East\RTS_East_TankFactory.sqf"
 #include "Zen_RTS_East\RTS_East_AirFactory.sqf"
 #include "Zen_RTS_East\RTS_East_NavalFactory.sqf"
@@ -206,4 +209,3 @@ RTS_Used_Asset_Types = [[], []]; // global
 
 publicVariable "RTS_Used_Building_Types";
 // publicVariable "RTS_Used_Asset_Types";
-

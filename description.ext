@@ -54,6 +54,7 @@ class CfgFunctions {
 #include "menus\dlgRscSquadsMenu.hpp"
 #include "menus\patchname.hpp"
 #include "menus\Sounds_music.hpp"
+#include "R3F_LOG\desc_include.h" 
 
 //Respawn
 #include "ZKS\Revive\Dialogs\RESPAWN_rscSpectating.hpp"

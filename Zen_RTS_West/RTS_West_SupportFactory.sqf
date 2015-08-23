@@ -37,7 +37,7 @@ Zen_RTS_F_West_SupportFactoryConstructor = {
     };
 
     sleep (call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart));
-    _building = [_spawnPos, "Land_Cargo_House_V1_F"] call Zen_SpawnVehicle;
+    _building = [_spawnPos, "rhs_2P3_2"] call Zen_SpawnVehicle;
     _building setVariable ["side", side player, true];
 
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_SupportFactory)
