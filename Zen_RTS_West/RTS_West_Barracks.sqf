@@ -44,7 +44,7 @@ Zen_RTS_F_West_BarracksConstructor = {
     };
 
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    BUILDING_VISUALS("Land_Cargo_House_V1_F", 1)
+    BUILDING_VISUALS("Land_Cargo_House_V2_F", 1)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_Barracks)
 
     // to-do: || false condition needs building hacking logic
