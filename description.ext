@@ -1,9 +1,9 @@
 respawn = 3;
 respawndelay = 3; 
 respawnDialog = false;
-author = "DEV-Update 82415"; 
-overviewText = "DEV-Update 82415.";
-overviewTextLocked = "DEV-Update 82415";
+author = "Dr Death jm | ZEN"; 
+overviewText = "Original mission By KaRRiLLioN ofp 2003.";
+overviewTextLocked = "Original mission By KaRRiLLioN ofp 2003";
 overviewPicture = "pictures\rtsload.paa"; 
 onLoadName = "Warfare Unleashed"; 
 onLoadMission = "Warfare Unleashed: Arma3 Edition";
@@ -54,7 +54,6 @@ class CfgFunctions {
 #include "menus\dlgRscSquadsMenu.hpp"
 #include "menus\patchname.hpp"
 #include "menus\Sounds_music.hpp"
-#include "R3F_LOG\desc_include.h" 
 
 //Respawn
 #include "ZKS\Revive\Dialogs\RESPAWN_rscSpectating.hpp"

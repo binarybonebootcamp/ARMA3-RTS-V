@@ -90,17 +90,17 @@
     // ctrlSetText [ _idHeavyQ, "Heavy Queue Empty"];
     // ctrlSetText [ _idairQ, "Air Queue Empty"];
 
-    // _stats = [ _side, _side2] call compile preprocessFileLineNumbers "functions\rts-statistics-array.sqf";
-    // lbClear _idStats;
-    // sleep 0.1;
+    _stats = [ _side, _side2] call compile preprocessFileLineNumbers "functions\rts-statistics-array.sqf";
+    lbClear _idStats;
+    sleep 0.1;
 
-    // {
-        // _statName = _x select 0;
-        // _statLimit = _x select 1;
+    {
+        _statName = _x select 0;
+        _statLimit = _x select 1;
 
-        // _info = format ["%1 - %2", _statName, _statLimit];
-        // _index = lbAdd [_idStats, _info];
-    // } forEach _stats;
+        _info = format ["%1 - %2", _statName, _statLimit];
+        _index = lbAdd [_idStats, _info];
+    } forEach _stats;
 
     while {ctrlVisible _idlist && {alive player}} do {
         _info = ((_buildingTypeData select 4) + " - level " + str (_buildingObjDataGlobal select 3));
