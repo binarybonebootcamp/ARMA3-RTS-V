@@ -6,4 +6,3 @@ player addAction ["Get a Ride" , "ZKS\Vehicles\pickup.sqf",[0],10,false,false,""
 if !(FatigueTrue) then {
 player enableFatigue false;
 };
-//execVM "RTS-Player_actions.sqf";
