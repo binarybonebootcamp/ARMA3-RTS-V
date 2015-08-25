@@ -22,14 +22,10 @@ Zen_RTS_F_East_TankFactoryConstructor = {
 
     _assetsToAdd = [];
 
-    _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_Flat_VDV_01;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_Quadbike;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_Open_Flat_VDV_01;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66o_flat_vdv;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_vdv;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_r142_vdv;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_tigr_ffv_3camo_vdv;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_Offroad;
+	_assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66o_flat_vdv;
+	_assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_vdv;  
+    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_uaz_vdv;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_uaz_open_vdv;
 
     // if (Zen_RTS_TechFlag_East_BuildEnemy) then {
         // ... to do

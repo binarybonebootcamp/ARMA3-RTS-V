@@ -37,7 +37,7 @@ class Mission
 	randomSeed=7333891;
 	class Intel
 	{
-		briefingName="Warfare Unleashed RTS-V b26 v1(24)";
+		briefingName="Warfare Unleashed RTS-V DEV-82415(24)";
 		resistanceWest=0;
 		startWeather=0;
 		startWind=0.1;
