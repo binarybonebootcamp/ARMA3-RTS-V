@@ -8,8 +8,9 @@ Strategic
         // build for squad
         // custom squads
         // CJ/MCU vehicle recycling
-            AI automated recyclers
-        repairing
+        // Repairing
+        Custom crew count for manned vehicles
+        AI automated recyclers
         explosive barrels
         AI fire on buildings and unmanned vehicles
         AI extraction/insertion from action menu (see ZK)
@@ -22,7 +23,8 @@ Strategic
         // constructors placement
         // custom assets check building upgrades
         // upgrades for commander only
-        repair vehicle
+        // check building destroyed while waiting
+        // CJ, with repair and recycle
         auto tank
             tracked vehicles
         base-in-a-box
@@ -41,8 +43,8 @@ Strategic
         // force HQ first
             // wait for full construction
             // only allow within 200m of HQ (except naval)
-        custom squads per building
-        buildings come out of ground
+        // buildings come out of ground
+        // update to current level when rebuilding
 
         Barracks
             // Level 1: standard infantry (rifleman, AR, etc.)
@@ -62,6 +64,8 @@ Strategic
             // Level 1: Transport
             // Level 2: Armed Patrol boats
             Level 3: ??
+        Support
+            ??
         HQ
             Research upgrades to all factories, CJ, and Radar (Commander only)
             FOB upgrade
@@ -84,7 +88,7 @@ Strategic
             Houses, H-barriers
         CJ
             medical
-            static MG
+            // static MG
             ammo crate
             barbed wire
             beacons (tracker)
@@ -108,10 +112,12 @@ RTS menu
     // building unit dialog called from action per building
     // only allow unit purchase within radius from building
     // Disband unit
+    Fix blinking
+    Fix unit group list text
     AI fly height
     give money to another player
-Revive
-    see ZK
+Revive/Respawn
+    Get correct respawn positions
 Economy
     // Territories have resource value
     // total team resource value gives money increase
@@ -122,3 +128,4 @@ AI
     commander
     individual
     human commander gives orders/units/money
+Ranking

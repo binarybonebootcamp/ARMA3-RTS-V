@@ -35,6 +35,7 @@
     _buildingTypeHQ = missionNamespace getVariable ("Zen_RTS_BuildingType_" + (str side player) + "_HQ");
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(_buildingTypeHQ, _ID)
 
+    _isNaval = _buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory];
     _exit = false;
     _HQObject = vehicle player;
     if (_type != _buildingTypeHQ) then {
@@ -50,7 +51,7 @@
             _exit = true;
         };
 
-        if ((([vehicle player, _HQObject] call Zen_Find2dDistance) > 200) && {!(_buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory])}) exitWith {
+        if ((([vehicle player, _HQObject] call Zen_Find2dDistance) > 200) && {!(_isNaval)}) exitWith {
             player sideChat "This building must be constructed within 200 meters of the HQ.";
             _exit = true;
         };
@@ -78,7 +79,7 @@
         _clutter = [_pos, 20] call Zen_GetAmbientClutterCount;
         _objects = nearestObjects [_pos, [""], 20];
 
-        _bool = (if (_buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory]) then {
+        _bool = (if (_isNaval) then {
             // player sidechat "--------";
             // player sidechat str (!(surfaceIsWater _pos));
             // player sidechat str (([_pos, 25, "water"] call Zen_IsNearTerrain));
@@ -89,18 +90,27 @@
             // ((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})
         });
         if (_bool) then {
-            if (_buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory]) then {
+            if (_isNaval) then {
                 _heliPad setPosASL _pos;
             } else {
                 _heliPad setPosATL _pos;
             };
 
             if !(Zen_RTS_Show_Preview) then {
-                _blfObjID = [_type, _pos] call Zen_RTS_StrategicBuildingInvoke;
+                _level = 0;
+                _index = [_type, (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
+                if (_index == -1) then {
+                    _index = [_type, (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
+                    _level = (RTS_Building_Type_Levels select 1) select _index;
+                } else {
+                    _level = (RTS_Building_Type_Levels select 0) select _index;
+                };
+
+                _blfObjID = [_type, [_pos, _level]] call Zen_RTS_StrategicBuildingInvoke;
                 breakTo "main";
             };
         } else {
-            if ((([_pos, _HQObject] call Zen_Find2dDistance) > 200) && {(_buildingType in  [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory])}) then {
+            if ((([_pos, _HQObject] call Zen_Find2dDistance) > 200) && {!(_isNaval)}) then {
                 hintSilent "Placing this building more than 200m from the HQ is not allowed.";
             };
             _heliPad setPosATL [0,0,0];

@@ -61,7 +61,7 @@
     ctrlSetText [_idtitle, "RTS V Mission Status"];
     // ctrlSetText [_idselect, "Purchase Units"];
     // buttonSetAction [_idselect, "[1000] call Zen_RTS_BuildMenu"];
-    buttonSetAction [_idCustomSquadsMenu, "call Zen_RTS_SquadsMenu"];
+    // buttonSetAction [_idCustomSquadsMenu, "call Zen_RTS_SquadsMenu"];
     buttonSetAction [_idDisband, "[1020] call Zen_RTS_DisbandUnit"];
 
     // ;;ctrlShow [_idScramble, FALSE];
@@ -72,7 +72,7 @@
     ctrlEnable [_idstats,FALSE];
     {
         ctrlShow [ _x, FALSE];
-    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idselect];
+    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idselect, _idCustomSquadsMenu];
 
     if (player in [WestCommander,EastCommander]) then {
         // ctrlShow [_iddestruct, FALSE];
@@ -96,8 +96,8 @@
 
     _assetIndex = 0;
 
-    _F_RTS_StatsArray = compile preprocessFileLineNumbers "functions\rts-statistics-array.sqf";
-    _F_RTS_UnitInfo = compile preprocessFileLineNumbers "functions\rts-unitInfo.sqf";
+    // _F_RTS_StatsArray = compile preprocessFileLineNumbers "functions\rts-statistics-array.sqf";
+    // _F_RTS_UnitInfo = compile preprocessFileLineNumbers "functions\rts-unitInfo.sqf";
 
     while {ctrlVisible _idassetList && {alive player}} do {
         _assetIndex = lbCurSel _idassetList;
@@ -105,17 +105,16 @@
         _indexComboHeights = lbCurSel _idComboHeights;
 
         // Stats
-        lbClear _idassetlist;
-        _stats = [_side,_side2] call _F_RTS_StatsArray;
+        // _stats = [_side,_side2] call _F_RTS_StatsArray;
 
-        lbClear _idStats;
-        {
-            _statName = _x select 0;
-            _statLimit = _x select 1;
+        // lbClear _idStats;
+        // {
+            // _statName = _x select 0;
+            // _statLimit = _x select 1;
 
-            _info = format ["%1:  %2",_statName,_statLimit];
-            _index = lbAdd [_idStats,_info];
-        } forEach _stats;
+            // _info = format ["%1:  %2",_statName,_statLimit];
+            // _index = lbAdd [_idStats,_info];
+        // } forEach _stats;
 
         // Heights
         lbClear _idComboHeights;
@@ -130,13 +129,14 @@
         lbClear _idgroupList;
         _units = units player;
         {
-            _uInfo = [_x] call _F_RTS_UnitInfo;
+            // _uInfo = [_x] call _F_RTS_UnitInfo;
 
-            _uClass = _uInfo select 0;
-            _uVclName = _uInfo select 1;
-            _cPos = _uInfo select 2;
+            // _uClass = _uInfo select 0;
+            // _uVclName = _uInfo select 1;
+            // _cPos = _uInfo select 2;
 
-            _info = format ["%1-%2 %3", _uClass, _cPos, _uVclName];
+            // _info = format ["%1-%2 %3", _uClass, _cPos, _uVclName];
+            _info = "";
 
             _index = lbAdd [_idGroupList,_info];
             lbSetData [_idGroupList, _index, _x];
@@ -145,6 +145,7 @@
         lbSetCurSel [_idgroupList, _groupListIndex];
 
         // Buildings
+        lbClear _idassetlist;
         {
             _bldData = [_x] call Zen_RTS_StrategicBuildingTypeGetData;
             _buildingObjData = [_x, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;

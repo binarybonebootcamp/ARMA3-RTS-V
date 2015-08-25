@@ -3,13 +3,16 @@
         
 //*/
 
-// (_this select 1) : Array, spawn position
+// (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_NavalConstructor = {
     player sideChat str "East Naval constructor called";
     player sideChat str _this;
 
     _buildingObjData = _this select 0;
-    _spawnPos = _this select 1;
+    _args = _this select 1;
+
+    _spawnPos = _args select 0;
+    _level = _args select 1;
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
@@ -31,10 +34,7 @@ Zen_RTS_F_East_NavalConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_NavalFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    sleep (call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart));
-    _building = [_spawnPos, "Land_Cargo_House_V1_F"] call Zen_SpawnVehicle;
-    _building setVariable ["side", side player, true];
-
+    BUILDING_VISUALS("Land_Cargo_Patrol_V1_F", 1)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_NavalFactory)
 
     // to-do: || false condition needs building hacking logic
@@ -48,17 +48,14 @@ Zen_RTS_F_East_NavalDestructor = {
     player sideChat str "East Naval destructor";
 
     _buildingObjData = _this select 0;
-    player commandChat str (_buildingObjData select 2);
-    player commandChat str (isNull (_buildingObjData select 2));
-    player commandChat str (alive (_buildingObjData select 2));
-    player commandChat str (getPosATL (_buildingObjData select 2));
+    _level = _buildingObjData select 3;
+    player commandChat str _level;
 
-    // (_buildingObjData select 2) removeAllEventHandlers "Killed";
+    _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
+    _array = RTS_Building_Type_Levels select 0;
+    _array set [_index, _level];
+
     (_buildingObjData select 2) setDamage 1;
-
-    // _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    // _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart);
-    // playerMoney = playerMoney + _cost * ZEN_RTS_STRATEGIC_BUIDLING_DESTRUCTOR_REFUND_COEFF;
 };
 
 #define UPGRADE(N, A) \
