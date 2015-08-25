@@ -1,9 +1,9 @@
 respawn = 3;
 respawndelay = 3; 
 respawnDialog = false;
-author = "Dr Death jm | ZEN"; 
-overviewText = "Original mission By KaRRiLLioN ofp 2003.";
-overviewTextLocked = "Original mission By KaRRiLLioN ofp 2003";
+author = "DEV-Update 82415"; 
+overviewText = "DEV-Update 82415.";
+overviewTextLocked = "DEV-Update 82415";
 overviewPicture = "pictures\rtsload.paa"; 
 onLoadName = "Warfare Unleashed"; 
 onLoadMission = "Warfare Unleashed: Arma3 Edition";
