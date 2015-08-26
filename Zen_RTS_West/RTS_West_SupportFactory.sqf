@@ -22,9 +22,9 @@ Zen_RTS_F_West_SupportFactoryConstructor = {
 
     _assetsToAdd = [];
    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy;  
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_open_fmtv_usarmy; 
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_flatbed_fmtv_usarmy;  
+    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_open_fmtv_usarmy;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_flatbed_fmtv_usarmy;
     _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy;
 
     // if (Zen_RTS_TechFlag_West_BuildEnemy) then {
@@ -47,7 +47,7 @@ Zen_RTS_F_West_SupportFactoryConstructor = {
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_SupportFactory)
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_building, ["<img size='3'  
+    _args = ["addAction", [_building, ["<img size='3'
       image='pictures\build_ca.paa'/>", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
     (_building)
@@ -84,14 +84,12 @@ N = { \
 };
 
 #define ASSETS [Zen_RTS_Asset_West_rhsusf_M977A2_usarmy_wd, Zen_RTS_Asset_West_rhsusf_M977A2_CPK_usarmy_wd, Zen_RTS_Asset_West_rhsusf_M978A2_usarmy_wd, Zen_RTS_Asset_West_rhsusf_M978A2_CPK_usarmy_wd]
-
 UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade01, ASSETS)
 
 #define ASSETS [Zen_RTS_Asset_West_rhsusf_m1025_w, Zen_RTS_Asset_West_rhsusf_m1025_d, Zen_RTS_Asset_West_rhsusf_m1025_w_s, Zen_RTS_Asset_West_rhsusf_m1025_d_s, Zen_RTS_Asset_West_rhsusf_m1025_w_m2, Zen_RTS_Asset_West_rhsusf_m1025_d_m2, Zen_RTS_Asset_West_rhsusf_m109_usarmy, Zen_RTS_Asset_West_rhsusf_m109d_usarmy]
+UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade02, ASSETS)
 
- UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade02, ASSETS)
-
-Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstructor", "Zen_RTS_F_West_SupportFactoryDestructor", ["Zen_RTS_F_West_SupportFactoryUpgrade01","Zen_RTS_F_West_SupportFactoryUpgrade02"], "Supoort factory", "Cost: 2000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstructor", "Zen_RTS_F_West_SupportFactoryDestructor", ["Zen_RTS_F_West_SupportFactoryUpgrade01","Zen_RTS_F_West_SupportFactoryUpgrade02"], "Support Factory", "Cost: 2000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_SupportFactory;
 /////////////////////////////////
 // Assets
@@ -105,7 +103,7 @@ Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstr
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \
         _referenceUnit = _this select 2; \
-        _manned = _this select 3; \
+        _crewCount = _this select 3; \
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
@@ -113,8 +111,8 @@ Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstr
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-        if (_manned) then { \
-            _crewGroup = [_vehicle, U] call Zen_SpawnGroup; \
+        if (_crewCount > 0) then { \
+            _crewGroup = [_vehicle, ([U, 0, _crewCount min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
             0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
             0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
             (units _crewGroup) join _referenceUnit; \
@@ -132,18 +130,16 @@ VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M978A2_CPK_usarmy_wd, "rhsusf_M9
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M978A2_usarmy_wd, "rhsusf_M978A2_usarmy_wd", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M977A2_CPK_usarmy_wd, "rhsusf_M977A2_CPK_usarmy_wd", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M977A2_usarmy_wd, "rhsusf_M977A2_usarmy_wd", CREW_UNITS)
-
-
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_d_s, "rhsusf_m1025_d_s", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_w_s, "rhsusf_m1025_w_s", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_d, "rhsusf_m1025_d", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_w, "rhsusf_m1025_w", CREW_UNITS)
+
 #define CREW_UNITS ["rhsusf_army_ocp_driver", "rhsusf_army_ucp_driver", "rhsusf_army_ucp_crewman"]
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m109d_usarmy, "rhsusf_m109d_usarmy", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m109_usarmy, "rhsusf_m109_usarmy", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_d_m2, "rhsusf_m1025_d_m2", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_w_m2, "rhsusf_m1025_w_m2", CREW_UNITS)
-
 
 Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy","Medical", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy","M2_d_fmtv", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;

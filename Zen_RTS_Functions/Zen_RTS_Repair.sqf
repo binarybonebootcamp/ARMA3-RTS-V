@@ -18,7 +18,7 @@
         if (isNull _object) then {
             player groupChat "No valid repairable object selected.";
         } else {
-            _repairCost =(damage _object) * (_object getVariable "Zen_RTS_StrategicValue") * REPAIR_COST_COEFF;
+            _repairCost = (damage _object) * (_object getVariable "Zen_RTS_StrategicValue") * REPAIR_COST_COEFF;
             if (playerMoney > _repairCost) then {
                 playerMoney = playerMoney - _repairCost;
                 player groupChat ("You have paid: $" + (str round _repairCost) + " to repair this object.");

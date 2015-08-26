@@ -43,15 +43,11 @@ Zen_RTS_F_West_TankFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_TankFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-
-
-
-
-    BUILDING_VISUALS("Land_i_Garage_V2_F", 1)
+    BUILDING_VISUALS("Land_i_Garage_V2_F", -1)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_TankFactory)
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_building, ["<img size='3'  
+    _args = ["addAction", [_building, ["<img size='3'
       image='pictures\build_ca.paa'/>", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
     (_building)
@@ -62,21 +58,12 @@ Zen_RTS_F_West_TankFactoryDestructor = {
 
     _buildingObjData = _this select 0;
 
-
-
-
     _level = _buildingObjData select 3;
     player commandChat str _level;
-
-
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
     _array set [_index, _level];
-
-
-
-
 
     (_buildingObjData select 2) setDamage 1;
 };
@@ -98,18 +85,15 @@ N = { \
 };
 
 #define ASSETS [Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy, Zen_RTS_Asset_West_rhsusf_M1078A1P2_B_M2_wd_fmtv_usarmy, Zen_RTS_Asset_West_rhsusf_m1025_w_mk19, Zen_RTS_Asset_rhsusf_m1025_w_s_m2, Zen_RTS_Asset_rhsusf_rg33_usmc_d, Zen_RTS_Asset_rhsusf_rg33_usmc_wd, Zen_RTS_Asset_rhsusf_rg33_m2_usmc_wd]
-
 UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade01, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_rhsusf_m113d_usarmy, Zen_RTS_Asset_West_RHS_M2A2, Zen_RTS_Asset_West_RHS_M2A2_BUSKI, Zen_RTS_Asset_West_RHS_M2A3, Zen_RTS_Asset_West_RHS_M2A3_BUSKI, Zen_RTS_Asset_West_RHS_M2A3_BUSKIII, Zen_RTS_Asset_West_RHS_M6, Zen_RTS_Asset_West_RHS_M6_wd]  
+#define ASSETS [Zen_RTS_Asset_rhsusf_m113d_usarmy, Zen_RTS_Asset_West_RHS_M2A2, Zen_RTS_Asset_West_RHS_M2A2_BUSKI, Zen_RTS_Asset_West_RHS_M2A3, Zen_RTS_Asset_West_RHS_M2A3_BUSKI, Zen_RTS_Asset_West_RHS_M2A3_BUSKIII, Zen_RTS_Asset_West_RHS_M6, Zen_RTS_Asset_West_RHS_M6_wd]
 UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade02, ASSETS)
 
-  
 #define ASSETS [Zen_RTS_Asset_West_rhsusf_m1a1aimwd_usarmy, Zen_RTS_Asset_West_rhsusf_m1a1aimd_usarmy, Zen_RTS_Asset_West_rhsusf_m1a1aim_tuski_wd, Zen_RTS_Asset_West_rhsusf_m1a1aim_tuski_d, Zen_RTS_Asset_West_rhsusf_m1a1fep_d, Zen_RTS_Asset_West_rhsusf_m1a1fep_wd, Zen_RTS_Asset_West_rhsusf_m1a1fep_od]
 UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade03, ASSETS)
 
 #define ASSETS [Zen_RTS_Asset_West_rhsusf_m1a2sep1d_usarmy, Zen_RTS_Asset_West_rhsusf_m1a2sep1wd_usarmy, Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskid_usarmy, Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskiwd_usarmy, Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskiiwd_usarmy, Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskiid_usarmy]
-
 UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade04, ASSETS)
 
 Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor", "Zen_RTS_F_West_TankFactoryDestructor", ["Zen_RTS_F_West_TankFactoryUpgrade01","Zen_RTS_F_West_TankFactoryUpgrade02","Zen_RTS_F_West_TankFactoryUpgrade03","Zen_RTS_F_West_TankFactoryUpgrade04"], "Tank factory", "Cost: 2000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
@@ -127,7 +111,7 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \
         _referenceUnit = _this select 2; \
-        _manned = _this select 3; \
+        _crewCount = _this select 3; \
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
@@ -135,8 +119,8 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-        if (_manned) then { \
-            _crewGroup = [_vehicle, U] call Zen_SpawnGroup; \
+        if (_crewCount > 0) then { \
+            _crewGroup = [_vehicle, ([U, 0, _crewCount min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
             0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
             0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
             (units _crewGroup) join _referenceUnit; \

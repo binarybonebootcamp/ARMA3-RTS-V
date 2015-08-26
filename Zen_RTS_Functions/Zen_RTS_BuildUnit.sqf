@@ -3,12 +3,20 @@
 #include "Zen_StandardLibrary.sqf"
 #include "Zen_FrameworkLibrary.sqf"
 
+#define PROCESS_PURCHASE \
+    _cost = call compile ([(_assetData select 3), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
+    if (playerMoney < _cost) exitWith { \
+        player sideChat "Insufficient funds."; \
+    }; \
+    playerMoney = playerMoney - _cost;
+
 0 = _this spawn {
     _Zen_stack_Trace = ["Zen_RTS_BuildUnit", _this] call Zen_StackAdd;
-    _idAssetList = _this select 0;
-    _idCustomList = _this select 1;
-    _manned = _this select 2;
-    _forSquad = _this select 3;
+    _forSquad = _this select 0;
+
+    _idAssetList = 2000;
+    _idCrewCountList = 2045;
+    _idSquadList = 2025;
 
     if (rating player < 0) then {
         player addRating ((rating player * -1));
@@ -16,13 +24,15 @@
 
     _side = side player;
     _buildintObjId = player getVariable "Zen_RTS_Current_Building";
-    // _buildingObjData = [_buildintObjId] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
+    _buildingObjData = [_buildintObjId] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
+    _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
     _buildingObjDataLocal = [_buildintObjId] call Zen_RTS_StrategicBuildingObjectGetDataLocal;
 
     _index = lbCurSel _idAssetList;
     // _text = lbText [_idAssetList, _index];
     // _available = lbValue [_idAssetList, _index];
 
+    /**
     if (_idCustomList == 2030) then { // custom squad
         _index = lbCurSel _idCustomList;
         _customSquadIndex = lbValue [_idCustomList, _index];
@@ -33,17 +43,11 @@
         {
             _assetData = [_x] call Zen_RTS_StrategicAssetGetData;
 
-            #define PROCESS_PURCHASE \
-                _cost = call compile  ([(_assetData select 3), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
-                if (playerMoney < _cost) exitWith { \
-                    player sideChat "Insufficient funds."; \
-                }; \
-                playerMoney = playerMoney - _cost;
-
             PROCESS_PURCHASE
             0 = [_buildintObjId, _x, player, _manned] call Zen_RTS_StrategicAssetInvoke;
         } forEach _customAssets;
     } else {
+    //*/
         _assetType = lbData [_idAssetList, _index];
         _assetData = [_assetType] call Zen_RTS_StrategicAssetGetData;
 
@@ -58,13 +62,17 @@
             0 = [_playerArray, WestCommander] call Zen_ArrayRemoveValue;
             0 = [_playerArray, EastCommander] call Zen_ArrayRemoveValue;
 
-            _index = lbCurSel _idCustomList;
+            _index = lbCurSel _idSquadList;
             _unit = _playerArray select _index;
-            0 = [_buildintObjId, _assetType, _unit, _manned] call Zen_RTS_StrategicAssetInvoke;
+            0 = [_buildintObjId, _assetType, _unit, (lbValue [_idCrewCountList, lbCurSel _idCrewCountList])] call Zen_RTS_StrategicAssetInvoke;
         } else {
-            0 = [_buildintObjId, _assetType, player, _manned] call Zen_RTS_StrategicAssetInvoke;
+            if ((_buildingTypeData select 4) isEqualTo "CJ") then {
+                closeDialog 0;
+            };
+
+            0 = [_buildintObjId, _assetType, player, (lbValue [_idCrewCountList, lbCurSel _idCrewCountList])] call Zen_RTS_StrategicAssetInvoke;
         };
-    };
+    // };
 
     call Zen_StackRemove;
     if (true) exitWith {};

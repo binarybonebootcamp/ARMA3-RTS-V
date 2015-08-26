@@ -274,7 +274,9 @@ RTS_Used_Asset_Types = [[], []]; // global
 #include "Zen_RTS_East\RTS_East_CJ.sqf"
 
 westTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+westTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
 eastTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+eastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
 
 publicVariable "RTS_Used_Building_Types";
 publicVariable "RTS_Building_Type_Levels";

@@ -9,11 +9,9 @@ Strategic
         // custom squads
         // CJ/MCU vehicle recycling
         // Repairing
-        Custom crew count for manned vehicles
+        // Custom crew count for manned vehicles
         AI automated recyclers
-        explosive barrels
         AI fire on buildings and unmanned vehicles
-        AI extraction/insertion from action menu (see ZK)
         Building Hacking
             quick action place-holder
             y/n menu with dynamic timer later
@@ -25,6 +23,8 @@ Strategic
         // upgrades for commander only
         // check building destroyed while waiting
         // CJ, with repair and recycle
+            // placement for assets
+        charge per crew member
         auto tank
             tracked vehicles
         base-in-a-box
@@ -53,13 +53,13 @@ Strategic
         Vehicle Factory
             // Level 1: unarmed utility, transport vehicles, MG pick-up truck
             // Level 2: armed MRAP's
-            Level 3: APC's, IFV's, AAA/SAM vehicles
-            Level 4: MBT's, heavy artillery (force short range)
+            // Level 3: APC's, IFV's, AAA/SAM vehicles
+            // Level 4: MBT's, heavy artillery (force short range)
         Aircraft Factory
             // Level 1: transport helicopters
             // Level 2: utility/multi-purpose helicopters, unarmed aircraft
-            Level 3: attack helicopters
-            Level 4: attack aircraft
+            // Level 3: attack helicopters
+            // Level 4: attack aircraft
         Naval
             // Level 1: Transport
             // Level 2: Armed Patrol boats
@@ -112,8 +112,9 @@ RTS menu
     // building unit dialog called from action per building
     // only allow unit purchase within radius from building
     // Disband unit
-    Fix blinking
-    Fix unit group list text
+    // No CJ status
+    // Fix unit group list text
+    // Fix blinking
     AI fly height
     give money to another player
 Revive/Respawn
@@ -129,3 +130,8 @@ AI
     individual
     human commander gives orders/units/money
 Ranking
+Supports
+    AI extraction/insertion from action menu (see ZK)
+    Artillery vehicles
+Misc
+    explosive barrels
