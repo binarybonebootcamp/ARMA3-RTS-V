@@ -45,6 +45,7 @@ Strategic
             // only allow within 200m of HQ (except naval)
         // buildings come out of ground
         // update to current level when rebuilding
+        tweak building heights
 
         Barracks
             // Level 1: standard infantry (rifleman, AR, etc.)
@@ -115,6 +116,7 @@ RTS menu
     // No CJ status
     // Fix unit group list text
     // Fix blinking
+    Refresh button
     AI fly height
     give money to another player
 Revive/Respawn

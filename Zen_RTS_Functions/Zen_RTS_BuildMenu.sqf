@@ -89,6 +89,11 @@
             ctrlShow [ _x, false];
         } forEach [_idInfQButton, _idSldQ, _idsquadlist, _idbuildsquad, _idDroplist];
     };
+    if ((_buildingTypeData select 4) isEqualTo "HQ") then {
+        {
+            ctrlShow [ _x, false];
+        } forEach [_idDroplist, _idsquadlist, _idbuildsquad];
+    };
     {
         ctrlShow [ _x, false];
     } forEach [_idBgdCustom, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idstats, _idListCustom, _idBtnCustom, _iBuildManned];
