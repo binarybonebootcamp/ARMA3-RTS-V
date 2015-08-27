@@ -10,6 +10,10 @@
     }; \
     playerMoney = playerMoney - _cost;
 
+    // check for missing crew count
+    // charge $25 each
+    // _crewCount = (lbValue [_idCrewCountList, lbCurSel _idCrewCountList]);
+
 0 = _this spawn {
     _Zen_stack_Trace = ["Zen_RTS_BuildUnit", _this] call Zen_StackAdd;
     _forSquad = _this select 0;
@@ -23,10 +27,10 @@
     };
 
     _side = side player;
-    _buildintObjId = player getVariable "Zen_RTS_Current_Building";
-    _buildingObjData = [_buildintObjId] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
+    _buildingObjId = player getVariable "Zen_RTS_Current_Building";
+    _buildingObjData = [_buildingObjId] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    _buildingObjDataLocal = [_buildintObjId] call Zen_RTS_StrategicBuildingObjectGetDataLocal;
+    _buildingObjDataLocal = [_buildingObjId] call Zen_RTS_StrategicBuildingObjectGetDataLocal;
 
     _index = lbCurSel _idAssetList;
     // _text = lbText [_idAssetList, _index];
@@ -44,7 +48,7 @@
             _assetData = [_x] call Zen_RTS_StrategicAssetGetData;
 
             PROCESS_PURCHASE
-            0 = [_buildintObjId, _x, player, _manned] call Zen_RTS_StrategicAssetInvoke;
+            0 = [_buildingObjId, _x, player, _manned] call Zen_RTS_StrategicAssetInvoke;
         } forEach _customAssets;
     } else {
     //*/
@@ -64,13 +68,16 @@
 
             _index = lbCurSel _idSquadList;
             _unit = _playerArray select _index;
-            0 = [_buildintObjId, _assetType, _unit, (lbValue [_idCrewCountList, lbCurSel _idCrewCountList])] call Zen_RTS_StrategicAssetInvoke;
+
+            _args = [_buildingObjId, _assetType, _unit, (lbValue [_idCrewCountList, lbCurSel _idCrewCountList])];
+            ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
         } else {
             if ((_buildingTypeData select 4) isEqualTo "CJ") then {
                 closeDialog 0;
             };
 
-            0 = [_buildintObjId, _assetType, player, (lbValue [_idCrewCountList, lbCurSel _idCrewCountList])] call Zen_RTS_StrategicAssetInvoke;
+            _args = [_buildingObjId, _assetType, player, (lbValue [_idCrewCountList, lbCurSel _idCrewCountList])];
+            ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
         };
     // };
 

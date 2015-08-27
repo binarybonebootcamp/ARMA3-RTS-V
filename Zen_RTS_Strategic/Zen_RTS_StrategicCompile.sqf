@@ -79,7 +79,7 @@ Zen_RTS_F_StrategicAddAssetLocal = {
 Zen_RTS_F_StrategicCreateBuildingDataServer = {
     private ["_h_queue"];
 
-    _h_queue = [_objIdentifier] spawn Zen_RTS_StrategicBuildingQueueManager;
+    _h_queue = [(_this select 0)] spawn Zen_RTS_StrategicBuildingQueueManager;
     _this set [2, _h_queue];
 
     Zen_RTS_Strategic_Building_Objects_Server pushBack _this;

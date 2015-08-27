@@ -21,7 +21,7 @@ Zen_RTS_F_East_RadarConstructor = {
        0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_Radar]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("rhs_prv13", 1)
+    BUILDING_VISUALS("rhs_prv13", 1, east)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_Radar)
 
     (_building)

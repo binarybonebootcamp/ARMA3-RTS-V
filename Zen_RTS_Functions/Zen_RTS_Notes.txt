@@ -68,7 +68,7 @@ Strategic
         Support
             ??
         HQ
-            Research upgrades to all factories, CJ, and Radar (Commander only)
+            // Research upgrades to all factories, CJ, and Radar (Commander only)
             FOB upgrade
             Research special technologies: (Individual only)
                 // HALO
@@ -128,6 +128,7 @@ Economy
     building and asset build time affected by resources
     add JIP player to money data
 AI
+    On player death
     commander
     individual
     human commander gives orders/units/money
@@ -137,3 +138,7 @@ Supports
     Artillery vehicles
 Misc
     explosive barrels
+Known MP Issues
+    10 second init delay
+    buildings coming out of the ground don't sync
+    Build enemy units technology disappears

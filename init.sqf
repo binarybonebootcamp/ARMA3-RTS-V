@@ -82,7 +82,7 @@ ZKS_Revive_Init = compileFinal preprocessFileLineNumbers "ZKS\Revive\INIT_Start.
 [] exec "test.sqs";
 //[] exec "rts-build-serverSideMonitor.sqs";
 // rts_hq sideChat "Global Scripts and Variables Initialized";
-rts_Initialized = TRUE;
+
 execVM "R3F_LOG\init.sqf";
 [] execVM "VCOM_Driving\init.sqf";
 // --------------------------
@@ -221,10 +221,10 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
         }; \
     }];
 
-#define BUILDING_VISUALS(T, O) \
+#define BUILDING_VISUALS(T, O, S) \
     _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
     _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
-    _building setVariable ["side", side player, true]; \
+    _building setVariable ["side", S, true]; \
     _building setVectorUp (surfaceNormal _spawnPos); \
     _height = ZEN_STD_OBJ_BBZ(_building); \
     ZEN_STD_OBJ_TransformATL(_building, 0, 0, -( _height)) \
@@ -281,3 +281,9 @@ eastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
 publicVariable "RTS_Used_Building_Types";
 publicVariable "RTS_Building_Type_Levels";
 // publicVariable "RTS_Used_Asset_Types";
+
+publicVariable "Zen_RTS_BuildingType_West_HQ";
+publicVariable "Zen_RTS_BuildingType_East_HQ";
+
+rts_Initialized = TRUE;
+publicVariable "rts_Initialized";
