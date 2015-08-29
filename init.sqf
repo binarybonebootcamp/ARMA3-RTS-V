@@ -21,7 +21,7 @@ Zen_RTS_DestroyStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Funct
 Zen_RTS_EconomyManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_EconomyManager.sqf";
 Zen_RTS_Recycle = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Recycle.sqf";
 Zen_RTS_Repair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Repair.sqf";
-Zen_RTS_SquadsMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SquadsMenu.sqf";
+// Zen_RTS_SquadsMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SquadsMenu.sqf";
 Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SetViewDistance.sqf";
 
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicCompile.sqf";
@@ -30,7 +30,7 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
 // --------------------
 
 // ZKS Respawn Client -----------------------
-[] execVM "ZKS\Code\Player\CodeStarter.sqf";
+// [] execVM "ZKS\Code\Player\CodeStarter.sqf";
 // ---------------------
 
 // RTS Client ---------------------
@@ -71,8 +71,8 @@ if !(isServer) exitWith {};
 sleep 1;
 
 // ZKS Respawn Server -----------------------
-ZKS_Revive_Init = compileFinal preprocessFileLineNumbers "ZKS\Revive\INIT_Start.sqf";
-[] execVM "ZKS\Code\server\CodeStarter.sqf";
+// ZKS_Revive_Init = compileFinal preprocessFileLineNumbers "ZKS\Revive\INIT_Start.sqf";
+// [] execVM "ZKS\Code\server\CodeStarter.sqf";
 // ------------
 
 // RTS Server -------------
@@ -93,7 +93,7 @@ Zen_JIP_Args_Server = [overcast, fog, vd];
 
 {
     call compile format ["xp%1 = 0", _x];
-    _x spawn ZKS_Revive_Init;
+    // _x spawn ZKS_Revive_Init;
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
@@ -252,8 +252,6 @@ RTS_Building_Type_Levels = [[], []]; // global
 // all asset types must be added here, or they will not be considered for custom squads
 // must be [[west asset types, [east '']]
 RTS_Used_Asset_Types = [[], []]; // global
-
-// 0 = [] spawn Zen_RTS_BuildMenuQueue;
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"

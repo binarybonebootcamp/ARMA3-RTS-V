@@ -182,18 +182,20 @@
     // Queue
     while {ctrlVisible _idassetList && {alive player}} do {
         _currentBuildingType = lbData [_idassetlist, lbCurSel _idassetlist];
-
-        // player commandChat str _currentBuildingType;
         _buildingObjData = [_currentBuildingType, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
+
         _text = "Queue Empty";
         _buttonCode = "";
         if (count _buildingObjData > 0) then {
-            _assetData = [(_buildingObjData select 1)] call Zen_RTS_F_StrategicRequestCurrentAssetClient;
-            if (count _assetData > 0) then {
-                _text = _assetData select 2;
-            };
+            _queueData = [(_buildingObjData select 1)] call Zen_RTS_F_StrategicRequestCurrentAssetClient;
+            if (count _queueData > 0) then {
+                _assetData = _queueData select 0;
+                _purchasedCrewCount = _queueData select 2;
 
-            _buttonCode = "[ " + str (_buildingObjData select 1) + ", 0] spawn Zen_RTS_StrategicBuildingQueueRemove";
+                _text = _assetData select 2;
+                _cost = call compile ([(_assetData select 3), "Cost: ", ","] call Zen_StringGetDelimitedPart);
+                _buttonCode = (format ["playerMoney = playerMoney + %1 + 25 * %2; ", _cost, _purchasedCrewCount]) + "[ " + str (_buildingObjData select 1) + ", 0] spawn Zen_RTS_StrategicBuildingQueueRemove";
+            };
         };
 
         ctrlSetText [_idSldQ, _text];

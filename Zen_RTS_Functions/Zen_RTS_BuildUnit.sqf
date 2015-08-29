@@ -8,11 +8,23 @@
     if (playerMoney < _cost) exitWith { \
         player sideChat "Insufficient funds."; \
     }; \
-    playerMoney = playerMoney - _cost;
-
-    // check for missing crew count
-    // charge $25 each
-    // _crewCount = (lbValue [_idCrewCountList, lbCurSel _idCrewCountList]);
+    playerMoney = playerMoney - _cost; \
+    _actualCrewCount = 0; \
+    if (ctrlVisible _idCrewCountList) then { \
+        player commandChat str (lbValue [_idCrewCountList, lbCurSel _idCrewCountList]); \
+        _maxCrew = call compile ([(_assetData select 3), "Crew: ", ","] call Zen_StringGetDelimitedPart); \
+        if (_maxCrew == "") then {_maxCrew = 9};
+        _crewCount = (lbValue [_idCrewCountList, lbCurSel _idCrewCountList]) min _maxCrew; \
+        _actualCrewCount = _crewCount; \
+        if ((typeName _crewCount == "SCALAR") && {_crewCount > 0}) then { \
+            _actualCrewCount = 0; \
+            while {playerMoney > 25 && {_actualCrewCount < _crewCount}} do { \
+                _actualCrewCount = _actualCrewCount + 1; \
+                playerMoney = playerMoney - 25; \
+            }; \
+        }; \
+        player commandChat str _actualCrewCount; \
+    };
 
 0 = _this spawn {
     _Zen_stack_Trace = ["Zen_RTS_BuildUnit", _this] call Zen_StackAdd;
@@ -69,14 +81,14 @@
             _index = lbCurSel _idSquadList;
             _unit = _playerArray select _index;
 
-            _args = [_buildingObjId, _assetType, _unit, (lbValue [_idCrewCountList, lbCurSel _idCrewCountList])];
+            _args = [_buildingObjId, _assetType, _unit, _actualCrewCount];
             ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
         } else {
             if ((_buildingTypeData select 4) isEqualTo "CJ") then {
                 closeDialog 0;
             };
 
-            _args = [_buildingObjId, _assetType, player, (lbValue [_idCrewCountList, lbCurSel _idCrewCountList])];
+            _args = [_buildingObjId, _assetType, player, _actualCrewCount];
             ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
         };
     // };

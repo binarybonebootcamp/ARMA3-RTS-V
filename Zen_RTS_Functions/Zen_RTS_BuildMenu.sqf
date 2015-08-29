@@ -158,14 +158,6 @@
             };
         } forEach ((_buildingObjDataLocal select 1) + (_buildingObjDataGlobal select 4));
 
-        // Queue
-        _currentBuilding = (_buildingObjDataGlobal select 1);
-        _buildingObjData = [_currentBuilding, false, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
-
-        _buttonCode = "[ " + str (_buildingObjData select 1) + ", 0] spawn Zen_RTS_StrategicBuildingQueueRemove";
-        ctrlSetText [_idSldQ, "Queue Empty"];
-        buttonSetAction [_idInfQButton, _buttonCode];
-
         // Group List
         _playerArray = [_side] call Zen_ConvertToObjectArray;
         _playerArray = [_playerArray, compile format [" (switch (side _this) do { case west: {0}; case east: {1};}) != %1", (switch (_side) do { case west: {0}; case east: {1};})]] call Zen_ArrayFilterCondition;
@@ -206,14 +198,24 @@
         _indexCustomList = lbCurSel _indexCrewList;
     // };
 
+    // Queue
+    _currentBuilding = (_buildingObjDataGlobal select 1);
+    _buildingObjData = [_currentBuilding, false, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
     while {ctrlVisible _idlist && {alive player}} do {
-        _assetData = [_currentBuilding] call Zen_RTS_F_StrategicRequestCurrentAssetClient;
+        _queueData = [_currentBuilding] call Zen_RTS_F_StrategicRequestCurrentAssetClient;
         _text = "Queue Empty";
-        if (count _assetData > 0) then {
+        _buttonCode = "";
+        if (count _queueData > 0) then {
+            _assetData = _queueData select 0;
+            _purchasedCrewCount = _queueData select 2;
+
             _text = _assetData select 2;
+            _cost = call compile ([(_assetData select 3), "Cost: ", ","] call Zen_StringGetDelimitedPart);
+            _buttonCode = (format ["playerMoney = playerMoney + %1 + 25 * %2; ", _cost, _purchasedCrewCount]) + "[ " + str (_buildingObjData select 1) + ", 0] spawn Zen_RTS_StrategicBuildingQueueRemove";
         };
 
         ctrlSetText [_idSldQ, _text];
+        buttonSetAction [_idInfQButton, _buttonCode];
         sleep 1;
     };
 

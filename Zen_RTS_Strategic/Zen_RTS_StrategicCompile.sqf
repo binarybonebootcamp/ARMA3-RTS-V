@@ -108,7 +108,7 @@ Zen_RTS_F_StrategicRequestCurrentAssetServer = {
     _queue = _buildingObjDataServer select 1;
     Zen_RTS_Strategic_Current_Asset_Data = [];
     if (count _queue > 0) then {
-        Zen_RTS_Strategic_Current_Asset_Data = (_queue select 0) select 0;
+        Zen_RTS_Strategic_Current_Asset_Data = (_queue select 0);
     };
     publicVariable "Zen_RTS_Strategic_Current_Asset_Data";
 };

@@ -24,7 +24,7 @@ Strategic
         // check building destroyed while waiting
         // CJ, with repair and recycle
             // placement for assets
-        charge per crew member
+        // charge per crew member
         auto tank
             tracked vehicles
         base-in-a-box
@@ -99,16 +99,13 @@ Territory
     // anyone can cap
     // faster capping
     Sub-Territory System
-        Zen_RTS_SubTerritorySearch
-            level bounds
-            current level resource value bounds
-            fob status bounds
+        // Search
         Zen_RTS_SubTerritoryRemove
     FOB
         spawn AI defenders on capture
         capping with certain vehicles gives fob
         each flag upgraded individually by FOB vehicle
-RTS menu
+RTS menus
     // view distance fix
     // building unit dialog called from action per building
     // only allow unit purchase within radius from building
@@ -116,6 +113,7 @@ RTS menu
     // No CJ status
     // Fix unit group list text
     // Fix blinking
+    // Cancel asset button refunds
     Refresh button
     AI fly height
     give money to another player
