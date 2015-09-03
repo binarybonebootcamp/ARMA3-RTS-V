@@ -79,21 +79,21 @@ if (isServer) then {
         (owner _this) publicVariableClient "westAirFacTmp";
         (owner _this) publicVariableClient "westNavalFacTmp";
 
-        (owner_this)publicVariableClient"eastBarracksTmp";
-        (owner_this)publicVariableClient"eastHeavyFacTmp";
-        (owner_this)publicVariableClient"eastLightFacTmp";
-        (owner_this)publicVariableClient"eastAirFacTmp";
-        (owner_this)publicVariableClient"eastNavalFacTmp";
+        (owner _this) publicVariableClient"eastBarracksTmp";
+        (owner _this) publicVariableClient"eastHeavyFacTmp";
+        (owner _this) publicVariableClient"eastLightFacTmp";
+        (owner _this) publicVariableClient"eastAirFacTmp";
+        (owner _this) publicVariableClient"eastNavalFacTmp";
         ;
-        (owner_this)publicVariableClient"westBarracksLevel";
-        (owner_this)publicVariableClient"westLightFacLevel";
-        (owner_this)publicVariableClient"westHeavyFacLevel";
-        (owner_this)publicVariableClient"westAirFacLevel";
+        (owner _this) publicVariableClient"westBarracksLevel";
+        (owner _this) publicVariableClient"westLightFacLevel";
+        (owner _this) publicVariableClient"westHeavyFacLevel";
+        (owner _this) publicVariableClient"westAirFacLevel";
         ;
-        (owner_this)publicVariableClient"eastBarracksLevel";
-        (owner_this)publicVariableClient"eastLightFacLevel";
-        (owner_this)publicVariableClient"eastHeavyFacLevel";
-        (owner_this)publicVariableClient"eastAirFacLevel";
+        (owner _this) publicVariableClient"eastBarracksLevel";
+        (owner _this) publicVariableClient"eastLightFacLevel";
+        (owner _this) publicVariableClient"eastHeavyFacLevel";
+        (owner _this) publicVariableClient"eastAirFacLevel";
 
         // Update West Assets with public array
         rts_updateArray = str [WEST,westAssets];

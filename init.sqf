@@ -27,11 +27,6 @@ Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functi
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Territory\Zen_RTS_TerritoryCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTerritoryCompile.sqf";
-// --------------------
-
-// ZKS Respawn Client -----------------------
-// [] execVM "ZKS\Code\Player\CodeStarter.sqf";
-// ---------------------
 
 // RTS Client ---------------------
 // #include "Zen_RTS_Functions\Zen_RTS_ClientExec.sqf"
@@ -47,19 +42,14 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
 // [] exec "rts-z-endmission.sqs";
 rts_arrays_initialized = true;
 
-// 0 = [] execVM "RTS_Build_AddAction.sqf";
-
 // [] execVM "rts-z-intro.sqf";
 // [] exec "rts-showMsg.sqs";
 [] exec "rts-init-SetRandomPos.sqs";
-// onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
-
 // 1 setRadioMsg "Null";
 // if (param3 > 0) then {
     // [] exec "vicpoint\rts-vpInit.sqs";
 // };
-// -------------------------
-
+execVM "digitalLoadout\client.sqf";
 // Data structure for custom squads, this is local to each player and side specific
 // indexes pair with names/colors, 0 - Alpha, etc.
 RTS_Custom_Squads_Assets = [[], [], [], []];
@@ -69,11 +59,6 @@ if !(isServer) exitWith {};
 // TitleRsc ["Title","BLACK FADED"];
 // CutRsc ["Black","BLACK FADED"];
 sleep 1;
-
-// ZKS Respawn Server -----------------------
-// ZKS_Revive_Init = compileFinal preprocessFileLineNumbers "ZKS\Revive\INIT_Start.sqf";
-// [] execVM "ZKS\Code\server\CodeStarter.sqf";
-// ------------
 
 // RTS Server -------------
 // [] exec "economy\rts-supplyMonitor.sqs";
@@ -94,6 +79,7 @@ Zen_JIP_Args_Server = [overcast, fog, vd];
 {
     call compile format ["xp%1 = 0", _x];
     // _x spawn ZKS_Revive_Init;
+   
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };

@@ -11,19 +11,17 @@
     playerMoney = playerMoney - _cost; \
     _actualCrewCount = 0; \
     if (ctrlVisible _idCrewCountList) then { \
-        player commandChat str (lbValue [_idCrewCountList, lbCurSel _idCrewCountList]); \
-        _maxCrew = call compile ([(_assetData select 3), "Crew: ", ","] call Zen_StringGetDelimitedPart); \
-        if (_maxCrew == "") then {_maxCrew = 9};
+        _maxCrew = ([(_assetData select 3), "Crew: ", ","] call Zen_StringGetDelimitedPart); \
+        if (_maxCrew == "") then {_maxCrew = 9} else {_maxCrew = call compile _maxCrew}; \
         _crewCount = (lbValue [_idCrewCountList, lbCurSel _idCrewCountList]) min _maxCrew; \
         _actualCrewCount = _crewCount; \
         if ((typeName _crewCount == "SCALAR") && {_crewCount > 0}) then { \
             _actualCrewCount = 0; \
-            while {playerMoney > 25 && {_actualCrewCount < _crewCount}} do { \
+            while {(playerMoney > 25) && {_actualCrewCount < _crewCount}} do { \
                 _actualCrewCount = _actualCrewCount + 1; \
                 playerMoney = playerMoney - 25; \
             }; \
         }; \
-        player commandChat str _actualCrewCount; \
     };
 
 0 = _this spawn {
