@@ -6,7 +6,7 @@
 #include "Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_OrderVehicleMove", _this] call Zen_StackAdd;
-private ["_vehicle", "_inPos", "_speedMode", "_vehicleDriver", "_vehicleGrp", "_height", "_cleanupEnd", "_cleanupCrash", "_isCrash"];
+private ["_vehicle", "_inPos", "_speedMode", "_vehicleDriver", "_vehicleGrp", "_height", "_cleanupEnd", "_cleanupCrash", "_isCrash", "_completionDistance"];
 
 if !([_this, [["OBJECT"], ["VOID"], ["STRING"], ["SCALAR"], ["BOOL"], ["BOOL"]], [], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
@@ -56,6 +56,14 @@ if (_vehicle isKindOf "AIR") then {
     _vehicleDriver disableAI "AutoTarget";
 };
 
+_completionDistance = 25;
+if (_vehicle isKindOf "AIR") then {
+    _completionDistance = 100;
+    if (_vehicle isKindOf "PLANE") then {
+        _completionDistance = 300;
+    };
+};
+
 sleep 5;
 _isCrash = false;
 waitUntil {
@@ -65,7 +73,7 @@ waitUntil {
         _isCrash = true;
     };
 
-    if (_cleanupCrash && {_isCrash && {(ZEN_FMW_Math_DistGreater2D(_vehicle, _inPos, 100))}}) then {
+    if (_cleanupCrash && {_isCrash && {(ZEN_FMW_Math_DistGreater2D(_vehicle, _inPos, _completionDistance))}}) then {
         if (_vehicle isKindOf "AIR") then {
             waitUntil {
                 sleep 2;
@@ -79,11 +87,11 @@ waitUntil {
         } forEach ((units _vehicleGrp) + [_vehicle]);
     };
 
-    (((unitReady (driver _vehicle)) || (([_vehicle] call Zen_IsReady))) || ((([_vehicle, _inPos] call Zen_Find2dDistance) < 25) && (speed _vehicle < 1)) || _isCrash || ((_vehicle isKindOf "SHIP") && ((getTerrainHeightASL getPosATL _vehicle) > -1)))
+    (((unitReady (driver _vehicle)) || (([_vehicle] call Zen_IsReady))) || (([_vehicle, _inPos] call Zen_Find2dDistance) < _completionDistance) || _isCrash || ((_vehicle isKindOf "SHIP") && ((getTerrainHeightASL getPosATL _vehicle) > -1)))
 };
 
 _vehicleDriver enableAI "Move";
-_vehicle move (getPosATL _vehicle);
+// _vehicle move (getPosATL _vehicle);
 
 sleep 2;
 

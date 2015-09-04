@@ -32,10 +32,10 @@ sleep 5;
 
 waitUntil {
     sleep 2;
-    (((alive leader _group) && {(unitReady leader _group)}) || (({alive _x} count units _group) == 0))
+    (((alive leader _group) && {(unitReady leader _group)}) || (({alive _x} count units _group) == 0) || (([_group, _movePos] call Zen_Find2dDistance) < 25))
 };
 
-_group move (getPosATL (leader _group));
+// _group move (getPosATL (leader _group));
 
 call Zen_StackRemove;
 if (true) exitWith {};

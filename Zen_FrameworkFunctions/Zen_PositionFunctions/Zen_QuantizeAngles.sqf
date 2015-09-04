@@ -43,7 +43,7 @@ if (toLower _polyType == "rectangle") then {
 _targetArea = (_XYSizeArray select 0) * (_XYSizeArray select 1) * SMALL_STEP;
 
 if (_minAngle == 0 || _minAngle == 360) then {
-    _minAngle = 0.0001;
+    _minAngle = 0.1;
 };
 
 if (_minAngle > _maxAngle) then {
