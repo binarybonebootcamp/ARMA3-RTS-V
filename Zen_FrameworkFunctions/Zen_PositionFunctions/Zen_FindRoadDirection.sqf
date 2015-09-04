@@ -18,8 +18,11 @@ _center = [(_this select 0)] call Zen_ConvertToPosition;
 _nearRoads = _center nearRoads 50;
 
 if (count _nearRoads < 2) exitWith {
-    0 = ["Zen_FindRoadDirection", "Given point does have not a road within 50 meters", _this] call Zen_PrintError;
-    call Zen_StackRemove;
+    if (Zen_Debug_Arguments) then {
+        0 = ["Zen_FindRoadDirection", "Given point does have not a road within 50 meters.", _this] call Zen_PrintError;
+        call Zen_StackPrint;
+        call Zen_StackRemove;
+    };
     (0)
 };
 
