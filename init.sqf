@@ -154,6 +154,8 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 // Zen RTS Strategic
 /////////
 
+#define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 0.8
+
 #define DETECT_BUILDING(B, U) \
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
     if (_ID != "") then { \
@@ -171,8 +173,11 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 #define ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
     _vehicle setVariable ["Zen_RTS_StrategicValue", (call compile ([_assetStrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)), true]; \
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
-    _vehicle addEventHandler ["Killed", { \
-        (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
+    _vehicle addEventHandler ["Dammaged", { \
+        if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
+            (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
+            _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
+        }; \
     }];
 
 #define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T) \

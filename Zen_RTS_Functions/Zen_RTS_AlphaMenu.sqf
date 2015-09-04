@@ -11,7 +11,7 @@
     CIV = civilian;
     undefined_var = "scalar bool array string 0xe0ffffef";
 
-    sleep 0.2;
+    // sleep 0.2;
     closeDialog 0;
 
     // if !(rts_moneyMonitorActive) then {
@@ -32,7 +32,7 @@
 
     // dialog id definitions
     _idassetlist = 1000;
-    _idCustomSquadsMenu = 1003;
+    _idRefreshButton = 1003;
     _idselect = 1005;
     _idviewsel = 1010;
     _idviewlist = 1015;
@@ -59,10 +59,13 @@
 
     createDialog "DlgStatus";
     ctrlSetText [_idtitle, "RTS V Mission Status"];
+    ctrlSetText [_idRefreshButton, "Refresh"];
     // ctrlSetText [_idselect, "Purchase Units"];
+
     // buttonSetAction [_idselect, "[1000] call Zen_RTS_BuildMenu"];
-    // buttonSetAction [_idCustomSquadsMenu, "call Zen_RTS_SquadsMenu"];
+    buttonSetAction [_idRefreshButton, "0 = [] spawn Zen_RTS_AlphaMenu"];
     buttonSetAction [_idDisband, "[1020] call Zen_RTS_DisbandUnit"];
+    buttonSetAction [_idviewsel, "[1015] call Zen_RTS_SetViewDistance"];
 
     // ;;ctrlShow [_idScramble, FALSE];
     // ;;ctrlShow [_idsatellite,FALSE];
@@ -72,7 +75,7 @@
     ctrlEnable [_idstats,FALSE];
     {
         ctrlShow [ _x, FALSE];
-    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idselect, _idCustomSquadsMenu];
+    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idselect];
 
     if (player in [WestCommander,EastCommander]) then {
         // ctrlShow [_iddestruct, FALSE];
@@ -90,7 +93,6 @@
         lbSetValue [_idviewlist, _index, call compile _x];
     } forEach _viewDistSteps;
 
-    buttonSetAction [_idviewsel, "[1015] call Zen_RTS_SetViewDistance"];
     ctrlSetText [_idviewsel, "Set View Distance"];
     lbSetCurSel [_idviewlist, 0];
 

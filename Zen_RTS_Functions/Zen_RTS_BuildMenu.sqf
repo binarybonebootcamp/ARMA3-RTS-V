@@ -30,13 +30,13 @@
     _buildingObjDataLocal = [(_buildingObjDataGlobal select 1)] call Zen_RTS_StrategicBuildingObjectGetDataLocal;
     player setVariable ["Zen_RTS_Current_Building", (_buildingObjDataGlobal select 1)];
     closeDialog 0;
-    sleep 0.1;
+    // sleep 0.1;
 
     _idlist = 2000;
     _idback = 2001;
     _idbuild = 2005;
 
-    _iBuildManned = 2015;
+    _idRefreshButton = 2015;
     _idbuildsquad = 2020;
     _idsquadlist = 2025;
     _idtitle = 1050;
@@ -75,7 +75,7 @@
 
     buttonSetAction [_idback, "[player, player, 0] call Zen_RTS_AlphaMenu"];
     buttonSetAction [_idbuild, "[false] call Zen_RTS_BuildUnit"];
-    // buttonSetAction [_iBuildManned, "[false] call Zen_RTS_BuildUnit"];
+    buttonSetAction [_idRefreshButton, format ["0 = [0, 0, 0, '%1'] spawn Zen_RTS_BuildMenu", _buildingType]];
     buttonSetAction [_idbuildsquad, "[true] call Zen_RTS_BuildUnit"];
     // buttonSetAction [_idBtnCustom, "[false] call Zen_RTS_BuildUnit"];
 
@@ -96,10 +96,10 @@
     };
     {
         ctrlShow [ _x, false];
-    } forEach [_idBgdCustom, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idstats, _idListCustom, _idBtnCustom, _iBuildManned];
+    } forEach [_idBgdCustom, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idstats, _idListCustom, _idBtnCustom];
 
     ctrlSetText [_idbuild, "Deploy"];
-    // ctrlSetText [_iBuildManned, "Deploy Manned"];
+    ctrlSetText [_idRefreshButton, "Refresh"];
     ctrlSetText [_idbuildsquad, "Deploy for Squad"];
     // ctrlSetText [_idBtnCustom, "Deploy Custom Squad"];
 
