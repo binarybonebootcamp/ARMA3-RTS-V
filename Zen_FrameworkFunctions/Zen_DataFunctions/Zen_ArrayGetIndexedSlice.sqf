@@ -19,11 +19,11 @@ ZEN_STD_Parse_GetArgumentDefault(_indexEnd, 2, (count _array) - 1)
 
 _arrayPart = [];
 
-if ((_indexStart >= (count _array)) || (_indexEnd >= (count _array))) then {
-    0 = ["Zen_ArrayGetIndexedSlice", "One or more given indexes are out of bounds", _this] call Zen_PrintError;
+if (_indexStart >= (count _array)) then {
+    0 = ["Zen_ArrayGetIndexedSlice", "Start index is out of bounds", _this] call Zen_PrintError;
     call Zen_StackPrint;
 } else {
-    for "_i" from _indexStart to _indexEnd do {
+    for "_i" from _indexStart to (_indexEnd min ((count _array) - 1)) do {
         _arrayPart pushBack (_array select _i);
     };
 };

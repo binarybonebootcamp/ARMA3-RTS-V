@@ -6,55 +6,47 @@
 #include "Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_OrderAircraftPatrol", _this] call Zen_StackAdd;
-private ["_vehicleArray", "_movecenter", "_blackList", "_maxx", "_speedMode", "_heliHeight", "_mpos", "_heliDirToLand", "_mposCorrected", "_vehDist", "_limitAngles", "_cleanupDead", "_crewGroupArray", "_crew"];
+private ["_vehicleArray", "_movecenters", "_blackList", "_speedMode", "_heliHeight", "_mpos", "_heliDirToLand", "_mposCorrected", "_vehDist", "_limitAnglesSet", "_cleanupDead", "_crewGroupArray", "_crew", "_center", "_index", "_behavior", "_positionFilterArgs"];
 
-if !([_this, [["ARRAY", "OBJECT"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["STRING"], ["SCALAR"], ["BOOL"]], [["OBJECT", "ARRAY"], [], ["STRING"], ["SCALAR"]], 2] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["STRING"], ["STRING"], ["SCALAR"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["STRING", "ARRAY", "SCALAR"], ["SCALAR", "ARRAY"]], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
 _vehicleArray = [(_this select 0)] call Zen_ConvertToObjectArray;
-_movecenter = _this select 1;
+_movecenters = _this select 1;
 
-if (typeName _vehicleArray != "ARRAY") then {
-    _vehicleArray = [_vehicleArray];
-};
+ZEN_STD_Parse_GetArgumentDefault(_speedMode, 4, "limited")
+ZEN_STD_Parse_GetArgumentDefault(_behavior, 5, "aware")
+ZEN_STD_Parse_GetArgumentDefault(_heliHeight, 6, 75)
+ZEN_STD_Parse_GetArgumentDefault(_cleanupDead, 7, false)
 
-_blackList = [];
-_maxx = 1000;
-_speedMode = "normal";
-_heliHeight = 75;
-_limitAngles = [0, 360];
-
-if !(typeName _movecenter == "String") then {
+if !((typeName _movecenters == "ARRAY") && {typeName (_movecenters select 0) != "SCALAR"}) then {
     if (count _this > 2) then {
-        _maxx = _this select 2;
-    };
-} else {
-    if (markerShape _movecenter == "ICON") then {
-        _movecenter = [_movecenter] call Zen_ConvertToPosition;
-        if (count _this > 2) then {
-            _maxx = _this select 2;
-        };
+        _positionFilterArgs = [_this select 2];
     } else {
-        if (count _this > 2) then {
-            _blackList = _this select 2;
+        if (typeName _movecenters == "STRING") then {
+            _positionFilterArgs = [[]];
+            if ((markerShape _movecenters) == "ICON") then {
+                _positionFilterArgs = [500];
+            };
+        } else {
+            _positionFilterArgs = [500];
         };
     };
+
+    _movecenters = [_movecenters];
+    ZEN_STD_Parse_GetArgumentDefault(_limitAnglesSet, 3, 0)
+    _limitAnglesSet = [_limitAnglesSet];
+} else {
+    _positionFilterArgs = _this select 2;
+    _limitAnglesSet = _this select 3;
 };
 
-if (count _this > 3) then {
-    _limitAngles = _this select 3;
-};
-
-if (count _this > 4) then {
-    _speedMode = _this select 4;
-};
-
-if (count _this > 5) then {
-    _heliHeight = _this select 5;
-};
-
-ZEN_STD_Parse_GetArgumentDefault(_cleanupDead, 6, false)
+{
+    if ((typeName _x == "STRING") && {((markerShape _x) == "ICON")}) then {
+        _movecenters set [_forEachIndex, [_x] call Zen_ConvertToPosition];
+    };
+} forEach _movecenters;
 
 _vehicleArray = [([_vehicleArray] call Zen_ConvertToObjectArray)] call Zen_ArrayRemoveDead;
 _crewGroupArray = [];
@@ -65,19 +57,23 @@ _crewGroupArray = [];
     _mpos = [0,0,0];
     _crewGroupArray pushBack (group driver _veh);
 
-    if (typeName _movecenter == "String") then {
-        _mpos = [_movecenter, 0,_blackList, 1, 0, _limitAngles] call Zen_FindGroundPosition;
-    } else {
-        _vehDist = [_veh, _movecenter] call Zen_Find2dDistance;
-        _mpos = [_movecenter, [0, _maxx], [], 1, 0, _limitAngles, 0, [1, _veh, _vehDist]] call Zen_FindGroundPosition;
+    #define CALC_POS \
+    _index = ZEN_STD_Array_RandIndex(_movecenters); \
+    _center = _movecenters select _index; \
+    if (typeName _center == "STRING") then { \
+        _mpos = [_center, 0,_positionFilterArgs select _index, 0, 0, _limitAnglesSet select _index] call Zen_FindGroundPosition; \
+    } else { \
+        _mpos = [_center, [0, _positionFilterArgs select _index], [], 0, 0, _limitAnglesSet select _index] call Zen_FindGroundPosition; \
     };
+
+    CALC_POS
 
     _heliDirToLand = [_veh,_mpos] call Zen_FindDirection;
     _mposCorrected = [_mpos, 100, _heliDirToLand, "trig"] call Zen_ExtendPosition;
 
     _veh move _mposCorrected;
     _veh flyInHeight _heliHeight;
-    _veh setBehaviour "aware";
+    _veh setBehaviour _behavior;
     _veh setCombatMode "Red";
     _veh setSpeedMode _speedMode;
 } forEach _vehicleArray;
@@ -106,17 +102,12 @@ while {(count _vehicleArray != 0)} do {
             } else {
                 if ([_veh] call Zen_IsReady) then {
                     _mpos = [0,0,0];
-                    if (typeName _movecenter == "String") then {
-                        _mpos = [_movecenter, 0,_blackList, 1, 0, _limitAngles] call Zen_FindGroundPosition;
-                    } else {
-                        _vehDist = [_veh, _movecenter] call Zen_Find2dDistance;
-                        _mpos = [_movecenter, [0, _maxx], [], 1, 0, _limitAngles, 0, [1, _veh, _vehDist]] call Zen_FindGroundPosition;
-                    };
+                    CALC_POS
 
                     _mposCorrected = [_veh, _mpos, 100] call Zen_ExtendRay;
                     _veh move _mposCorrected;
                     _veh flyInHeight _heliHeight;
-                    _veh setBehaviour "aware";
+                    _veh setBehaviour _behavior;
                     _veh setCombatMode "Red";
                     _veh setSpeedMode _speedMode;
                 };

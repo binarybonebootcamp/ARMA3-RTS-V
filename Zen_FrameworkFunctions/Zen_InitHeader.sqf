@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-// This folder contains framework source code version 8/5/15
+// This folder contains framework source code version 9/2/15
 
 #include "Zen_StandardLibrary.sqf"
 #include "Zen_FrameworkLibrary.sqf"
@@ -11,7 +11,7 @@ _Zen_Is_JIP = false;
 if (!isServer && {isNull player}) then {
    _Zen_Is_JIP = true;
     waitUntil {
-        (!(isNull player) && {player == player})
+        (!(isNull player) && {local player})
     };
 };
 call compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_DataFunctions\Zen_DataFunctionsCompile.sqf";
