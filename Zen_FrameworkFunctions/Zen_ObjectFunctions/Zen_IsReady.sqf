@@ -15,6 +15,9 @@ _vehicle = _this select 0;
 _isReady = true;
 _crew = crew _vehicle - (assignedCargo _vehicle);
 
+// commander
+// effectiveCommander
+
 {
     if !(unitReady _x) exitWith {
         _isReady = false;
