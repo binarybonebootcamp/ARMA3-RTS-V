@@ -38,6 +38,7 @@ Zen_RTS_F_East_CJConstructor = {
 
     sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
     _vehicle = [_spawnPos, "O_MRAP_02_F"]  call Zen_SpawnVehicle;
+    _vehicle setVariable ["side", east, true];
     ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
 
     // to-do: || false condition needs building hacking logic
@@ -107,9 +108,17 @@ Zen_RTS_BuildingType_East_CJ = ["Zen_RTS_F_East_CJConstructor", "Zen_RTS_F_East_
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 10, getDir _building] call Zen_ExtendPosition; \
+        Zen_RTS_CJ_DoPlace = false; \
+        _redArrow = "Sign_Arrow_Large_F" createVehicleLocal [0,0,0]; \
+        _building addAction ["<t color='#D80000'>Place</t>", {Zen_RTS_CJ_DoPlace = true; (_this select 0) removeAction (_this select 2);}, [], 1, false, true, "", "(_this in _target)"]; \
+        waitUntil { \
+            sleep 1; \
+            _redArrow setPosATL ([_building, 10, getDir _building, "compass", 1] call Zen_ExtendPosition); \
+            (Zen_RTS_CJ_DoPlace) \
+        }; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        _vehicle = [_pos, T, 0, getDir _building, false]  call Zen_SpawnVehicle; \
+        deleteVehicle _redArrow; \
+        _vehicle = [_redArrow, T, 0, getDir _building, false]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
     };
 

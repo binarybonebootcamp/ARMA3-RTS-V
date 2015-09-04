@@ -1,0 +1,283 @@
+TAG_FNC_Rifleman = 
+{
+  _unit = _this select 0;
+
+   removeAllWeapons _unit;
+   removeHeadgear _unit;
+   removeVest _unit;
+   removeUniform _unit;
+   removeBackPack _unit;
+	
+  _unit addHeadgear "H_HelmetO_ocamo";
+  _unit addUniform "U_O_CombatUniform_ocamo";
+  _unit addVest "V_harnessO_brn";
+  _Unit addBackPack "B_Fieldpack_cbr";
+
+  _unit addWeapon "binocular";
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
+  (unitBackpack _unit) addMagazineCargo ["HandGrenade",3]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_red",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "arifle_Katiba_F" ,10 ,"30Rnd_65x39_caseless_Green"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_ACO_grn";
+  _unit addPrimaryWeaponItem "acc_pointer_IR";
+  [_unit] call loadChange;
+};
+
+TAG_FNC_Grenadier = 
+{
+  _unit = _this select 0;
+
+  removeAllWeapons _unit;
+  removeHeadgear _unit;
+  removeVest _unit;
+  removeUniform _unit;
+  removeBackPack _unit;
+
+  _unit addHeadgear "H_HelmetO_ocamo";
+  _unit addUniform "U_O_CombatUniform_ocamo";
+  _unit addVest "V_harnessO_brn";
+  _Unit addBackPack "B_Fieldpack_cbr";
+
+  _unit addWeapon "binocular";
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
+  (unitBackpack _unit) addMagazineCargo ["1Rnd_HE_Grenade_shell",10];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Red",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "arifle_Katiba_GL_F" ,10 ,"30Rnd_65x39_caseless_Green"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_ACO_grn";
+  _unit addPrimaryWeaponItem "acc_pointer_IR";
+  [_unit] call loadChange;
+};
+
+TAG_FNC_Engineer = 
+{
+  _unit = _this select 0;
+
+  removeAllWeapons _unit;
+  removeHeadgear _unit;
+  removeVest _unit;
+  removeUniform _unit;
+  removeBackPack _unit;
+
+  _unit addHeadgear "H_HelmetO_ocamo";
+  _unit addUniform "U_O_CombatUniform_ocamo";
+  _unit addVest "V_harnessO_brn";
+  _Unit addBackPack "B_Carryall_ocamo_Eng";
+  clearAllItemsFromBackpack _unit; 
+
+  (unitBackpack _unit) addMagazineCargo ["ATMine_Range_Mag",1]; 
+  (unitBackpack _unit) addMagazineCargo ["SLAMDirectionalMine_Wire_Mag",1];
+  (unitBackpack _unit) addMagazineCargo ["APERSMine_Range_Mag",1];
+  (unitBackpack _unit) addMagazineCargo ["APERSBoundingMine_Range_Mag",1];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_red",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  _unit addWeapon "binocular";
+  _unit addMagazine "smokeshell";
+  [_unit, "arifle_katiba_F" ,7 ,"30Rnd_65x39_caseless_green"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_ACO_grn";
+  _unit addPrimaryWeaponItem "acc_pointer_IR";
+  [_unit] call loadChange;
+};
+
+TAG_FNC_AutoRifleman = 
+{
+  _unit = _this select 0;
+
+  removeAllWeapons _unit;
+  removeHeadgear _unit;
+  removeVest _unit;
+  removeUniform _unit;
+  removeBackPack _unit;
+
+  _unit addHeadgear "H_HelmetO_ocamo";
+  _unit addUniform "U_O_CombatUniform_ocamo";
+  _unit addVest "V_harnessO_brn";
+  _Unit addBackPack "B_Fieldpack_cbr";
+
+  _unit addWeapon "binocular";
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_red",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "LMG_Zafir_F" ,8 ,"150Rnd_762x51_box"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_ACO_grn";
+  [_unit] call loadChange;
+};
+
+TAG_FNC_AT_Light = 
+{
+  _unit = _this select 0;
+
+  removeAllWeapons _unit;
+  removeHeadgear _unit;
+  removeVest _unit;
+  removeUniform _unit;
+  removeBackPack _unit;
+
+  _unit addHeadgear "H_HelmetO_ocamo";
+  _unit addUniform "U_O_CombatUniform_ocamo";
+  _unit addVest "V_TacVest_khk";
+  _Unit addBackPack "B_FieldPack_cbr_LAT";
+
+  _unit addWeapon "binocular";
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_red",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "arifle_katiba_F" ,9 ,"30Rnd_65x39_caseless_green"] call BIS_fnc_addWeapon;
+  [_unit, "launch_RPG32_F" ,2 ,"RPG32_F"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_ACO_grn";
+  _unit addPrimaryWeaponItem "acc_pointer_IR";
+  [_unit] call loadChange;
+};
+
+TAG_FNC_Pilot = 
+{
+  _unit = _this select 0;
+
+  removeAllWeapons _unit;
+  removeHeadgear _unit;
+  removeVest _unit;
+  removeUniform _unit;
+  removeBackPack _unit;
+
+  _unit addHeadgear "H_pilothelmetfighter_O";
+  _unit addUniform "U_O_pilotcoveralls";
+  _Unit addBackPack "B_parachute";
+
+  _unit addWeapon "binocular";
+  _unit addWeapon "itemGps";
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_blue",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "arifle_katiba_F" ,7 ,"30Rnd_65x39_caseless_green"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+   _unit addPrimaryWeaponItem "optic_ACO_grn";
+   _unit addPrimaryWeaponItem "acc_pointer_IR";
+   [_unit] call loadChange;
+};
+
+TAG_FNC_SpecialF = 
+{
+  _unit = _this select 0;
+
+  removeAllWeapons _unit;
+  removeHeadgear _unit;
+  removeVest _unit;
+  removeUniform _unit;
+  removeBackPack _unit;
+
+  _unit addHeadgear "H_HelmetO_ocamo";
+  _unit addUniform "U_O_CombatUniform_ocamo";
+  _unit addVest "V_harnessO_brn";
+  _Unit addBackPack "B_Fieldpack_cbr";
+
+  _unit addWeapon "rangefinder";
+  _unit addWeapon "itemGps";
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",2];
+  (unitBackpack _unit) addMagazineCargo ["handGrenade",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_red",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "srifle_EBR_F" ,10 ,"20Rnd_762x51_mag"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_MRCO";
+  _unit addPrimaryWeaponItem "muzzle_snds_B";
+  _unit addPrimaryWeaponItem "acc_pointer_IR";
+  [_unit] call loadChange;
+};
+
+
+TAG_FNC_AA = 
+{
+  _unit = _this select 0;
+
+  removeAllWeapons _unit;
+  removeHeadgear _unit;
+  removeVest _unit;
+  removeUniform _unit;
+  removeBackPack _unit;
+
+  _unit addHeadgear "H_HelmetO_ocamo";
+  _unit addUniform "U_O_CombatUniform_ocamo";
+  _unit addVest "V_harnessO_brn";
+  _Unit addBackPack "B_FieldPack_ocamo_AA";
+
+  _unit addWeapon "binocular";
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_red",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "arifle_katiba_F" ,9 ,"30Rnd_65x39_caseless_green"] call BIS_fnc_addWeapon;
+  [_unit, "launch_B_Titan_F" ,2 ,"Titan_AA"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_ACO_grn";
+  _unit addPrimaryWeaponItem "acc_pointer_IR";
+  [_unit] call loadChange;
+};
+
+TAG_FNC_AT_Heavy = 
+{
+  _unit = _this select 0;
+
+  removeAllWeapons _unit;
+  removeHeadgear _unit;
+  removeVest _unit;
+  removeUniform _unit;
+  removeBackPack _unit;
+
+  _unit addHeadgear "H_HelmetO_ocamo";
+  _unit addUniform "U_O_CombatUniform_ocamo";
+  _unit addVest "V_TacVest_khk";
+  _Unit addBackPack "B_FieldPack_cbr_AT";
+  
+  _unit addWeapon "binocular";
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_red",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "arifle_katiba_F" ,7 ,"30Rnd_65x39_caseless_green"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  [_unit, "launch_B_Titan_short_F" ,2 ,"Titan_AT"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_ACO_grn";
+  _unit addPrimaryWeaponItem "acc_pointer_IR";
+  [_unit] call loadChange;
+};
+
+TAG_FNC_Marksman = 
+{
+  _unit = _this select 0;
+
+  removeAllWeapons _unit;
+  removeHeadgear _unit;
+  removeVest _unit;
+  removeUniform _unit;
+  removeBackPack _unit;
+
+  _unit addHeadgear "H_HelmetO_ocamo";
+  _unit addUniform "U_O_CombatUniform_ocamo";
+  _unit addVest "V_harnessO_brn";
+  _Unit addBackPack "B_Fieldpack_cbr";
+
+  _unit addWeapon "rangefinder";
+  _unit addWeapon "itemGps";
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_red",5];
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "srifle_DMR_01_F" ,7 ,"10Rnd_762x51_mag"] call BIS_fnc_addWeapon;
+  [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_DMS";
+  _unit addPrimaryWeaponItem "acc_pointer_IR";
+  [_unit] call loadChange;
+};

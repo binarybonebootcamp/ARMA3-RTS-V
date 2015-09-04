@@ -21,17 +21,12 @@ Zen_RTS_DestroyStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Funct
 Zen_RTS_EconomyManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_EconomyManager.sqf";
 Zen_RTS_Recycle = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Recycle.sqf";
 Zen_RTS_Repair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Repair.sqf";
-Zen_RTS_SquadsMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SquadsMenu.sqf";
+// Zen_RTS_SquadsMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SquadsMenu.sqf";
 Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SetViewDistance.sqf";
 
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Territory\Zen_RTS_TerritoryCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTerritoryCompile.sqf";
-// --------------------
-
-// ZKS Respawn Client -----------------------
-[] execVM "ZKS\Code\Player\CodeStarter.sqf";
-// ---------------------
 
 // RTS Client ---------------------
 // #include "Zen_RTS_Functions\Zen_RTS_ClientExec.sqf"
@@ -47,19 +42,14 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
 // [] exec "rts-z-endmission.sqs";
 rts_arrays_initialized = true;
 
-// 0 = [] execVM "RTS_Build_AddAction.sqf";
-
 // [] execVM "rts-z-intro.sqf";
 // [] exec "rts-showMsg.sqs";
 [] exec "rts-init-SetRandomPos.sqs";
-// onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
-
 // 1 setRadioMsg "Null";
 // if (param3 > 0) then {
     // [] exec "vicpoint\rts-vpInit.sqs";
 // };
-// -------------------------
-
+execVM "digitalLoadout\client.sqf";
 // Data structure for custom squads, this is local to each player and side specific
 // indexes pair with names/colors, 0 - Alpha, etc.
 RTS_Custom_Squads_Assets = [[], [], [], []];
@@ -70,11 +60,6 @@ if !(isServer) exitWith {};
 // CutRsc ["Black","BLACK FADED"];
 sleep 1;
 
-// ZKS Respawn Server -----------------------
-ZKS_Revive_Init = compileFinal preprocessFileLineNumbers "ZKS\Revive\INIT_Start.sqf";
-[] execVM "ZKS\Code\server\CodeStarter.sqf";
-// ------------
-
 // RTS Server -------------
 // [] exec "economy\rts-supplyMonitor.sqs";
 // [] exec "rts-build-serverside.sqs";
@@ -82,7 +67,7 @@ ZKS_Revive_Init = compileFinal preprocessFileLineNumbers "ZKS\Revive\INIT_Start.
 [] exec "test.sqs";
 //[] exec "rts-build-serverSideMonitor.sqs";
 // rts_hq sideChat "Global Scripts and Variables Initialized";
-rts_Initialized = TRUE;
+
 execVM "R3F_LOG\init.sqf";
 [] execVM "VCOM_Driving\init.sqf";
 // --------------------------
@@ -93,7 +78,8 @@ Zen_JIP_Args_Server = [overcast, fog, vd];
 
 {
     call compile format ["xp%1 = 0", _x];
-    _x spawn ZKS_Revive_Init;
+    // _x spawn ZKS_Revive_Init;
+   
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
@@ -221,10 +207,10 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
         }; \
     }];
 
-#define BUILDING_VISUALS(T, O) \
+#define BUILDING_VISUALS(T, O, S) \
     _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
     _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
-    _building setVariable ["side", side player, true]; \
+    _building setVariable ["side", S, true]; \
     _building setVectorUp (surfaceNormal _spawnPos); \
     _height = ZEN_STD_OBJ_BBZ(_building); \
     ZEN_STD_OBJ_TransformATL(_building, 0, 0, -( _height)) \
@@ -253,8 +239,6 @@ RTS_Building_Type_Levels = [[], []]; // global
 // must be [[west asset types, [east '']]
 RTS_Used_Asset_Types = [[], []]; // global
 
-// 0 = [] spawn Zen_RTS_BuildMenuQueue;
-
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"
 #include "Zen_RTS_West\RTS_West_Radar.sqf"
@@ -274,8 +258,16 @@ RTS_Used_Asset_Types = [[], []]; // global
 #include "Zen_RTS_East\RTS_East_CJ.sqf"
 
 westTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+westTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
 eastTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+eastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
 
 publicVariable "RTS_Used_Building_Types";
 publicVariable "RTS_Building_Type_Levels";
 // publicVariable "RTS_Used_Asset_Types";
+
+publicVariable "Zen_RTS_BuildingType_West_HQ";
+publicVariable "Zen_RTS_BuildingType_East_HQ";
+
+rts_Initialized = TRUE;
+publicVariable "rts_Initialized";

@@ -80,6 +80,7 @@
     _idListCustom = 2030;
     _idBgdCustom = 2031;
 
+    _idDroplist = 2045;
     _idstats = 500;
     _indnum1 = 0;
     _indnum2 = 0;
@@ -99,13 +100,13 @@
     createDialog "DlgBuild";
     {
         ctrlShow [_x, false];
-    } forEach [_idgoback, _idSquadList, _idSquadListbk, _idbuildSquad, _idBtnCustom, _idListCustom, _idBgdCustom, _idstats, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idSldQ, _idInfQButton];
+    } forEach [_idgoback, _idSquadList, _idSquadListbk, _idbuildSquad, _idBtnCustom, _idListCustom, _idBgdCustom, _idstats, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idSldQ, _idInfQButton, _idDroplist];
 
     // ctrlEnable [_idbuildyou, FALSE];
     // ctrlEnable [_idbuildSquad, FALSE];
 
     _idSel = 0;
-    while {((ctrlVisible _idlist) && {(alive _player)})} do {
+    // while {((ctrlVisible _idlist) && {(alive _player)})} do {
         // Clear the Stats list to repopulate
         // _stats = [_side, _side2] call compile preprocessFileLineNumbers "functions\rts-statistics-array.sqf";
         // lbClear _idStats;
@@ -151,9 +152,9 @@
         } forEach (RTS_Used_Building_Types select ([west, east] find _side));
 
         lbSetCurSel [_idlist, _idSel];
-        sleep 2;
+        // sleep 30;
         _idSel = lbCurSel _idList;
-    };
+    // };
 
     call Zen_StackRemove;
     if (true) exitWith {};

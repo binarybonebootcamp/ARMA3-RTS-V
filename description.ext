@@ -1,9 +1,8 @@
 respawn = 3;
 respawndelay = 3; 
 respawnDialog = false;
-author = "DEV-Update 82415"; 
+author = ""; 
 overviewText = "DEV-Update 82415.";
-overviewTextLocked = "DEV-Update 82415";
 overviewPicture = "pictures\rtsload.paa"; 
 onLoadName = "Warfare Unleashed"; 
 onLoadMission = "Warfare Unleashed: Arma3 Edition";
@@ -14,8 +13,10 @@ briefing = 1;
 debriefing = 1;
 aiKills = 0; 
 disabledAI = 0;  
+//showGroupIndicator = 1;
 enableDebugConsole = 1;
-showHUD = true;
+taskManagement_markers3D = 1;
+showHUD = 1;
 
 
 class Header
@@ -29,7 +30,14 @@ class CfgFunctions {
 		#include "vip_cmn\fn\vip_cmn_fnc.hpp"
 		#include "vip_sms\fn\vip_sms_fnc.hpp"
 	};
-
+	
+class TAG 
+       {
+	       class MyMission 
+               {
+		 class showOSD { file = "functions\fnc_showOSD.sqf"; };
+               };
+       };
 	class CfgRemoteExecCommands {
 
 		#include "vip_cmn\fn\vip_cmn_fnc_remoteExec.hpp"
@@ -55,9 +63,9 @@ class CfgFunctions {
 #include "menus\patchname.hpp"
 #include "menus\Sounds_music.hpp"
 #include "R3F_LOG\desc_include.h" 
+#include "digitalLoadout\defines.hpp"
+#include "digitalLoadout\dialog.hpp"
 
-//Respawn
-#include "ZKS\Revive\Dialogs\RESPAWN_rscSpectating.hpp"
 class CfgSounds
 {
 	sounds[] = {NoSound, jump8};
@@ -75,5 +83,4 @@ class jump8
 		titles[]={};
 	};	
 #include "menus\Sounds.hpp"
-#include "ZKS\Sounds\Dialogs\sounds.hpp"
 };

@@ -64,7 +64,8 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     (group Player) selectLeader player;
     0 = [player] call Zen_AddRepackMagazines;
     [player,"Death"] call BIS_fnc_setUnitInsignia;
-
+	[] execVM "playerMarkers.sqf";
+	
     // waitUntil {
         // sleep 1;
         // (rts_arrays_initialized)
@@ -113,7 +114,6 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     // execVM "starter.sqf";
 
     // #Loadout
-    // ;;[Player] exec "Karr-DLG-Loadout.sqs"
     // ;;execVM "RTS-Player_actions.sqf";
     // #LoadoutLoop
     // ~1
@@ -207,7 +207,6 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
 
     closeDialog 0;
     // 2 fadeMusic 0;
-
     // ?_text in ["Forward Base Perimeter"] : _dist = -400
     // ?_text in ["Back Base Perimeter"] : _dist = +400
 
@@ -245,3 +244,8 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
 
     // Exit
 };
+waitUntil {
+        sleep 5;
+CreateDialog "DigitalLoadout";
+    };
+onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";

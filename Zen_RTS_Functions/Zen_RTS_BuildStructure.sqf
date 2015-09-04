@@ -24,9 +24,10 @@
         player sideChat "This building type has already been constructed.";
     };
 
-    _buildingData = [_type] call Zen_RTS_StrategicBuildingTypeGetData;
-    _buildingType = _buildingData select 0;
-    _descrRaw = _buildingData select 5;
+    _buildingTypeData = [_type] call Zen_RTS_StrategicBuildingTypeGetData;
+    _buildingType = _buildingTypeData select 0;
+
+    _descrRaw = _buildingTypeData select 5;
     _cost = call compile  ([_descrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart);
     if (playerMoney < _cost) exitWith {
         player sideChat "Insufficient funds.";
@@ -35,7 +36,7 @@
     _buildingTypeHQ = missionNamespace getVariable ("Zen_RTS_BuildingType_" + (str side player) + "_HQ");
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(_buildingTypeHQ, _ID)
 
-    _isNaval = _buildingType in [Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_BuildingType_East_NavalFactory];
+    _isNaval = (_buildingTypeData select 4) isEqualTo "Naval Factory";
     _exit = false;
     _HQObject = vehicle player;
     if (_type != _buildingTypeHQ) then {
@@ -106,7 +107,8 @@
                     _level = (RTS_Building_Type_Levels select 0) select _index;
                 };
 
-                _blfObjID = [_type, [_pos, _level]] call Zen_RTS_StrategicBuildingInvoke;
+                _args = [_type, [_pos, _level]];
+                ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicBuildingInvoke", _args, call)
                 breakTo "main";
             };
         } else {
