@@ -1,14 +1,4 @@
-/**
-    Level 1:
-        Zen_RTS_Asset_West_Rifleman
-        Zen_RTS_Asset_West_GLSoldier
-        Zen_RTS_Asset_West_Autorifleman
-        Zen_RTS_Asset_West_Medic
-    Level 2:
-        Zen_RTS_Asset_West_Marksman
-        Zen_RTS_Asset_West_ATSoldier
-        Zen_RTS_Asset_West_AASoldier
-//*/
+
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_West_BarracksConstructor = {
@@ -20,12 +10,13 @@ Zen_RTS_F_West_BarracksConstructor = {
 
     _spawnPos = _args select 0;
     _level = _args select 1;
+    _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_West_Rifleman;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_GLSoldier;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_Autorifleman;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_Medic;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_army_ocp_grenadier;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_army_ocp_autoriflemana;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_army_ocp_medic;
 
     if (Zen_RTS_TechFlag_West_BuildEnemy) then {
         // ... to do
@@ -42,20 +33,13 @@ Zen_RTS_F_West_BarracksConstructor = {
     if (_ID != "") then {
         0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_Barracks]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
-
-    _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
+	
     BUILDING_VISUALS("Land_Cargo_House_V2_F", 1, west)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_Barracks)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["Purchase Units", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
-
-    if (_level > 0) then {
-        for "_i" from 0 to (_level - 1) do {
-            [_buildingObjData] call (missionNamespace getVariable ((_buildingTypeData select 3) select _i));
-        };
-    };
 
     (_building)
 };
@@ -90,13 +74,16 @@ N = { \
     (true) \
 };
 
-#define ASSETS [Zen_RTS_Asset_West_Marksman, Zen_RTS_Asset_West_ATSoldier]
+#define ASSETS [Zen_RTS_Asset_West_rhsusf_army_ocp_autorifleman, Zen_RTS_Asset_West_rhsusf_army_ocp_javelin]
 UPGRADE(Zen_RTS_F_West_BarracksUpgrade01, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_West_AASoldier]
+#define ASSETS [Zen_RTS_Asset_West_rhsusf_army_ocp_aa, Zen_RTS_Asset_West_rhsusf_army_ocp_sniper, Zen_RTS_Asset_West_rhsusf_army_ocp_officer, Zen_RTS_Asset_West_rhsusf_army_ocp_riflemanat, Zen_RTS_Asset_West_rhsusf_army_ocp_riflemanl]
 UPGRADE(Zen_RTS_F_West_BarracksUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen_RTS_F_West_BarracksDestructor", ["Zen_RTS_F_West_BarracksUpgrade01", "Zen_RTS_F_West_BarracksUpgrade02"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\zen.paa,"] call Zen_RTS_StrategicBuildingCreate;
+#define ASSETS [Zen_RTS_Asset_West_rhsusf_army_ocp_engineer, Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m590,Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m16,Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m4,Zen_RTS_Asset_West_rhsusf_army_ocp_marksman,Zen_RTS_Asset_West_rhsusf_army_ocp_fso]
+UPGRADE(Zen_RTS_F_West_BarracksUpgrade03, ASSETS)
+
+Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen_RTS_F_West_BarracksDestructor", ["Zen_RTS_F_West_BarracksUpgrade01", "Zen_RTS_F_West_BarracksUpgrade02","Zen_RTS_F_West_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\zen.paa,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_Barracks;
 
 /////////////////////////////////
@@ -118,18 +105,38 @@ Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen
         }; \
     };
 
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_AssetRifleman, "B_Soldier_02_f", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_AssetGLSoldier, "B_Soldier_GL_F", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_AssetAutorifleman, "B_soldier_AR_F", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_AssetMedic, "B_medic_F", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_AssetMarksman, "B_soldier_M_F", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_AssetATSoldier, "B_soldier_AT_F", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_AssetAASoldier, "B_soldier_AA_F", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_rhsusf_army_ocp_rifleman, "rhsusf_army_ocp_rifleman", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_grenadier, "rhsusf_army_ocp_grenadier", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_rhsusf_army_ocp_autoriflemana, "rhsusf_army_ocp_rhsusf_army_ocp_autoriflemana", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_medic, "rhsusf_army_ocp_medic", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_autorifleman, "rhsusf_army_ocp_autorifleman", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_javelin, "rhsusf_army_ocp_javelin", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_aa, "rhsusf_army_ocp_aa", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_sniper, "rhsusf_army_ocp_sniper", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_officer, "rhsusf_army_ocp_officer", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_riflemanat, "rhsusf_army_ocp_riflemanat", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_riflemanl, "rhsusf_army_ocp_riflemanl", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_engineer, "rhsusf_army_ocp_engineer", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m590, "rhsusf_army_ocp_rifleman_m590", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m16, "rhsusf_army_ocp_rifleman_m16", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m4, "rhsusf_army_ocp_rifleman_m4", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_marksman, "rhsusf_army_ocp_marksman", "infantry")
+INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_fso, "rhsusf_army_ocp_fso", "infantry")
 
-Zen_RTS_Asset_West_Rifleman = ["Zen_RTS_F_West_AssetRifleman", "Rifleman", "Cost: 50, Time: 10, Classname: b_soldier_02_f,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_GLSoldier = ["Zen_RTS_F_West_AssetGLSoldier", "Grenadier", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_Autorifleman = ["Zen_RTS_F_West_AssetAutorifleman", "Autorifleman", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_Medic = ["Zen_RTS_F_West_AssetMedic", "Medic", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_Marksman  = ["Zen_RTS_F_West_AssetMarksman", "Marksman", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_ATSoldier = ["Zen_RTS_F_West_AssetATSoldier", "AT Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_AASoldier = ["Zen_RTS_F_West_AssetAASoldier", "AA Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman = ["Zen_RTS_F_West_rhsusf_army_ocp_rifleman", "Rifleman", "Cost: 50, Time: 10, Classname: b_soldier_02_f,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_grenadier = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_grenadier", "Grenadier", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_autoriflemana = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_rhsusf_army_ocp_autoriflemana", "autoriflemanA", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_medic = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_medic", "medic", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_autorifleman = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_autorifleman", "autorifleman", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_javelin = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_javelin", "javlin Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_aa = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_aa", "AA Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_sniper= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_sniper", "sniper", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_officer= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_officer", "officer", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_riflemanat= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_riflemanat", "AT Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_riflemanl= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_riflemanl", "l Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_engineer= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_engineer", "engineer", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m590= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m590", "m590-Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m16= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m16", "m16-Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m4= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m4", "m4-Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_marksman= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_marksman", "marksman", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_rhsusf_army_ocp_fso= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_fso", "fso-Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
