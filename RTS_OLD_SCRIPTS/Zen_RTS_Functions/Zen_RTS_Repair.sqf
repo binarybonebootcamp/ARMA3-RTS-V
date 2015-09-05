@@ -1,10 +1,11 @@
-// from action
+// from GUI
 
 #define REPAIR_COST_COEFF 0.5
 
 0 = _this spawn {
+    _stratTypes = _this select 0;
+
     _vehicle = vehicle player;
-    _args = _this select 3;
 
     player setVariable ["Zen_RTS_RepairActive", true, false];
     _redArrow = "Sign_Arrow_F" createVehicleLocal [0,0,0];

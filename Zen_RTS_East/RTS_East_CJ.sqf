@@ -42,14 +42,14 @@ Zen_RTS_F_East_CJConstructor = {
     ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_vehicle, ["Purchase Objects", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "(_this in _target)"]]];
+    _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "(_this in _target)"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
-    _args = ["addAction", [_vehicle, ["<t color='#D80000'>Repair</t>", Zen_RTS_Repair, [], 1, false, true, "", "(_this in _target)"]]];
-    ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
+    // _args = ["addAction", [_vehicle, ["<t color='#D80000'>Repair</t>", Zen_RTS_Repair, [], 1, false, true, "", "(_this in _target)"]]];
+    // ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
-    _args = ["addAction", [_vehicle, ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 1, false, true, "", "(_this in _target)"]]];
-    ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
+    // _args = ["addAction", [_vehicle, ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 1, false, true, "", "(_this in _target)"]]];
+    // ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
     if (_level > 0) then {
         for "_i" from 0 to (_level - 1) do {

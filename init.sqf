@@ -19,8 +19,8 @@ Zen_RTS_DeployPlayer = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions
 Zen_RTS_DisbandUnit = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DisbandUnit.sqf";
 Zen_RTS_DestroyStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DestroyStructure.sqf";
 Zen_RTS_EconomyManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_EconomyManager.sqf";
-Zen_RTS_Recycle = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Recycle.sqf";
-Zen_RTS_Repair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Repair.sqf";
+Zen_RTS_RecycleRepair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RecycleRepair.sqf";
+// Zen_RTS_Repair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Repair.sqf";
 // Zen_RTS_SquadsMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SquadsMenu.sqf";
 Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SetViewDistance.sqf";
 
@@ -173,6 +173,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 #define ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
     _vehicle setVariable ["Zen_RTS_StrategicValue", (call compile ([_assetStrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)), true]; \
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
+    _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
     _vehicle addEventHandler ["Dammaged", { \
         if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
             (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
@@ -184,12 +185,15 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
     _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
     _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
+    _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
     _building addEventHandler ["Killed", { \
         0 = _this spawn { \
             _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
-            _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
             _buildingObjData = [T, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal; \
+            diag_log T; \
+            diag_log _buildingObjData; \
             if (count _buildingObjData > 0) then { \
+                diag_log (_buildingObjData select 1); \
                 0 = [(_buildingObjData select 1)] call Zen_RTS_StrategicBuildingDestroy; \
             }; \
             _building = _this select 0; \
@@ -204,6 +208,8 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
             } forEach _objects; \
             if !(isNull _deadBuilding) then { \
                 player sideChat str _deadBuilding; \
+                _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
+                _deadBuilding setVariable ["Zen_RTS_StrategicType", "Building", true]; \
                 _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
                 _deadBuilding setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
             } else { \
@@ -264,8 +270,11 @@ RTS_Used_Asset_Types = [[], []]; // global
 
 westTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
 westTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
+westTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
+
 eastTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
 eastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
+eastTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
 
 publicVariable "RTS_Used_Building_Types";
 publicVariable "RTS_Building_Type_Levels";

@@ -71,12 +71,12 @@
     _idgoback = 2001;
     _idbuild = 2005;
     _idbuildyou = 2015;
-    _idbuildsquad = 2020;
+    _idRepair = 2020;
     _idsquadlist = 2025;
     _idsquadlistbk = 2026;
     _idtitle = 1050;
 
-    _idBtnCustom = 2016;
+    _idRecycle = 2016;
     _idListCustom = 2030;
     _idBgdCustom = 2031;
 
@@ -100,10 +100,7 @@
     createDialog "DlgBuild";
     {
         ctrlShow [_x, false];
-    } forEach [_idgoback, _idSquadList, _idSquadListbk, _idbuildSquad, _idBtnCustom, _idListCustom, _idBgdCustom, _idstats, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idSldQ, _idInfQButton, _idDroplist];
-
-    // ctrlEnable [_idbuildyou, FALSE];
-    // ctrlEnable [_idbuildSquad, FALSE];
+    } forEach [_idgoback, _idSquadList, _idSquadListbk, _idListCustom, _idBgdCustom, _idstats, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idSldQ, _idInfQButton, _idDroplist];
 
     _idSel = 0;
     // while {((ctrlVisible _idlist) && {(alive _player)})} do {
@@ -120,9 +117,13 @@
         ctrlSetText [_idbuild, "Deploy"];
         ctrlSetText [_idtitle, "Base Construction Menu"];
         ctrlSetText [_idbuildYou, "Destroy"];
+        ctrlSetText [_idRepair, "Repair Building"];
+        ctrlSetText [_idRecycle, "Recycle Building"];
 
         buttonSetAction [_idBuild, "2000 call Zen_RTS_BuildStructure"];
         buttonSetAction [_idbuildYou, "2000 call Zen_RTS_DestroyStructure"];
+        buttonSetAction [_idRepair, "['Repair', ['Building']] call Zen_RTS_RecycleRepair"];
+        buttonSetAction [_idRecycle, "['Recycle', ['Building']] call Zen_RTS_RecycleRepair"];
 
         // Clear the Vehicle build list to repopulate
         lbClear _idlist;

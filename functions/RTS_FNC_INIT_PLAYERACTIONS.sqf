@@ -19,12 +19,12 @@ RTS_FNC_INIT_PLAYERACTIONS = {
     execVM "RTS_JUMPACTIONS.sqf";
 
     westTruck addAction ["<t color='#D80000'>" + (format ["Base Construction Menu", westMCUName]) + "</t>", Zen_RTS_BuildMenuStructures, [], 100, false, true, "", "(_this in _target)"];
-    westTruck addAction ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 1, false, true, "", "(_this in _target)"];
-    westTruck addAction ["<t color='#D80000'>Repair</t>", Zen_RTS_Repair, [], 1, false, true, "", "(_this in _target)"];
+    // westTruck addAction ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 1, false, true, "", "(_this in _target)"];
+    // westTruck addAction ["<t color='#D80000'>Repair</t>", Zen_RTS_Repair, [], 1, false, true, "", "(_this in _target)"];
 
     eastTruck addAction ["<t color='#D80000'>" + (format ["Base Construction Menu", eastMCUName]) + "</t>", Zen_RTS_BuildMenuStructures, [], 100, false, true, "", "(_this in _target)"];
-    eastTruck addAction ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 1, false, true, "", "(_this in _target)"];
-    eastTruck addAction ["<t color='#D80000'>Repair</t>", Zen_RTS_Repair, [], 1, false, true, "", "(_this in _target)"];
+    // eastTruck addAction ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 1, false, true, "", "(_this in _target)"];
+    // eastTruck addAction ["<t color='#D80000'>Repair</t>", Zen_RTS_Repair, [], 1, false, true, "", "(_this in _target)"];
 
     _name = "";
     _msg = "Checking command status";

@@ -7,14 +7,13 @@ Strategic
     Features
         // build for squad
         // custom squads
-        // CJ/MCU vehicle recycling
-        // Repairing
         // Custom crew count for manned vehicles
-        AI automated recyclers
+        // CJ/MCU vehicle recycling and repairing
+            // Correct CJ, MCU, player recycle repair abilities
+        AI automated recycle/repair
         AI fire on buildings and unmanned vehicles
         Building Hacking
-            quick action place-holder
-            y/n menu with dynamic timer later
+            y/n menu with dynamic timer
 
     Assets
         // constructor macros
@@ -46,17 +45,19 @@ Strategic
         // buildings come out of ground
         // update to current level when rebuilding
         tweak building heights
+        building placement shows full building
+        handle building destroyed while constructing
 
         Barracks
             // Level 1: standard infantry (rifleman, AR, etc.)
             // Level 2: special weapons infantry (MG, AT, AA)
             Level 3: SOF, snipers
-        Vehicle Factory
+        // Vehicle Factory
             // Level 1: unarmed utility, transport vehicles, MG pick-up truck
             // Level 2: armed MRAP's
             // Level 3: APC's, IFV's, AAA/SAM vehicles
             // Level 4: MBT's, heavy artillery (force short range)
-        Aircraft Factory
+        // Aircraft Factory
             // Level 1: transport helicopters
             // Level 2: utility/multi-purpose helicopters, unarmed aircraft
             // Level 3: attack helicopters
@@ -65,10 +66,10 @@ Strategic
             // Level 1: Transport
             // Level 2: Armed Patrol boats
             Level 3: ??
-        Support
-            ??
+        // Support
         HQ
             // Research upgrades to all factories, CJ, and Radar (Commander only)
+            show next level # in queue field
             FOB upgrade
             Research special technologies: (Individual only)
                 // HALO
@@ -88,23 +89,23 @@ Strategic
         Fortification
             Houses, H-barriers
         CJ
-            medical
+            // medical
             // static MG
-            ammo crate
-            barbed wire
+            // ammo crate
+            // barbed wire
             beacons (tracker)
-            Level 1: Unarmed, small fortifications
+            // Level 1: Unarmed, small fortifications
             Level 2: Static weapons, MG, etc.
 Territory
     // anyone can cap
     // faster capping
     Sub-Territory System
-        // Search
         Zen_RTS_SubTerritoryRemove
     FOB
         spawn AI defenders on capture
         capping with certain vehicles gives fob
         each flag upgraded individually by FOB vehicle
+        explosive barrels
 RTS menus
     // view distance fix
     // building unit dialog called from action per building
@@ -114,10 +115,11 @@ RTS menus
     // Fix unit group list text
     // Fix blinking
     // Cancel asset button refunds
-    Refresh button
+    // Refresh button
+    Repair/Recycle y/n menu with $$
+    Give money to another player
     AI fly height
-    give money to another player
-Revive/Respawn
+Revive/Respawn/JIP
     Get correct respawn positions
 Economy
     // Territories have resource value
@@ -134,8 +136,10 @@ Ranking
 Supports
     AI extraction/insertion from action menu (see ZK)
     Artillery vehicles
-Misc
-    explosive barrels
+Loadouts
+    assign money value
+    Use framework custom loadouts
+    Loadout dialog displays custom loadouts
 Known MP Issues
     10 second init delay
     buildings coming out of the ground don't sync

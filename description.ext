@@ -1,52 +1,47 @@
 respawn = 3;
-respawndelay = 3; 
+respawndelay = 3;
 respawnDialog = false;
-author = ""; 
+author = "";
 overviewText = "DEV-Update 82415.";
-overviewPicture = "pictures\rtsload.paa"; 
-onLoadName = "Warfare Unleashed"; 
+overviewPicture = "pictures\rtsload.paa";
+onLoadName = "Warfare Unleashed";
 onLoadMission = "Warfare Unleashed: Arma3 Edition";
 loadScreen = "pictures\rtsload.paa";
 saving = 0;
 
-briefing = 1; 
+briefing = 1;
 debriefing = 1;
-aiKills = 0; 
-disabledAI = 0;  
+aiKills = 0;
+disabledAI = 0;
 //showGroupIndicator = 1;
 enableDebugConsole = 1;
 taskManagement_markers3D = 1;
 showHUD = 1;
 
+class Header{
+    gameType = CTI;
+    minPlayers = 1;
+    maxPlayers = 26;
+};
 
-class Header
-	{
-	  gameType = CTI;
-	  minPlayers = 1;
-	  maxPlayers = 26;
-	};
 class CfgFunctions {
+        #include "vip_cmn\fn\vip_cmn_fnc.hpp"
+        #include "vip_sms\fn\vip_sms_fnc.hpp"
+};
 
-		#include "vip_cmn\fn\vip_cmn_fnc.hpp"
-		#include "vip_sms\fn\vip_sms_fnc.hpp"
-	};
-	
-class TAG 
-       {
-	       class MyMission 
-               {
-		 class showOSD { file = "functions\fnc_showOSD.sqf"; };
-               };
-       };
-	class CfgRemoteExecCommands {
+class TAG {
+    class MyMission {
+        class showOSD { file = "functions\fnc_showOSD.sqf"; };
+   };
+};
 
-		#include "vip_cmn\fn\vip_cmn_fnc_remoteExec.hpp"
-		#include "vip_sms\fn\vip_sms_fnc_remoteExec.hpp"
-	};
+// class CfgRemoteExecCommands {
+    // #include "vip_cmn\fn\vip_cmn_fnc_remoteExec.hpp"
+    // #include "vip_sms\fn\vip_sms_fnc_remoteExec.hpp"
+// };
 
-	#include "vip_cmn\resource\vip_dlg_defaults.hpp"
-	#include "vip_sms\resource\vip_sms_dlg.hpp"
-
+#include "vip_cmn\resource\vip_dlg_defaults.hpp"
+#include "vip_sms\resource\vip_sms_dlg.hpp"
 #include "param\description.ext"
 #include "menus\Defines.hpp"
 #include "menus\RscTitles.hpp"
@@ -62,25 +57,24 @@ class TAG
 #include "menus\dlgRscSquadsMenu.hpp"
 #include "menus\patchname.hpp"
 #include "menus\Sounds_music.hpp"
-#include "R3F_LOG\desc_include.h" 
+#include "R3F_LOG\desc_include.h"
 #include "digitalLoadout\defines.hpp"
 #include "digitalLoadout\dialog.hpp"
 
-class CfgSounds
-{
-	sounds[] = {NoSound, jump8};
+class CfgSounds {
+    sounds[] = {NoSound, jump8};
 
-	class NoSound 
-	{
-	name = "NoSound";
-		sound[] = {"", 0, 1};
-		titles[] = {};
-	};
-class jump8
-	{
-		name="jump8";
-		sound[]={"sound\jump8.ogg",5.0,1.0,100};
-		titles[]={};
-	};	
-#include "menus\Sounds.hpp"
+    class NoSound {
+        name = "NoSound";
+        sound[] = {"", 0, 1};
+        titles[] = {};
+    };
+
+    class jump8 {
+        name="jump8";
+        sound[]={"sound\jump8.ogg",5.0,1.0,100};
+        titles[]={};
+    };
+
+    #include "menus\Sounds.hpp"
 };
