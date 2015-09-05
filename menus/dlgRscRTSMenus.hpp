@@ -590,43 +590,51 @@ class TOP_left_TITLE : RscText
             text = "Customize Squads";
             action = "[] exec ""rts-squads-Menu.sqs""";
         };
-            class   BUTTON_PUSH : RscButton
-        {
-        idc = -1;
-         x = 0.80;
-        y = 0.650;
-        sizeEx = 0.030;
-        font = FontTITLEHalf;
-        colorText[] = {0, 1, 1, 1};
-        text = "PUSH";
-        action = "closeDialog 0; call RTS_FNC_PUSH";
-        };
-                    class BUTTON_UPRIGHT : RscButton
-        {
-        idc = -1;
-         x = 0.80;
-        y = 0.710;
-        sizeEx = 0.030;
-        font = FontTITLEHalf;
-        colorText[] = {0, 1, 1, 1};
-        text = "Upright Vehicle";
-        action = "closeDialog 0; call RTS_FNC_flipACTIONS";
-        };
-            class Button_Release : RscButtonSmall
-        {
-            idc = 1025;
-           x = 0.80;
-           y = 0.810;
-           w = 0.2;
-           h = 0.05;
+        class   BUTTON_PUSH : RscButton {
+            idc = -1;
+            x = 0.80;
+            y = 0.650;
             sizeEx = 0.030;
             font = FontTITLEHalf;
-        colorText[] = {0, 1, 0, 1};
+            colorText[] = {0, 1, 1, 1};
+            text = "PUSH";
+            action = "closeDialog 0; call RTS_FNC_PUSH";
+        };
+        class BUTTON_UPRIGHT : base_button {
+            idc = -1;
+             x = 0.80;
+            y = 0.700;
+            sizeEx = 0.030;
+            font = FontTITLEHalf;
+            colorText[] = {0, 1, 1, 1};
+            text = "Upright Vehicle";
+            action = "closeDialog 0; call RTS_FNC_flipACTIONS";
+        };
+         class Button_repair : base_button {
+            idc = 1007;
+            x = 0.80;
+            y = 0.750;
+            w = 0.2;
+            h = 0.05;
+            sizeEx = 0.030;
+            font = FontTITLEHalf;
+            colorText[] = {0, 1, 0, 1};
+            text = "repair";
+            action = [];
+        };
+        class Button_Release : RscButtonSmall {
+            idc = 1025;
+            x = 0.80;
+            y = 0.810;
+            w = 0.2;
+            h = 0.05;
+            sizeEx = 0.030;
+            font = FontTITLEHalf;
+            colorText[] = {0, 1, 0, 1};
             text = "Disband Selected Unit";
             action = "[1020] exec ""rts-unit-release.sqs""";
         };
-
-                class BUTTON_CANCEL : RscButton2
+        class BUTTON_CANCEL : RscButton2
         {
         idc = -1;
         x = 0.8;
@@ -1061,3 +1069,84 @@ class DlgHUD
             };
 
     };
+
+class DlgConfirm {
+    idd = -1;
+    movingEnable = true;
+    controlsBackground[] = {
+        CONFIRM_BACKGROUND, 
+        CONFIRM_FRAME
+    };
+
+    class CONFIRM_BACKGROUND : RscText {
+        idc = -1;
+        style = ST_CENTER;
+        x = 0.325;
+        y = 0.375;
+        w = 0.35;
+        h = 0.25;
+        font = FontTITLE;
+        colorText[] = {0, 0, 0, 1};
+        colorBackground[] = {.25, .25, .25, .75};
+        sizeEx = 0.049;
+        text = "";
+    };
+
+    class CONFIRM_FRAME : RscText {
+        idc = -1;
+        style = ST_FRAME;
+        colorText[] = {0, 0, 0, 1};
+        text = "";
+        sizeEx = 0.015;
+        x = 0.335;
+        y = 0.385;
+        w = 0.33;
+        h = 0.23;
+    };
+
+    controls[] = {
+        BUTTON_YES, 
+        BUTTON_NO, 
+        CONFIRM_TEXT
+    };
+
+    class BUTTON_YES : RscButton {
+        idc = 1305;
+        x = 0.39;
+        y = 0.55;
+        w = 0.1;
+        h = 0.05;
+        sizeEx = 0.0225;
+        font = FontTITLEHalf;
+        colorText[] = {0, 0, 0, 1};
+        text = "Confirm";
+        action = "RTS3_Yes = TRUE";
+    };
+
+    class BUTTON_NO : RscButton {
+        idc = 1315;
+        x = 0.51;
+        y = 0.55;
+        w = 0.1;
+        h = 0.05;
+        sizeEx = 0.0225;
+        font = FontTITLEHalf;
+        colorText[] = {0, 0, 0, 1};
+        text = "Cancel";
+        action = "RTS3_No = TRUE";
+    };
+
+    class CONFIRM_TEXT : RscText {
+        idc = 1300;
+        style = ST_CENTER;
+        colorBackground[] = {0, 0, 0, 0};
+        colorText[] = {0, 0, 0, 1};
+        text = "Confirm";
+        sizeEx = 0.015;
+        font = FontTITLEHalf;
+        x = 0.35;
+        y = 0.44;
+        w = 0.31;
+        h = 0.05;
+    };
+};

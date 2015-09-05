@@ -177,9 +177,9 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _vehicle addEventHandler ["Dammaged", { \
         if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
             (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
-            _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
         }; \
     }];
+            // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
 
 #define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T) \
     _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \

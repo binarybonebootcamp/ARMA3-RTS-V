@@ -10,6 +10,7 @@ Strategic
         // Custom crew count for manned vehicles
         // CJ/MCU vehicle recycling and repairing
             // Correct CJ, MCU, player recycle repair abilities
+            // Make sure there is no crew
         AI automated recycle/repair
         AI fire on buildings and unmanned vehicles
         Building Hacking
@@ -116,7 +117,7 @@ RTS menus
     // Fix blinking
     // Cancel asset button refunds
     // Refresh button
-    Repair/Recycle y/n menu with $$
+    // Repair/Recycle y/n menu with $$
     Give money to another player
     AI fly height
 Revive/Respawn/JIP

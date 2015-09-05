@@ -33,7 +33,8 @@
     // dialog id definitions
     _idassetlist = 1000;
     _idRefreshButton = 1003;
-    _idRepair = 1005;
+    _idBuildMenu = 1005;
+    _idRepair = 1007;
     _idviewsel = 1010;
     _idviewlist = 1015;
     _idgroupList = 1020;
@@ -73,7 +74,7 @@
     ctrlEnable [_idstats, false];
     {
         ctrlShow [ _x, false];
-    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ];
+    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idBuildMenu];
 
     if (player in [WestCommander,EastCommander]) then {
         // ctrlShow [_iddestruct, false];
