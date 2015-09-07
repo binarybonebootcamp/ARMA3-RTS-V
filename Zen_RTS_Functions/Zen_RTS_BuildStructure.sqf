@@ -76,7 +76,7 @@
     while {true} do {
         _pos = [_vehicle, 25, getDir _vehicle, "compass", 0] call Zen_ExtendPosition;
 
-        _slope = [_pos, 15] call Zen_FindTerrainSlope;
+        _slope = [_pos, 10] call Zen_FindTerrainSlope;
         _clutter = [_pos, 20] call Zen_GetAmbientClutterCount;
         _objects = nearestObjects [_pos, [""], 20];
 
@@ -85,9 +85,9 @@
             // player sidechat str (!(surfaceIsWater _pos));
             // player sidechat str (([_pos, 25, "water"] call Zen_IsNearTerrain));
             // player sidechat str (((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)}));
-            ((!(surfaceIsWater _pos) && {([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)})})
+            ((!(surfaceIsWater _pos) && {([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 2)})})
         } else {
-            ((!(surfaceIsWater _pos) && {!([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})})
+            ((!(surfaceIsWater _pos) && {!([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})})
             // ((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})
         });
         if (_bool) then {

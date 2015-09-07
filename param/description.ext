@@ -28,7 +28,7 @@ class Params
 		title = "Respawn Delay";
 		values[] = {10, 15, 30, 45, 60, 120};
 		texts[] = {"10 Seconds", "15 Seconds", "30 Seconds", "45 Seconds", "1 Minute", "2 Minutes"};
-		default = 15;
+		default = 45;
 	};
 
 	class groupAILimit 

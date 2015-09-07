@@ -40,7 +40,7 @@ Zen_RTS_F_West_SupportFactoryConstructor = {
 
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(Zen_RTS_BuildingType_West_HQ, _ID)
     if (_ID != "") then {
-        0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_TankFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
+        0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_SupportFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
     BUILDING_VISUALS("rhs_2P3_2", 1, west)

@@ -128,7 +128,7 @@ rts_killedBase = ["killed",{_this execVM "rts-event-baseKilledEH.sqf"}];
 rts_killedRsc = ["killed",{_this exec "rts-event-resourceKilled.sqs"}];
 
 // Amount of time til player can re-deploy - set in description.ext parameters
-rts_playerRespawnDelay = 1;
+rts_playerRespawnDelay = 0;
 
 // Economy
 rts_moneyMonitorActive = FALSE;

@@ -41,9 +41,9 @@
     _idsquadlist = 2025;
     _idtitle = 1050;
 
-    _idBtnCustom = 2016;
+    _idRepair = 2016;
+    _idRecycle = 2031;
     _idListCustom = 2030;
-    _idBgdCustom = 2031;
 
     // _indexCustoms = 0;
     _idstats = 500;
@@ -77,31 +77,41 @@
     buttonSetAction [_idbuild, "[false] call Zen_RTS_BuildUnit"];
     buttonSetAction [_idRefreshButton, format ["0 = [0, 0, 0, '%1'] spawn Zen_RTS_BuildMenu", _buildingType]];
     buttonSetAction [_idbuildsquad, "[true] call Zen_RTS_BuildUnit"];
-    // buttonSetAction [_idBtnCustom, "[false] call Zen_RTS_BuildUnit"];
+
+    {
+        ctrlShow [ _x, false];
+    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idstats, _idListCustom, _idRepair, _idRecycle];
 
     if ((_buildingTypeData select 4) isEqualTo "Barracks") then {
         {
             ctrlShow [ _x, false];
         } forEach [_idDroplist];
     };
+
     if ((_buildingTypeData select 4) isEqualTo "CJ") then {
         {
             ctrlShow [ _x, false];
         } forEach [_idInfQButton, _idSldQ, _idsquadlist, _idbuildsquad, _idDroplist];
+
+        {
+            ctrlShow [ _x, true];
+        } forEach [_idRepair, _idRecycle];
+
+        ctrlSetText [_idRepair, "Repair Building"];
+        ctrlSetText [_idRecycle, "Recycle"];
+        buttonSetAction [_idRepair, "['Repair', ['Building']] call Zen_RTS_RecycleRepair"];
+        buttonSetAction [_idRecycle, "['Recycle', ['Building', 'Asset']] call Zen_RTS_RecycleRepair"];
     };
+
     if ((_buildingTypeData select 4) isEqualTo "HQ") then {
         {
             ctrlShow [ _x, false];
         } forEach [_idDroplist, _idsquadlist, _idbuildsquad];
     };
-    {
-        ctrlShow [ _x, false];
-    } forEach [_idBgdCustom, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idstats, _idListCustom, _idBtnCustom];
 
     ctrlSetText [_idbuild, "Deploy"];
     ctrlSetText [_idRefreshButton, "Refresh"];
     ctrlSetText [_idbuildsquad, "Deploy for Squad"];
-    // ctrlSetText [_idBtnCustom, "Deploy Custom Squad"];
 
     // ctrlSetText [ _idsldQ, "Soldier Queue Empty"];
     // ctrlSetText [ _idLightQ, "Light Queue Empty"];
@@ -192,10 +202,10 @@
         // lbSetCurSel [_idListCustom, _indexCustomList];
         lbSetCurSel [_idDroplist, _indexCrewList];
         // sleep 30;
-        _indexAssetList = lbCurSel _idlist;
-        _indexSquadList = lbCurSel _idsquadlist;
+        // _indexAssetList = lbCurSel _idlist;
+        // _indexSquadList = lbCurSel _idsquadlist;
         // _indexCustomList = lbCurSel _idListCustom;
-        _indexCustomList = lbCurSel _indexCrewList;
+        // _indexCustomList = lbCurSel _indexCrewList;
     // };
 
     // Queue

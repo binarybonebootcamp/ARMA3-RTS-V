@@ -21,7 +21,7 @@ Zen_RTS_F_West_HQConstructor = {
 
     DETECT_BUILDING( Zen_RTS_BuildingType_West_TankFactory , Zen_RTS_Asset_Tech_West_Upgrade_TankFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_West_Barracks , Zen_RTS_Asset_Tech_West_Upgrade_Barracks )
-	DETECT_BUILDING( Zen_RTS_BuildingType_West_Radar , Zen_RTS_Asset_Tech_West_Upgrade_Radar )
+    DETECT_BUILDING( Zen_RTS_BuildingType_West_Radar , Zen_RTS_Asset_Tech_West_Upgrade_Radar )
     DETECT_BUILDING( Zen_RTS_BuildingType_West_AirFactory , Zen_RTS_Asset_Tech_West_Upgrade_AirFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_West_NavalFactory , Zen_RTS_Asset_Tech_West_Upgrade_NavalFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_West_SupportFactory , Zen_RTS_Asset_Tech_West_Upgrade_SupportFactory )

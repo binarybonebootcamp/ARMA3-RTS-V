@@ -78,7 +78,7 @@ class RscTitleText
 class RscPicture
 	{
 	access=0;
-	type=0;
+	type = VSoft;
 	idc=-1;
 	style=48;
 	colorBackground[]={0,0,0,0};

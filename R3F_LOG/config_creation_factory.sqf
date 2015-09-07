@@ -55,7 +55,8 @@ R3F_LOG_CFG_CF_whitelist_light_categories =
 	"Structures_Walls",
 	"Structures_Fences",
 	"Structures_Slums",
-	"Objects_Sports"
+	"Objects_Sports",
+	"city_W10_A0_573_R1000"
 ];
 
 /**

@@ -140,7 +140,7 @@ TAG_FNC_AT_Light =
   [_unit] call loadChange;
 };
 
-TAG_FNC_Pilot = 
+TAG_FNC_sapper = 
 {
   _unit = _this select 0;
 
@@ -150,16 +150,17 @@ TAG_FNC_Pilot =
   removeUniform _unit;
   removeBackPack _unit;
 
-  _unit addHeadgear "H_pilothelmetfighter_O";
-  _unit addUniform "U_O_pilotcoveralls";
-  _Unit addBackPack "B_parachute";
-
+  _unit addHeadgear "H_Bandanna_sgg";
+  _unit addUniform "U_OG_Guerilla2_1";
+  _Unit addBackPack "B_TacticalPack_blk";
+  _Unit addVest "V_PlateCarrierSpec_rgr";
+  
   _unit addWeapon "binocular";
   _unit addWeapon "itemGps";
   (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
-  (unitBackpack _unit) addMagazineCargo ["Chemlight_blue",5];
-  (unitBackpack _unit) addMagazineCargo ["Chemlight_Green",5]; 
-  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  (unitBackpack _unit) addMagazineCargo ["ClaymoreDirectionalMine_Remote_Mag",2];
+  (unitBackpack _unit) addMagazineCargo ["SatchelCharge_Remote_Mag",3]; 
+  (unitBackpack _unit) addMagazineCargo ["DemoCharge_Remote_Mag",2]; 
   [_unit, "arifle_katiba_F" ,7 ,"30Rnd_65x39_caseless_green"] call BIS_fnc_addWeapon;
   [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
    _unit addPrimaryWeaponItem "optic_ACO_grn";

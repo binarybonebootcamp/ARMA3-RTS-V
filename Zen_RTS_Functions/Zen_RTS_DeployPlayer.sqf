@@ -64,8 +64,12 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     (group Player) selectLeader player;
     0 = [player] call Zen_AddRepackMagazines;
     [player,"Death"] call BIS_fnc_setUnitInsignia;
-	[] execVM "playerMarkers.sqf";
-	
+	player addeventhandler ["fired","_count = player ammo (currentWeapon player); if(_count != 0) then {magazineClass = currentMagazine player;};
+ if(_count == 0) then {player addMagazine magazineClass; reload player;};"];
+  onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
+  execVM "RTS_JUMPACTIONS.sqf";
+player enableFatigue false;
+player addEventhandler ["Respawn", {player enableFatigue false}];
     // waitUntil {
         // sleep 1;
         // (rts_arrays_initialized)
@@ -245,7 +249,6 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     // Exit
 };
 waitUntil {
-        sleep 5;
+        sleep 1.2;
 CreateDialog "DigitalLoadout";
     };
-onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
