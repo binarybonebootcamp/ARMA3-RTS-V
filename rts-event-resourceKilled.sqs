@@ -13,7 +13,7 @@ rts_hq sideChat format ["%1 %2  %3",typeOf _kill,name _kill, alive _kill];
 ?!_check : call compile format ["XP%1 = XP%1 + 4; publicVariable ""XP%1""",_leader];
 
 _side = side Player;
-? !(_side in [east, west]): player sideChat ("rts-event-resourceKilled.sqs at " + str time + " with " + str _this + " : invalid player side");  
+? !(_side in [East, West]): player sideChat ("rts-event-resourceKilled.sqs at " + str time + " with " + str _this + " : invalid player side");  
   
 _wait = Time + 10;
 _pause = 5;

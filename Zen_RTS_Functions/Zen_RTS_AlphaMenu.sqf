@@ -24,11 +24,11 @@
 
     _side = side player;
 
-    if !(_side in [west, east]) exitWith {
+    if !(_side in [West, East]) exitWith {
         player groupChat format ["Side %1 Not Recognized.  Invalid credentials:  Access Denied", _side];
     };
 
-    _side2 = [east, west] select ([west, east] find _side);
+    _side2 = [East, West] select ([West, East] find _side);
 
     // dialog id definitions
     _idassetlist = 1000;
@@ -175,7 +175,7 @@
                     lbSetPicture [_idassetlist, _index, _pic];
                 };
             };
-        } forEach (RTS_Used_Building_Types select ([west, east] find _side));
+        } forEach (RTS_Used_Building_Types select ([West, East] find _side));
         lbSetCurSel [_idassetlist, _assetIndex];
 
         // Queue was here

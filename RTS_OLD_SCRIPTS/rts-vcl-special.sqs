@@ -22,26 +22,26 @@ rts_newVehicle = objNull
 
 goto "start"
 
-#westMCUType
-_action = format ["%1 Menu",westMCUName]
+#WestMCUType
+_action = format ["%1 Menu",WestMCUName]
 _vcl addAction [_action,"rts-build-menustructures.sqs"]
 
 goto "Start"
 
-#eastMCUType
-_action = format ["%1 Menu",eastMCUName]
+#EastMCUType
+_action = format ["%1 Menu",EastMCUName]
 _vcl addAction [_action,"rts-build-menustructures.sqs"]
 
 goto "Start"
 
 #MCU
-?(SIDE _player == WEST) : NewBuildingWest = _vcl; PublicVariable "NewBuildingWest";WMCU = _vcl; PublicVariable "WMCU"; WestBases = WestBases + 1; PublicVariable "WestBases"
-?(SIDE _player == EAST) : NewBuildingEast = _vcl; PublicVariable "NewBuildingEast";EMCU = _vcl; PublicVariable "EMCU"; EastBases = EastBases + 1; PublicVariable "EastBases"
+?(SIDE _player == West) : NewBuildingWest = _vcl; PublicVariable "NewBuildingWest";WMCU = _vcl; PublicVariable "WMCU"; WestBases = WestBases + 1; PublicVariable "WestBases"
+?(SIDE _player == East) : NewBuildingEast = _vcl; PublicVariable "NewBuildingEast";EMCU = _vcl; PublicVariable "EMCU"; EastBases = EastBases + 1; PublicVariable "EastBases"
 Goto "start"
 
 #CJ
-?(SIDE _player == WEST) : NewBuildingWest = _vcl; PublicVariable "NewBuildingWest";CJ = _vcl; PublicVariable "CJ"; WestBases = WestBases + 1; PublicVariable "WestBases"
-?(SIDE _player == EAST) : NewBuildingEest = _vcl; PublicVariable "NewBuildingEest";CJ = _vcl; PublicVariable "CJ"; EastBases = EastBases + 1; PublicVariable "EastBases"
+?(SIDE _player == West) : NewBuildingWest = _vcl; PublicVariable "NewBuildingWest";CJ = _vcl; PublicVariable "CJ"; WestBases = WestBases + 1; PublicVariable "WestBases"
+?(SIDE _player == East) : NewBuildingEest = _vcl; PublicVariable "NewBuildingEest";CJ = _vcl; PublicVariable "CJ"; EastBases = EastBases + 1; PublicVariable "EastBases"
 NewRecycler = _vcl
 Publicvariable "Newrecycler"
 

@@ -4,8 +4,8 @@ respawnDialog = false;
 author = "Dr Death jm||Zenophon";
 overviewText = "DEV-Update 090515.";
 overviewPicture = "pictures\rtsload.paa";
-onLoadName = "Dr Death jm : Zenophon : RTS V";
-onLoadMission = "Warfare Unleashed: Arma3 Edition";
+onLoadName = "Dr Death jm : Zenophon : Arma3 Edition";
+onLoadMission = "Warfare Unleashed: WarGames";
 loadScreen = "pictures\rtsload.paa";
 saving = 0;
 
@@ -13,10 +13,11 @@ briefing = 1;
 debriefing = 1;
 aiKills = 0;
 disabledAI = 0;
-showGroupIndicator = 1;
+showUAVFeed = 1;
+showGroupIndicator = 0;
 enableDebugConsole = 1;
 taskManagement_markers3D = 1;
-showHUD = 1;
+showHUD= [true,true,false,false,true,true,true,true];
 
 class Header{
     gameType = CTI;
@@ -35,10 +36,10 @@ class TAG {
    };
 };
 
-// class CfgRemoteExecCommands {
-    // #include "vip_cmn\fn\vip_cmn_fnc_remoteExec.hpp"
-    // #include "vip_sms\fn\vip_sms_fnc_remoteExec.hpp"
-// };
+ class CfgRemoteExecCommands {
+     #include "vip_cmn\fn\vip_cmn_fnc_remoteExec.hpp"
+     #include "vip_sms\fn\vip_sms_fnc_remoteExec.hpp"
+ };
 
 #include "vip_cmn\resource\vip_dlg_defaults.hpp"
 #include "vip_sms\resource\vip_sms_dlg.hpp"
@@ -59,6 +60,7 @@ class TAG {
 #include "R3F_LOG\desc_include.h"
 #include "digitalLoadout\defines.hpp"
 #include "digitalLoadout\dialog.hpp"
+
 
 class CfgSounds {
     sounds[] = {NoSound, jump8};

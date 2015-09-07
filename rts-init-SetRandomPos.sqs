@@ -3,14 +3,11 @@
 _num = 1
 _total = 13
 
-_westList = []
-_eastList = []
+WestList = [West1,West2,West3,West4,West5,West6,West7,West8,West9,West10,West11,West12,West13]
+EastList = [East1,East2,East3,East4,East5,East6,East7,East8,East9,East10,East11,East12,East13]
 
 #Loop
 ~.2
-
-_westList = _westList + [format ["West%1",_num]] 
-_eastList = _eastList + [format ["East%1",_num]] 
 
 ?_num < _total : _num = _num + 1; goto "Loop"
 
@@ -36,8 +33,8 @@ PosNumber = Random 1.2
 ?(PosNumber >= 1) && (PosNumber < 1.1) : _wpos = getMarkerPos "pos5b"; _epos = getMarkerPos "pos5a"
 ?(PosNumber >= 1.1) && (PosNumber <= 1.2) : _wpos = getMarkerPos "pos6b"; _epos = getMarkerPos "pos6a"
 
-westTruck Setpos _wpos
-eastTruck Setpos _epos
+WestTruck Setpos _wpos
+EastTruck Setpos _epos
 
 _wposX=(_wpos Select 0)+10
 _wposY=(_wpos Select 1)+10
@@ -47,15 +44,13 @@ _eposX=(_epos Select 0)+10
 _eposY=(_epos Select 1)+10
 _eposZ=(_epos Select 2)
 
-;;{(call compile _x) Setpos [_wposX + Random 20,_wposY + Random 20, _wposZ]} ForEach _westList
-;;{(call compile _x) Setpos [_eposX + Random 20,_eposY + Random 20, _eposZ]} ForEach _eastList
 ~1
 
 #CountPlayers
 
-@(Count List westList > 0) && (Count List eastList > 0)
+@(Count  WestList > 0) && (Count  EastList > 0)
 
-_array = list westList + list eastList
+_array =  WestList +  EastList
 
 #Continue
 _numberHosts = 0

@@ -37,7 +37,7 @@ ZEN_STD_Parse_GetArgumentDefault(_subMarkers, 2, -1)
 _newData =+ _oldData;
 
 if !(_side isEqualTo -1) then {
-    if (_side in [west, east, resistance, civilian]) then {
+    if (_side in [West, East, resistance, civilian]) then {
         _newData set [1, _side];
     };
 };

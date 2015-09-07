@@ -19,7 +19,7 @@ if (_bldName isEqualTo "") exitWith {
  
 [SIDE Player,"HQ"] sideChat format ["%1 was destroyed.",_bldName];
  
-_side = if (_bldName in westBldNames) then {west} else {east};
+_side = if (_bldName in WestBldNames) then {West} else {East};
 _teamEnergy = missionNamespace getvariable [format ["energy%1",_side], 0];
  
 _repairWait = 10;
@@ -28,16 +28,16 @@ _dmg = 100;
 uiSleep 10;
 
 _z = 0;
-if(_bldName in [eastBarracksName,westBarracksName])then{
+if(_bldName in [EastBarracksName,WestBarracksName])then{
 	_z = -5.7;
 };
-if(_bldName in [eastAirFacName,westAirFacName])then{
+if(_bldName in [EastAirFacName,WestAirFacName])then{
 	_z = -14;
 };
-if(_bldName in [eastLightFacName,westLightFacName])then{
+if(_bldName in [EastLightFacName,WestLightFacName])then{
 	_z = -10;
 };
-if(_bldName in [eastHeavyFacName,westHeavyFacName])then{
+if(_bldName in [EastHeavyFacName,WestHeavyFacName])then{
 	_z = -10;
 };
 

@@ -43,7 +43,7 @@ v1.4
 - Added : compatibility to ArmA 2 (alone) + Operation Arrowhead (alone) + Combined Operations (A2 + OA)
 - Added : the Arrowhead (and ArmA 2) objects are now in the logisitics default config
 - Added : the ACE OA objects are now in the logisitics default config
-- Improved : the artillery system now manages both north-west and south-west origin coord systems
+- Improved : the artillery system now manages both north-West and south-West origin coord systems
 - Added : many new island heights are listed in the config file
 - The stringtable.csv is replaced by a simpler alternative system
 - Fixed : script warning when a JIP player was not fully initialized

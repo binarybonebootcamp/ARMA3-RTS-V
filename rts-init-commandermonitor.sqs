@@ -5,20 +5,20 @@
 
 @rts_arrays_initialized
 
-@(Count List WestList > 0) && (Count List EastList > 0)
+@(Count  WestList > 0) && (Count  EastList > 0)
 
 WestAI = FALSE; PublicVariable "WestAI"
 EastAI = FALSE; PublicVariable "EastAI"
 
 #Initial Assignment
-_westComm = "west1"
-WestCommander = call compile _westComm
+_WestComm = "West1"
+WestCommander = call compile _WestComm
 WestCommanderName = Name WestCommander
 PublicVariable "WestCommander"
 CommandNumW = 0
 
-_eastComm = "east1"
-EastCommander = call compile _eastComm
+_EastComm = "East1"
+EastCommander = call compile _EastComm
 EastCommanderName = Name EastCommander
 PublicVariable "EastCommander"
 
@@ -36,15 +36,15 @@ titletext[Format["Server is %1.\n%4: %2\n%4: %3",_serverType,WestCommanderName,E
 
 #Start
 ~1
-@((!WestAI && (!Alive WestCommander OR (Local WestCommander && WestCommander != Player))) OR (WestAI && !Alive WestCommander)) OR ((!EastAI && (!Alive EastCommander OR  (Local EastCommander && EastCommander != Player))) OR (EastAI && !Alive EastCommander)) || ((call compile _westComm != WestCommander) || (call compile _eastComm != EastCommander))
+@((!WestAI && (!Alive WestCommander OR (Local WestCommander && WestCommander != Player))) OR (WestAI && !Alive WestCommander)) OR ((!EastAI && (!Alive EastCommander OR  (Local EastCommander && EastCommander != Player))) OR (EastAI && !Alive EastCommander)) || ((call compile _WestComm != WestCommander) || (call compile _EastComm != EastCommander))
 
 
-?!Alive WestCommander : _comm = _westComm; _side = WEST; goto "Reassign"
-?!Alive EastCommander : _comm = _eastComm; _side = EAST; goto "Reassign"
-?(!WestAI && (Local WestCommander && WestCommander != Player)) : _comm = _westComm; _side = WEST; Goto "Reassign"
-?(!EastAI && (Local EastCommander && EastCommander != Player)) : _comm = _eastComm; _side = EAST; Goto "Reassign"
-?call compile _westComm != WestCommander : _side = WEST; goto "GetNew"
-?call compile _eastComm != EastCommander : _side = EAST; goto "GetNew"
+?!Alive WestCommander : _comm = _WestComm; _side = West; goto "Reassign"
+?!Alive EastCommander : _comm = _EastComm; _side = East; goto "Reassign"
+?(!WestAI && (Local WestCommander && WestCommander != Player)) : _comm = _WestComm; _side = West; Goto "Reassign"
+?(!EastAI && (Local EastCommander && EastCommander != Player)) : _comm = _EastComm; _side = East; Goto "Reassign"
+?call compile _WestComm != WestCommander : _side = West; goto "GetNew"
+?call compile _EastComm != EastCommander : _side = East; goto "GetNew"
 
 
 #Reassign
@@ -97,7 +97,7 @@ format ["_%1comm = %2",_side,_unitStr]
 
 call compile format ["%1Commander = _unit; publicVariable ""%1Commander""",_side];
 
-rts_hq sideChat format ["westComm = %1",_westComm]
+rts_hq sideChat format ["WestComm = %1",_WestComm]
 
 ~1
 
@@ -131,7 +131,7 @@ _x = 0
 _unitStr = _array select _x
 _unit = call compile _unitStr
 
-?_unit == _newComm : call compile format ["_%1comm = _unitStr",_side]; rts_hq sideChat format ["%1",_westComm]; goto "Start"
+?_unit == _newComm : call compile format ["_%1comm = _unitStr",_side]; rts_hq sideChat format ["%1",_WestComm]; goto "Start"
 
 _x = _x + 1
 ?_x < Count _array : Goto "NewCommSearch"

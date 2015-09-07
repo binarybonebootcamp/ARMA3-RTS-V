@@ -29,10 +29,10 @@ if (count _data == 0) exitWith {
 _side = _data select 1;
 _getSideColor = {
     (switch (_this) do {
-        case west: {
+        case West: {
              "colorBlufor"
         };
-        case east: {
+        case East: {
               "colorOpfor"
         };
         case resistance: {

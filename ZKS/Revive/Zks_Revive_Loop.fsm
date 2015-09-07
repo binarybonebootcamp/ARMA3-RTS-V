@@ -147,8 +147,8 @@ class FSM
            "" \n
            "	switch (_side) do " \n
            "	{" \n
-           "		case WEST : {_sounds = [""scream2"",""scream3"",""scream4"",""fucke_EN"",""holyshite_EN"",""motherfuckere_EN"",""ohjesuse_EN"",""scream1_EN"",""scream4_EN"",""shite_EN"",""thatsucks_EN""]};" \n
-           "		case EAST : {_sounds = [""scream2"",""scream3"",""scream4"",""fucke_RU"",""holyshite_RU"",""motherfuckere_RU"",""ohjesuse_RU"",""scream1_RU"",""scream4_RU"",""shite_RU"",""thatsucks_RU""]};" \n
+           "		case West : {_sounds = [""scream2"",""scream3"",""scream4"",""fucke_EN"",""holyshite_EN"",""motherfuckere_EN"",""ohjesuse_EN"",""scream1_EN"",""scream4_EN"",""shite_EN"",""thatsucks_EN""]};" \n
+           "		case East : {_sounds = [""scream2"",""scream3"",""scream4"",""fucke_RU"",""holyshite_RU"",""motherfuckere_RU"",""ohjesuse_RU"",""scream1_RU"",""scream4_RU"",""shite_RU"",""thatsucks_RU""]};" \n
            "		case RESISTANCE : {_sounds = [""scream2"",""scream3"",""scream4"",""fucke_CZ"",""holyshite_CZ"",""motherfuckere_CZ"",""ohjesuse_CZ"",""scream1_CZ"",""scream4_CZ"",""shite_CZ"",""thatsucks_CZ""]};" \n
            "	};" \n
            "" \n

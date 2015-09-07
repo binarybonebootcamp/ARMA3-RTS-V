@@ -20,8 +20,8 @@ private ["_markers", "_oldData", "_indexSide", "_subMarkers", "_sidePoints", "_w
 
 _indexSide = {
     (switch (_this) do {
-        case 0: {(west)};
-        case 1: {(east)};
+        case 0: {(West)};
+        case 1: {(East)};
         case 2: {(resistance)};
         case 3: {(civilian)};
         default {(sideLogic)};
@@ -30,8 +30,8 @@ _indexSide = {
 
 _sideIndex = {
     (switch (_this) do {
-        case west: {0};
-        case east: {1};
+        case West: {0};
+        case East: {1};
         case resistance: {2};
         case civilian: {3};
         default {4};

@@ -8,10 +8,10 @@ rts_vpTickerEast = param3; publicVariable "rts_vpTickerEast";
 #Monitor
 ~5
 
-?westVPC == eastVPC : goto "Monitor"
+?WestVPC == EastVPC : goto "Monitor"
 
-?westVPC > eastVPC && rts_vpTickerEast > 0 : _vp = westVPC - eastVPC; rts_vpTickereast = rts_vpTickereast - _vp;
-?eastVPC > westVPC && rts_vpTickerWest > 0 : _vp = eastVPC - westVPC; rts_vpTickerwest = rts_vpTickerwest - _vp;
+?WestVPC > EastVPC && rts_vpTickerEast > 0 : _vp = WestVPC - EastVPC; rts_vpTickerEast = rts_vpTickerEast - _vp;
+?EastVPC > WestVPC && rts_vpTickerWest > 0 : _vp = EastVPC - WestVPC; rts_vpTickerWest = rts_vpTickerWest - _vp;
 
 publicVariable "rts_vpTickerEast";
 publicVariable "rts_vpTickerWest";

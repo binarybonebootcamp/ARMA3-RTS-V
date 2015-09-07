@@ -32,8 +32,8 @@ _________________________________________________________________*/
 if (isDedicated) exitWith {};
 
 private [
-	'_side','_sides','_QS_ST_X','_QS_ST_map_enableUnitIcons','_QS_ST_gps_enableUnitIcons',	'_QS_ST_enableGroupIcons','_QS_ST_faction','_QS_ST_friendlySides_EAST',
-	'_QS_ST_friendlySides_WEST','_QS_ST_friendlySides_RESISTANCE','_QS_ST_friendlySides_CIVILIAN','_QS_ST_friendlySides_Dynamic','_QS_ST_iconColor_EAST','_QS_ST_iconColor_WEST',
+	'_side','_sides','_QS_ST_X','_QS_ST_map_enableUnitIcons','_QS_ST_gps_enableUnitIcons',	'_QS_ST_enableGroupIcons','_QS_ST_faction','_QS_ST_friendlySides_East',
+	'_QS_ST_friendlySides_West','_QS_ST_friendlySides_RESISTANCE','_QS_ST_friendlySides_CIVILIAN','_QS_ST_friendlySides_Dynamic','_QS_ST_iconColor_East','_QS_ST_iconColor_West',
 	'_QS_ST_iconColor_RESISTANCE','_QS_ST_iconColor_CIVILIAN','_QS_ST_iconColor_UNKNOWN','_QS_ST_showMedicalWounded','_QS_ST_MedicalSystem','_QS_ST_MedicalIconColor','_QS_ST_iconShadowMap',
 	'_QS_ST_iconShadowGPS','_QS_ST_iconTextSize_Map','_QS_ST_iconTextSize_GPS','_QS_ST_iconTextOffset','_QS_ST_iconSize_Man','_QS_ST_iconSize_LandVehicle',	
 	'_QS_ST_iconSize_Ship','_QS_ST_iconSize_Air','_QS_ST_iconSize_StaticWeapon','_QS_ST_GPSDist','_QS_ST_GPSshowNames','_QS_ST_GPSshowGroupOnly',	'_QS_ST_showAIGroups',			
@@ -67,31 +67,31 @@ _QS_ST_enableGroupIcons = TRUE;								// BOOL. TRUE to enable Map+GPS+HUD GROUP
 //================= DIPLOMACY - set the Friendly factions for each faction.
 
 _QS_ST_friendlySides_Dynamic = TRUE;						// BOOL. Set TRUE to allow faction alliances to change dynamically (IE. AAF may not always be loyal to NATO) and be represented on the map. Default TRUE.
-_QS_ST_friendlySides_EAST = [								// ARRAY (NUMBER). Uncomment the relevant number(s). Remove comma after last used entry (important!).
-	//1,		//EAST is friendly to WEST
-	//2,		//EAST is friendly to INDEPENDENT/RESISTANCE
-	3		//EAST is friendly to CIVILIANS
+_QS_ST_friendlySides_East = [								// ARRAY (NUMBER). Uncomment the relevant number(s). Remove comma after last used entry (important!).
+	//1,		//East is friendly to West
+	//2,		//East is friendly to INDEPENDENT/RESISTANCE
+	3		//East is friendly to CIVILIANS
 ];
-_QS_ST_friendlySides_WEST = [								// ARRAY (NUMBER). Uncomment the relevant number(s). Remove comma after last used entry (important!).
-	//0,		//WEST is friendly to EAST
-	2		//WEST is friendly to INDEP/RESISTANCE
-	//3		//WEST is friendly to CIVILIAN
+_QS_ST_friendlySides_West = [								// ARRAY (NUMBER). Uncomment the relevant number(s). Remove comma after last used entry (important!).
+	//0,		//West is friendly to East
+	2		//West is friendly to INDEP/RESISTANCE
+	//3		//West is friendly to CIVILIAN
 ];
 _QS_ST_friendlySides_RESISTANCE = [							// ARRAY (NUMBER). Uncomment the relevant number(s). Remove comma after last used entry (important!).
-	//0,		//RESISTANCE is friendly to EAST
-	1,		//RESISTANCE is friendly to WEST
+	//0,		//RESISTANCE is friendly to East
+	1,		//RESISTANCE is friendly to West
 	3		//RESISTANCE is friendly to CIVILIAN
 ];
 _QS_ST_friendlySides_CIVILIAN = [							// ARRAY (NUMBER). Uncomment the relevant number(s). Remove comma after last used entry (important!).
-	0,		//CIVILIAN is friendly to EAST
-	//1,		//CIVILIAN is friendly to WEST
+	0,		//CIVILIAN is friendly to East
+	//1,		//CIVILIAN is friendly to West
 	2		//CIVILIAN is friendly to INDEP/RESISTANCE
 ];
 
 //================= DEFAULT ICON COLORS by FACTION
 
-_QS_ST_iconColor_EAST = [0.5,0,0,0.65];						// ARRAY (NUMBER). RGBA color code.	Default [0.5,0,0,0.65];
-_QS_ST_iconColor_WEST = [0,0.3,0.6,0.65];					// ARRAY (NUMBER). RGBA color code. Default [0,0.3,0.6,0.65];
+_QS_ST_iconColor_East = [0.5,0,0,0.65];						// ARRAY (NUMBER). RGBA color code.	Default [0.5,0,0,0.65];
+_QS_ST_iconColor_West = [0,0.3,0.6,0.65];					// ARRAY (NUMBER). RGBA color code. Default [0,0.3,0.6,0.65];
 _QS_ST_iconColor_RESISTANCE = [0,0.5,0,0.65];					// ARRAY (NUMBER). RGBA color code. Default [0,0.5,0,0.65];	
 _QS_ST_iconColor_CIVILIAN = [0.4,0,0.5,0.65];					// ARRAY (NUMBER). RGBA color code. Default [0.4,0,0.5,0.65];	
 _QS_ST_iconColor_UNKNOWN = [0.7,0.6,0,0.5];					// ARRAY (NUMBER). RGBA color code. Default [0.7,0.6,0,0.5];
@@ -124,8 +124,8 @@ _QS_ST_showAI = TRUE;										// BOOL. FALSE = players only, TRUE = players and
 _QS_ST_AINames = FALSE;									// BOOL. Set TRUE to show human names for AI with the map/vehicle icons. Set FALSE and will be named 'AI'. Default FALSE.
 _QS_ST_showCivilianIcons = FALSE;							// BOOL. Set TRUE to allow showing of civilians, only works if Dynamic Diplomacy is enabled above. Default FALSE.
 _QS_ST_iconMapText = TRUE;									// BOOL. TRUE to show unit/vehicle icon text on the map. FALSE to only show the icon and NO text (name/class). Default TRUE.
-_QS_ST_showMOS = FALSE;									// BOOL. TRUE = show Military Occupational Specialty text(unit/vehicle class/role display name), FALSE = disable and only show icons and names. Default FALSE.
-_QS_ST_showMOS_range = 3500;								// NUMBER. Range in distance to show MOS on the map. Default 3500.
+_QS_ST_showMOS = TRUE;									// BOOL. TRUE = show Military Occupational Specialty text(unit/vehicle class/role display name), FALSE = disable and only show icons and names. Default FALSE.
+_QS_ST_showMOS_range = 2000;								// NUMBER. Range in distance to show MOS on the map. Default 3500.
 _QS_ST_showGroupOnly = FALSE;								// BOOL. Set TRUE to show ONLY the unit icons of THE PLAYERS GROUP MEMBERS on the MAP, FALSE to show ALL your factions units. May override other config. Default TRUE.
 _QS_ST_showOnlyVehicles = FALSE;							// BOOL. Set TRUE to show ONLY vehicles, no foot-soldier units will be shown. May override other config. Default TRUE.
 _QS_ST_iconMapClickShowDetail = TRUE;						// BOOL. Set TRUE to show unit/vehicle detail when player clicks on their map near the vehicle. Only works for shown vehicles. Default TRUE.
@@ -315,8 +315,8 @@ _QS_fnc_iconColor = {
 		};
 	};
 	if (_exit) exitWith {_c;};
-	if (_ps isEqualTo EAST) exitWith {_c = _QS_ST_X select 9; _c set [3,_a];if (_display isEqualTo 1) then {if (_ms > 0.80) then {_c set [3,0];_c;};};_u setVariable ['QS_ST_iconColor',[_c,_ps],FALSE];_c;};
-	if (_ps isEqualTo WEST) exitWith {_c = _QS_ST_X select 10; _c set [3,_a];if (_display isEqualTo 1) then {if (_ms > 0.80) then {_c set [3,0];_c;};};_u setVariable ['QS_ST_iconColor',[_c,_ps],FALSE];_c;};
+	if (_ps isEqualTo East) exitWith {_c = _QS_ST_X select 9; _c set [3,_a];if (_display isEqualTo 1) then {if (_ms > 0.80) then {_c set [3,0];_c;};};_u setVariable ['QS_ST_iconColor',[_c,_ps],FALSE];_c;};
+	if (_ps isEqualTo West) exitWith {_c = _QS_ST_X select 10; _c set [3,_a];if (_display isEqualTo 1) then {if (_ms > 0.80) then {_c set [3,0];_c;};};_u setVariable ['QS_ST_iconColor',[_c,_ps],FALSE];_c;};
 	if (_ps isEqualTo RESISTANCE) exitWith {_c = _QS_ST_X select 11; _c set [3,_a];if (_display isEqualTo 1) then {if (_ms > 0.80) then {_c set [3,0];_c;};};_u setVariable ['QS_ST_iconColor',[_c,_ps],FALSE];_c;};
 	if (_ps isEqualTo CIVILIAN) exitWith {_c = _QS_ST_X select 12; _c set [3,_a];if (_display isEqualTo 1) then {if (_ms > 0.80) then {_c set [3,0];_c;};};_u setVariable ['QS_ST_iconColor',[_c,_ps],FALSE];_c;};
 	_c = _QS_ST_X select 13;if (_display isEqualTo 1) then { if (_ms > 0.80) then {_c set [3,0];_c;};};_u setVariable ['QS_ST_iconColor',[_c,_ps],FALSE];_c;
@@ -669,12 +669,12 @@ _QS_fnc_iconUnits = {
 	_exit = FALSE;
 	if (!(playerSide isEqualTo CIVILIAN)) then {
 		if ((_QS_ST_X select 74)) then {
-			_si = [EAST,WEST,RESISTANCE,CIVILIAN];
+			_si = [East,West,RESISTANCE,CIVILIAN];
 		} else {
-			_si = [EAST,WEST,RESISTANCE];
+			_si = [East,West,RESISTANCE];
 		};
 	} else {
-		_si = [EAST,WEST,RESISTANCE,CIVILIAN];
+		_si = [East,West,RESISTANCE,CIVILIAN];
 	};
 	_as = [];
 	_au = [];
@@ -972,7 +972,7 @@ _QS_fnc_groupIconText = {
 };
 _QS_fnc_groupIconType = {
 	private [
-		'_iconType','_grp','_iconTypes_EAST','_iconTypes_WEST','_iconTypes_RESISTANCE','_iconTypes_CIVILIAN','_vType','_grpSide','_grpSize','_grpVehicle','_iconTypes',
+		'_iconType','_grp','_iconTypes_East','_iconTypes_West','_iconTypes_RESISTANCE','_iconTypes_CIVILIAN','_vType','_grpSide','_grpSize','_grpVehicle','_iconTypes',
 		'_grpVehicle_type'
 	];
 	_grp = _this select 0;
@@ -989,15 +989,15 @@ _QS_fnc_groupIconType = {
 	if (!(_iconType isEqualTo '')) exitWith {
 		_iconType;
 	};
-	_iconTypes_EAST = ['o_inf','o_motor_inf','o_mech_inf','o_armor','o_recon','o_air','o_plane','o_uav','o_med','o_art','o_mortar','o_hq','o_support','o_maint','o_service','o_naval','o_unknown'];
-	_iconTypes_WEST = ['b_inf','b_motor_inf','b_mech_inf','b_armor','b_recon','b_air','b_plane','b_uav','b_med','b_art','b_mortar','b_hq','b_support','b_maint','b_service','b_naval','b_unknown'];
+	_iconTypes_East = ['o_inf','o_motor_inf','o_mech_inf','o_armor','o_recon','o_air','o_plane','o_uav','o_med','o_art','o_mortar','o_hq','o_support','o_maint','o_service','o_naval','o_unknown'];
+	_iconTypes_West = ['b_inf','b_motor_inf','b_mech_inf','b_armor','b_recon','b_air','b_plane','b_uav','b_med','b_art','b_mortar','b_hq','b_support','b_maint','b_service','b_naval','b_unknown'];
 	_iconTypes_RESISTANCE = ['n_inf','n_motor_inf','n_mech_inf','n_armor','n_recon','n_air','n_plane','n_uav','n_med','n_art','n_mortar','n_hq','n_support','n_maint','n_service','n_naval','n_unknown'];
 	_iconTypes_CIVILIAN = ['c_air','c_car','c_plane','c_ship','c_unknown'];
-	if (_grpSide isEqualTo EAST) then {
-		_iconTypes = _iconTypes_EAST;
+	if (_grpSide isEqualTo East) then {
+		_iconTypes = _iconTypes_East;
 	};
-	if (_grpSide isEqualTo WEST) then {
-		_iconTypes = _iconTypes_WEST;
+	if (_grpSide isEqualTo West) then {
+		_iconTypes = _iconTypes_West;
 	};
 	if (_grpSide isEqualTo RESISTANCE) then {
 		_iconTypes = _iconTypes_RESISTANCE;
@@ -1252,14 +1252,14 @@ _QS_fnc_onGroupIconOverLeave = {
 };
 scriptName 'Soldier Tracker by Quiksilver';
 _side = playerSide;
-_sides = [EAST,WEST,RESISTANCE,CIVILIAN];
+_sides = [East,West,RESISTANCE,CIVILIAN];
 uiSleep 0.1;
 _QS_ST_faction = _sides find _side;
-if (_side isEqualTo EAST) then {
-	_QS_ST_showFriendlySides = _QS_ST_friendlySides_EAST;
+if (_side isEqualTo East) then {
+	_QS_ST_showFriendlySides = _QS_ST_friendlySides_East;
 };
-if (_side isEqualTo WEST) then {
-	_QS_ST_showFriendlySides = _QS_ST_friendlySides_WEST;
+if (_side isEqualTo West) then {
+	_QS_ST_showFriendlySides = _QS_ST_friendlySides_West;
 };
 if (_side isEqualTo RESISTANCE) then {
 	_QS_ST_showFriendlySides = _QS_ST_friendlySides_RESISTANCE;
@@ -1295,8 +1295,8 @@ _QS_ST_htmlColorMedical = [_QS_ST_MedicalIconColor select 0,_QS_ST_MedicalIconCo
 _QS_ST_htmlColorInjured = [_QS_ST_colorInjured select 0,_QS_ST_colorInjured select 1,_QS_ST_colorInjured select 2,_QS_ST_colorInjured select 3] call BIS_fnc_colorRGBtoHTML;
 
 QS_ST_R = [
-	_QS_ST_map_enableUnitIcons,_QS_ST_gps_enableUnitIcons,_QS_ST_enableGroupIcons,_QS_ST_faction,_QS_ST_friendlySides_EAST,_QS_ST_friendlySides_WEST,
-	_QS_ST_friendlySides_RESISTANCE,_QS_ST_friendlySides_CIVILIAN,_QS_ST_friendlySides_Dynamic,_QS_ST_iconColor_EAST,_QS_ST_iconColor_WEST,
+	_QS_ST_map_enableUnitIcons,_QS_ST_gps_enableUnitIcons,_QS_ST_enableGroupIcons,_QS_ST_faction,_QS_ST_friendlySides_East,_QS_ST_friendlySides_West,
+	_QS_ST_friendlySides_RESISTANCE,_QS_ST_friendlySides_CIVILIAN,_QS_ST_friendlySides_Dynamic,_QS_ST_iconColor_East,_QS_ST_iconColor_West,
 	_QS_ST_iconColor_RESISTANCE,_QS_ST_iconColor_CIVILIAN,_QS_ST_iconColor_UNKNOWN,_QS_ST_showMedicalWounded,_QS_ST_MedicalSystem,
 	_QS_ST_MedicalIconColor,_QS_ST_iconShadowMap,_QS_ST_iconShadowGPS,_QS_ST_iconTextSize_Map,_QS_ST_iconTextSize_GPS,_QS_ST_iconTextOffset,
 	_QS_ST_iconSize_Man,_QS_ST_iconSize_LandVehicle,_QS_ST_iconSize_Ship,_QS_ST_iconSize_Air,_QS_ST_iconSize_StaticWeapon,_QS_ST_GPSDist,
@@ -1376,7 +1376,7 @@ if (_QS_ST_X select 2) then {
 		_showCivilianGroups = _QS_ST_X select 59;
 		_groupIconsVisibleMap = _QS_ST_X select 31;
 		_showOwnGroup = _QS_ST_X select 76;
-		_sides = [EAST,WEST,RESISTANCE,CIVILIAN];
+		_sides = [East,West,RESISTANCE,CIVILIAN];
 		_grpLeader = objNull;
 		if (!(_showCivilianGroups)) then {
 			_sides deleteAt 3;

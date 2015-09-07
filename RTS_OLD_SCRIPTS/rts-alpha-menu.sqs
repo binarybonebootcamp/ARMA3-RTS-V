@@ -32,10 +32,10 @@ _player = Activator
 _side = SIDE _player
 
 
-?_side in [WEST] : _side2 = EAST
-?_side in [EAST] : _side2 = WEST
+?_side in [West] : _side2 = East
+?_side in [East] : _side2 = West
 
-?!(_side in [WEST,EAST]) : _player groupChat format ["Side %1 Not Recognized.  Invalid credentials:  Access Denied",SIDE _player]; Exit
+?!(_side in [West,East]) : _player groupChat format ["Side %1 Not Recognized.  Invalid credentials:  Access Denied",SIDE _player]; Exit
 
 
 #CreateBuildDialog

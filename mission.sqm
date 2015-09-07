@@ -38,7 +38,7 @@ class Mission
 	randomSeed=7333891;
 	class Intel
 	{
-		briefingName="Warfare Unleashed RTS-V DEV-82415(24)";
+		briefingName="Warfare Unleashed RTS-V DEV-090515(24)";
 		resistanceWest=0;
 		startWeather=0;
 		startWind=0.1;
@@ -77,7 +77,7 @@ class Mission
 		};
 		class Item1
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -87,20 +87,20 @@ class Mission
 					azimut=719.125;
 					special="NONE";
 					id=1;
-					side="WEST";
+					side="West";
 					vehicle="B_officer_F";
 					player="PLAYER COMMANDER";
 					leader=1;
 					rank="COLONEL";
 					skill=1;
-					text="west1";
+					text="West1";
 					description="RTS-Commander";
 				};
 			};
 		};
 		class Item2
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -110,19 +110,19 @@ class Mission
 					azimut=505.83182;
 					special="NONE";
 					id=2;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west2";
+					text="West2";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item3
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -132,19 +132,19 @@ class Mission
 					azimut=546.92499;
 					special="NONE";
 					id=3;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west3";
+					text="West3";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item4
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -154,19 +154,19 @@ class Mission
 					azimut=505.83182;
 					special="NONE";
 					id=4;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west4";
+					text="West4";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item5
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -176,19 +176,19 @@ class Mission
 					azimut=505.83182;
 					special="NONE";
 					id=5;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west5";
+					text="West5";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item6
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -198,19 +198,19 @@ class Mission
 					azimut=586.20282;
 					special="NONE";
 					id=6;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west6";
+					text="West6";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item7
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -220,19 +220,19 @@ class Mission
 					azimut=586.20282;
 					special="NONE";
 					id=7;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west7";
+					text="West7";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item8
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -242,19 +242,19 @@ class Mission
 					azimut=586.20282;
 					special="NONE";
 					id=8;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west8";
+					text="West8";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item9
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -264,19 +264,19 @@ class Mission
 					azimut=540.87775;
 					special="NONE";
 					id=9;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west9";
+					text="West9";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item10
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -286,19 +286,19 @@ class Mission
 					azimut=543.4212;
 					special="NONE";
 					id=10;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west10";
+					text="West10";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item11
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -308,19 +308,19 @@ class Mission
 					azimut=543.4212;
 					special="NONE";
 					id=11;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west11";
+					text="West11";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item12
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -330,19 +330,19 @@ class Mission
 					azimut=543.4212;
 					special="NONE";
 					id=12;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west12";
+					text="West12";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item13
 		{
-			side="WEST";
+			side="West";
 			class Vehicles
 			{
 				items=1;
@@ -352,19 +352,19 @@ class Mission
 					azimut=543.4212;
 					special="NONE";
 					id=13;
-					side="WEST";
+					side="West";
 					vehicle="B_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="west13";
+					text="West13";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item14
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -373,13 +373,13 @@ class Mission
 					position[]={14443.859,28.488058,6171.1489};
 					azimut=-360.332;
 					id=14;
-					side="EAST";
+					side="East";
 					vehicle="O_officer_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="COLONEL";
 					skill=1;
-					text="east1";
+					text="East1";
 					description="RTS-Commander";
 					syncId=0;
 					synchronizations[]={0};
@@ -388,7 +388,7 @@ class Mission
 		};
 		class Item15
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -397,20 +397,20 @@ class Mission
 					position[]={14442.634,27.860476,6174.2231};
 					azimut=-179.724;
 					id=15;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="CORPORAL";
 					skill=1;
-					text="east3";
+					text="East3";
 					description="RTS-Corporal";
 				};
 			};
 		};
 		class Item16
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -419,20 +419,20 @@ class Mission
 					position[]={14443.72,27.515558,6174.9697};
 					azimut=-179.724;
 					id=16;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="CORPORAL";
 					skill=1;
-					text="east4";
+					text="East4";
 					description="RTS-Corporal";
 				};
 			};
 		};
 		class Item17
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -441,20 +441,20 @@ class Mission
 					position[]={14444.025,28.33893,6167.8408};
 					azimut=-359.83441;
 					id=17;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="CORPORAL";
 					skill=1;
-					text="east5";
+					text="East5";
 					description="RTS-Corporal";
 				};
 			};
 		};
 		class Item18
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -463,19 +463,19 @@ class Mission
 					position[]={14445.015,28.217394,6169.2539};
 					azimut=-92.365341;
 					id=18;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="east6";
+					text="East6";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item19
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -484,19 +484,19 @@ class Mission
 					position[]={14445.575,28.417553,6170.5806};
 					azimut=-92.365341;
 					id=19;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="east7";
+					text="East7";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item20
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -505,19 +505,19 @@ class Mission
 					position[]={14445.747,28.341105,6172.1753};
 					azimut=-92.365341;
 					id=20;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="east8";
+					text="East8";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item21
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -526,19 +526,19 @@ class Mission
 					position[]={14444.49,28.207998,6172.9106};
 					azimut=-92.365341;
 					id=21;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="east9";
+					text="East9";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item22
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -547,19 +547,19 @@ class Mission
 					position[]={14442.95,28.515398,6172.8569};
 					azimut=-259.9761;
 					id=22;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="east10";
+					text="East10";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item23
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -568,19 +568,19 @@ class Mission
 					position[]={14441.781,28.893803,6171.9512};
 					azimut=-259.9761;
 					id=23;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="east11";
+					text="East11";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item24
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -589,19 +589,19 @@ class Mission
 					position[]={14442.268,28.753275,6170.4966};
 					azimut=-267.02182;
 					id=24;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="east12";
+					text="East12";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item25
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -610,19 +610,19 @@ class Mission
 					position[]={14443.051,28.55662,6168.9814};
 					azimut=-268.02637;
 					id=25;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					skill=1;
-					text="east13";
+					text="East13";
 					description="RTS-Solder";
 				};
 			};
 		};
 		class Item26
 		{
-			side="EAST";
+			side="East";
 			class Vehicles
 			{
 				items=1;
@@ -631,13 +631,13 @@ class Mission
 					position[]={14444.9,27.744102,6174.3315};
 					azimut=177.87801;
 					id=26;
-					side="EAST";
+					side="East";
 					vehicle="O_Soldier_F";
 					player="PLAY CDG";
 					leader=1;
 					rank="CORPORAL";
 					skill=1;
-					text="east2";
+					text="East2";
 					description="RTS-Corporal";
 				};
 			};
@@ -683,8 +683,8 @@ class Mission
 			side="EMPTY";
 			vehicle="O_Truck_02_medical_F";
 			skill=1;
-			text="eastTruck";
-			init="this setVariable [""side"", east, true];";
+			text="EastTruck";
+			init="this setVariable [""side"", East, true];";
 			description="MCU";
 		};
 		class Item1
@@ -934,8 +934,8 @@ class Mission
 			vehicle="B_Truck_01_medical_F";
 			leader=1;
 			skill=0.60000002;
-			text="westTruck";
-			init="this setVariable [""side"", west, true];";
+			text="WestTruck";
+			init="this setVariable [""side"", West, true];";
 			description="MCU";
 		};
 		class Item25
@@ -1362,7 +1362,7 @@ class Mission
 		class Item31
 		{
 			position[]={21848.732,14.452665,7685.4131};
-			name="South_east";
+			name="South_East";
 			markerType="RECTANGLE";
 			type="Empty";
 			colorName="ColorGrey";
@@ -1533,13 +1533,13 @@ class Mission
 			position[]={15429.232,18.520054,17166.441};
 			a=18000;
 			b=18000;
-			activationBy="WEST";
+			activationBy="West";
 			timeoutMin=3;
 			timeoutMid=3;
 			timeoutMax=3;
 			age="UNKNOWN";
-			text="westList";
-			name="westList";
+			text="WestList";
+			name="WestList";
 			class Effects
 			{
 			};
@@ -1549,13 +1549,13 @@ class Mission
 			position[]={15429.34,18.521322,17166.449};
 			a=18000;
 			b=18000;
-			activationBy="EAST";
+			activationBy="East";
 			timeoutMin=3;
 			timeoutMid=3;
 			timeoutMax=3;
 			age="UNKNOWN";
-			text="eastList";
-			name="eastList";
+			text="EastList";
+			name="EastList";
 			class Effects
 			{
 			};

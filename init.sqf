@@ -3,6 +3,11 @@
 enableSaving [false, false];
 player enableFatigue false;
 player addEventhandler ["Respawn", {player enableFatigue false}];
+My_Title = {Titletext[format ["%1", "-= RTS V =-\nWarGame\nFor Arma 3"], "PLAIN DOWN" , .5]};
+call My_Title;
+[] execVM "briefing.sqf";
+
+sleep .1;
 #include "Zen_RTS_Functions\Zen_RTS_GlobalFunctions.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_GlobalVariables.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_ParseParams.sqf"
@@ -65,10 +70,10 @@ sleep 1;
 // [] exec "economy\rts-supplyMonitor.sqs";
 // [] exec "rts-build-serverside.sqs";
 [] exec "rts-init-commandermonitor.sqs";
-[] exec "test.sqs";
+//[] exec "test.sqs";                                          /////////////i took this out with what ever it was attatched to.. like unit monitor .. geeting errors from east.
 //[] exec "rts-build-serverSideMonitor.sqs";
 // rts_hq sideChat "Global Scripts and Variables Initialized";
-
+0 = [] execVM 'unflip_vehicle.sqf';
 execVM "R3F_LOG\init.sqf";
 [] execVM "VCOM_Driving\init.sqf";
 // --------------------------
@@ -80,19 +85,19 @@ Zen_JIP_Args_Server = [overcast, fog, vd];
 
 {
     call compile format ["xp%1 = 0", _x];
-   
+
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
-} forEach ([west, east] call Zen_ConvertToObjectArray);
+} forEach ([West, East] call Zen_ConvertToObjectArray);
 // ----------------------
 
 // ====================================================================================
 // Zen_RTS_SubTerritory
 // ====================================================================================
 
-westFC = 0;
-eastFC = 0;
+WestFC = 0;
+EastFC = 0;
 civFC = 0;
 
 0 = [] spawn Zen_RTS_SubTerritoryManager;
@@ -113,7 +118,7 @@ for "_i" from 1 to 32 do {
 0 = [] spawn Zen_RTS_TerritoryManager;
 
 _Zen_TerritorySouth_East_TerritoryMarker = [ListFlag1, "", "colorRed", [0, 0], "rectangle", 0, 1] call Zen_SpawnMarker;
-0 = ["South_east", [MKR(1), MKR(2),MKR(3),MKR(4)]] call Zen_RTS_TerritoryCreate;
+0 = ["South_East", [MKR(1), MKR(2),MKR(3),MKR(4)]] call Zen_RTS_TerritoryCreate;
 
 _Zen_TerritoryEast_TerritoryMarker = [ListFlag5, "", "colorRed", [0, 0], "rectangle", 0, 1] call Zen_SpawnMarker;
 0 = ["East", [MKR(5),MKR(6),MKR(7),MKR(26)]] call Zen_RTS_TerritoryCreate;
@@ -248,7 +253,7 @@ RTS_Building_Type_Levels = [[], []]; // global
 } forEach RTS_Building_Type_Levels;
 
 // all asset types must be added here, or they will not be considered for custom squads
-// must be [[west asset types, [east '']]
+// must be [[West asset types, [East '']]
 RTS_Used_Asset_Types = [[], []]; // global
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
@@ -269,13 +274,13 @@ RTS_Used_Asset_Types = [[], []]; // global
 #include "Zen_RTS_East\RTS_East_SupportFactory.sqf"
 #include "Zen_RTS_East\RTS_East_CJ.sqf"
 
-westTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
-westTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
-westTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
+WestTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+WestTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
+WestTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
 
-eastTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
-eastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
-eastTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
+EastTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+EastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
+EastTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
 
 publicVariable "RTS_Used_Building_Types";
 publicVariable "RTS_Building_Type_Levels";
@@ -286,3 +291,4 @@ publicVariable "Zen_RTS_BuildingType_East_HQ";
 
 rts_Initialized = TRUE;
 publicVariable "rts_Initialized";
+

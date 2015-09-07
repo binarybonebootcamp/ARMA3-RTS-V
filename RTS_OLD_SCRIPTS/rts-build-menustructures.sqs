@@ -8,14 +8,14 @@ Activator = _player
 
 _side = SIDE _player
 
-?_side in [WEST] : _side2 = EAST
-?_side in [EAST] : _side2 = WEST
+?_side in [West] : _side2 = East
+?_side in [East] : _side2 = West
 
 ~.2
 CloseDialog 0
 
 #MCU
-_vArray = westMCUList + eastMCUList
+_vArray = WestMCUList + EastMCUList
 _countArray = Count _vArray
 _type = typeOf _mcu
 
@@ -37,8 +37,8 @@ _mcuName = _mA select 1
 
 bName = _mcuName
 
-?_mcuName == westMCUName : _mcuSide = WEST
-?_mcuName == eastMCUName : _mcuSide = EAST
+?_mcuName == WestMCUName : _mcuSide = West
+?_mcuName == EastMCUName : _mcuSide = East
 
 #Conditions
 

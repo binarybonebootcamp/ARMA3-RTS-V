@@ -32,7 +32,7 @@ Zen_RTS_F_West_HQConstructor = {
     ZEN_FMW_MP_RENonDedicated("Zen_RTS_F_StrategicAddAssetLocal", _args, call)
 
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    BUILDING_VISUALS("Land_Research_HQ_F", -1.5, west)
+    BUILDING_VISUALS("Land_Research_HQ_F", -1.5, West)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_HQ)
 
     // to-do: || false condition needs building hacking logic
@@ -65,7 +65,7 @@ Zen_RTS_BuildingType_West_HQ = ["Zen_RTS_F_West_HQConstructor", "Zen_RTS_F_West_
 Zen_RTS_TechFlag_West_BuildEnemy = false;
 publicVariable "Zen_RTS_TechFlag_West_BuildEnemy";
 Zen_RTS_F_West_Tech_Enemy = {
-    player sideChat "Build enemy east asset by west called";
+    player sideChat "Build enemy East asset by West called";
 
     Zen_RTS_TechFlag_West_BuildEnemy = true;
     // publicVariable "Zen_RTS_TechFlag_West_BuildEnemy";

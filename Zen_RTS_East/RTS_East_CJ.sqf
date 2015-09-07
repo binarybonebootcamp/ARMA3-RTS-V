@@ -47,7 +47,7 @@ Zen_RTS_F_East_CJConstructor = {
 
     sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
     _vehicle = [_spawnPos, "O_MRAP_02_F"]  call Zen_SpawnVehicle;
-    _vehicle setVariable ["side", east, true];
+    _vehicle setVariable ["side", East, true];
     ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
 
     // to-do: || false condition needs building hacking logic

@@ -12,12 +12,12 @@
     // Activator = _player;
 
     _side = side _player;
-    _side2 = [east, west] select ([west, east] find _side);
+    _side2 = [East, West] select ([West, East] find _side);
 
     // sleep 0.2;
     CloseDialog 0;
 
-    _mcuSide = if (_mcu isEqualTo westTruck) then {(west)} else {(east)};
+    _mcuSide = if (_mcu isEqualTo WestTruck) then {(West)} else {(East)};
     _mcuCommander = call compile format ["%1Commander", _mcuSide];
 
     if (_player != _mcuCommander) exitWith {
@@ -31,7 +31,7 @@
     };
 
     /**
-    _MCUVehs = [westTruck, eastTruck];
+    _MCUVehs = [WestTruck, EastTruck];
     _type = typeOf _mcu;
     _found = true;
     {
@@ -39,7 +39,7 @@
         // _mcuName = _x;
         // bName = _mcuName;
 
-        _mcuSide = if (_x isEqualTo westTruck) then {(west)} else {(east)};
+        _mcuSide = if (_x isEqualTo WestTruck) then {(West)} else {(East)};
         _mcuCommander = call compile format ["%1Commander", _mcuSide];
 
         if (_player != _mcuCommander) exitWith {
@@ -150,7 +150,7 @@
                 // player sidechat str _pic; // debug
                 lbSetPicture [_idlist, _index, _pic];
             };
-        } forEach (RTS_Used_Building_Types select ([west, east] find _side));
+        } forEach (RTS_Used_Building_Types select ([West, East] find _side));
 
         lbSetCurSel [_idlist, _idSel];
         // sleep 30;

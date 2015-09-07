@@ -66,41 +66,41 @@ if (isServer) then {
         (owner _this) publicVariableClient "rts_vpTickerEast";
 
         // Resource variables for JIP clients
-        (owner _this) publicVariableClient "westSupplyFactor";
-        (owner _this) publicVariableClient "westSupply";
+        (owner _this) publicVariableClient "WestSupplyFactor";
+        (owner _this) publicVariableClient "WestSupply";
 
-        (owner _this) publicVariableClient "eastSupplyFactor";
-        (owner _this) publicVariableClient "eastSupply";
+        (owner _this) publicVariableClient "EastSupplyFactor";
+        (owner _this) publicVariableClient "EastSupply";
 
         // Building Placeholder Vars so JIP clients will have base buildings
-        (owner _this) publicVariableClient "westBarracksTmp";
-        (owner _this) publicVariableClient "westLightFacTmp";
-        (owner _this) publicVariableClient "westHeavyFacTmp";
-        (owner _this) publicVariableClient "westAirFacTmp";
-        (owner _this) publicVariableClient "westNavalFacTmp";
+        (owner _this) publicVariableClient "WestBarracksTmp";
+        (owner _this) publicVariableClient "WestLightFacTmp";
+        (owner _this) publicVariableClient "WestHeavyFacTmp";
+        (owner _this) publicVariableClient "WestAirFacTmp";
+        (owner _this) publicVariableClient "WestNavalFacTmp";
 
-        (owner _this) publicVariableClient"eastBarracksTmp";
-        (owner _this) publicVariableClient"eastHeavyFacTmp";
-        (owner _this) publicVariableClient"eastLightFacTmp";
-        (owner _this) publicVariableClient"eastAirFacTmp";
-        (owner _this) publicVariableClient"eastNavalFacTmp";
+        (owner _this) publicVariableClient"EastBarracksTmp";
+        (owner _this) publicVariableClient"EastHeavyFacTmp";
+        (owner _this) publicVariableClient"EastLightFacTmp";
+        (owner _this) publicVariableClient"EastAirFacTmp";
+        (owner _this) publicVariableClient"EastNavalFacTmp";
         ;
-        (owner _this) publicVariableClient"westBarracksLevel";
-        (owner _this) publicVariableClient"westLightFacLevel";
-        (owner _this) publicVariableClient"westHeavyFacLevel";
-        (owner _this) publicVariableClient"westAirFacLevel";
+        (owner _this) publicVariableClient"WestBarracksLevel";
+        (owner _this) publicVariableClient"WestLightFacLevel";
+        (owner _this) publicVariableClient"WestHeavyFacLevel";
+        (owner _this) publicVariableClient"WestAirFacLevel";
         ;
-        (owner _this) publicVariableClient"eastBarracksLevel";
-        (owner _this) publicVariableClient"eastLightFacLevel";
-        (owner _this) publicVariableClient"eastHeavyFacLevel";
-        (owner _this) publicVariableClient"eastAirFacLevel";
+        (owner _this) publicVariableClient"EastBarracksLevel";
+        (owner _this) publicVariableClient"EastLightFacLevel";
+        (owner _this) publicVariableClient"EastHeavyFacLevel";
+        (owner _this) publicVariableClient"EastAirFacLevel";
 
         // Update West Assets with public array
-        rts_updateArray = str [WEST,westAssets];
+        rts_updateArray = str [West,WestAssets];
         (owner _this) publicVariableClient "rts_updateArray";
 
         // Update East Assets with public array
-        rts_updateArray = str [EAST,eastAssets];
+        rts_updateArray = str [East,EastAssets];
         (owner _this) publicVariableClient "rts_updateArray";
     };
 };

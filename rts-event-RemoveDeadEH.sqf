@@ -5,7 +5,7 @@ _leader = leader _killer;
 // Check that XP is given to one of the starting units 
 if !(isNull _leader) then { 
     _unitStr = str _leader; 
-    if ((["west", _unitStr] call Zen_StringIsInString) || {(["east", _unitStr] call Zen_StringIsInString)}) then { 
+    if ((["West", _unitStr] call Zen_StringIsInString) || {(["East", _unitStr] call Zen_StringIsInString)}) then { 
         call compile format ["XP%1 = XP%1 + 1; publicVariable ""XP%1""", _leader]; 
     }; 
 }; 

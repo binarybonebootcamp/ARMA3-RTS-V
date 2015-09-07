@@ -6,13 +6,13 @@ waitUntil {
 
 sleep 1;
 
-MCUWest = westTruck;
-MCUEast = eastTruck;
+MCUWest = WestTruck;
+MCUEast = EastTruck;
 
-MCUWest addAction ["<t color='#D80000'>" + (format ["Base Construction Menu", westMCUName]) + "</t>", Zen_RTS_BuildMenuStructures, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'B_Truck_01_medical_F'"];
+MCUWest addAction ["<t color='#D80000'>" + (format ["Base Construction Menu", WestMCUName]) + "</t>", Zen_RTS_BuildMenuStructures, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'B_Truck_01_medical_F'"];
 MCUWest addAction ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'B_Truck_01_medical_F'"];
 
-MCUEast addAction ["<t color='#D80000'>" + (format ["Base Construction Menu", eastMCUName]) + "</t>", Zen_RTS_BuildMenuStructures, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'O_Truck_02_medical_F'"];
+MCUEast addAction ["<t color='#D80000'>" + (format ["Base Construction Menu", EastMCUName]) + "</t>", Zen_RTS_BuildMenuStructures, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'O_Truck_02_medical_F'"];
 MCUEast addAction ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'B_Truck_01_medical_F'"];
 
 // This appears to be deprecated with the old territory system
