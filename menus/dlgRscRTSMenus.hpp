@@ -1070,6 +1070,7 @@ class DlgHUD
 
     };
 
+
 class DlgConfirm {
     idd = -1;
     movingEnable = true;
@@ -1095,9 +1096,9 @@ class DlgConfirm {
     class CONFIRM_FRAME : RscText {
         idc = -1;
         style = ST_FRAME;
-        colorText[] = {0, 0, 0, 1};
+        colorText[] = {1, 0, 0, 1};
         text = "";
-        sizeEx = 0.015;
+        sizeEx = 0.040;
         x = 0.335;
         y = 0.385;
         w = 0.33;
@@ -1116,22 +1117,22 @@ class DlgConfirm {
         y = 0.55;
         w = 0.1;
         h = 0.05;
-        sizeEx = 0.0225;
-        font = FontTITLEHalf;
-        colorText[] = {0, 0, 0, 1};
+        sizeEx = 0.030;
+        font = FontMAIN;
+        colorText[] = {1, 1, 1, 1};
         text = "Confirm";
         action = "RTS3_Yes = TRUE";
     };
 
     class BUTTON_NO : RscButton {
         idc = 1315;
-        x = 0.51;
+        x = 0.56;
         y = 0.55;
         w = 0.1;
         h = 0.05;
-        sizeEx = 0.0225;
-        font = FontTITLEHalf;
-        colorText[] = {0, 0, 0, 1};
+        sizeEx = 0.030;
+        font = FontMAIN;
+        colorText[] = {1, 1, 1, 1};
         text = "Cancel";
         action = "RTS3_No = TRUE";
     };
@@ -1140,10 +1141,10 @@ class DlgConfirm {
         idc = 1300;
         style = ST_CENTER;
         colorBackground[] = {0, 0, 0, 0};
-        colorText[] = {0, 0, 0, 1};
+        colorText[] = {1, 0.5, 0, 1};
         text = "Confirm";
-        sizeEx = 0.015;
-        font = FontTITLEHalf;
+        sizeEx = 0.022;
+        font = FontMAIN;
         x = 0.35;
         y = 0.44;
         w = 0.31;

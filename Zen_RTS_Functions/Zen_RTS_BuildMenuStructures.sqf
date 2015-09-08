@@ -122,8 +122,8 @@
 
         buttonSetAction [_idBuild, "2000 call Zen_RTS_BuildStructure"];
         buttonSetAction [_idbuildYou, "2000 call Zen_RTS_DestroyStructure"];
-        buttonSetAction [_idRepair, "['Repair', ['Building']] call Zen_RTS_RecycleRepair"];
-        buttonSetAction [_idRecycle, "['Recycle', ['Building']] call Zen_RTS_RecycleRepair"];
+        buttonSetAction [_idRepair, "['Repair', ['Building']] spawn Zen_RTS_RecycleRepair"];
+        buttonSetAction [_idRecycle, "['Recycle', ['Building']] spawn Zen_RTS_RecycleRepair"];
 
         // Clear the Vehicle build list to repopulate
         lbClear _idlist;
