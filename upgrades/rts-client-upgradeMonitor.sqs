@@ -1,6 +1,6 @@
 ;;This script loops on client side and updates the Asset arrays when each upgrade is completed.
-eastbarrackslevel = eastbarrackslevel + 1; eastlightfaclevel = eastlightfaclevel + 1; eastheavyfaclevel = eastheavyfaclevel + 1; eastairfaclevel = eastairfaclevel + 1
-westbarrackslevel = westbarrackslevel + 1; westlightfaclevel = westlightfaclevel + 1; westheavyfaclevel = westheavyfaclevel + 1; westairfaclevel = westairfaclevel + 1
+Eastbarrackslevel = Eastbarrackslevel + 1; Eastlightfaclevel = Eastlightfaclevel + 1; Eastheavyfaclevel = Eastheavyfaclevel + 1; Eastairfaclevel = Eastairfaclevel + 1
+Westbarrackslevel = Westbarrackslevel + 1; Westlightfaclevel = Westlightfaclevel + 1; Westheavyfaclevel = Westheavyfaclevel + 1; Westairfaclevel = Westairfaclevel + 1
 ~5
 ?!Local Player : Exit
 
@@ -19,10 +19,10 @@ _currentAirFacLevel = call compile format ["%1AirFacLevel",_side]
 ?_currentAirFacLevel != call compile format ["%1AirFacLevel",_side] : _bld = "AirFac"; goto _bld
 
    
-?updbg : eastbarrackslevel = eastbarrackslevel + 1; eastlightfaclevel = eastlightfaclevel + 1; eastheavyfaclevel = eastheavyfaclevel + 1; eastairfaclevel = eastairfaclevel + 1
+?updbg : Eastbarrackslevel = Eastbarrackslevel + 1; Eastlightfaclevel = Eastlightfaclevel + 1; Eastheavyfaclevel = Eastheavyfaclevel + 1; Eastairfaclevel = Eastairfaclevel + 1
 updbg = false
 
-?updbg : westbarrackslevel = westbarrackslevel + 1; westlightfaclevel = westlightfaclevel + 1; westheavyfaclevel = westheavyfaclevel + 1; westairfaclevel = westairfaclevel + 1 
+?updbg : Westbarrackslevel = Westbarrackslevel + 1; Westlightfaclevel = Westlightfaclevel + 1; Westheavyfaclevel = Westheavyfaclevel + 1; Westairfaclevel = Westairfaclevel + 1 
 updbg = false
 
 

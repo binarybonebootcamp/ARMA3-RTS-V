@@ -36,7 +36,7 @@ rts_hq sideChat _msg
 
 ~2
 @!(IsNull EastCommander) AND (Alive EastCommander)
-_name = Name EeastCommander
+_name = Name EEastCommander
 Goto "CommandInfo"
 
 #CommandInfo

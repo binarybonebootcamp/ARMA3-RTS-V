@@ -16,33 +16,33 @@ _wn = false
 firstBld = objNull
 
 
-?Local Server : eastBarracksTmp = objNull; publicVariable "eastBarracksTmp"
-?Local Server : eastLightFacTmp = objNull; publicVariable "eastLightFacTmp"
-?Local Server : eastHeavyFacTmp = objNull; publicVariable "eastHeavyFacTmp"
-?Local Server : eastAirFacTmp = objNull; publicVariable "eastAirFacTmp"
-;;?Local Server : eastHQFacTmp = objNull; publicVariable "eastHQFacTmp"
+?Local Server : EastBarracksTmp = objNull; publicVariable "EastBarracksTmp"
+?Local Server : EastLightFacTmp = objNull; publicVariable "EastLightFacTmp"
+?Local Server : EastHeavyFacTmp = objNull; publicVariable "EastHeavyFacTmp"
+?Local Server : EastAirFacTmp = objNull; publicVariable "EastAirFacTmp"
+;;?Local Server : EastHQFacTmp = objNull; publicVariable "EastHQFacTmp"
 
-?Local Server : westBarracksTmp = objNull; publicVariable "westBarracksTmp"
-?Local Server : westLightFacTmp = objNull; publicVariable "westLightFacTmp"
-?Local Server : westHeavyFacTmp = objNull; publicVariable "westHeavyFacTmp"
-?Local Server : westAirFacTmp = objNull; publicVariable "westAirFacTmp"
-;;?Local Server : westHQFacTmp = objNull; publicVariable "westHQFacTmp"
+?Local Server : WestBarracksTmp = objNull; publicVariable "WestBarracksTmp"
+?Local Server : WestLightFacTmp = objNull; publicVariable "WestLightFacTmp"
+?Local Server : WestHeavyFacTmp = objNull; publicVariable "WestHeavyFacTmp"
+?Local Server : WestAirFacTmp = objNull; publicVariable "WestAirFacTmp"
+;;?Local Server : WestHQFacTmp = objNull; publicVariable "WestHQFacTmp"
 
 
 #InitLoop
 ~.5
 
-?!isNull eastBarracksTmp && isNull eastBarracks && !_eb :  _bldTmp = eastBarracksTmp; _bldName = eastBarracksName; _eb = true; goto "BuildInfo"
-?!isNull eastLightFacTmp && isNull eastLightFac && !_el :  _bldTmp = eastLightFacTmp; _bldName = eastLightFacName; _el = true; goto "BuildInfo"
-?!isNull eastHeavyFacTmp && isNull eastHeavyFac && !_eh :  _bldTmp = eastHeavyFacTmp; _bldName = eastHeavyFacName; _eh = true; goto "BuildInfo"
-?!isNull eastAirFacTmp && isNull eastAirFac && !_ea :  _bldTmp = eastAirFacTmp; _bldName = eastAirFacName; _ea = true; goto "BuildInfo"
-;;?!isNull eastHQFacTmp && isNull eastHQFac && !_en :  _bldTmp = eastHQFacTmp; _bldName = eastHQFacName; _en = true; goto "BuildInfo"
+?!isNull EastBarracksTmp && isNull EastBarracks && !_eb :  _bldTmp = EastBarracksTmp; _bldName = EastBarracksName; _eb = true; goto "BuildInfo"
+?!isNull EastLightFacTmp && isNull EastLightFac && !_el :  _bldTmp = EastLightFacTmp; _bldName = EastLightFacName; _el = true; goto "BuildInfo"
+?!isNull EastHeavyFacTmp && isNull EastHeavyFac && !_eh :  _bldTmp = EastHeavyFacTmp; _bldName = EastHeavyFacName; _eh = true; goto "BuildInfo"
+?!isNull EastAirFacTmp && isNull EastAirFac && !_ea :  _bldTmp = EastAirFacTmp; _bldName = EastAirFacName; _ea = true; goto "BuildInfo"
+;;?!isNull EastHQFacTmp && isNull EastHQFac && !_en :  _bldTmp = EastHQFacTmp; _bldName = EastHQFacName; _en = true; goto "BuildInfo"
 
-?!isNull westBarracksTmp && isNull westBarracks && !_wb :  _bldTmp = westBarracksTmp; _bldName = westBarracksName; _wb = true; goto "BuildInfo"
-?!isNull westLightFacTmp && isNull westLightFac && !_wl :  _bldTmp = westLightFacTmp; _bldName = westLightFacName; _wl = true; goto "BuildInfo"
-?!isNull westHeavyFacTmp && isNull westHeavyFac && !_wh :  _bldTmp = westHeavyFacTmp; _bldName = westHeavyFacName; _wh = true; goto "BuildInfo"
-?!isNull westAirFacTmp && isNull westAirFac && !_wa :  _bldTmp = westAirFacTmp; _bldName = westAirFacName; _wa = true; goto "BuildInfo"
-;;?!isNull westHQFacTmp && isNull westHQFac && !_wn :  _bldTmp = westHQFacTmp; _bldName = westHQFacName; _wn = true; goto "BuildInfo"
+?!isNull WestBarracksTmp && isNull WestBarracks && !_wb :  _bldTmp = WestBarracksTmp; _bldName = WestBarracksName; _wb = true; goto "BuildInfo"
+?!isNull WestLightFacTmp && isNull WestLightFac && !_wl :  _bldTmp = WestLightFacTmp; _bldName = WestLightFacName; _wl = true; goto "BuildInfo"
+?!isNull WestHeavyFacTmp && isNull WestHeavyFac && !_wh :  _bldTmp = WestHeavyFacTmp; _bldName = WestHeavyFacName; _wh = true; goto "BuildInfo"
+?!isNull WestAirFacTmp && isNull WestAirFac && !_wa :  _bldTmp = WestAirFacTmp; _bldName = WestAirFacName; _wa = true; goto "BuildInfo"
+;;?!isNull WestHQFacTmp && isNull WestHQFac && !_wn :  _bldTmp = WestHQFacTmp; _bldName = WestHQFacName; _wn = true; goto "BuildInfo"
 goto "InitLoop"
 
 #BuildInfo

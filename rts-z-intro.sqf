@@ -37,7 +37,7 @@ titleText ["","White In", 2];
 
 disableUserInput FALSE;
 Player EnableSimulation True;
-
+call My_Title; 
 
 
 //[Player] exec "Karr-DLG-Loadout.sqs"

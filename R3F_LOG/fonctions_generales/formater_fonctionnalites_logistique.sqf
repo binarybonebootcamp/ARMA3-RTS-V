@@ -19,8 +19,8 @@ if !(isClass (configFile >> "CfgVehicles" >> _classe)) exitWith {};
 
 _side = switch (getNumber (configFile >> "CfgVehicles" >> _classe >> "side")) do
 {
-	case 0: {"EAST"};
-	case 1: {"WEST"};
+	case 0: {"East"};
+	case 1: {"West"};
 	case 2: {"GUER"};
 	case 3: {"CIV"};
 	default {"NONE"};

@@ -22,8 +22,9 @@ Zen_RTS_F_West_CJConstructor = {
     _assetsToAdd pushBack Zen_RTS_Asset_LAND_CARGO_PATROL_V1_F;
     _assetsToAdd pushBack Zen_RTS_Asset_B_SLINGLOAD_01_MEDEVAC_F;
     _assetsToAdd pushBack Zen_RTS_Asset_B_SLINGLOAD_01_FUEL_F;
-    _assetsToAdd pushBack Zen_RTS_Asset_B_Slingload_01_Ammo_F;
-    _assetsToAdd pushBack Zen_RTS_Asset_B_Slingload_01_Repair_F;
+    _assetsToAdd pushBack Zen_RTS_Asset_Box_NATO_WpsSpecial_F;
+    _assetsToAdd pushBack Zen_RTS_Asset_Land_BagFence_Corner_F;
+    _assetsToAdd pushBack Zen_RTS_Asset_Land_CncWall4_F;
 
     if (Zen_RTS_TechFlag_West_BuildEnemy) then {
         // ... to do
@@ -46,18 +47,12 @@ Zen_RTS_F_West_CJConstructor = {
 
     sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
     _vehicle = [_spawnPos, "B_MRAP_01_F"] call Zen_SpawnVehicle;
-    _vehicle setVariable ["side", west, true];
+    _vehicle setVariable ["side", West, true];
     ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "(_this in _target)"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
-
-    // _args = ["addAction", [_vehicle, ["<t color='#D80000'>Repair</t>", Zen_RTS_Repair, [], 1, false, true, "", "(_this in _target)"]]];
-    // ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
-
-    // _args = ["addAction", [_vehicle, ["<t color='#D80000'>Recycle</t>", Zen_RTS_Recycle, [], 1, false, true, "", "(_this in _target)"]]];
-    // ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
     if (_level > 0) then {
         for "_i" from 0 to (_level - 1) do {
@@ -132,13 +127,16 @@ Zen_RTS_BuildingType_West_CJ = ["Zen_RTS_F_West_CJConstructor", "Zen_RTS_F_West_
 
 FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetMG, "B_HMG_01_high_F")
 FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetLAND_RAZORWIRE_F, "LAND_RAZORWIRE_F")
-FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetLAND_BAGBUNKER_TOWER_F, "BAGBUNKER_TOWER_F")
-FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetLAND_BAGFENCE_LONG_F, "BAGFENCE_LONG_F")
+FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetLAND_BAGBUNKER_TOWER_F, "Land_BAGBUNKER_TOWER_F")
+FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetLAND_BAGFENCE_LONG_F, "Land_BagFence_Long_F")
 FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetLAND_CARGO_PATROL_V1_F, "LAND_CARGO_PATROL_V1_F")
 FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetB_SLINGLOAD_01_MEDEVAC_F, "B_SLINGLOAD_01_MEDEVAC_F")
 FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetB_SLINGLOAD_01_FUEL_F, "B_SLINGLOAD_01_FUEL_F")
-FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetB_Slingload_01_Ammo_F, "B_Slingload_01_Ammo_F")
-FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetB_Slingload_01_Repair_F, "B_Slingload_01_Repair_F")
+FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetBox_NATO_WpsSpecial_F, "Box_NATO_WpsSpecial_F")
+//FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetB_Slingload_01_Ammo_F, "B_Slingload_01_Ammo_F")
+//FORT_CONSTRUCTOR(Zen_RTS_F_West_AssetB_Slingload_01_Repair_F, "B_Slingload_01_Repair_F")
+FORT_CONSTRUCTOR(Zen_RTS_F_West_Asset_Land_BagFence_Corner_F, "Land_BagFence_Corner_F")
+FORT_CONSTRUCTOR(Zen_RTS_F_West_Asset_Land_CncWall4_F, "Land_CncWall4_F")
 
 Zen_RTS_Asset_West_MG = ["Zen_RTS_F_West_AssetMG", "MG", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_LAND_RAZORWIRE_F= ["Zen_RTS_F_West_AssetLAND_RAZORWIRE_F", "razor wire", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
@@ -147,5 +145,6 @@ Zen_RTS_Asset_LAND_BAGFENCE_LONG_F= ["Zen_RTS_F_West_AssetLAND_BAGFENCE_LONG_F",
 Zen_RTS_Asset_LAND_CARGO_PATROL_V1_F= ["Zen_RTS_F_West_AssetLAND_CARGO_PATROL_V1_F", "patrol tower", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_B_SLINGLOAD_01_MEDEVAC_F= ["Zen_RTS_F_West_AssetB_SLINGLOAD_01_MEDEVAC_F", "med tent", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_B_SLINGLOAD_01_FUEL_F= ["Zen_RTS_F_West_AssetB_SLINGLOAD_01_FUEL_F", "fuel port", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_B_Slingload_01_Ammo_F= ["Zen_RTS_F_West_AssetB_Slingload_01_Ammo_F", "ammo port", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_B_Slingload_01_Repair_F= ["Zen_RTS_F_West_AssetB_Slingload_01_Repair_F", "repair port", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Box_NATO_WpsSpecial_F= ["Zen_RTS_F_West_AssetBox_NATO_WpsSpecial_F", "Supply Box [NATO]", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Land_BagFence_Corner_F= ["Zen_RTS_F_West_Asset_Land_BagFence_Corner_F", "repair port", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_Land_CncWall4_F= ["Zen_RTS_F_West_Asset_Land_CncWall4_F", "repair port", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;

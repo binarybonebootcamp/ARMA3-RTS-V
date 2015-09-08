@@ -1,7 +1,13 @@
 #include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
 
 enableSaving [false, false];
+player enableFatigue false;
+player addEventhandler ["Respawn", {player enableFatigue false}];
+My_Title = {Titletext[format ["%1", "-= RTS V =-\nWarGame\nFor Arma 3"], "PLAIN DOWN" , .5]};
+call My_Title;
+[] execVM "briefing.sqf";
 
+sleep .1;
 #include "Zen_RTS_Functions\Zen_RTS_GlobalFunctions.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_GlobalVariables.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_ParseParams.sqf"
@@ -63,10 +69,10 @@ sleep 1;
 // [] exec "economy\rts-supplyMonitor.sqs";
 // [] exec "rts-build-serverside.sqs";
 [] exec "rts-init-commandermonitor.sqs";
-[] exec "test.sqs";
+//[] exec "test.sqs";                                          /////////////i took this out with what ever it was attatched to.. like unit monitor .. geeting errors from east.
 //[] exec "rts-build-serverSideMonitor.sqs";
 // rts_hq sideChat "Global Scripts and Variables Initialized";
-
+0 = [] execVM 'unflip_vehicle.sqf';
 execVM "R3F_LOG\init.sqf";
 [] execVM "VCOM_Driving\init.sqf";
 // --------------------------
@@ -75,23 +81,23 @@ execVM "R3F_LOG\init.sqf";
 0 = [] spawn Zen_RTS_EconomyManager;
 0 = [] spawn Zen_RTS_RecycleRepairAIManager;
 Zen_JIP_Args_Server = [overcast, fog, vd];
+["Initialize"] call BIS_fnc_dynamicGroups;
 
 {
     call compile format ["xp%1 = 0", _x];
-    // _x spawn ZKS_Revive_Init;
 
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
-} forEach ([west, east] call Zen_ConvertToObjectArray);
+} forEach ([West, East] call Zen_ConvertToObjectArray);
 // ----------------------
 
 // ====================================================================================
 // Zen_RTS_SubTerritory
 // ====================================================================================
 
-westFC = 0;
-eastFC = 0;
+WestFC = 0;
+EastFC = 0;
 civFC = 0;
 
 0 = [] spawn Zen_RTS_SubTerritoryManager;
@@ -112,7 +118,7 @@ for "_i" from 1 to 32 do {
 0 = [] spawn Zen_RTS_TerritoryManager;
 
 _Zen_TerritorySouth_East_TerritoryMarker = [ListFlag1, "", "colorRed", [0, 0], "rectangle", 0, 1] call Zen_SpawnMarker;
-0 = ["South_east", [MKR(1), MKR(2),MKR(3),MKR(4)]] call Zen_RTS_TerritoryCreate;
+0 = ["South_East", [MKR(1), MKR(2),MKR(3),MKR(4)]] call Zen_RTS_TerritoryCreate;
 
 _Zen_TerritoryEast_TerritoryMarker = [ListFlag5, "", "colorRed", [0, 0], "rectangle", 0, 1] call Zen_SpawnMarker;
 0 = ["East", [MKR(5),MKR(6),MKR(7),MKR(26)]] call Zen_RTS_TerritoryCreate;
@@ -249,7 +255,7 @@ RTS_Building_Type_Levels = [[], []]; // global
 } forEach RTS_Building_Type_Levels;
 
 // all asset types must be added here, or they will not be considered for custom squads
-// must be [[west asset types, [east '']]
+// must be [[West asset types, [East '']]
 RTS_Used_Asset_Types = [[], []]; // global
 
 // These arrays and functions are for the server only

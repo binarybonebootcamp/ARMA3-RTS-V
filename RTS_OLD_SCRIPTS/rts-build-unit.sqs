@@ -78,12 +78,12 @@ _bldName = BName
 
 ;;This will show queue status when enabled
 _cString = "None"
-?_bldName in [eastBarracksName,westBarracksName] : _qTextID = 1030; _qButtonID = 1031; _cString = "Sld"
-?_bldName in [eastLightFacName,westLightFacName] : _qTextID = 1032; _qbuttonID = 1033; _cString = "Vcl"
-?_bldName in [eastHeavyFacName,westHeavyFacName] : _qTextID = 1034; _qButtonID = 1035; _cString = "Vcl"
-?_bldName in [eastAirFacName,westAirFacName] : _qTextID = 1036; _qButtonID = 1039; _cString = "Air"
+?_bldName in [EastBarracksName,WestBarracksName] : _qTextID = 1030; _qButtonID = 1031; _cString = "Sld"
+?_bldName in [EastLightFacName,WestLightFacName] : _qTextID = 1032; _qbuttonID = 1033; _cString = "Vcl"
+?_bldName in [EastHeavyFacName,WestHeavyFacName] : _qTextID = 1034; _qButtonID = 1035; _cString = "Vcl"
+?_bldName in [EastAirFacName,WestAirFacName] : _qTextID = 1036; _qButtonID = 1039; _cString = "Air"
 
-;;?_bldName in [eastHQFacName,westHQFacName] : _qTextID = 2036; _qButtonID = 2037; _cString = "Air"
+;;?_bldName in [EastHQFacName,WestHQFacName] : _qTextID = 2036; _qButtonID = 2037; _cString = "Air"
 
 call compile format ["Cancel%1 = FALSE",_cString]
 
@@ -140,7 +140,7 @@ _pos = getPos _bld
 _dir = getDir _bld
 
 _dist = -30
-?rts_name in [eastAirFacName, westAirFacName] : _dist = -50 - random 30
+?rts_name in [EastAirFacName, WestAirFacName] : _dist = -50 - random 30
 _posX = (_pos select 0) + _dist * sin _dir
 _posY = (_pos select 1) + _dist * cos _dir
 

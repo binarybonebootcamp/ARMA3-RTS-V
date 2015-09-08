@@ -13,8 +13,8 @@ VclEast = ObjNull
 
 @(!IsNull BuildForWest and  !IsNull VclWest) OR (!IsNull BuildForEast and !IsNull VclEast)
 
-?(!IsNull BuildForWest and !IsNull VclWest) : _side = WEST
-?(!IsNull BuildForEast and !IsNull VclEast) : _side = EAST
+?(!IsNull BuildForWest and !IsNull VclWest) : _side = West
+?(!IsNull BuildForEast and !IsNull VclEast) : _side = East
 
 _builder = call compile format ["BuildFor%1", _side]
 _vcl = call compile format ["Vcl%1", _side]

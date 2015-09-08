@@ -63,7 +63,7 @@
             lbSetData [_idListUnits, _index, _x];
             // lbSetValue [_idListUnits, _index, _forEachIndex];
             // lbSetPicture [_idListUnits, _index, ""];
-        } forEach (RTS_Used_Asset_Types select ([west, east] find _side));
+        } forEach (RTS_Used_Asset_Types select ([West, East] find _side));
 
         for "_i" from 0 to (count RTS_Custom_Squads_Assets - 1) do {
             _index = lbAdd [_idListCustom, _squadNames select _i];

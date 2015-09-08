@@ -17,45 +17,45 @@ publicVariable "rts_vpTickerEast"
 
 ;;Resource variables for JIP clients
 ~1
-publicVariable "westSupplyFactor"
-publicVariable "westSupply"
+publicVariable "WestSupplyFactor"
+publicVariable "WestSupply"
 
-publicVariable "eastSupplyFactor"
-publicVariable "eastSupply"
+publicVariable "EastSupplyFactor"
+publicVariable "EastSupply"
 
 
 ;;Building Placeholder Vars so JIP clients will have base buildings
 ~1
-publicVariable "westBarracksTmp"
-publicVariable "westLightFacTmp"
-publicVariable "westHeavyFacTmp"
-publicVariable "westAirFacTmp"
-publicVariable "westNavalFacTmp"
+publicVariable "WestBarracksTmp"
+publicVariable "WestLightFacTmp"
+publicVariable "WestHeavyFacTmp"
+publicVariable "WestAirFacTmp"
+publicVariable "WestNavalFacTmp"
 
-publicVariable "eastBarracksTmp"
-publicVariable "eastHeavyFacTmp"
-publicVariable "eastLightFacTmp"
-publicVariable "eastAirFacTmp"
-publicVariable "eastNavalFacTmp"
+publicVariable "EastBarracksTmp"
+publicVariable "EastHeavyFacTmp"
+publicVariable "EastLightFacTmp"
+publicVariable "EastAirFacTmp"
+publicVariable "EastNavalFacTmp"
 
-publicVariable "westBarracksLevel"
-publicVariable "westLightFacLevel"
-publicVariable "westHeavyFacLevel"
-publicVariable "westAirFacLevel"
+publicVariable "WestBarracksLevel"
+publicVariable "WestLightFacLevel"
+publicVariable "WestHeavyFacLevel"
+publicVariable "WestAirFacLevel"
 
-publicVariable "eastBarracksLevel"
-publicVariable "eastLightFacLevel"
-publicVariable "eastHeavyFacLevel"
-publicVariable "eastAirFacLevel"
+publicVariable "EastBarracksLevel"
+publicVariable "EastLightFacLevel"
+publicVariable "EastHeavyFacLevel"
+publicVariable "EastAirFacLevel"
 
 
 
 ;;Update West Assets with public array
-_tA = [WEST,westAssets];
+_tA = [West,WestAssets];
 rts_updateArray = STR _tA;
 publicVariable "rts_updateArray";
 ~2
 ;;Update East Assets with public array
-_tA = [EAST,eastAssets];
+_tA = [East,EastAssets];
 rts_updateArray = STR _tA;
 publicVariable "rts_updateArray";

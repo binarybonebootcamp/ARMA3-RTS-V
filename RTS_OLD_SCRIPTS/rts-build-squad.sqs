@@ -62,7 +62,7 @@ _aiCount = (Count Units Group Player) - 1
 ?_aiCount >= AILimit : _msg = Format["Limit of %1 Soldiers is already reached.  You can train more if one dies.", AILimit]; rts_hq sideChat _msg; Goto "Skip"
 
 
-?!(typeOf _bld in [eastBaseLevel4, westBaseLevel4, typeOf westLightFac, typeOf eastLightFac, typeOf westHeavyFac, typeOf eastHeavyFac]) && _class == "vcl" : rts_hq sideChat format ["A %1 can only be built at a level 4 facility or the vehicle factory.", _name]; goto "Skip"
+?!(typeOf _bld in [EastBaseLevel4, WestBaseLevel4, typeOf WestLightFac, typeOf EastLightFac, typeOf WestHeavyFac, typeOf EastHeavyFac]) && _class == "vcl" : rts_hq sideChat format ["A %1 can only be built at a level 4 facility or the vehicle factory.", _name]; goto "Skip"
 
 _bTimeBase = _btime/3
 

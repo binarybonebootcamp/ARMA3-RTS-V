@@ -41,5 +41,5 @@ NameVP3 = "Victory Point 3"
 1 setRadioMsg "show victory ticker"
 [] exec "vicpoint\rts-vpShowMsg.sqs"
 
-WEST exec "vicpoint\rts-vpScoreSounds.sqs"
-EAST exec "vicpoint\rts-vpScoreSounds.sqs"
+West exec "vicpoint\rts-vpScoreSounds.sqs"
+East exec "vicpoint\rts-vpScoreSounds.sqs"

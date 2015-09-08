@@ -115,16 +115,80 @@ class RscSmallTitleBlack
 };
 
 
-class RscEdit
+class RscSlider
 {
-       type = CT_EDIT;
-       idc = -1;
-       style = ST_LEFT;
-       font = FontHTML;
-       sizeEx = 0.02;
-       colorText[] = {0, 0, 0, 1};
-       colorSelection[] = {0.5, 0.5, 0.5, 1};
-       autocomplete = false;
-       text = "0";
+        access = 0;
+        type = 3;
+        style = 1024;
+        w = 0.3;
+        color[] = {1,1,1,0.8};
+        colorActive[] = {1,1,1,1};
+        shadow = 0;
+        h = 0.025;
 };
 
+class RscButton
+{
+    type = CT_BUTTON;
+    idc = 100;
+    Style = ST_CENTER;
+    colorText[] = {0, 0, 0, 1};
+    font = FontTITLEHalf;
+    sizeEx = 0.03;
+    soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
+    soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
+    soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
+    default = false;
+    w = 0.2;
+    h = 0.05;
+    offsetX = 0.001;
+    offsetY = 0.001;
+    offsetPressedX = 0.003;
+    offsetPressedY = 0.003;
+    shadow = 0.000001;
+    borderSize = 0.00003;
+    soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+    colorDisabled[] = {0,0,0,0};
+    colorTextSelect[] = {1, 0, 0, 1};   
+    colorBackground[] = {0,0,0,0.72};   
+    colorBorder[] = {0.0, 0.1, 0.7, 0.5};
+    colorFocused[] = {0.0, 0.1, 0.7, 0.5};
+    colorShadow[] = {0.02, 0.2, 0.7, 0.6};      
+    colorBackgroundDisabled[] = {1,1,1,1};
+    colorBackgroundActive[] = {0,0.18,0.388,0.4};
+};
+
+class  rscedit {
+	type = 2;
+	style = 0x00 + 0x40;
+	font = "PuristaMedium";
+	shadow = 2;
+	sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	colorBackground[] = {0, 0, 0, 1};
+	soundSelect[] = {"",0.1,1};
+	soundExpand[] = {"",0.1,1};
+	colorText[] = {0.95, 0.95, 0.95, 1};
+	colorDisabled[] = {1, 1, 1, 0.25};
+	autocomplete = false;
+	colorSelection[] = {0.5, 0, 0, 1};
+	canModify = 1;
+};
+
+	class RscFrame
+	{
+		type = CT_STATIC;
+		idc = -1;
+		style = ST_FRAME;
+		shadow = 2;
+		colorDisabled[] = {0,0.13,0.25,0.7};
+		colorBackground[] = {0,0.13,0.25,0.7};
+		colorBackgroundDisabled[] = {0,0.13,0.25,0.7};
+		colorBackgroundActive[] = {0,0.13,0.25,0.7};
+		colorFocused[] = {0,0.13,0.25,0.7};
+		colorShadow[] = {0.023529,0,0.0313725,1};
+		colorBorder[] = {0.023529,0,0.0313725,1};
+		colorText[] = {1,1,1,0.9};
+		font = "PuristaMedium";
+		sizeEx = 0.01;
+		text = "";
+	};	

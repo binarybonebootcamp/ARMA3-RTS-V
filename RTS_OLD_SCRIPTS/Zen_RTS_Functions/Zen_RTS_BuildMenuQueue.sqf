@@ -10,7 +10,7 @@ while {true} do {
     _idQTexts = [1030, 1032, 1034, 1036];
     _idQButtons = [1031, 1033, 1035, 1039];
 
-    _index = if (side player == west) then {0} else {1};
+    _index = if (side player == West) then {0} else {1};
     _buildingTypes = (RTS_Used_Building_Types select _index);
     _buildingObjs = [[], [], [], []];
 

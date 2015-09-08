@@ -57,20 +57,20 @@ _varName = _subArray select 7
 _teamSupply = call compile format ["%1Supply", _side]
 ?_teamSupply < _supply : _msg = format ["Insufficient supply: %1 %2 required.", _teamSupply, _supply]; goto "EarlyExit"
 
-?_unitName in [westBarracksName] AND !(IsNull westBarracks) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
-?_unitName in [eastBarracksName] AND !(IsNull eastBarracks) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+?_unitName in [WestBarracksName] AND !(IsNull WestBarracks) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+?_unitName in [EastBarracksName] AND !(IsNull EastBarracks) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
 
-?_unitName in [westLightFacName] AND !(IsNull westLightFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
-?_unitName in [eastLightFacName] AND !(IsNull eastLightFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+?_unitName in [WestLightFacName] AND !(IsNull WestLightFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+?_unitName in [EastLightFacName] AND !(IsNull EastLightFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
 
-?_unitName in [westHeavyFacName] AND !(IsNull westHeavyFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
-?_unitName in [eastHeavyFacName] AND !(IsNull eastHeavyFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+?_unitName in [WestHeavyFacName] AND !(IsNull WestHeavyFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+?_unitName in [EastHeavyFacName] AND !(IsNull EastHeavyFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
 
-?_unitName in [westAirFacName] AND !(IsNull westAirFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
-?_unitName in [eastAirFacName] AND !(IsNull eastAirFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+?_unitName in [WestAirFacName] AND !(IsNull WestAirFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+?_unitName in [EastAirFacName] AND !(IsNull EastAirFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
 
-;;?_unitName in [westHQFacName] AND !(IsNull westHQFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
-;;?_unitName in [eastHQFacName] AND !(IsNull eastHQFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+;;?_unitName in [WestHQFacName] AND !(IsNull WestHQFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
+;;?_unitName in [EastHQFacName] AND !(IsNull EastHQFac) : _msg = Format["%1 is already built.", _unitName]; Goto "EarlyExit"
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -168,8 +168,8 @@ deleteVehicle _tmp1
 
 ?!_ok && _mcu && _class in ["base"] : _msg = "The building site is obstructed.  When the Heli H appears, it is clear to build."; Goto "EarlyExit"
 
-;;?_unitName in [westLightFacName, westHeavyFacName, westAirFacName, westBarracksName] AND (WMCU Distance WCommandHQ) > rts_DistLimit : _msg = Format ;;["The %1 must be built within %3 meters of the %2", _unitName, WestCHQName, rts_DistLimit]; Goto "EarlyExit"
-;;?_unitName in [eastLightFacName, eastHeavyFacName, eastAirFacName, eastBarracksName] AND (EMCU Distance ECommandHQ) > rts_DistLimit : _msg = Format ["The ;;%1 must be built within %3 meters of the %2", _unitName,EastCHQName,rts_DistLimit]; Goto "EarlyExit"
+;;?_unitName in [WestLightFacName, WestHeavyFacName, WestAirFacName, WestBarracksName] AND (WMCU Distance WCommandHQ) > rts_DistLimit : _msg = Format ;;["The %1 must be built within %3 meters of the %2", _unitName, WestCHQName, rts_DistLimit]; Goto "EarlyExit"
+;;?_unitName in [EastLightFacName, EastHeavyFacName, EastAirFacName, EastBarracksName] AND (EMCU Distance ECommandHQ) > rts_DistLimit : _msg = Format ["The ;;%1 must be built within %3 meters of the %2", _unitName,EastCHQName,rts_DistLimit]; Goto "EarlyExit"
 
 ?!isNull firstBld && _actionUnit distance firstBld > rts_buildDistLimit : _msg = format ["Your buildings must be within %1 meters of the %2, the first building you built.", rts_buildDistLimit, firstBldName]; goto "EarlyExit"
 
@@ -217,8 +217,8 @@ Goto "End"
 
 ?_MCU : MCUActive = FALSE
 ?_CJ : CJActive = FALSE
-?SIDE _player == WEST AND _MCU AND _unitName in allBldNames : westBaseUnits = westBaseUnits + 1; PublicVariable "westBaseUnits"
-?SIDE _player == EAST AND _MCU AND _unitName in allBldNames : eastBaseUnits = eastBaseUnits + 1; PublicVariable "eastBaseUnits"
+?SIDE _player == West AND _MCU AND _unitName in allBldNames : WestBaseUnits = WestBaseUnits + 1; PublicVariable "WestBaseUnits"
+?SIDE _player == East AND _MCU AND _unitName in allBldNames : EastBaseUnits = EastBaseUnits + 1; PublicVariable "EastBaseUnits"
 ;;ctrlSetText [_idTitle, _textQ]
 ;;ctrlSetText [_idPic, ""]
 ;;ctrlSetText [_idCur, ""]

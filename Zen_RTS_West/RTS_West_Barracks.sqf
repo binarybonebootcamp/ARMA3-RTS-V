@@ -34,7 +34,7 @@ Zen_RTS_F_West_BarracksConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_Barracks]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_Cargo_House_V2_F", 1, west)
+    BUILDING_VISUALS("Land_Cargo_House_V1_F", 1, West)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_Barracks)
 
     // to-do: || false condition needs building hacking logic

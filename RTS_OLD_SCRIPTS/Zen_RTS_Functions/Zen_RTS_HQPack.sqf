@@ -26,11 +26,11 @@ _truckTypes = ["B_Truck_01_medical_F","O_Truck_03_medical_F","I_Truck_02_transpo
 _attachProxy = [_HQContainer, "Land_CanisterPlastic_F", -5, 0, true] call Zen_SpawnVehicle;
 
 switch (_side) do {
-    case west: {
+    case West: {
         _truckType = _truckTypes select 0;
         _attachOffset = [0,-2,.845];
     };
-    case east: {
+    case East: {
         _truckType = _truckTypes select 1;
         _attachOffset = [-0.04,-1.65,.66];
     };

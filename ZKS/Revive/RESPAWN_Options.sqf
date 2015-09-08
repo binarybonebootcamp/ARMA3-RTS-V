@@ -12,8 +12,8 @@ MY_SPAWN = objnull;
 
 	switch (_side) do 
 	{
-	case WEST : {MY_SPAWN = westTruck};
-	case EAST : {MY_SPAWN = eastTruck};
+	case West : {MY_SPAWN = WestTruck};
+	case East : {MY_SPAWN = EastTruck};
 	case RESISTANCE : {MY_SPAWN = objnull};
 	case CIVILIAN : {MY_SPAWN = objnull};
 	};
@@ -42,7 +42,7 @@ Spawn_Places = [];
 
 	switch (_side) do 
 	{
-		case WEST : {
+		case West : {
 				//-----------------------
 				//Houses
 				Spawn_Houses = ["Land_Cargo_Patrol_V1_F","Land_i_Garage_V1_F","Land_Cargo_House_V1_F","rhs_2P3_1","Land_Airport_Tower_F","Land_Research_HQ_F"];
@@ -55,7 +55,7 @@ Spawn_Places = [];
 				Spawn_Objects = ["B_Truck_01_medical_F"];
    			};
 
-		case EAST : {
+		case East : {
 				//-----------------------
 				//Houses
 				Spawn_Houses = ["Land_Cargo_Patrol_V1_F","Land_i_Garage_V1_F","Land_Cargo_House_V1_F","rhs_2P3_1","Land_Airport_Tower_F","Land_Research_HQ_F"];

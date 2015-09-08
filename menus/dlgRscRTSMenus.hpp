@@ -222,6 +222,7 @@ class RscListBackground : RscText
         y = 0.0;
         w = 0.58;
         h = 0.50;
+		sizeEx = 0.30;
         colorText[] = {1,1,1,1};
     };
 
@@ -232,7 +233,9 @@ class RscListBackground : RscText
         x = 0.22;
         y = 0.1;
         w = 0.58;
-        h = 0.25;
+        h = 0.50;
+		sizeEx = 0.040;
+		
     };
     class RESEARCH_TITLE : RscSmallTitleBlack
     {
@@ -264,7 +267,8 @@ class RscListBackground : RscText
         x = 0.22;
         y = 0.1;
         w = 0.58;
-        h = 0.25;
+        h = 0.50;
+		sizeEx = 0.040;
     };
 //Dialog for Mission Control  IDs 1000-1050
 class DlgStatus
@@ -307,7 +311,7 @@ class DlgStatus
 
         class FRAME_BACKGROUND : RscText
     {
-        colorBackground[] = {0.4, 0.4, 0.4, 0.75};
+        colorBackground[] = {0,0,0,0};//{0.4, 0.4, 0.4, 0.75};
         text = "";
         x = 0.22;
         y = 0.1;
@@ -469,7 +473,7 @@ class TOP_left_TITLE : RscText
                     y = 0.400;
                     w = 0.400;
                     h = 0.200;
-
+					
             };
 
               class Stats_Background : RscStatBackGround {};
@@ -607,8 +611,8 @@ class TOP_left_TITLE : RscText
             sizeEx = 0.030;
             font = FontTITLEHalf;
             colorText[] = {0, 1, 1, 1};
-            text = "Upright Vehicle";
-            action = "closeDialog 0; call RTS_FNC_flipACTIONS";
+            text = "free button";
+           // action = "closeDialog 0; call RTS_FNC_flipACTIONS";
         };
          class Button_repair : base_button {
             idc = 1007;
@@ -701,7 +705,7 @@ class DlgBuild
 
     class FRAME_BACKGROUND : RscText
     {
-        colorBackground[] = {0.4, 0.4, 0.4, 0.75};
+        colorBackground[] = {0,0,0,0};//{0.4, 0.4, 0.4, 0.75};
         text = "";
         x = 0.22;
         y = 0.1;
@@ -1070,7 +1074,6 @@ class DlgHUD
 
     };
 
-
 class DlgConfirm {
     idd = -1;
     movingEnable = true;
@@ -1084,12 +1087,12 @@ class DlgConfirm {
         style = ST_CENTER;
         x = 0.325;
         y = 0.375;
-        w = 0.35;
+        w = 0.40;
         h = 0.25;
         font = FontTITLE;
         colorText[] = {0, 0, 0, 1};
         colorBackground[] = {.25, .25, .25, .75};
-        sizeEx = 0.049;
+        sizeEx = 0.050;
         text = "";
     };
 
@@ -1101,7 +1104,7 @@ class DlgConfirm {
         sizeEx = 0.040;
         x = 0.335;
         y = 0.385;
-        w = 0.33;
+        w = 0.38;
         h = 0.23;
     };
 

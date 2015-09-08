@@ -26,9 +26,9 @@ _side = side player;
 
   	switch (_side) do 
 	{
-	case WEST : {_colour = "colorblue"};
+	case West : {_colour = "colorblue"};
 
-	case EAST : {_colour = "colorred"};
+	case East : {_colour = "colorred"};
 
 	case RESISTANCE : {_colour = "colorgreen"};
 

@@ -45,10 +45,10 @@ _subTerritorySides = [];
 _control = ((({_x == _side} count _subTerritorySides)) - ({_x != _side && _x != civilian} count _subTerritorySides) / (count _subTerritorySides)) max 0;
 _getSideColor = {
     (switch (_this) do {
-        case west: {
+        case West: {
              "colorBlufor"
         };
-        case east: {
+        case East: {
               "colorOpfor"
         };
         case resistance: {

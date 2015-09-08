@@ -5,15 +5,15 @@
 
 #Start
 
-MCUWest = westTruck
-MCUEast = eastTruck
+MCUWest = WestTruck
+MCUEast = EastTruck
 
 newBuilding = objNull
 
-_action = format ["Base Construction Menu",westMCUName]
+_action = format ["Base Construction Menu",WestMCUName]
 MCUWest addAction ["<t color='#D80000'>" + _action + "</t>", Zen_RTS_BuildMenuStructures, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'B_Truck_01_medical_F'"]
 
-_action = format ["Base Construction Menu",eastMCUName];
+_action = format ["Base Construction Menu",EastMCUName];
 MCUEast addAction ["<t color='#D80000'>" + _action + "</t>", Zen_RTS_BuildMenuStructures, [], 100, false, true, "teamSwitchPrev", "vehicle player isKindOf 'O_Truck_02_medical_F'"]
 
 
