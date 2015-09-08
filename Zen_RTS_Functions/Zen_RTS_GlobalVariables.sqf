@@ -7,15 +7,15 @@ Dedicated = isDedicated;
 ColorCivilian = "ColorCivilian";
 // ListFlag6 = ListFlag7;
 updbg = false;
-WESTGearLevel1 = [];
-WESTPrimaryLevel1 = [];
-westPrimaryLevel3 = [];
+WestGearLevel1 = [];
+WestPrimaryLevel1 = [];
+WestPrimaryLevel3 = [];
 arms_refresh = true;
 noBuildZone = [];
 
 aiLimit = 10;
 rts_unitnum = 0;
-westSoldiers = [];
+WestSoldiers = [];
 
 vd = 500;
 oilWest = 1;
@@ -26,68 +26,68 @@ oilEast = 1;
 oreEast = 1;
 energyEast = 1;
 
-westBaseUnits = 0;
-eastBaseUnits = 0;
+WestBaseUnits = 0;
+EastBaseUnits = 0;
 
-westtransport1  = [];
-easttransport1  = [];
-westLightGround = [];
-eastLightGround = [];
-westair4        = [];
-eastair4        = [];
-westair5        = [];
-eastair5        = [];
-westair6        = [];
-eastair6        = [];
-westAllGround   = [];
-westAllAir      = [];
+Westtransport1  = [];
+Easttransport1  = [];
+WestLightGround = [];
+EastLightGround = [];
+Westair4        = [];
+Eastair4        = [];
+Westair5        = [];
+Eastair5        = [];
+Westair6        = [];
+Eastair6        = [];
+WestAllGround   = [];
+WestAllAir      = [];
 AllGround       = [];
-westMedium1     = [];
-eastMedium1     = [];
-westSupport     = [];
-eastSupport     = [];
-westAAA         = [];
-eastAAA         = [];
-westHeavyGround = [];
-eastHeavyGround = [];
+WestMedium1     = [];
+EastMedium1     = [];
+WestSupport     = [];
+EastSupport     = [];
+WestAAA         = [];
+EastAAA         = [];
+WestHeavyGround = [];
+EastHeavyGround = [];
 
 // These variable set all build queue info.  Forward base variables are initialized in the territory monitor file.
 rts_maxQueueSize = 10;
 
-westBarracksQActive = FALSE;
-westLightFacQActive = FALSE;
-westHeavyFacQActive = FALSE;
-westAirFacQActive = FALSE;
+WestBarracksQActive = FALSE;
+WestLightFacQActive = FALSE;
+WestHeavyFacQActive = FALSE;
+WestAirFacQActive = FALSE;
 
-eastBarracksQActive = FALSE;
-eastLightFacQActive = FALSE;
-eastHeavyFacQActive = FALSE;
-eastAirFacQActive = FALSE;
+EastBarracksQActive = FALSE;
+EastLightFacQActive = FALSE;
+EastHeavyFacQActive = FALSE;
+EastAirFacQActive = FALSE;
 
-westBarracksQNum = 0;
-westLightFacQNum = 0;
-westHeavyFacQNum = 0;
-westAirFacQNum = 0;
+WestBarracksQNum = 0;
+WestLightFacQNum = 0;
+WestHeavyFacQNum = 0;
+WestAirFacQNum = 0;
 
-eastBarracksQNum = 0;
-eastLightFacQNum = 0;
-eastHeavyFacQNum = 0;
-eastAirFacQNum = 0;
+EastBarracksQNum = 0;
+EastLightFacQNum = 0;
+EastHeavyFacQNum = 0;
+EastAirFacQNum = 0;
 
 // Upgrade Variables
-westBarracksLevel = 0;
-westLightFacLevel = 0;
-westHeavyFacLevel = 0;
-westAirFacLevel = 0;
-westForwardBaseLevel = 0;
-westGearLevel = 1;
+WestBarracksLevel = 0;
+WestLightFacLevel = 0;
+WestHeavyFacLevel = 0;
+WestAirFacLevel = 0;
+WestForwardBaseLevel = 0;
+WestGearLevel = 1;
 
-eastBarracksLevel = 0;
-eastLightFacLevel = 0;
-eastHeavyFacLevel = 0;
-eastAirFacLevel = 0;
-eastForwardBaseLevel = 0;
-eastGearLevel = 1;
+EastBarracksLevel = 0;
+EastLightFacLevel = 0;
+EastHeavyFacLevel = 0;
+EastAirFacLevel = 0;
+EastForwardBaseLevel = 0;
+EastGearLevel = 1;
 
 rts_hq = [SIDE Player,"HQ"];
 
@@ -128,7 +128,7 @@ rts_killedBase = ["killed",{_this execVM "rts-event-baseKilledEH.sqf"}];
 rts_killedRsc = ["killed",{_this exec "rts-event-resourceKilled.sqs"}];
 
 // Amount of time til player can re-deploy - set in description.ext parameters
-rts_playerRespawnDelay = 1;
+rts_playerRespawnDelay = 0;
 
 // Economy
 rts_moneyMonitorActive = FALSE;
@@ -136,12 +136,12 @@ idMoney = 1037;
 idSupply = 1038;
 idFPS = 666;
 // SupplyFactor - Increases with level of captured territories and increases supply income
-westSupplyFactor = 0;
-eastSupplyFactor = 0;
+WestSupplyFactor = 0;
+EastSupplyFactor = 0;
 CIVSupplyFactor = 0;
 
 if (rts_debug) then {
     playerMoney = 100000;
-    eastsupply = 100000;
-    westSupply = 100000;
+    Eastsupply = 100000;
+    WestSupply = 100000;
 };

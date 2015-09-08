@@ -43,7 +43,7 @@ Zen_RTS_F_East_TankFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_TankFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_i_Garage_V1_F", 1, east)
+    BUILDING_VISUALS("Land_i_Garage_V1_F", 1, East)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_TankFactory)
 
     // to-do: || false condition needs building hacking logic

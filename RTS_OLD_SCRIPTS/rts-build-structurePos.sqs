@@ -83,7 +83,7 @@ _marker = _unitName
 ?Side Player == _side : _marker setMarkerTextLocal _unitName
 ?Side Player == _side : _marker setMarkerSizeLocal [.7,.7]
 
-?_bld in [westLightFac, eastLightFac, westHeavyFac, eastHeavyFac, westBarracks, eastBarracks] : _bld addAction ["*Ammo Menu*","arms\karr-arms-menu.sqs"]
+?_bld in [WestLightFac, EastLightFac, WestHeavyFac, EastHeavyFac, WestBarracks, EastBarracks] : _bld addAction ["*Ammo Menu*","arms\karr-arms-menu.sqs"]
 
 
 Exit

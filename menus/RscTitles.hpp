@@ -78,7 +78,7 @@ class RscTitleText
 class RscPicture
 	{
 	access=0;
-	type=0;
+	type = VSoft;
 	idc=-1;
 	style=48;
 	colorBackground[]={0,0,0,0};
@@ -90,7 +90,7 @@ class RscPicture
 	};
 class RscTitles
   {
-	titles[] = {"crewinfomessage", "westIcon","westTaking","eastIcon","eastTaking"};
+	titles[] = {"crewinfomessage", "WestIcon","WestTaking","EastIcon","EastTaking"};
 	
 	class Zen_pic
 	{
@@ -354,61 +354,61 @@ class RscTitles
 		};
 	};
 
-class westIcon
+class WestIcon
 	{
 		idd=-1;
 		movingEnable = true;
 		duration=2;
-		name = "westIcon";
+		name = "WestIcon";
 		controls[]=
 		{Picture};
 
 		class Picture : RscPicture
 		{
 			x = 0.88; y=0.01; w = 0.1; h = 0.07;
-			text = "pictures\west.paa";
+			text = "pictures\West.paa";
 		};
 	};
-	class westTaking
+	class WestTaking
 	{
 		idd=-1;
 		movingEnable = true;
 		duration=2;
-		name = "westTaking";
+		name = "WestTaking";
 		controls[]={Picture};
 
 		class Picture : RscPicture
 		{
 			x = 0.88; y=0.01; w = 0.1; h = 0.07;
-			text = "pictures\west_taking.paa";
+			text = "pictures\West_taking.paa";
 		};
 	};
-	class eastIcon
+	class EastIcon
 	{
 		idd=-1;
 		movingEnable = true;
 		duration=2;
-		name = "eastIcon";
+		name = "EastIcon";
 		controls[]={Picture};
 
 		class Picture : RscPicture
 		{
 			x = 0.88; y=0.01; w = 0.1; h = 0.07;
-			text = "pictures\east.paa";
+			text = "pictures\East.paa";
 		};
 	};
-	class eastTaking
+	class EastTaking
 	{
 		idd=-1;
 		movingEnable = true;
 		duration=2;
-		name = "eastTaking";
+		name = "EastTaking";
 		controls[]={Picture};
 
 		class Picture : RscPicture
 		{
 			x = 0.88; y=0.01; w = 0.1; h = 0.07;
-			text = "pictures\east_taking.paa";
+			text = "pictures\East_taking.paa";
 		};
     }; 
 };	

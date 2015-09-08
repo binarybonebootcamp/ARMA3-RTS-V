@@ -29,16 +29,16 @@ if (DEBUG) then {
     diag_log ("rts_tmpstring: " + str rts_tmpstring);
     diag_log ("vArray: " + str vArray);
     diag_log ("BName: " + str BName);
-    diag_log ("eastBarracksName: " + str eastBarracksName);
-    diag_log ("westBarracksName: " + str westBarracksName);
-    diag_log ("eastLightFacName: " + str eastLightFacName);
-    diag_log ("westLightFacName: " + str westLightFacName);
-    diag_log ("eastHeavyFacName: " + str eastHeavyFacName);
-    diag_log ("westHeavyFacName: " + str westHeavyFacName);
-    diag_log ("eastAirFacName: " + str eastAirFacName);
-    diag_log ("westAirFacName: " + str westAirFacName);
-    //diag_log ("eastHQFacName: " + str eastHQFacName);
-    //diag_log ("westHQFacName: " + str westHQFacName);
+    diag_log ("EastBarracksName: " + str EastBarracksName);
+    diag_log ("WestBarracksName: " + str WestBarracksName);
+    diag_log ("EastLightFacName: " + str EastLightFacName);
+    diag_log ("WestLightFacName: " + str WestLightFacName);
+    diag_log ("EastHeavyFacName: " + str EastHeavyFacName);
+    diag_log ("WestHeavyFacName: " + str WestHeavyFacName);
+    diag_log ("EastAirFacName: " + str EastAirFacName);
+    diag_log ("WestAirFacName: " + str WestAirFacName);
+    //diag_log ("EastHQFacName: " + str EastHQFacName);
+    //diag_log ("WestHQFacName: " + str WestHQFacName);
     diag_log ("param1: " + str param1);
     diag_log ("rts_debug: " + str rts_debug);
     diag_log ("AICount: " + str AICount);
@@ -148,27 +148,27 @@ _bldName = BName;
 
 // This will show queue status when enabled
 switch (true) do {
-    case (_bldName in [eastBarracksName,westBarracksName]): {
+    case (_bldName in [EastBarracksName,WestBarracksName]): {
         _qTextID   = 1030;
         _qButtonID = 1031;
         _cString   = "Sld";
     };
-    case (_bldName in [eastLightFacName,westLightFacName]): {
+    case (_bldName in [EastLightFacName,WestLightFacName]): {
         _qTextID   = 1032;
         _qButtonID = 1033;
         _cString   = "Vcl";
     };
-    case (_bldName in [eastHeavyFacName,westHeavyFacName]): {
+    case (_bldName in [EastHeavyFacName,WestHeavyFacName]): {
         _qTextID   = 1034;
         _qButtonID = 1035;
         _cString   = "Vcl";
     };
-    case (_bldName in [eastAirFacName,westAirFacName]): {
+    case (_bldName in [EastAirFacName,WestAirFacName]): {
         _qTextID   = 1036;
         _qButtonID = 1039;
         _cString   = "Air";
     };
-   // case (_bldName in [eastHQFacName,westHQFacName]): {
+   // case (_bldName in [EastHQFacName,WestHQFacName]): {
     //    _qTextID   = 2036;
    //     _qButtonID = 2037;
    //     _cString   = "Air";
@@ -236,7 +236,7 @@ if (playerMoney < _credits) exitWith {
 };
 
 _dist = -30;
-if (rts_name in [eastAirFacName, westAirFacName]) then {
+if (rts_name in [EastAirFacName, WestAirFacName]) then {
     _dist = -50 - random 30;
 };
 

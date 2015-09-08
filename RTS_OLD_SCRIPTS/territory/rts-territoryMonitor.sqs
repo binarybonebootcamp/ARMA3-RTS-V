@@ -11,13 +11,13 @@ _maxValue = call compile format ["%1 * %2",_minValue,_maxLevel]
 
 
 ;;Initializing Queue Numbers to 0 since Arma2 doesn't allow undefined vars
-call compile format ["eastBuildingFlag%1QNum = 0",_string]
-call compile format ["westBuildingFlag%1QNum = 0",_string]
-call compile format ["eastBuildingFlag%1Name = Flag%1Name",_string]
-call compile format ["westBuildingFlag%1Name = Flag%1Name",_string]
+call compile format ["EastBuildingFlag%1QNum = 0",_string]
+call compile format ["WestBuildingFlag%1QNum = 0",_string]
+call compile format ["EastBuildingFlag%1Name = Flag%1Name",_string]
+call compile format ["WestBuildingFlag%1Name = Flag%1Name",_string]
 
-call compile format ["eastBuildingFlag%1QActive = FALSE",_string]
-call compile format ["westBuildingFlag%1QActive = FALSE",_string]
+call compile format ["EastBuildingFlag%1QActive = FALSE",_string]
+call compile format ["WestBuildingFlag%1QActive = FALSE",_string]
 
 _trig = call compile format ["ListFlag%1",_string]
 
@@ -70,10 +70,10 @@ _bldType = "objnull"
  ;;for JIP
  call compile format ["publicVariable ""SideFlag%1""",_string]
 
-_west1 = {Side _x == WEST && (getpos _x select 2 < 2) && typeOf vehicle _x in [repairTruckWest]} count list _trig
-_west2 = {Side _x == WEST && (getpos _x select 2 < 2) && typeOf vehicle _x in [ammoTruckWest]} count list _trig
-_east1 = {Side _x == EAST && (getpos _x select 2 < 2) && typeOf vehicle _x in [repairTruckEast]} count list _trig
-_east2 = {Side _x == EAST && (getpos _x select 2 < 2) && typeOf vehicle _x in [ammoTruckEast]} count list _trig
+_West1 = {Side _x == West && (getpos _x select 2 < 2) && typeOf vehicle _x in [repairTruckWest]} count list _trig
+_West2 = {Side _x == West && (getpos _x select 2 < 2) && typeOf vehicle _x in [ammoTruckWest]} count list _trig
+_East1 = {Side _x == East && (getpos _x select 2 < 2) && typeOf vehicle _x in [repairTruckEast]} count list _trig
+_East2 = {Side _x == East && (getpos _x select 2 < 2) && typeOf vehicle _x in [ammoTruckEast]} count list _trig
 ;;_guer = {Side _x == GUER && (getpos _x select 2 < 2) && typeOf vehicle _x == "I_Truck_02_covered_F"} count list _trig
 
 _oldDuty = _duty
@@ -82,10 +82,10 @@ _bld = nearestObject [_spot,_bldType]
 
 ;;?_string == "1" : player sidechat format ["%1",_bld]
 
-?_west1 > 0 && isNull _bld : _side = WEST; _duty = "Base"; _bld = nearestObject [_flag,repairTruckWest]; goto "Owned"
-?_west2 > 0 && isNull _bld : _side = WEST; _duty = "Base"; _bld = nearestObject [_flag,ammoTruckWest]; goto "Owned"
-?_east1 > 0 && isNull _bld : _side = EAST; _duty = "Base"; _bld = nearestObject [_flag,repairTruckEast]; goto "Owned"
-?_east2 > 0 && isNull _bld : _side = EAST; _duty = "Base"; _bld = nearestObject [_flag,ammoTruckEast]; goto "Owned"
+?_West1 > 0 && isNull _bld : _side = West; _duty = "Base"; _bld = nearestObject [_flag,repairTruckWest]; goto "Owned"
+?_West2 > 0 && isNull _bld : _side = West; _duty = "Base"; _bld = nearestObject [_flag,ammoTruckWest]; goto "Owned"
+?_East1 > 0 && isNull _bld : _side = East; _duty = "Base"; _bld = nearestObject [_flag,repairTruckEast]; goto "Owned"
+?_East2 > 0 && isNull _bld : _side = East; _duty = "Base"; _bld = nearestObject [_flag,ammoTruckEast]; goto "Owned"
 
 _bld = nearestObject [_spot,_bldType]
 
@@ -139,14 +139,14 @@ _level = _level + 1;
 _curValue = _newValue;
 _newValue = call compile format ["%1 * %2",_minValue,_level]
 
-;;increase westSupplyFactor or eastSupplyFactor
+;;increase WestSupplyFactor or EastSupplyFactor
 call compile format ["%1SupplyFactor = %1SupplyFactor + (%2 - %3); publicVariable ""%1%2""",_flagSide,_newValue,_curValue]
 
 _bldType = call compile format ["%1%2Level%3",_side,_duty,_level]
 _bldName = format ["%1 %2 Level %3",_flagName,_duty,_level]
 
 _posZ = -10
-?_bldType in [westRefineryLevel1,westRefineryLevel2,westRefineryLevel3,eastRefineryLevel1,eastRefineryLevel2,eastRefineryLevel3] : _posZ = -5
+?_bldType in [WestRefineryLevel1,WestRefineryLevel2,WestRefineryLevel3,EastRefineryLevel1,EastRefineryLevel2,EastRefineryLevel3] : _posZ = -5
 
 
 ;;player groupChat format ["duty: %1, _D: %2, BldType: %3",_duty,_d,_bldType]

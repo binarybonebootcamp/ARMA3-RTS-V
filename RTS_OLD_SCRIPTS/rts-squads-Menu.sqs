@@ -15,7 +15,7 @@ _indexCustoms = 0
 _side = Side Player
 
 
-?!(_side in [EAST,WEST,Independent,CIVILIAN]) : _msg = format ["Side %1 is not authorized for this interface.",_side]; goto "Denied"
+?!(_side in [East,West,Independent,CIVILIAN]) : _msg = format ["Side %1 is not authorized for this interface.",_side]; goto "Denied"
 
 
 ;;Set Button names

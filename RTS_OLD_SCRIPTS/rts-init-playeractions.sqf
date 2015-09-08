@@ -15,7 +15,7 @@ Hint _msg;
 // actionid = _playerunit AddAction["<t color='#2D8CE0'>RTS Player Menu</t>","rts-alpha-menu.sqs"];
 actionid = _playerunit AddAction["<t color='#2D8CE0'>RTS Player Menu</t>", Zen_RTS_AlphaMenu];
 
-if (Side _unit == west) then
+if (Side _unit == West) then
 {
 	_msg = "Checking command status";
 	rts_hq sideChat _msg;

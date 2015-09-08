@@ -47,20 +47,20 @@ _takeTime = 20
 publicVariable "VPNumber"
 call compile format ["publicVariable ""SideVP%1""",_string];for JIP
 
-;;?Time > _scoreWait && _side in [WEST,EAST,GUER] ;  call compile format ["score%1 = score%1 + _points; publicVariable ""score%1""",_side]; _scoreWait = Time + _scoreTime
+;;?Time > _scoreWait && _side in [West,East,GUER] ;  call compile format ["score%1 = score%1 + _points; publicVariable ""score%1""",_side]; _scoreWait = Time + _scoreTime
 
 ?count list _trig < 1 : goto "Monitor"
 
-_west = {Side _x == WEST && (getpos _x select 2 < 2)} count list _trig
-_east = {Side _x == EAST && (getpos _x select 2 < 2)} count list _trig
+_West = {Side _x == West && (getpos _x select 2 < 2)} count list _trig
+_East = {Side _x == East && (getpos _x select 2 < 2)} count list _trig
 _guer = {Side _x == GUER && (getpos _x select 2 < 2)} count list _trig
 
-;;hint format ["[start]\n%1\nw: %2\nE: %3\nG: %4",list _trig,_west,_east,_guer];
+;;hint format ["[start]\n%1\nw: %2\nE: %3\nG: %4",list _trig,_West,_East,_guer];
 
-?_west == _east && _east == _guer && _west == _guer : goto "Monitor"
-?_west > _east && _west > _guer : _side = WEST; _stat = 1; _num = -1; goto "CheckSide"
-?_east > _west && _east > _guer : _side = EAST; _stat = 2; _num = +1; goto "CheckSide"
-?_guer > _west && _guer > _east : _side = GUER; _stat = 3; goto "CheckSide"
+?_West == _East && _East == _guer && _West == _guer : goto "Monitor"
+?_West > _East && _West > _guer : _side = West; _stat = 1; _num = -1; goto "CheckSide"
+?_East > _West && _East > _guer : _side = East; _stat = 2; _num = +1; goto "CheckSide"
+?_guer > _West && _guer > _East : _side = GUER; _stat = 3; goto "CheckSide"
 
 
 goto "Monitor"

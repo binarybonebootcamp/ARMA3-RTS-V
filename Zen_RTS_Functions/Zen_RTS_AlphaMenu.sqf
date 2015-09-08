@@ -24,26 +24,25 @@
 
     _side = side player;
 
-    if !(_side in [west, east]) exitWith {
+    if !(_side in [West, East]) exitWith {
         player groupChat format ["Side %1 Not Recognized.  Invalid credentials:  Access Denied", _side];
     };
 
-    _side2 = [east, west] select ([west, east] find _side);
+    _side2 = [East, West] select ([West, East] find _side);
 
     // dialog id definitions
     _idassetlist = 1000;
     _idRefreshButton = 1003;
-    _idselect = 1005;
+    _idBuildMenu = 1005;
+    _idRepair = 1007;
     _idviewsel = 1010;
     _idviewlist = 1015;
     _idgroupList = 1020;
     _idDisband = 1025;
-    _groupListIndex = 0;
     _idtitle = 1050;
     _idstats = 500;
 
     _idComboHeights = 1040;
-    _indexComboHeights = 0;
 
     _idSldQ = 1030;
     _idLightQ = 1032;
@@ -60,25 +59,25 @@
     createDialog "DlgStatus";
     ctrlSetText [_idtitle, "RTS V Mission Status"];
     ctrlSetText [_idRefreshButton, "Refresh"];
-    // ctrlSetText [_idselect, "Purchase Units"];
+    ctrlSetText [_idRepair, "Repair Asset"];
 
-    // buttonSetAction [_idselect, "[1000] call Zen_RTS_BuildMenu"];
+    buttonSetAction [_idRepair, "['Repair', ['Asset']] call Zen_RTS_RecycleRepair"];
     buttonSetAction [_idRefreshButton, "0 = [] spawn Zen_RTS_AlphaMenu"];
     buttonSetAction [_idDisband, "[1020] call Zen_RTS_DisbandUnit"];
     buttonSetAction [_idviewsel, "[1015] call Zen_RTS_SetViewDistance"];
 
-    // ;;ctrlShow [_idScramble, FALSE];
-    // ;;ctrlShow [_idsatellite,FALSE];
-    // ;;ctrlShow [_idroles, FALSE];
-    // ;;ctrlShow [_iddestruct, FALSE];
+    // ;;ctrlShow [_idScramble, false];
+    // ;;ctrlShow [_idsatellite,false];
+    // ;;ctrlShow [_idroles, false];
+    // ;;ctrlShow [_iddestruct, false];
 
-    ctrlEnable [_idstats,FALSE];
+    ctrlEnable [_idstats, false];
     {
-        ctrlShow [ _x, FALSE];
-    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idselect];
+        ctrlShow [ _x, false];
+    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idBuildMenu];
 
     if (player in [WestCommander,EastCommander]) then {
-        // ctrlShow [_iddestruct, FALSE];
+        // ctrlShow [_iddestruct, false];
     };
 
     _viewDistSteps = [];
@@ -97,15 +96,17 @@
     lbSetCurSel [_idviewlist, 0];
 
     _assetIndex = 0;
+    _groupListIndex = 0;
+    _indexComboHeights = 0;
 
     // _F_RTS_StatsArray = compile preprocessFileLineNumbers "functions\rts-statistics-array.sqf";
     _F_RTS_UnitInfo = compileFinal preprocessFileLineNumbers "functions\rts-unitInfo.sqf";
     // player sideChat str _F_RTS_UnitInfo;
 
     // while {ctrlVisible _idassetList && {alive player}} do {
-        _assetIndex = lbCurSel _idassetList;
-        _groupListIndex = lbCurSel _idGroupList;
-        _indexComboHeights = lbCurSel _idComboHeights;
+        // _assetIndex = lbCurSel _idassetList;
+        // _groupListIndex = lbCurSel _idGroupList;
+        // _indexComboHeights = lbCurSel _idComboHeights;
 
         // Stats
         // _stats = [_side,_side2] call _F_RTS_StatsArray;
@@ -174,7 +175,7 @@
                     lbSetPicture [_idassetlist, _index, _pic];
                 };
             };
-        } forEach (RTS_Used_Building_Types select ([west, east] find _side));
+        } forEach (RTS_Used_Building_Types select ([West, East] find _side));
         lbSetCurSel [_idassetlist, _assetIndex];
 
         // Queue was here

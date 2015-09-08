@@ -12,12 +12,12 @@
     // Activator = _player;
 
     _side = side _player;
-    _side2 = [east, west] select ([west, east] find _side);
+    _side2 = [East, West] select ([West, East] find _side);
 
     // sleep 0.2;
     CloseDialog 0;
 
-    _mcuSide = if (_mcu isEqualTo westTruck) then {(west)} else {(east)};
+    _mcuSide = if (_mcu isEqualTo WestTruck) then {(West)} else {(East)};
     _mcuCommander = call compile format ["%1Commander", _mcuSide];
 
     if (_player != _mcuCommander) exitWith {
@@ -31,7 +31,7 @@
     };
 
     /**
-    _MCUVehs = [westTruck, eastTruck];
+    _MCUVehs = [WestTruck, EastTruck];
     _type = typeOf _mcu;
     _found = true;
     {
@@ -39,7 +39,7 @@
         // _mcuName = _x;
         // bName = _mcuName;
 
-        _mcuSide = if (_x isEqualTo westTruck) then {(west)} else {(east)};
+        _mcuSide = if (_x isEqualTo WestTruck) then {(West)} else {(East)};
         _mcuCommander = call compile format ["%1Commander", _mcuSide];
 
         if (_player != _mcuCommander) exitWith {
@@ -71,12 +71,12 @@
     _idgoback = 2001;
     _idbuild = 2005;
     _idbuildyou = 2015;
-    _idbuildsquad = 2020;
+    _idRepair = 2020;
     _idsquadlist = 2025;
     _idsquadlistbk = 2026;
     _idtitle = 1050;
 
-    _idBtnCustom = 2016;
+    _idRecycle = 2016;
     _idListCustom = 2030;
     _idBgdCustom = 2031;
 
@@ -100,10 +100,7 @@
     createDialog "DlgBuild";
     {
         ctrlShow [_x, false];
-    } forEach [_idgoback, _idSquadList, _idSquadListbk, _idbuildSquad, _idBtnCustom, _idListCustom, _idBgdCustom, _idstats, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idSldQ, _idInfQButton, _idDroplist];
-
-    // ctrlEnable [_idbuildyou, FALSE];
-    // ctrlEnable [_idbuildSquad, FALSE];
+    } forEach [_idgoback, _idSquadList, _idSquadListbk, _idListCustom, _idBgdCustom, _idstats, _idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idSldQ, _idInfQButton, _idDroplist];
 
     _idSel = 0;
     // while {((ctrlVisible _idlist) && {(alive _player)})} do {
@@ -120,9 +117,13 @@
         ctrlSetText [_idbuild, "Deploy"];
         ctrlSetText [_idtitle, "Base Construction Menu"];
         ctrlSetText [_idbuildYou, "Destroy"];
+        ctrlSetText [_idRepair, "Repair Building"];
+        ctrlSetText [_idRecycle, "Recycle Building"];
 
         buttonSetAction [_idBuild, "2000 call Zen_RTS_BuildStructure"];
         buttonSetAction [_idbuildYou, "2000 call Zen_RTS_DestroyStructure"];
+        buttonSetAction [_idRepair, "['Repair', ['Building']] call Zen_RTS_RecycleRepair"];
+        buttonSetAction [_idRecycle, "['Recycle', ['Building']] call Zen_RTS_RecycleRepair"];
 
         // Clear the Vehicle build list to repopulate
         lbClear _idlist;
@@ -149,7 +150,7 @@
                 // player sidechat str _pic; // debug
                 lbSetPicture [_idlist, _index, _pic];
             };
-        } forEach (RTS_Used_Building_Types select ([west, east] find _side));
+        } forEach (RTS_Used_Building_Types select ([West, East] find _side));
 
         lbSetCurSel [_idlist, _idSel];
         // sleep 30;

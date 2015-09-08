@@ -13,21 +13,21 @@
 
 #Init
 _countdown = 5
-rts_eastReady = FALSE
-rts_westReady = FALSE
+rts_EastReady = FALSE
+rts_WestReady = FALSE
 
 #start
 ~5
-?!isNull eastLightFac && !rts_eastReady : rts_eastReady = TRUE; rts_hq sideChat "East team initialized."
-?!isNull westLightFac && !rts_westReady : rts_westReady = TRUE; rts_hq sideChat "West team initialized."
+?!isNull EastLightFac && !rts_EastReady : rts_EastReady = TRUE; rts_hq sideChat "East team initialized."
+?!isNull WestLightFac && !rts_WestReady : rts_WestReady = TRUE; rts_hq sideChat "West team initialized."
 
- ?eastFC < 4 && rts_eastReady && !Alive eastLightFac && !Alive eastHeavyFac && !Alive eastAirFac && !Alive eastBarracks: _side = WEST; _reason = "annihilation"; goto "GameOver"
- ?westFC < 4 && rts_westReady && !Alive westLightFac && !Alive westHeavyFac && !Alive westAirFac && !Alive westBarracks: _side = EAST; _reason = "annihilation"; goto "GameOver"
+ ?EastFC < 4 && rts_EastReady && !Alive EastLightFac && !Alive EastHeavyFac && !Alive EastAirFac && !Alive EastBarracks: _side = West; _reason = "annihilation"; goto "GameOver"
+ ?WestFC < 4 && rts_WestReady && !Alive WestLightFac && !Alive WestHeavyFac && !Alive WestAirFac && !Alive WestBarracks: _side = East; _reason = "annihilation"; goto "GameOver"
 
-@!(isNil "rts_vpTickereast")
-@!(isNil "rts_vpTickerwest")
-?param3 > 0 && rts_vpTickereast < 1 && rts_eastReady : _side = WEST; _reason = "victory point control"; goto "GameOver"
-?param3 > 0 && rts_vpTickerwest < 1 && rts_westReady : _side = EAST; _reason = "victory point control"; goto "GameOver"
+@!(isNil "rts_vpTickerEast")
+@!(isNil "rts_vpTickerWest")
+?param3 > 0 && rts_vpTickerEast < 1 && rts_EastReady : _side = West; _reason = "victory point control"; goto "GameOver"
+?param3 > 0 && rts_vpTickerWest < 1 && rts_WestReady : _side = East; _reason = "victory point control"; goto "GameOver"
 
 ?EastFC >= flagNumber : _side = East; goto "CountDown"
 ?WestFC >= flagNumber : _side = West; goto "CountDown"
@@ -45,8 +45,8 @@ _looptime = _countdown
 ~2
 #CountDownLoop
 ~1
-?_side == WEST && WestFC < FlagNumber : Goto "Averted"
-?_side == EAST && EastFC < FlagNumber : Goto "Averted"
+?_side == West && WestFC < FlagNumber : Goto "Averted"
+?_side == East && EastFC < FlagNumber : Goto "Averted"
 _looptime=_looptime-1
 
 ?_loopTime <= 0 : _reason = "Domination"; goto "GameOver"

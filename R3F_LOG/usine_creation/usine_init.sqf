@@ -42,8 +42,8 @@ if (count _this > 2 && {!isNil {_this select 2}}) then
 	
 	_num_side = switch (_this select 2) do
 	{
-		case east: {0};
-		case west: {1};
+		case East: {0};
+		case West: {1};
 		case independent: {2};
 		case civilian: {3};
 		default {4};

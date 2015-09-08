@@ -8,7 +8,7 @@
  * @param 0 the array of objects to restore if they are in a destroyed transport vehicle/cargo
  * @param 1 the name of the marker where to restore the objects
  * 
- * @usage [[my_object1, my_object2], "respawn_west"] execVM "R3F_LOG\USER_FUNCT\watch_objects_to_not_lose.sqf";
+ * @usage [[my_object1, my_object2], "respawn_West"] execVM "R3F_LOG\USER_FUNCT\watch_objects_to_not_lose.sqf";
  */
 
 if (isServer) then

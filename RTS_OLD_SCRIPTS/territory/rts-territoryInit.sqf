@@ -51,12 +51,12 @@ Flag23Name = "w";
 Flag24Name = "x";
 Flag25Name = "central B";
 Flag26Name = "central C";
-Flag27Name = "Mwest A";
-Flag28Name = "Mwest B";
-Flag29Name = "Mwest C";
-Flag30Name = "Meast A";
-Flag31Name = "Meast B";
-Flag32Name = "Meast C";
+Flag27Name = "MWest A";
+Flag28Name = "MWest B";
+Flag29Name = "MWest C";
+Flag30Name = "MEast A";
+Flag31Name = "MEast B";
+Flag32Name = "MEast C";
 ["1","5"] exec "territory\rts-territoryMonitor.sqs";
 
 ["2","10"] exec "territory\rts-territoryMonitor.sqs";

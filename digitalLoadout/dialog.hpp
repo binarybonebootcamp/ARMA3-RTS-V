@@ -152,7 +152,8 @@ class digitalLoadout
       {
 	idc = 15000;
 	text = "Rifleman";
-        action = "[player] call TAG_FNC_Rifleman"; 
+        action = "[player] call TAG_FNC_Rifleman";
+ 
 	x = 0.25 * safezoneW + safezoneX;
 	y = 0.2 * safezoneH + safezoneY;
 	w = 0.125 * safezoneW;
@@ -207,8 +208,8 @@ class digitalLoadout
        class ICE_button6: IceButton
       {
 	idc = 15005;
-	text = "Pilot";
-        action = "[player] call TAG_FNC_pilot"; 
+	text = "Sapper";
+        action = "[player] call TAG_FNC_sapper"; 
 	x = 0.25 * safezoneW + safezoneX;
 	y = 0.45 * safezoneH + safezoneY;
 	w = 0.125 * safezoneW;

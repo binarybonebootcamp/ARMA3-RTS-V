@@ -1,7 +1,7 @@
 #include "Zen_StandardLibrary.sqf"
 #include "Zen_FrameworkLibrary.sqf"
 
-#define HASH_SIDE(V) (if (V == west) then {0} else {1})
+#define HASH_SIDE(V) (if (V == West) then {0} else {1})
 #define MONEY_COEF 3
 
 Zen_RTS_Economy_Data = [];
@@ -16,7 +16,7 @@ sleep 1;
     _args = ["sideChat", [[_x,"HQ"], "Operating funds established."]];
     ZEN_FMW_MP_RENonDedicated("Zen_ExecuteCommand", _args, call)
     ZEN_FMW_MP_RENonDedicated("Zen_RTS_F_SetMoney", (paramsArray select 0))
-} forEach [west, east];
+} forEach [West, East];
 
 
 while {true} do {
@@ -25,7 +25,7 @@ while {true} do {
         _subTerritoryCount = (count ([[1], [[HASH_SIDE(_x), HASH_SIDE(_x)]], [{HASH_SIDE(_this)}]] call Zen_RTS_SubTerritorySearch)) + 1;
         _moneyPerMinute = _subTerritoryCount * MONEY_COEF;
 
-        _dataArray = Zen_RTS_Economy_Data select ([west, east] find _x);
+        _dataArray = Zen_RTS_Economy_Data select ([West, East] find _x);
         _playerData = _dataArray select 3;
         _toRemove = [];
         {
@@ -46,5 +46,5 @@ while {true} do {
 
         _args = [_moneyPerMinute, _supply, _supplyPerMinute, _x];
         ZEN_FMW_MP_RENonDedicated("Zen_RTS_F_PrintMoney", _args, call)
-    } forEach [west, east];
+    } forEach [West, East];
 };

@@ -18,12 +18,12 @@ class RscPicture
 	text = "";
 
 };
-class westIcon
+class WestIcon
 	{
 		idd=-1;
 		movingEnable = true;
 		duration=2;
-		name = "westIcon";
+		name = "WestIcon";
 		controls[]=
 		{
 			Picture
@@ -32,48 +32,48 @@ class westIcon
 		class Picture : RscPicture
 		{
 			x = 0.88; y=0.01; w = 0.1; h = 0.07;
-			text = "rsc\west.paa";
+			text = "rsc\West.paa";
 		};
 	};
-	class westTaking
+	class WestTaking
 	{
 		idd=-1;
 		movingEnable = true;
 		duration=2;
-		name = "westTaking";
+		name = "WestTaking";
 		controls[]={Picture};
 
 		class Picture : RscPicture
 		{
 			x = 0.88; y=0.01; w = 0.1; h = 0.07;
-			text = "rsc\west_taking.paa";
+			text = "rsc\West_taking.paa";
 		};
 	};
-	class eastIcon
+	class EastIcon
 	{
 		idd=-1;
 		movingEnable = true;
 		duration=2;
-		name = "eastIcon";
+		name = "EastIcon";
 		controls[]={Picture};
 
 		class Picture : RscPicture
 		{
 			x = 0.88; y=0.01; w = 0.1; h = 0.07;
-			text = "rsc\east.paa";
+			text = "rsc\East.paa";
 		};
 	};
-	class eastTaking
+	class EastTaking
 	{
 		idd=-1;
 		movingEnable = true;
 		duration=2;
-		name = "eastTaking";
+		name = "EastTaking";
 		controls[]={Picture};
 
 		class Picture : RscPicture
 		{
 			x = 0.88; y=0.01; w = 0.1; h = 0.07;
-			text = "rsc\east_taking.paa";
+			text = "rsc\East_taking.paa";
 		};
     };

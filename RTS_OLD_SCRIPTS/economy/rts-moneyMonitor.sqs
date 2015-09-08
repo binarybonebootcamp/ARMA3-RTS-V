@@ -37,7 +37,7 @@ _supply = call compile format ["%1Supply",_side]
 
 
 ;;debug info
-_tmp = format ["Money Factor:  $%1, Supply Factor: #%2  East Towns: %3  West Towns: %4 CIV Towns: %5",_factorMoney,_factorSupply,eastFC,westFC,civFC]
+_tmp = format ["Money Factor:  $%1, Supply Factor: #%2  East Towns: %3  West Towns: %4 CIV Towns: %5",_factorMoney,_factorSupply,EastFC,WestFC,civFC]
 
 ;;player groupChat _tmp
 

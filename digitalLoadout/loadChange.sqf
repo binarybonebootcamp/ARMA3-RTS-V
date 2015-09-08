@@ -169,7 +169,7 @@ if (paramsArray select 4 == 1) then {
  };
 
 /*-------------------------------------------------------------------------------
- IF THE UNIT HAS ATLEAST 1 PRIMARY MAGAZINE THEN DISPLAY IT'S PICTURE AND COUNT
+ IF THE UNIT HAS ATLEast 1 PRIMARY MAGAZINE THEN DISPLAY IT'S PICTURE AND COUNT
 -------------------------------------------------------------------------------*/
  if (count primaryWeaponMagazine _unit > 0) then {
      _PWAmmoPicture = getText (configfile >> "CfgMagazines" >> primaryWeaponMagazine _unit select 0 >> "picture");
@@ -181,7 +181,7 @@ if (paramsArray select 4 == 1) then {
  };
 
 /*-------------------------------------------------------------------------------------------------------
- IF THE UNIT HAS ATLEAST 1 SECONDARY MAGAZINE THEN DISPLAY IT'S PICTURE AND COUNT
+ IF THE UNIT HAS ATLEast 1 SECONDARY MAGAZINE THEN DISPLAY IT'S PICTURE AND COUNT
 --------------------------------------------------------------------------------------------------------*/
  if (count secondaryWeaponMagazine _unit > 0) then {
      _SWAmmoPicture = getText (configfile >> "CfgMagazines" >> secondaryWeaponMagazine _unit select 0 >> "picture");
@@ -193,7 +193,7 @@ if (paramsArray select 4 == 1) then {
  };
 
 /*-------------------------------------------------------------------------------------------------------
- IF THE UNIT HAS ATLEAST 1 HAND GUN MAGAZINE THEN DISPLAY IT'S PICTURE AND COUNT
+ IF THE UNIT HAS ATLEast 1 HAND GUN MAGAZINE THEN DISPLAY IT'S PICTURE AND COUNT
 --------------------------------------------------------------------------------------------------------*/
  if (count handGunMagazine _unit > 0) then {
     _PisAmmoPicture = getText (configfile >> "CfgMagazines" >> handgunMagazine _unit select 0 >> "picture");
@@ -205,7 +205,7 @@ if (paramsArray select 4 == 1) then {
  };
 
 /*-------------------------------------------------------------------------------------------------------
- IF THE UNIT HAS ATLEAST 1 HE GRENADE THEN DISPLAY IT'S PICTURE AND COUNT
+ IF THE UNIT HAS ATLEast 1 HE GRENADE THEN DISPLAY IT'S PICTURE AND COUNT
 --------------------------------------------------------------------------------------------------------*/
  if (_HEGreCountType > 0) then {
     _PWHEAmmoPicture = getText (configfile >> "CfgMagazines" >> primaryWeaponMagazine _unit select 1 >> "picture");
@@ -217,7 +217,7 @@ if (paramsArray select 4 == 1) then {
  };
 
 /*-------------------------------------------------------------------------------------------------------
- IF THE UNIT HAS ATLEAST 1 WEAPON ATTATCHEMENT THEN DISPLAY THEIR PICTURES AND COUNT
+ IF THE UNIT HAS ATLEast 1 WEAPON ATTATCHEMENT THEN DISPLAY THEIR PICTURES AND COUNT
 --------------------------------------------------------------------------------------------------------*/
  if (count primaryWeaponItems _unit > 0) then {
     for [{_i=0},{_i < count primaryWeaponItems _unit},{_i=_i+1}] do {

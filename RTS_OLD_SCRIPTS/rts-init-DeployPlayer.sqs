@@ -103,8 +103,8 @@ _n1 = +10
 _rn = random 1
 _n2 = -10
 ?_rn <= .5 : _n2 = +10
-0 =  [west] spawn Zen_AddRepackMagazines;
-0 = [east] spawn  Zen_AddRepackMagazines;
+0 =  [West] spawn Zen_AddRepackMagazines;
+0 = [East] spawn  Zen_AddRepackMagazines;
 [player,"Death"] call BIS_fnc_setUnitInsignia;
 execVM "starter.sqf";
 

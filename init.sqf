@@ -1,7 +1,13 @@
 #include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
 
 enableSaving [false, false];
+player enableFatigue false;
+player addEventhandler ["Respawn", {player enableFatigue false}];
+My_Title = {Titletext[format ["%1", "-= RTS V =-\nWarGame\nFor Arma 3"], "PLAIN DOWN" , .5]};
+call My_Title;
+[] execVM "briefing.sqf";
 
+sleep .1;
 #include "Zen_RTS_Functions\Zen_RTS_GlobalFunctions.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_GlobalVariables.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_ParseParams.sqf"
@@ -19,8 +25,8 @@ Zen_RTS_DeployPlayer = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions
 Zen_RTS_DisbandUnit = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DisbandUnit.sqf";
 Zen_RTS_DestroyStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DestroyStructure.sqf";
 Zen_RTS_EconomyManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_EconomyManager.sqf";
-Zen_RTS_Recycle = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Recycle.sqf";
-Zen_RTS_Repair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Repair.sqf";
+Zen_RTS_RecycleRepair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RecycleRepair.sqf";
+// Zen_RTS_Repair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Repair.sqf";
 // Zen_RTS_SquadsMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SquadsMenu.sqf";
 Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SetViewDistance.sqf";
 
@@ -64,10 +70,10 @@ sleep 1;
 // [] exec "economy\rts-supplyMonitor.sqs";
 // [] exec "rts-build-serverside.sqs";
 [] exec "rts-init-commandermonitor.sqs";
-[] exec "test.sqs";
+//[] exec "test.sqs";                                          /////////////i took this out with what ever it was attatched to.. like unit monitor .. geeting errors from east.
 //[] exec "rts-build-serverSideMonitor.sqs";
 // rts_hq sideChat "Global Scripts and Variables Initialized";
-
+0 = [] execVM 'unflip_vehicle.sqf';
 execVM "R3F_LOG\init.sqf";
 [] execVM "VCOM_Driving\init.sqf";
 // --------------------------
@@ -75,23 +81,23 @@ execVM "R3F_LOG\init.sqf";
 // Zen Server ------------------
 0 = [] spawn Zen_RTS_EconomyManager;
 Zen_JIP_Args_Server = [overcast, fog, vd];
+["Initialize"] call BIS_fnc_dynamicGroups;
 
 {
     call compile format ["xp%1 = 0", _x];
-    // _x spawn ZKS_Revive_Init;
-   
+
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
-} forEach ([west, east] call Zen_ConvertToObjectArray);
+} forEach ([West, East] call Zen_ConvertToObjectArray);
 // ----------------------
 
 // ====================================================================================
 // Zen_RTS_SubTerritory
 // ====================================================================================
 
-westFC = 0;
-eastFC = 0;
+WestFC = 0;
+EastFC = 0;
 civFC = 0;
 
 0 = [] spawn Zen_RTS_SubTerritoryManager;
@@ -112,7 +118,7 @@ for "_i" from 1 to 32 do {
 0 = [] spawn Zen_RTS_TerritoryManager;
 
 _Zen_TerritorySouth_East_TerritoryMarker = [ListFlag1, "", "colorRed", [0, 0], "rectangle", 0, 1] call Zen_SpawnMarker;
-0 = ["South_east", [MKR(1), MKR(2),MKR(3),MKR(4)]] call Zen_RTS_TerritoryCreate;
+0 = ["South_East", [MKR(1), MKR(2),MKR(3),MKR(4)]] call Zen_RTS_TerritoryCreate;
 
 _Zen_TerritoryEast_TerritoryMarker = [ListFlag5, "", "colorRed", [0, 0], "rectangle", 0, 1] call Zen_SpawnMarker;
 0 = ["East", [MKR(5),MKR(6),MKR(7),MKR(26)]] call Zen_RTS_TerritoryCreate;
@@ -173,23 +179,27 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 #define ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
     _vehicle setVariable ["Zen_RTS_StrategicValue", (call compile ([_assetStrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)), true]; \
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
+    _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
     _vehicle addEventHandler ["Dammaged", { \
         if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
             (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
-            _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
         }; \
     }];
+            // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
 
 #define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T) \
     _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
     _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
     _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
+    _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
     _building addEventHandler ["Killed", { \
         0 = _this spawn { \
             _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
-            _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
             _buildingObjData = [T, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal; \
+            diag_log T; \
+            diag_log _buildingObjData; \
             if (count _buildingObjData > 0) then { \
+                diag_log (_buildingObjData select 1); \
                 0 = [(_buildingObjData select 1)] call Zen_RTS_StrategicBuildingDestroy; \
             }; \
             _building = _this select 0; \
@@ -204,6 +214,8 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
             } forEach _objects; \
             if !(isNull _deadBuilding) then { \
                 player sideChat str _deadBuilding; \
+                _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
+                _deadBuilding setVariable ["Zen_RTS_StrategicType", "Building", true]; \
                 _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
                 _deadBuilding setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
             } else { \
@@ -241,7 +253,7 @@ RTS_Building_Type_Levels = [[], []]; // global
 } forEach RTS_Building_Type_Levels;
 
 // all asset types must be added here, or they will not be considered for custom squads
-// must be [[west asset types, [east '']]
+// must be [[West asset types, [East '']]
 RTS_Used_Asset_Types = [[], []]; // global
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
@@ -262,10 +274,13 @@ RTS_Used_Asset_Types = [[], []]; // global
 #include "Zen_RTS_East\RTS_East_SupportFactory.sqf"
 #include "Zen_RTS_East\RTS_East_CJ.sqf"
 
-westTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
-westTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
-eastTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
-eastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
+WestTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+WestTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
+WestTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
+
+EastTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+EastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
+EastTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
 
 publicVariable "RTS_Used_Building_Types";
 publicVariable "RTS_Building_Type_Levels";
@@ -276,3 +291,4 @@ publicVariable "Zen_RTS_BuildingType_East_HQ";
 
 rts_Initialized = TRUE;
 publicVariable "rts_Initialized";
+

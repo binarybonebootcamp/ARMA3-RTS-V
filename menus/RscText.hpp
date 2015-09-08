@@ -6,7 +6,7 @@ class RscText
     colorBackground[] = {0, 0, 0, 0};
     colorText[] = {1, 0.1, 0, 1};
     font = FontTITLEHalf;
-    sizeEx = 0.04;
+    sizeEx = 0.30;
     colorDisabled[] = {0,0,0,0};
 	colorBorder[] ={0,0,0,1};
     soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};

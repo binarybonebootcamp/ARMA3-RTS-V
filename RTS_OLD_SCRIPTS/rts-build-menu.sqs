@@ -13,10 +13,10 @@ _building = ActionUnit
 _player = Activator
 _side = Side _player
 
-?_side in [WEST] : _side2 = EAST
-?_side in [EAST] : _side2 = WEST
+?_side in [West] : _side2 = East
+?_side in [East] : _side2 = West
 
-?!(_side in [EAST,WEST,INDEPENDENT,CIVILIAN]) : _msg = format ["Side %1 is not authorized for this interface.", _side]; goto "Denied"
+?!(_side in [East,West,INDEPENDENT,CIVILIAN]) : _msg = format ["Side %1 is not authorized for this interface.", _side]; goto "Denied"
 
 
 _main = call compile format ["%1Assets", _side]
@@ -78,9 +78,9 @@ _indnum2 = 0
 createDialog "DlgBuild"
 
 ctrlEnable [_idstats,FALSE];
-?_bldName in [eastBarracksName,westBarracksName] : ctrlShow [ _idbuildYou, FALSE]
-?_bldName in [eastAirFacName,westAirFacName] : {ctrlShow [ _x, FALSE]} foreach [_idBtnCustom, _idListCustom, _idBgdCustom]
-;;?_bldName in [eastHeavyFacName,westHeavyFacName] : {ctrlShow [ _x, FALSE]} foreach [_idBuild, _idbuildsquad, _idSquadList, _idBtnCustom, _idListCustom, _idBgdCustom, _idbuildYou]
+?_bldName in [EastBarracksName,WestBarracksName] : ctrlShow [ _idbuildYou, FALSE]
+?_bldName in [EastAirFacName,WestAirFacName] : {ctrlShow [ _x, FALSE]} foreach [_idBtnCustom, _idListCustom, _idBgdCustom]
+;;?_bldName in [EastHeavyFacName,WestHeavyFacName] : {ctrlShow [ _x, FALSE]} foreach [_idBuild, _idbuildsquad, _idSquadList, _idBtnCustom, _idListCustom, _idBgdCustom, _idbuildYou]
 
 ;;?!(Player in [WestCommander,EastCommander]) : ctrlShow [ _idbuildSquad, FALSE]
 
@@ -154,7 +154,7 @@ _bTime = (_bTime) - (_teamEnergy / .1)
 
 _info = Format ["%1 - $%2 / %3t", _name, _money, _bTime]
 
-?_bldName in [eastBarracksName, westBarracksName, eastAirFacName, westAirFacName] : _info = format ["%1", _name]
+?_bldName in [EastBarracksName, WestBarracksName, EastAirFacName, WestAirFacName] : _info = format ["%1", _name]
 
 _index = lbadd [_idlist, _info]
 lbSetData [_idlist, _index, _type]

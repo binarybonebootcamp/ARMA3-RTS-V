@@ -7,18 +7,18 @@
 #Monitor
 ~1
 
-_westSupplyFactor = westSupplyFactor
-_westSupplyPerMinute = _westSupplyFactor
-_westSupplyPerSecond = _westSupplyPerMinute/60
+_WestSupplyFactor = WestSupplyFactor
+_WestSupplyPerMinute = _WestSupplyFactor
+_WestSupplyPerSecond = _WestSupplyPerMinute/60
 
-_eastSupplyFactor = eastSupplyFactor
-_eastSupplyPerMinute = _eastSupplyFactor
-_eastSupplyPerSecond = _eastSupplyPerMinute/60
+_EastSupplyFactor = EastSupplyFactor
+_EastSupplyPerMinute = _EastSupplyFactor
+_EastSupplyPerSecond = _EastSupplyPerMinute/60
 
-westSupply = westSupply + _westSupplyPerSecond
-publicVariable "westSupply"
+WestSupply = WestSupply + _WestSupplyPerSecond
+publicVariable "WestSupply"
 
-eastSupply = eastSupply + _eastSupplyPerSecond
-publicVariable "eastSupply"
+EastSupply = EastSupply + _EastSupplyPerSecond
+publicVariable "EastSupply"
 
 goto "Monitor"

@@ -71,7 +71,7 @@
 
         if (_forSquad) then {
             _playerArray = [_side] call Zen_ConvertToObjectArray;
-            _playerArray = [_playerArray, compile format [" (switch (side _this) do { case west: {0}; case east: {1};}) != %1", (switch (_side) do { case west: {0}; case east: {1};})]] call Zen_ArrayFilterCondition;
+            _playerArray = [_playerArray, compile format [" (switch (side _this) do { case West: {0}; case East: {1};}) != %1", (switch (_side) do { case West: {0}; case East: {1};})]] call Zen_ArrayFilterCondition;
             _playerArray = [_playerArray, {leader group _this != _this}] call Zen_ArrayFilterCondition;
             0 = [_playerArray, WestCommander] call Zen_ArrayRemoveValue;
             0 = [_playerArray, EastCommander] call Zen_ArrayRemoveValue;
