@@ -24,7 +24,7 @@ Zen_RTS_F_West_CJConstructor = {
     _assetsToAdd pushBack Zen_RTS_Asset_B_SLINGLOAD_01_FUEL_F;
     _assetsToAdd pushBack Zen_RTS_Asset_Box_NATO_WpsSpecial_F;
     _assetsToAdd pushBack Zen_RTS_Asset_Land_BagFence_Corner_F;
-	_assetsToAdd pushBack Zen_RTS_Asset_Land_CncWall4_F;
+    _assetsToAdd pushBack Zen_RTS_Asset_Land_CncWall4_F;
 
     if (Zen_RTS_TechFlag_West_BuildEnemy) then {
         // ... to do
@@ -53,6 +53,7 @@ Zen_RTS_F_West_CJConstructor = {
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "(_this in _target)"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
+
     if (_level > 0) then {
         for "_i" from 0 to (_level - 1) do {
             [_buildingObjData] call (missionNamespace getVariable ((_buildingTypeData select 3) select _i));
@@ -114,7 +115,7 @@ Zen_RTS_BuildingType_West_CJ = ["Zen_RTS_F_West_CJConstructor", "Zen_RTS_F_West_
         _redArrow = "Sign_Arrow_Large_F" createVehicleLocal [0,0,0]; \
         _building addAction ["<t color='#D80000'>Place</t>", {Zen_RTS_CJ_DoPlace = true; (_this select 0) removeAction (_this select 2);}, [], 1, false, true, "", "(_this in _target)"]; \
         waitUntil { \
-            sleep 1; \
+            sleep 0.5; \
             _redArrow setPosATL ([_building, 10, getDir _building, "compass", 1] call Zen_ExtendPosition); \
             (Zen_RTS_CJ_DoPlace) \
         }; \

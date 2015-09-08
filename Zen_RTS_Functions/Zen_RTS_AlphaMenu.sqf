@@ -61,7 +61,7 @@
     ctrlSetText [_idRefreshButton, "Refresh"];
     ctrlSetText [_idRepair, "Repair Asset"];
 
-    buttonSetAction [_idRepair, "['Repair', ['Asset']] call Zen_RTS_RecycleRepair"];
+    buttonSetAction [_idRepair, "['Repair', ['Asset']] spawn Zen_RTS_RecycleRepair"];
     buttonSetAction [_idRefreshButton, "0 = [] spawn Zen_RTS_AlphaMenu"];
     buttonSetAction [_idDisband, "[1020] call Zen_RTS_DisbandUnit"];
     buttonSetAction [_idviewsel, "[1015] call Zen_RTS_SetViewDistance"];

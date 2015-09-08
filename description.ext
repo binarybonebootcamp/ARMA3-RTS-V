@@ -36,10 +36,10 @@ class TAG {
    };
 };
 
- class CfgRemoteExecCommands {
-     #include "vip_cmn\fn\vip_cmn_fnc_remoteExec.hpp"
-     #include "vip_sms\fn\vip_sms_fnc_remoteExec.hpp"
- };
+class CfgRemoteExecCommands {
+    #include "vip_cmn\fn\vip_cmn_fnc_remoteExec.hpp"
+    #include "vip_sms\fn\vip_sms_fnc_remoteExec.hpp"
+};
 
 #include "vip_cmn\resource\vip_dlg_defaults.hpp"
 #include "vip_sms\resource\vip_sms_dlg.hpp"
@@ -60,7 +60,6 @@ class TAG {
 #include "R3F_LOG\desc_include.h"
 #include "digitalLoadout\defines.hpp"
 #include "digitalLoadout\dialog.hpp"
-
 
 class CfgSounds {
     sounds[] = {NoSound, jump8};
