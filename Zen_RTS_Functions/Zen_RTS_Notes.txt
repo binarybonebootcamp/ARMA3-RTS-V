@@ -11,7 +11,7 @@ Strategic
         // CJ/MCU vehicle recycling and repairing
             // Correct CJ, MCU, player recycle repair abilities
             // Make sure there is no crew
-        AI automated recycle/repair
+        // AI automated recycle/repair
         AI fire on buildings and unmanned vehicles
         Building Hacking
             y/n menu with dynamic timer
@@ -90,6 +90,7 @@ Strategic
         Fortification
             Houses, H-barriers
         CJ
+            parallel queued placement
             // medical
             // static MG
             // ammo crate
@@ -121,6 +122,7 @@ RTS menus
     Give money to another player
     AI fly height
 Revive/Respawn/JIP
+    rewrite rts-init-SetRandomPos.sqs in SQF
     Get correct respawn positions
 Economy
     // Territories have resource value
@@ -129,6 +131,7 @@ Economy
     building and asset build time affected by resources
     add JIP player to money data
 AI
+    rewrite rts-init-commandermonitor.sqs in SQF
     On player death
     commander
     individual
@@ -142,6 +145,7 @@ Loadouts
     Use framework custom loadouts
     Loadout dialog displays custom loadouts
 Known MP Issues
+    Add more debug
     10 second init delay
     buildings coming out of the ground don't sync
     Build enemy units technology disappears

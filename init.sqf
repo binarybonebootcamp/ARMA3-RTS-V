@@ -26,8 +26,7 @@ Zen_RTS_DisbandUnit = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\
 Zen_RTS_DestroyStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DestroyStructure.sqf";
 Zen_RTS_EconomyManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_EconomyManager.sqf";
 Zen_RTS_RecycleRepair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RecycleRepair.sqf";
-// Zen_RTS_Repair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_Repair.sqf";
-// Zen_RTS_SquadsMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SquadsMenu.sqf";
+Zen_RTS_RecycleRepairAIManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RecycleRepairAIManager.sqf";
 Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SetViewDistance.sqf";
 
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicCompile.sqf";
@@ -80,6 +79,7 @@ execVM "R3F_LOG\init.sqf";
 
 // Zen Server ------------------
 0 = [] spawn Zen_RTS_EconomyManager;
+0 = [] spawn Zen_RTS_RecycleRepairAIManager;
 Zen_JIP_Args_Server = [overcast, fog, vd];
 ["Initialize"] call BIS_fnc_dynamicGroups;
 
@@ -180,18 +180,20 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _vehicle setVariable ["Zen_RTS_StrategicValue", (call compile ([_assetStrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)), true]; \
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
-    _vehicle addEventHandler ["Dammaged", { \
+    RTS_Recycle_Queue pushBack _vehicle; \
+    _vehicle addEventHandler ["Killed", { \
         if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
             (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
+            _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
         }; \
     }];
-            // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
 
 #define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T) \
     _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
     _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
     _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
+    RTS_Repair_Queue pushBack _building; \
     _building addEventHandler ["Killed", { \
         0 = _this spawn { \
             _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
@@ -247,7 +249,7 @@ RTS_Building_Type_Levels = [[], []]; // global
 
 {
     _array = _x;
-    for "_i" from 1 to 8 do {
+    for "_i" from 1 to 9 do {
         _array pushBack 0;
     };
 } forEach RTS_Building_Type_Levels;
@@ -256,6 +258,21 @@ RTS_Building_Type_Levels = [[], []]; // global
 // must be [[West asset types, [East '']]
 RTS_Used_Asset_Types = [[], []]; // global
 
+// These arrays and functions are for the server only
+// Do not transfer AI repair/recycle threads or locality to clients
+RTS_Recycle_Queue = [];
+RTS_Repair_Queue = [];
+RTS_Worker_Recycle_Queue = [];
+RTS_Worker_Repair_Queue = [];
+
+Zen_RTS_F_AddRecycle = {
+    RTS_Recycle_Queue pushBack _this;
+};
+
+Zen_RTS_F_AddRepair = {
+    RTS_Repair_Queue pushBack _this;
+};
+
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"
 #include "Zen_RTS_West\RTS_West_Radar.sqf"
@@ -263,6 +280,7 @@ RTS_Used_Asset_Types = [[], []]; // global
 #include "Zen_RTS_West\RTS_West_AirFactory.sqf"
 #include "Zen_RTS_West\RTS_West_NavalFactory.sqf"
 #include "Zen_RTS_West\RTS_West_SupportFactory.sqf"
+#include "Zen_RTS_West\RTS_West_RecyclePlant.sqf"
 #include "Zen_RTS_West\RTS_West_CJ.sqf"
 
 #include "Zen_RTS_East\RTS_East_HQ.sqf"
@@ -274,13 +292,13 @@ RTS_Used_Asset_Types = [[], []]; // global
 #include "Zen_RTS_East\RTS_East_SupportFactory.sqf"
 #include "Zen_RTS_East\RTS_East_CJ.sqf"
 
-WestTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
-WestTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
-WestTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
+westTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+westTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
+westTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
 
-EastTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
-EastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
-EastTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
+eastTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];
+eastTruck setVariable ["Zen_RTS_StrategicValue", 1000, true];
+eastTruck setVariable ["Zen_RTS_StrategicType", "Asset", true];
 
 publicVariable "RTS_Used_Building_Types";
 publicVariable "RTS_Building_Type_Levels";
@@ -291,4 +309,3 @@ publicVariable "Zen_RTS_BuildingType_East_HQ";
 
 rts_Initialized = TRUE;
 publicVariable "rts_Initialized";
-

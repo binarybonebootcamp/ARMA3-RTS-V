@@ -5,11 +5,9 @@ class Mission
 	{
 		"A3_Characters_F_Civil",
 		"a3_map_altis",
-		"a3_soft_f_truckheavy",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_OPFOR",
 		"A3_Structures_F_Ind_Cargo",
-		"A3_Soft_F_HEMTT",
 		"A3_Characters_F_INDEP",
 		"A3_Structures_F_Items_Vessels",
 		"A3_Structures_F_Wrecks",
@@ -48,8 +46,8 @@ class Mission
 		year=2015;
 		month=9;
 		day=7;
-		hour=5;
-		minute=0;
+		hour=11;
+		minute=35;
 		startFogDecay=0.0049333;
 		forecastFogDecay=0.0049333;
 	};

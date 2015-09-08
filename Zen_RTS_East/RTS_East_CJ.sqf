@@ -24,7 +24,7 @@ Zen_RTS_F_East_CJConstructor = {
     _assetsToAdd pushBack Zen_RTS_Asset_B_SLINGLOAD_01_FUEL_F;
     _assetsToAdd pushBack Zen_RTS_Asset_Box_East_WpsSpecial_F;
     _assetsToAdd pushBack Zen_RTS_Asset_Land_BagFence_Corner_F;
-	_assetsToAdd pushBack Zen_RTS_Asset_Land_CncWall4_F;
+    _assetsToAdd pushBack Zen_RTS_Asset_Land_CncWall4_F;
 
     if (Zen_RTS_TechFlag_East_BuildEnemy) then {
         // ... to do
@@ -53,6 +53,7 @@ Zen_RTS_F_East_CJConstructor = {
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "(_this in _target)"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
+
     if (_level > 0) then {
         for "_i" from 0 to (_level - 1) do {
             [_buildingObjData] call (missionNamespace getVariable ((_buildingTypeData select 3) select _i));
