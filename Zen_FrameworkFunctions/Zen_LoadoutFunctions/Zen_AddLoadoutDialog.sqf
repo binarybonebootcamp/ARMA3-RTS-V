@@ -28,9 +28,19 @@ if (typeName _objects != "ARRAY") then {
     _objects = [_objects];
 };
 
+_dialogID = [] call Zen_CreateDialog;
+
+_controlCancel = ["Button", ["Text", "Cancel"], ["Position", [35, 2]], ["Size", [5,2]], ["Function", "Zen_CloseDialog"]] call Zen_CreateControl;
+_controlList = ["List", ["List", _kits], ["ListData", _kits], ["Position", [0, 0]], ["Size", [35,40]]] call Zen_CreateControl;
+_controlOK = ["Button", ["Text", "OK"], ["Position", [35, 0]], ["Size", [5,2]], ["Function", "Zen_LoadoutDialogEquip"], ["LinksTo", [_controlList]]] call Zen_CreateControl;
+
+0 = [_dialogID, _controlOK] call Zen_LinkControl;
+0 = [_dialogID, _controlCancel] call Zen_LinkControl;
+0 = [_dialogID, _controlList] call Zen_LinkControl;
+
 if (!isDedicated && hasInterface) then {
     {
-        _id = _x addAction ["<t color='#2D8CE0'>Select Loadout</t>", Zen_ShowLoadoutDialog, _kits, 1, false, true, "", "(alive _target && {((_target distance _this) < (1 + (((boundingBoxReal _target) select 0) distance ((boundingBoxReal _target) select 1)) / 2))})"];
+        _id = _x addAction ["<t color='#2D8CE0'>Select Loadout</t>", Zen_ShowLoadoutDialog, _dialogID, 1, false, true, "", "(alive _target && {((_target distance _this) < (1 + (((boundingBoxReal _target) select 0) distance ((boundingBoxReal _target) select 1)) / 2))})"];
         Zen_Loadout_Action_Array_Local pushBack [_id, _maxUses, 0];
     } forEach _objects;
 };

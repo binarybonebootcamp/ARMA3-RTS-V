@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-// This folder contains framework source code version 9/2/15
+// This folder contains framework source code version 9/9/15
 
 #include "Zen_StandardLibrary.sqf"
 #include "Zen_FrameworkLibrary.sqf"
@@ -15,6 +15,7 @@ if (!isServer && {isNull player}) then {
     };
 };
 call compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_DataFunctions\Zen_DataFunctionsCompile.sqf";
+call compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_DialogSystem\Zen_DialogSystemCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_FireSupportSystemCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_LoadoutFunctionsCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_MathFunctions\Zen_MathFunctionsCompile.sqf";

@@ -1,5 +1,6 @@
 @echo off
 copy Zen_StandardLibrary.sqf Zen_DataFunctions
+copy Zen_StandardLibrary.sqf Zen_DialogSystem
 copy Zen_StandardLibrary.sqf Zen_FireSupportSystem
 copy Zen_StandardLibrary.sqf Zen_LoadoutFunctions
 copy Zen_StandardLibrary.sqf Zen_MathFunctions
@@ -12,6 +13,7 @@ copy Zen_StandardLibrary.sqf Zen_SpawningFunctions
 copy Zen_StandardLibrary.sqf Zen_TaskSystem
 copy Zen_StandardLibrary.sqf Zen_TriggerFunctions
 copy Zen_FrameworkLibrary.sqf Zen_DataFunctions
+copy Zen_FrameworkLibrary.sqf Zen_DialogSystem
 copy Zen_FrameworkLibrary.sqf Zen_FireSupportSystem
 copy Zen_FrameworkLibrary.sqf Zen_LoadoutFunctions
 copy Zen_FrameworkLibrary.sqf Zen_MathFunctions
