@@ -6,18 +6,14 @@
 0 = _this spawn {
     _Zen_stack_Trace = ["Zen_RTS_BuildMenu", _this] call Zen_StackAdd;
 
-    // _idselection = _this select 0;
-    // _index = lbCurSel _idselection;
-    // _text = lbText [_idselection, _index];
-    // _buildingType = lbData [_idselection, _index];
-
-    _buildingType = _this select 3;
+    _buildingTypeID = (_this select 3) select 0;
+    _buildingObjID = (_this select 3) select 1;
     _side = side player;
-    _side2 = [East, West] select ([West, East] find _side);
-    _squadNames = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot"];
+    // _side2 = [East, West] select ([West, East] find _side);
+    // _squadNames = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot"];
 
-    _buildingTypeData = [_buildingType] call Zen_RTS_StrategicBuildingTypeGetData;
-    _buildingObjDataGlobal = [_buildingType, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
+    _buildingTypeData = [_buildingTypeID] call Zen_RTS_StrategicBuildingTypeGetData;
+    _buildingObjDataGlobal = [_buildingObjID] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
 
     if (count _buildingObjDataGlobal < 1) exitWith {
         player sideChat "A building of this type does not exist.";
@@ -75,7 +71,7 @@
 
     buttonSetAction [_idback, "[player, player, 0] call Zen_RTS_AlphaMenu"];
     buttonSetAction [_idbuild, "[false] call Zen_RTS_BuildUnit"];
-    buttonSetAction [_idRefreshButton, format ["0 = [0, 0, 0, '%1'] spawn Zen_RTS_BuildMenu", _buildingType]];
+    buttonSetAction [_idRefreshButton, format ["0 = [0, 0, 0, '%1'] spawn Zen_RTS_BuildMenu", _buildingTypeID]];
     buttonSetAction [_idbuildsquad, "[true] call Zen_RTS_BuildUnit"];
 
     {

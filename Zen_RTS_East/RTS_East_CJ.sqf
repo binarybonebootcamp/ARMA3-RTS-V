@@ -51,7 +51,7 @@ Zen_RTS_F_East_CJConstructor = {
     ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "(_this in _target)"]]];
+    _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "(_this in _target)"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
     if (_level > 0) then {

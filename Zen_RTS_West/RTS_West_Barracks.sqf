@@ -9,7 +9,7 @@ Zen_RTS_F_West_BarracksConstructor = {
     _args = _this select 1;
 
     _spawnPos = _args select 0;
-    _level = _args select 1;
+    // _level = _args select 1;
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
@@ -37,8 +37,12 @@ Zen_RTS_F_West_BarracksConstructor = {
     BUILDING_VISUALS("Land_Cargo_House_V1_F", 1, West)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_Barracks)
 
-    // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_building, ["Purchase Units", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
+    _args = ["addAction", [_building, ["Purchase Units", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (_target getVariable 'Zen_RTS_IsHacked')}"]]];
+    ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
+
+    // hacking
+    _building setVariable ["Zen_RTS_IsHacked", false, true];
+    _args = ["addAction", [_building, ["Hack Building", Zen_RTS_HackBuilding, _buildingObjData, 1, false, true, "", "((_target distance _this) < 15) && {(side _this != (_target getVariable 'Zen_RTS_StrategicBuildingSide'))}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
     (_building)

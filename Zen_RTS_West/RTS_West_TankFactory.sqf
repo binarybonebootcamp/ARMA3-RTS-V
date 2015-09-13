@@ -21,11 +21,12 @@ Zen_RTS_F_West_TankFactoryConstructor = {
     _level = _args select 1;
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
-     _assetsToAdd = [];
+    _assetsToAdd = [];
     _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_m998_w_2dr;
     _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_m998_w_2dr_halftop;
     _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_m1025_w;
     _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_m1025_w_s;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_CJ;
 
     // if (Zen_RTS_TechFlag_West_BuildEnemy) then {
         // ... to do
@@ -48,7 +49,7 @@ Zen_RTS_F_West_TankFactoryConstructor = {
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["<img size='3'
-      image='pictures\build_ca.paa'/>", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
+      image='pictures\build_ca.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
     (_building)
 };
@@ -201,3 +202,15 @@ Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskid_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_
 Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskiwd_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_m1a2sep1tuskiwd_usarmy","m1a2-sep1-tuski-wd", "Cost: 100, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskiiwd_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_m1a2sep1tuskiiwd_usarmy","m1a2-sep1-tuski-iwd", "Cost: 100, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskiid_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_m1a2sep1tuskiid_usarmy","m1a2-sep1-tuski-id", "Cost: 100, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+
+Zen_RTS_F_West_Asset_CJ = {
+    player sideChat str ("West CJ asset proxy constructor called");
+    player sideChat str _this;
+
+    _buildingObjData = _this select 0;
+    _building = _buildingObjData select 2;
+    _pos = [_building, 20, random 360] call Zen_ExtendPosition;
+    0 = [Zen_RTS_BuildingType_West_CJ, [_pos, 0]] call Zen_RTS_StrategicBuildingInvoke;
+};
+
+Zen_RTS_Asset_West_CJ = ["Zen_RTS_F_West_Asset_CJ","CJ", "Cost: 500, Time: 10, Crew: 0,"] call Zen_RTS_StrategicAssetCreate;

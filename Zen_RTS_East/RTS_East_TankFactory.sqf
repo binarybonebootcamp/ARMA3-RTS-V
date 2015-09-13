@@ -22,8 +22,8 @@ Zen_RTS_F_East_TankFactoryConstructor = {
 
     _assetsToAdd = [];
 
-	_assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66o_flat_vdv;
-	_assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_vdv;  
+    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66o_flat_vdv;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_vdv;
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_uaz_vdv;
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_uaz_open_vdv;
 
@@ -47,7 +47,7 @@ Zen_RTS_F_East_TankFactoryConstructor = {
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_TankFactory)
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_building, ["Purchase Units", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'side')) || (false)}"]]];
+    _args = ["addAction", [_building, ["Purchase Units", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
     (_building)
 };
@@ -145,7 +145,7 @@ VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp3mera_msv, "rhs_bmp3mera_msv", C
 #define CREW_UNITS ["rhs_msv_driver", "rhs_msv_crew"]
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_AssetTigr, "rhs_tigr_ffv_msv", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr60_vmf, "rhs_btr60_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1_vmf, "rhs_bmp1_vmf", CREW_UNITS)  
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1_vmf, "rhs_bmp1_vmf", CREW_UNITS)
 
 #define CREW_UNITS ["rhs_vdv_driver_armored", "rhs_vdv_officer_armored", "rhs_vdv_crew"]
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_ap2_vdv, "rhs_gaz66_ap2_vdv", CREW_UNITS)
