@@ -66,6 +66,7 @@ Zen_RTS_F_West_CJConstructor = {
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
     _args = ["addAction", [_vehicle, ["Take CJ from AI", {SWAP_CJ_OWNER(false)}, _vehicle, 1, false, true, "", "((_this distance2D _target) < 5) && (_target getVariable 'Zen_RTS_StrategicIsAIOwned')"]]];
+
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
     if (_level > 0) then {

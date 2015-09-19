@@ -5,9 +5,11 @@ class Mission
 	{
 		"A3_Characters_F_Civil",
 		"a3_map_altis",
+		"a3_soft_f_truckheavy",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_OPFOR",
 		"A3_Structures_F_Ind_Cargo",
+		"A3_Soft_F_HEMTT",
 		"A3_Characters_F_INDEP",
 		"A3_Structures_F_Items_Vessels",
 		"A3_Structures_F_Wrecks",
@@ -57,12 +59,13 @@ class Mission
 		"A3_Structures_F_Mil_Helipads",
 		"A3_Roads_F",
 		"cabuildings",
+		"A3_Structures_F_Items_Vessels",
 		"a3_map_altis"
 	};
 	randomSeed=7333891;
 	class Intel
 	{
-		briefingName="Warfare Unleashed RTS-V DEV-090515(24)";
+		briefingName="Warfare Unleashed dev-rts-v-090815(24)";
 		resistanceWest=0;
 		startWeather=0;
 		startWind=0.1;
@@ -72,8 +75,8 @@ class Mission
 		year=2015;
 		month=9;
 		day=7;
-		hour=11;
-		minute=35;
+		hour=6;
+		minute=0;
 		startFogDecay=0.0049333;
 		forecastFogDecay=0.0049333;
 	};
@@ -118,6 +121,7 @@ class Mission
 					rank="COLONEL";
 					skill=1;
 					text="West1";
+					init="this addEventHandler [""Killed"",{_this execVM ""deathScript.sqf""}];";
 					description="RTS-Commander";
 				};
 			};
@@ -697,7 +701,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=107;
+		items=167;
 		class Item0
 		{
 			position[]={14552.243,11.721425,6257.1826};
@@ -806,7 +810,7 @@ class Mission
 		};
 		class Item10
 		{
-			position[]={23646.354,3.1900001,18283.133};
+			position[]={22934.271,3.1900001,18447.869};
 			id=38;
 			side="EMPTY";
 			vehicle="FlagPole_F";
@@ -986,7 +990,7 @@ class Mission
 		};
 		class Item27
 		{
-			position[]={9379.9492,17.442463,21546.576};
+			position[]={9232.5488,16.101669,21613.576};
 			azimut=115.04237;
 			id=55;
 			side="EMPTY";
@@ -1785,6 +1789,676 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_HBarrier_Big_F";
 			skill=0.60000002;
+        }
+        class Item107 {
+			position[]={14745.352,17.91,16842.17};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=65;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item108
+		{
+			position[]={14620.215,17.91,16731.523};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=66;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item109
+		{
+			position[]={16060.866,56.443325,18277.48};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=67;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item110
+		{
+			position[]={16129.984,58.471256,18327.611};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=68;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item111
+		{
+			position[]={16092.461,56.581856,18334.598};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=69;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item112
+		{
+			position[]={11526.729,22.224066,11545.43};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=70;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item113
+		{
+			position[]={9390.8584,55.601921,8597.7139};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=71;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item114
+		{
+			position[]={11038.684,196.86838,7320.1445};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=72;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item115
+		{
+			position[]={11564.365,18.706314,9607.5898};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=73;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item116
+		{
+			position[]={7010.3379,68.363853,15879.374};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=74;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item117
+		{
+			position[]={7009.8125,68.296494,15876.995};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=75;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item118
+		{
+			position[]={22931.328,3.1900001,18450.068};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=76;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item119
+		{
+			position[]={22938.609,3.1900001,18442.84};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=77;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item120
+		{
+			position[]={23728.732,5.2630029,16227.376};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=78;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item121
+		{
+			position[]={27196.975,18.231182,24642.713};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=79;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item122
+		{
+			position[]={27210.449,17.605463,24647.736};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=80;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item123
+		{
+			position[]={9233.4053,16.197973,21610.133};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=81;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item124
+		{
+			position[]={6701.3892,206.29691,19569.238};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=82;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item125
+		{
+			position[]={6724.6895,206.80125,19563.297};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=83;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item126
+		{
+			position[]={6726.8594,206.20833,19550.732};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=84;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item127
+		{
+			position[]={14620.257,17.91,16730.713};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=85;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item128
+		{
+			position[]={12408.7,77.429337,19858.912};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=86;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item129
+		{
+			position[]={12410.485,77.647339,19861.918};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=87;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item130
+		{
+			position[]={14145.92,60.892586,21354.043};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=88;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item131
+		{
+			position[]={14147.007,60.893852,21353.85};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=89;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item132
+		{
+			position[]={9012.9746,212.71948,17960.029};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=90;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item133
+		{
+			position[]={9014.8369,212.70795,17960.066};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=91;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item134
+		{
+			position[]={5342.9624,128.66776,10314.934};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=92;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item135
+		{
+			position[]={5341.2935,128.82938,10311.792};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=93;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item136
+		{
+			position[]={3341.9785,39.360363,17952.314};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=94;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item137
+		{
+			position[]={3343.2197,39.292557,17954.137};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=95;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item138
+		{
+			position[]={2712.9055,4.2085562,22076.457};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=96;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item139
+		{
+			position[]={2713.6423,4.2408137,22074.207};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=97;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item140
+		{
+			position[]={22208.475,12.928918,5033.8945};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=98;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item141
+		{
+			position[]={22205.063,13.011398,5039.1973};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=99;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item142
+		{
+			position[]={23096.943,48.186871,7313.748};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=100;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item143
+		{
+			position[]={23012.02,48.424252,7266.3916};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=101;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item144
+		{
+			position[]={23056.73,48.792244,7293.6411};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=102;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item145
+		{
+			position[]={21165.99,18.572733,7551.5986};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=103;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item146
+		{
+			position[]={20796.438,27.925716,7264.0366};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=104;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item147
+		{
+			position[]={20831.607,29.225277,7203.2676};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=105;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item148
+		{
+			position[]={17993.67,55.239353,12516.699};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=106;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item149
+		{
+			position[]={20002.156,27.675875,13563.696};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=107;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item150
+		{
+			position[]={19444.828,19.592266,15373.496};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=108;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item151
+		{
+			position[]={19425.314,19.615749,15390.643};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=109;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item152
+		{
+			position[]={19441.209,19.523872,15392.821};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=110;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item153
+		{
+			position[]={22513.549,9.4740868,18514.068};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=111;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item154
+		{
+			position[]={23479.551,92.074951,21113.402};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=112;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item155
+		{
+			position[]={23448.607,92.159828,21148.047};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=113;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item156
+		{
+			position[]={23511.166,90.255676,21164.189};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=114;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item157
+		{
+			position[]={23477.195,90.489952,21133.248};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=115;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item158
+		{
+			position[]={23575.742,89.825729,21134.592};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=116;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item159
+		{
+			position[]={25214.504,11.282554,20050.295};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=117;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item160
+		{
+			position[]={25238.021,10.674521,20078.184};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=118;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item161
+		{
+			position[]={27168.146,22.679358,21511.104};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=119;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item162
+		{
+			position[]={27189.779,22.440161,21503.117};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=120;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item163
+		{
+			position[]={27179.254,19.378014,24656.34};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=121;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item164
+		{
+			position[]={15006.423,17.91,16471.904};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=122;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item165
+		{
+			position[]={9172.0303,14.557052,21639.24};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=123;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item166
+		{
+			position[]={9173.0166,14.539408,21639.926};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=124;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
+		};
+		class Item167
+		{
+			position[]={10496.656,85.79718,15411.1};
+			azimut=75.981102;
+			offsetY=0.061618801;
+			id=125;
+			side="EMPTY";
+			vehicle="Land_MetalBarrel_F";
+			skill=0.60000002;
+			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
 	};
 	class Markers
@@ -2511,7 +3185,7 @@ class Mission
 		};
 		class Item19
 		{
-			position[]={22206.32,12.977129,5036.4805};
+			position[]={22206.051,12.958108,5036.4805};
 			a=5;
 			b=5;
 			angle=-136.12904;
@@ -2568,7 +3242,7 @@ class Mission
 		};
 		class Item23
 		{
-			position[]={23646.35,3.1900001,18282.832};
+			position[]={22934.268,3.1900001,18447.568};
 			a=5;
 			b=5;
 			rectangular=1;
@@ -2668,7 +3342,7 @@ class Mission
 		};
 		class Item30
 		{
-			position[]={9379.3848,17.432901,21546.736};
+			position[]={9231.9844,16.080458,21613.736};
 			a=5;
 			b=5;
 			angle=115.04237;

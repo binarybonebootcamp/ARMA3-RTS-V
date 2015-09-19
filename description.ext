@@ -1,3 +1,11 @@
+#include "Zen_FrameworkFunctions\Zen_DialogSystem\Zen_Dialog.hpp"
+class CfgNotifications {
+    #include "Zen_FrameworkFunctions\Zen_TaskSystem\Zen_TaskNotifications.hpp"
+};
+class CfgCommunicationMenu {
+    #include "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_FireSupportMenu.hpp"
+};
+
 respawn = 3;
 respawndelay = 3;
 respawnDialog = false;
@@ -17,7 +25,7 @@ showUAVFeed = 1;
 showGroupIndicator = 0;
 enableDebugConsole = 1;
 taskManagement_markers3D = 1;
-showHUD= [true,true,false,false,true,true,true,true];
+showHUD = 1;
 
 class Header{
     gameType = CTI;
@@ -45,12 +53,7 @@ class CfgRemoteExecCommands {
 #include "vip_sms\resource\vip_sms_dlg.hpp"
 #include "param\description.ext"
 #include "menus\Defines.hpp"
-#include "menus\RscTitles.hpp"
-#include "menus\RscListBox.hpp"
-#include "menus\RscListBoxSmall.hpp"
 #include "menus\RscCombo.hpp"
-#include "menus\RscButton2.hpp"
-#include "menus\RscButtonSmall.hpp"
 #include "menus\dlgRscRTSMenus.hpp"
 #include "menus\RscLB_C.hpp"
 #include "menus\dlgRscHelp.hpp"
@@ -62,7 +65,7 @@ class CfgRemoteExecCommands {
 #include "digitalLoadout\dialog.hpp"
 
 class CfgSounds {
-    sounds[] = {NoSound, jump8};
+    sounds[] = {NoSound,jump8,death};
 
     class NoSound {
         name = "NoSound";
@@ -72,9 +75,15 @@ class CfgSounds {
 
     class jump8 {
         name="jump8";
-        sound[]={"sound\jump8.ogg",5.0,1.0,100};
+        sound[]={"sound\EN\holyshite.ogg",2,1,50};
         titles[]={};
     };
+	class death
+	{
+		name="death";
+		sound[]={\sound\EN\fucke.ogg,2,1,50};
+		titles[]={};
+        };
 
     #include "menus\Sounds.hpp"
 };
