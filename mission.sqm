@@ -21,7 +21,20 @@ class Mission
 		"A3_Soft_F_Gamma_HEMTT",
 		"A3_Characters_F_Gamma",
 		"A3_Soft_F_Gamma_TruckHeavy",
-		"A3_Modules_F_Curator_Intel"
+		"A3_Modules_F_Curator_Intel",
+		"A3_Data_F",
+		"a3_structures_f_mil_fortification",
+		"A3_Structures_F_Mil_Cargo",
+		"A3_Structures_F_Civ_Lamps",
+		"A3_Structures_F_Mil_BagBunker",
+		"A3_Structures_F_Walls",
+		"A3_Structures_F_Civ_Accessories",
+		"A3_Signs_F",
+		"A3_Structures_F_Mil_BagFence",
+		"A3_Structures_F_Civ_InfoBoards",
+		"A3_Structures_F_Mil_Helipads",
+		"A3_Roads_F",
+		"cabuildings"
 	};
 	addOnsAuto[]=
 	{
@@ -33,6 +46,19 @@ class Mission
 		"A3_Soft_F_Gamma_TruckHeavy",
 		"A3_Structures_F_Mil_Flags",
 		"A3_Soft_F_Gamma_HEMTT",
+		"A3_Data_F",
+		"a3_structures_f_mil_fortification",
+		"A3_Structures_F_Mil_Cargo",
+		"A3_Structures_F_Civ_Lamps",
+		"A3_Structures_F_Mil_BagBunker",
+		"A3_Structures_F_Walls",
+		"A3_Structures_F_Civ_Accessories",
+		"A3_Signs_F",
+		"A3_Structures_F_Mil_BagFence",
+		"A3_Structures_F_Civ_InfoBoards",
+		"A3_Structures_F_Mil_Helipads",
+		"A3_Roads_F",
+		"cabuildings",
 		"A3_Structures_F_Items_Vessels",
 		"a3_map_altis"
 	};
@@ -675,7 +701,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=98;
+		items=167;
 		class Item0
 		{
 			position[]={14552.243,11.721425,6257.1826};
@@ -1066,6 +1092,705 @@ class Mission
 		};
 		class Item37
 		{
+			position[]={22904.797,3.1900001,16972.475};
+			azimut=44.6796;
+			offsetY=0.0224037;
+			id=65;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item38
+		{
+			position[]={22898.896,3.1900001,16978.176};
+			azimut=44.769402;
+			offsetY=0.026725801;
+			id=66;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item39
+		{
+			position[]={22909.598,3.1900001,16977.076};
+			azimut=225.69299;
+			offsetY=0.198349;
+			id=67;
+			side="EMPTY";
+			vehicle="Land_Cargo_House_V1_F";
+			skill=0.60000002;
+		};
+		class Item40
+		{
+			position[]={22914.697,3.1900001,16965.676};
+			azimut=286.664;
+			offsetY=-0.000312805;
+			id=68;
+			side="EMPTY";
+			vehicle="Land_LampHalogen_F";
+			skill=0.60000002;
+		};
+		class Item41
+		{
+			position[]={22910.498,3.1900001,16966.375};
+			azimut=44.2617;
+			offsetY=0.0510826;
+			id=69;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item42
+		{
+			position[]={22919.396,3.1900001,16972.576};
+			azimut=313.00101;
+			offsetY=0.052589402;
+			id=70;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item43
+		{
+			position[]={22916.797,3.1900001,16965.076};
+			azimut=314.90701;
+			offsetY=0.0224152;
+			id=71;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item44
+		{
+			position[]={22932.396,3.1900001,16981.576};
+			azimut=312.811;
+			offsetY=0.0125275;
+			id=72;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item45
+		{
+			position[]={22926.896,3.1900001,16975.375};
+			azimut=313.00101;
+			offsetY=0.034160599;
+			id=73;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item46
+		{
+			position[]={22880.131,3.1900001,16999.627};
+			azimut=4.07759;
+			offsetY=0.00190735;
+			id=74;
+			side="EMPTY";
+			vehicle="Land_LampHalogen_F";
+			skill=0.60000002;
+		};
+		class Item47
+		{
+			position[]={22879.83,3.1900001,17002.027};
+			azimut=134.91299;
+			offsetY=0.00854111;
+			id=75;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item48
+		{
+			position[]={22881.529,3.1900001,16995.926};
+			azimut=46.334499;
+			offsetY=0.020362901;
+			id=76;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item49
+		{
+			position[]={22887.27,3.1900001,17005.023};
+			azimut=133.989;
+			offsetY=0.025688199;
+			id=77;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item50
+		{
+			position[]={22887.529,3.1900001,16989.826};
+			azimut=46.188801;
+			offsetY=0.02248;
+			id=78;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item51
+		{
+			position[]={22893.529,3.1900001,16983.826};
+			azimut=49.692299;
+			offsetY=0.020752;
+			id=79;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item52
+		{
+			position[]={22892.859,3.1900001,16996.504};
+			azimut=262.97601;
+			offsetY=-0.0022048999;
+			id=80;
+			side="EMPTY";
+			vehicle="Land_LampStreet_F";
+			skill=0.60000002;
+		};
+		class Item53
+		{
+			position[]={22893.061,3.1900001,16998.305};
+			azimut=135.213;
+			offsetY=-0.038414001;
+			id=81;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_4m_F";
+			skill=0.60000002;
+		};
+		class Item54
+		{
+			position[]={22896.459,3.1900001,16990.605};
+			azimut=43.6427;
+			offsetY=-0.0305901;
+			id=82;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_4m_F";
+			skill=0.60000002;
+		};
+		class Item55
+		{
+			position[]={22899.359,3.1900001,16988.004};
+			azimut=41.124901;
+			offsetY=-0.0356941;
+			id=83;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_4m_F";
+			skill=0.60000002;
+		};
+		class Item56
+		{
+			position[]={22893.561,3.1900001,16993.404};
+			azimut=43.6427;
+			offsetY=-0.029026;
+			id=84;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_4m_F";
+			skill=0.60000002;
+		};
+		class Item57
+		{
+			position[]={22890.76,3.1900001,16995.504};
+			azimut=30.4044;
+			offsetY=-0.020217899;
+			id=85;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_Corner_F";
+			skill=0.60000002;
+		};
+		class Item58
+		{
+			position[]={22895.859,3.1900001,17001.105};
+			azimut=135.022;
+			offsetY=-0.150833;
+			id=86;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_4m_F";
+			skill=0.60000002;
+		};
+		class Item59
+		{
+			position[]={22901.66,3.1900001,16988.605};
+			azimut=195.549;
+			offsetY=-0.061988801;
+			id=87;
+			side="EMPTY";
+			vehicle="Land_LampStreet_F";
+			skill=0.60000002;
+		};
+		class Item60
+		{
+			position[]={22909.459,3.1900001,16994.205};
+			azimut=313.578;
+			offsetY=0.339607;
+			id=88;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_4m_F";
+			skill=0.60000002;
+		};
+		class Item61
+		{
+			position[]={22906.859,3.1900001,16991.305};
+			azimut=313.56;
+			offsetY=0.219101;
+			id=89;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_4m_F";
+			skill=0.60000002;
+		};
+		class Item62
+		{
+			position[]={22904.061,3.1900001,16988.504};
+			azimut=313.50299;
+			offsetY=0.35427099;
+			id=90;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_4m_F";
+			skill=0.60000002;
+		};
+		class Item63
+		{
+			position[]={22901.459,3.1900001,16988.205};
+			azimut=121.657;
+			offsetY=-0.051135998;
+			id=91;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_Corner_F";
+			skill=0.60000002;
+		};
+		class Item64
+		{
+			position[]={22937.93,3.1900001,16987.617};
+			azimut=312.72501;
+			offsetY=0.0182686;
+			id=92;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item65
+		{
+			position[]={22912.4,3.1900001,16996.133};
+			azimut=156.75101;
+			offsetY=0.0070114098;
+			id=93;
+			side="EMPTY";
+			vehicle="Land_Loudspeakers_F";
+			skill=0.60000002;
+		};
+		class Item66
+		{
+			position[]={22902.359,3.1900001,16996.004};
+			azimut=134.38499;
+			offsetY=0.167477;
+			id=94;
+			side="EMPTY";
+			vehicle="Land_Cargo_Tower_V1_F";
+			skill=0.60000002;
+		};
+		class Item67
+		{
+			position[]={22909.459,3.1900001,16995.904};
+			azimut=75.181297;
+			offsetY=0.28710601;
+			id=95;
+			side="EMPTY";
+			vehicle="Land_LampStreet_F";
+			skill=0.60000002;
+		};
+		class Item68
+		{
+			position[]={22926.25,3.1900001,17027.799};
+			azimut=45.021099;
+			offsetY=-0.0415649;
+			id=96;
+			side="EMPTY";
+			vehicle="Land_Cargo_House_V1_F";
+			skill=0.60000002;
+		};
+		class Item69
+		{
+			position[]={22943.91,3.1900001,16993.916};
+			azimut=311.55801;
+			offsetY=0.00632858;
+			id=97;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item70
+		{
+			position[]={22946.807,3.1900001,17001.668};
+			azimut=314.68799;
+			offsetY=0.0214653;
+			id=98;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item71
+		{
+			position[]={22953.961,3.1900001,17006.988};
+			azimut=172;
+			offsetY=-0.00012207;
+			id=99;
+			side="EMPTY";
+			vehicle="Land_LampHalogen_F";
+			skill=0.60000002;
+		};
+		class Item72
+		{
+			position[]={22952.561,3.1900001,17010.588};
+			azimut=45.734299;
+			offsetY=0.0111923;
+			id=100;
+			side="EMPTY";
+			vehicle="Land_HBarrierBig_F";
+			skill=0.60000002;
+		};
+		class Item73
+		{
+			position[]={22954.162,3.1900001,17004.789};
+			azimut=134.48399;
+			offsetY=0.013237;
+			id=101;
+			side="EMPTY";
+			vehicle="Land_HBarrierBig_F";
+			skill=0.60000002;
+		};
+		class Item74
+		{
+			position[]={22884.914,3.1900001,17023.984};
+			azimut=134.88306;
+			offsetY=-0.0172577;
+			id=102;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Small_F";
+			skill=0.60000002;
+		};
+		class Item75
+		{
+			position[]={22882.33,3.1900001,17026.275};
+			azimut=133.63;
+			offsetY=0.0087318402;
+			id=103;
+			side="EMPTY";
+			vehicle="Land_Sign_WarningMilitaryArea_F";
+			skill=0.60000002;
+		};
+		class Item76
+		{
+			position[]={22882.826,3.1900001,17008.982};
+			azimut=314.47778;
+			offsetY=-0.099082902;
+			id=104;
+			side="EMPTY";
+			vehicle="Land_Razorwire_F";
+			skill=0.60000002;
+		};
+		class Item77
+		{
+			position[]={22893.33,3.1900001,17026.227};
+			azimut=133.244;
+			offsetY=0.0414543;
+			id=105;
+			side="EMPTY";
+			vehicle="Land_Mil_WiredFence_Gate_F";
+			skill=0.60000002;
+		};
+		class Item78
+		{
+			position[]={22902.83,3.1900001,17028.627};
+			azimut=40.7663;
+			offsetY=-1.52588e-005;
+			id=106;
+			side="EMPTY";
+			vehicle="Land_LampHalogen_F";
+			skill=0.60000002;
+		};
+		class Item79
+		{
+			position[]={22900.73,3.1900001,17028.426};
+			azimut=42.887699;
+			offsetY=0.0150871;
+			id=107;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item80
+		{
+			position[]={22889.73,3.1900001,17012.826};
+			azimut=134.05099;
+			offsetY=0.0075187702;
+			id=108;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item81
+		{
+			position[]={22906.93,3.1900001,17030.426};
+			azimut=133.509;
+			offsetY=0.0056266799;
+			id=109;
+			side="EMPTY";
+			vehicle="Land_BagFence_Corner_F";
+			skill=0.60000002;
+		};
+		class Item82
+		{
+			position[]={22891.029,3.1900001,17019.127};
+			azimut=223.91727;
+			offsetY=0.0134163;
+			id=110;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item83
+		{
+			position[]={22895.486,3.1900001,17034.375};
+			azimut=132.43114;
+			offsetY=0.0036277799;
+			id=111;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Small_F";
+			skill=0.60000002;
+		};
+		class Item84
+		{
+			position[]={22898.76,3.1900001,17004.004};
+			azimut=135.09801;
+			offsetY=-0.0813637;
+			id=112;
+			side="EMPTY";
+			vehicle="Land_Mil_WallBig_4m_F";
+			skill=0.60000002;
+		};
+		class Item85
+		{
+			position[]={22914.029,3.1900001,17033.527};
+			azimut=133.207;
+			offsetY=0.0135422;
+			id=113;
+			side="EMPTY";
+			vehicle="Land_BagBunker_Tower_F";
+			skill=0.60000002;
+		};
+		class Item86
+		{
+			position[]={22901.26,3.1900001,17003.904};
+			azimut=351.117;
+			offsetY=0.246445;
+			id=114;
+			side="EMPTY";
+			vehicle="Land_LampStreet_F";
+			skill=0.60000002;
+		};
+		class Item87
+		{
+			position[]={22934.83,3.1900001,17028.426};
+			azimut=40.852901;
+			offsetY=0.0023994399;
+			id=115;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item88
+		{
+			position[]={22928.529,3.1900001,17034.027};
+			azimut=45.842701;
+			offsetY=0.00074386603;
+			id=116;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item89
+		{
+			position[]={22940.705,3.1900001,17022.875};
+			azimut=45.634701;
+			offsetY=0.0217438;
+			id=117;
+			side="EMPTY";
+			vehicle="Land_HBarrierBig_F";
+			skill=0.60000002;
+		};
+		class Item90
+		{
+			position[]={22946.807,3.1900001,17016.775};
+			azimut=45.629398;
+			offsetY=0.021369901;
+			id=118;
+			side="EMPTY";
+			vehicle="Land_HBarrierBig_F";
+			skill=0.60000002;
+		};
+		class Item91
+		{
+			position[]={22916.43,3.1900001,17041.326};
+			azimut=315.95801;
+			offsetY=0.0086441003;
+			id=119;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item92
+		{
+			position[]={22909.529,3.1900001,17037.32};
+			azimut=313.56;
+			offsetY=1.05098;
+			id=120;
+			side="EMPTY";
+			vehicle="Land_Razorwire_F";
+			skill=0.60000002;
+		};
+		class Item93
+		{
+			position[]={22918.73,3.1900001,17041.326};
+			azimut=88.094299;
+			offsetY=-0.00123978;
+			id=121;
+			side="EMPTY";
+			vehicle="Land_LampHalogen_F";
+			skill=0.60000002;
+		};
+		class Item94
+		{
+			position[]={22922.43,3.1900001,17040.027};
+			azimut=45.921299;
+			offsetY=0.047767598;
+			id=122;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+		};
+		class Item95
+		{
+			position[]={22908.146,3.1900001,17027.814};
+			azimut=-45.959988;
+			id=123;
+			side="EMPTY";
+			vehicle="Land_Billboard_F";
+			skill=0.60000002;
+			init="this enableSimulation false; this allowDamage false;";
+		};
+		class Item96
+		{
+			position[]={22892.168,3.1900001,17011.039};
+			azimut=-405.85199;
+			id=124;
+			side="EMPTY";
+			vehicle="Land_Billboard_F";
+			skill=0.60000002;
+			init="this enableSimulation false; this allowDamage false;";
+		};
+		class Item97
+		{
+			position[]={22924.102,3.1900001,17006.436};
+			azimut=852.91235;
+			id=125;
+			side="EMPTY";
+			vehicle="Land_HelipadSquare_F";
+			skill=0.60000002;
+			init="this setVectorUp [0,0,+0.2]";
+		};
+		class Item98
+		{
+			position[]={22924.01,3.1900001,17014.563};
+			azimut=764.16626;
+			id=126;
+			side="EMPTY";
+			vehicle="Land_runway_edgelight";
+			skill=0.60000002;
+			init="this setVectorUp [0,0,+0.2]";
+		};
+		class Item99
+		{
+			position[]={22932.34,3.1900001,17006.773};
+			azimut=764.16626;
+			id=127;
+			side="EMPTY";
+			vehicle="Land_runway_edgelight";
+			skill=0.60000002;
+			init="this setVectorUp [0,0,+0.2]";
+		};
+		class Item100
+		{
+			position[]={22924.244,3.1900001,16998.391};
+			azimut=764.16626;
+			id=128;
+			side="EMPTY";
+			vehicle="Land_runway_edgelight";
+			skill=0.60000002;
+			init="this setVectorUp [0,0,+0.2]";
+		};
+		class Item101
+		{
+			position[]={22916.131,3.1900001,17006.34};
+			azimut=764.16626;
+			id=129;
+			side="EMPTY";
+			vehicle="Land_runway_edgelight";
+			skill=0.60000002;
+			init="this setVectorUp [0,0,+0.2]";
+		};
+		class Item102
+		{
+			position[]={22928.314,3.1900001,17002.51};
+			azimut=764.16626;
+			id=130;
+			side="EMPTY";
+			vehicle="Land_Flush_Light_yellow_F";
+			skill=0.60000002;
+			init="this setVectorUp [0,0,+0.2]";
+		};
+		class Item103
+		{
+			position[]={22919.922,3.1900001,17010.441};
+			azimut=764.16626;
+			id=131;
+			side="EMPTY";
+			vehicle="Land_Flush_Light_yellow_F";
+			skill=0.60000002;
+			init="this setVectorUp [0,0,+0.2]";
+		};
+		class Item104
+		{
+			position[]={22928.168,3.1900001,17010.869};
+			azimut=764.16626;
+			id=132;
+			side="EMPTY";
+			vehicle="Land_Flush_Light_yellow_F";
+			skill=0.60000002;
+			init="this setVectorUp [0,0,+0.2]";
+		};
+		class Item105
+		{
+			position[]={22919.943,3.1900001,17002.619};
+			azimut=764.16626;
+			id=133;
+			side="EMPTY";
+			vehicle="Land_Flush_Light_yellow_F";
+			skill=0.60000002;
+			init="this setVectorUp [0,0,+0.2]";
+		};
+		class Item106
+		{
+			position[]={22906.387,3.1900001,17030.518};
+			azimut=134.05099;
+			offsetY=0.0075187702;
+			id=134;
+			side="EMPTY";
+			vehicle="Land_HBarrier_Big_F";
+			skill=0.60000002;
+        }
+        class Item107 {
 			position[]={14745.352,17.91,16842.17};
 			azimut=75.981102;
 			offsetY=0.061618801;
@@ -1075,7 +1800,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item38
+		class Item108
 		{
 			position[]={14620.215,17.91,16731.523};
 			azimut=75.981102;
@@ -1086,7 +1811,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item39
+		class Item109
 		{
 			position[]={16060.866,56.443325,18277.48};
 			azimut=75.981102;
@@ -1097,7 +1822,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item40
+		class Item110
 		{
 			position[]={16129.984,58.471256,18327.611};
 			azimut=75.981102;
@@ -1108,7 +1833,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item41
+		class Item111
 		{
 			position[]={16092.461,56.581856,18334.598};
 			azimut=75.981102;
@@ -1119,7 +1844,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item42
+		class Item112
 		{
 			position[]={11526.729,22.224066,11545.43};
 			azimut=75.981102;
@@ -1130,7 +1855,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item43
+		class Item113
 		{
 			position[]={9390.8584,55.601921,8597.7139};
 			azimut=75.981102;
@@ -1141,7 +1866,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item44
+		class Item114
 		{
 			position[]={11038.684,196.86838,7320.1445};
 			azimut=75.981102;
@@ -1152,7 +1877,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item45
+		class Item115
 		{
 			position[]={11564.365,18.706314,9607.5898};
 			azimut=75.981102;
@@ -1163,7 +1888,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item46
+		class Item116
 		{
 			position[]={7010.3379,68.363853,15879.374};
 			azimut=75.981102;
@@ -1174,7 +1899,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item47
+		class Item117
 		{
 			position[]={7009.8125,68.296494,15876.995};
 			azimut=75.981102;
@@ -1185,7 +1910,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item48
+		class Item118
 		{
 			position[]={22931.328,3.1900001,18450.068};
 			azimut=75.981102;
@@ -1196,7 +1921,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item49
+		class Item119
 		{
 			position[]={22938.609,3.1900001,18442.84};
 			azimut=75.981102;
@@ -1207,7 +1932,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item50
+		class Item120
 		{
 			position[]={23728.732,5.2630029,16227.376};
 			azimut=75.981102;
@@ -1218,7 +1943,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item51
+		class Item121
 		{
 			position[]={27196.975,18.231182,24642.713};
 			azimut=75.981102;
@@ -1229,7 +1954,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item52
+		class Item122
 		{
 			position[]={27210.449,17.605463,24647.736};
 			azimut=75.981102;
@@ -1240,7 +1965,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item53
+		class Item123
 		{
 			position[]={9233.4053,16.197973,21610.133};
 			azimut=75.981102;
@@ -1251,7 +1976,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item54
+		class Item124
 		{
 			position[]={6701.3892,206.29691,19569.238};
 			azimut=75.981102;
@@ -1262,7 +1987,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item55
+		class Item125
 		{
 			position[]={6724.6895,206.80125,19563.297};
 			azimut=75.981102;
@@ -1273,7 +1998,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item56
+		class Item126
 		{
 			position[]={6726.8594,206.20833,19550.732};
 			azimut=75.981102;
@@ -1284,7 +2009,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item57
+		class Item127
 		{
 			position[]={14620.257,17.91,16730.713};
 			azimut=75.981102;
@@ -1295,7 +2020,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item58
+		class Item128
 		{
 			position[]={12408.7,77.429337,19858.912};
 			azimut=75.981102;
@@ -1306,7 +2031,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item59
+		class Item129
 		{
 			position[]={12410.485,77.647339,19861.918};
 			azimut=75.981102;
@@ -1317,7 +2042,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item60
+		class Item130
 		{
 			position[]={14145.92,60.892586,21354.043};
 			azimut=75.981102;
@@ -1328,7 +2053,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item61
+		class Item131
 		{
 			position[]={14147.007,60.893852,21353.85};
 			azimut=75.981102;
@@ -1339,7 +2064,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item62
+		class Item132
 		{
 			position[]={9012.9746,212.71948,17960.029};
 			azimut=75.981102;
@@ -1350,7 +2075,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item63
+		class Item133
 		{
 			position[]={9014.8369,212.70795,17960.066};
 			azimut=75.981102;
@@ -1361,7 +2086,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item64
+		class Item134
 		{
 			position[]={5342.9624,128.66776,10314.934};
 			azimut=75.981102;
@@ -1372,7 +2097,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item65
+		class Item135
 		{
 			position[]={5341.2935,128.82938,10311.792};
 			azimut=75.981102;
@@ -1383,7 +2108,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item66
+		class Item136
 		{
 			position[]={3341.9785,39.360363,17952.314};
 			azimut=75.981102;
@@ -1394,7 +2119,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item67
+		class Item137
 		{
 			position[]={3343.2197,39.292557,17954.137};
 			azimut=75.981102;
@@ -1405,7 +2130,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item68
+		class Item138
 		{
 			position[]={2712.9055,4.2085562,22076.457};
 			azimut=75.981102;
@@ -1416,7 +2141,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item69
+		class Item139
 		{
 			position[]={2713.6423,4.2408137,22074.207};
 			azimut=75.981102;
@@ -1427,7 +2152,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item70
+		class Item140
 		{
 			position[]={22208.475,12.928918,5033.8945};
 			azimut=75.981102;
@@ -1438,7 +2163,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item71
+		class Item141
 		{
 			position[]={22205.063,13.011398,5039.1973};
 			azimut=75.981102;
@@ -1449,7 +2174,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item72
+		class Item142
 		{
 			position[]={23096.943,48.186871,7313.748};
 			azimut=75.981102;
@@ -1460,7 +2185,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item73
+		class Item143
 		{
 			position[]={23012.02,48.424252,7266.3916};
 			azimut=75.981102;
@@ -1471,7 +2196,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item74
+		class Item144
 		{
 			position[]={23056.73,48.792244,7293.6411};
 			azimut=75.981102;
@@ -1482,7 +2207,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item75
+		class Item145
 		{
 			position[]={21165.99,18.572733,7551.5986};
 			azimut=75.981102;
@@ -1493,7 +2218,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item76
+		class Item146
 		{
 			position[]={20796.438,27.925716,7264.0366};
 			azimut=75.981102;
@@ -1504,7 +2229,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item77
+		class Item147
 		{
 			position[]={20831.607,29.225277,7203.2676};
 			azimut=75.981102;
@@ -1515,7 +2240,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item78
+		class Item148
 		{
 			position[]={17993.67,55.239353,12516.699};
 			azimut=75.981102;
@@ -1526,7 +2251,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item79
+		class Item149
 		{
 			position[]={20002.156,27.675875,13563.696};
 			azimut=75.981102;
@@ -1537,7 +2262,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item80
+		class Item150
 		{
 			position[]={19444.828,19.592266,15373.496};
 			azimut=75.981102;
@@ -1548,7 +2273,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item81
+		class Item151
 		{
 			position[]={19425.314,19.615749,15390.643};
 			azimut=75.981102;
@@ -1559,7 +2284,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item82
+		class Item152
 		{
 			position[]={19441.209,19.523872,15392.821};
 			azimut=75.981102;
@@ -1570,7 +2295,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item83
+		class Item153
 		{
 			position[]={22513.549,9.4740868,18514.068};
 			azimut=75.981102;
@@ -1581,7 +2306,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item84
+		class Item154
 		{
 			position[]={23479.551,92.074951,21113.402};
 			azimut=75.981102;
@@ -1592,7 +2317,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item85
+		class Item155
 		{
 			position[]={23448.607,92.159828,21148.047};
 			azimut=75.981102;
@@ -1603,7 +2328,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item86
+		class Item156
 		{
 			position[]={23511.166,90.255676,21164.189};
 			azimut=75.981102;
@@ -1614,7 +2339,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item87
+		class Item157
 		{
 			position[]={23477.195,90.489952,21133.248};
 			azimut=75.981102;
@@ -1625,7 +2350,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item88
+		class Item158
 		{
 			position[]={23575.742,89.825729,21134.592};
 			azimut=75.981102;
@@ -1636,7 +2361,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item89
+		class Item159
 		{
 			position[]={25214.504,11.282554,20050.295};
 			azimut=75.981102;
@@ -1647,7 +2372,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item90
+		class Item160
 		{
 			position[]={25238.021,10.674521,20078.184};
 			azimut=75.981102;
@@ -1658,7 +2383,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item91
+		class Item161
 		{
 			position[]={27168.146,22.679358,21511.104};
 			azimut=75.981102;
@@ -1669,7 +2394,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item92
+		class Item162
 		{
 			position[]={27189.779,22.440161,21503.117};
 			azimut=75.981102;
@@ -1680,7 +2405,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item93
+		class Item163
 		{
 			position[]={27179.254,19.378014,24656.34};
 			azimut=75.981102;
@@ -1691,7 +2416,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item94
+		class Item164
 		{
 			position[]={15006.423,17.91,16471.904};
 			azimut=75.981102;
@@ -1702,7 +2427,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item95
+		class Item165
 		{
 			position[]={9172.0303,14.557052,21639.24};
 			azimut=75.981102;
@@ -1713,7 +2438,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item96
+		class Item166
 		{
 			position[]={9173.0166,14.539408,21639.926};
 			azimut=75.981102;
@@ -1724,7 +2449,7 @@ class Mission
 			skill=0.60000002;
 			init="this addEventHandler [""killed"",{_this spawn barrelfun}];_nul = [this, 2, 1] execVM ""barrelRespawn.sqf"";";
 		};
-		class Item97
+		class Item167
 		{
 			position[]={10496.656,85.79718,15411.1};
 			azimut=75.981102;
@@ -1738,7 +2463,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=43;
+		items=44;
 		class Item0
 		{
 			position[]={14443.622,25.562315,6181.209};
@@ -2169,6 +2894,14 @@ class Mission
 			a=15;
 			b=15;
 			angle=-357.22;
+		};
+		class Item43
+		{
+			position[]={22916.645,3.1900001,17004.299};
+			name="mkFOB1";
+			type="Empty";
+			a=2.5;
+			b=2.5;
 		};
 	};
 	class Sensors

@@ -55,7 +55,7 @@ if (count _truckType == 0) exitWith {
 
 _truckArray = nearestObjects [_HQContainer, _truckType, 15];
 
-player commandChat str _truckArray;
+diag_log _truckArray;
 
 _truck = objNull;
 

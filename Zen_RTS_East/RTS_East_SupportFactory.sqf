@@ -10,8 +10,8 @@
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_SupportFactoryConstructor = {
-    player sideChat str "East Support_factory constructor called";
-    player sideChat str _this;
+    diag_log "East Support_factory constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
@@ -46,18 +46,17 @@ Zen_RTS_F_East_SupportFactoryConstructor = {
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_SupportFactory)
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_building, ["<img size='3'
-      image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
+    _args = ["addAction", [_building, ["<img size='3'image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
     (_building)
 };
 
 Zen_RTS_F_East_SupportFactoryDestructor = {
-    player sideChat str "East Support factory destructor";
+    diag_log "East Support factory destructor";
 
     _buildingObjData = _this select 0;
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
@@ -68,8 +67,8 @@ Zen_RTS_F_East_SupportFactoryDestructor = {
 
 #define UPGRADE(N, A) \
 N = { \
-    player sideChat str (#N + " called"); \
-    player sideChat str _this; \
+    diag_log (#N + " called"); \
+    diag_log _this; \
     _buildingObjData = _this select 0; \
     _assetsToAdd = A; \
     if (Zen_RTS_TechFlag_East_BuildEnemy) then { \
@@ -97,8 +96,8 @@ Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstr
 
 #define VEHCILE_CONSTRUCTOR(N, T, U) \
     N = { \
-        player sideChat str ("East " + T + " asset constructor called"); \
-        player sideChat str _this; \
+        diag_log ("East " + T + " asset constructor called"); \
+        diag_log _this; \
         _buildingObjData = _this select 0; \
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \
