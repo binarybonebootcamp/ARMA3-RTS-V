@@ -29,7 +29,7 @@ class rscbackgroundGUI
      shadow = 1;
      font = "puristaMedium";
      moving = 1; 
-     SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+     SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 30) * 1)";
     
 };
 
@@ -52,7 +52,7 @@ class rscTopStripe
      shadow = 1;
      font = "puristaMedium";  
      moving = 1;
-     SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+     SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 30) * 1)";
     
 };
 
@@ -81,7 +81,7 @@ class IceButton
     h = 0;
     shadow = 2;
     font = "puristaMedium";
-    sizeEx = "0.03 / (getResolution select 5)";
+    sizeEx = 0.03;
     offsetX = 0;
     offsetY = 0;
     offsetPressedX = 0.001;
@@ -106,7 +106,7 @@ class IceText
      w = 0;
      shadow = 2;
      font = "puristaMedium";
-     sizeEx = "0.02 / (getResolution select 5)";  
+     sizeEx =" 0.02 /  (getResolution select 5)";  
     
 };
 
@@ -119,7 +119,7 @@ class IcePicture
           colorBackground[] = {0,0,0,0};
           colorText[] = {1,1,1,1};
           font = "puristaMedium";
-          SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+          SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 30) * 1)";
           lineSpacing = 0;
           text = "";
           fixedWidth = 0;

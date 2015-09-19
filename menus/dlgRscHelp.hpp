@@ -52,12 +52,14 @@ class DlgHelpMenu
 				class Text_Help : RscStructuredText
 					{
 						idc = 3005;
-						Style = CT_STRUCTURED_TEXT;
+						type = CT_STRUCTURED_TEXT;
+						Style = ST_MULTI;
 						x = 0.23;
 						y = 0.12;
 						w = 0.56;
 						h = 0.85;
-						font = "EtelkaNarrowMediumPro";
+						font = FontHTML;
+						sizeEx = 0.02;
 						colorText[] = {1, 0, 0, 1};
 					    colorBackground[] = {0.5, 0.5, 0.5, 0.6};
 					};
@@ -69,7 +71,7 @@ class DlgHelpMenu
 						w = 0.2;
 						h = 0.35;
 				        sizeEx = 0.02;
-				        font = "EtelkaNarrowMediumPro";
+				        font = FontS;
 				        spaceWidth = 0;
 	                    spacing = 0.1;
 				        rowHeight = 0.02;
