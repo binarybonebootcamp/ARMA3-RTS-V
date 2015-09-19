@@ -96,7 +96,7 @@ N = { \
 // #define ASSETS []
 // UPGRADE(Zen_RTS_F_East_CJUpgrade01, ASSETS)
 
-Zen_RTS_BuildingType_East_CJ = ["Zen_RTS_F_East_CJConstructor", "Zen_RTS_F_East_CJDestructor", [], "CJ", "Cost: 1000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_CJ = ["Zen_RTS_F_East_CJConstructor", "Zen_RTS_F_East_CJDestructor", [], "CJ", "Cost: 1000, Time: 10, Picture:pictures\rts_lvs.paa,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_CJ;
 
 /////////////////////////////////

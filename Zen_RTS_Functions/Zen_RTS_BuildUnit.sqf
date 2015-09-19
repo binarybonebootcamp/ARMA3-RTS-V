@@ -87,7 +87,7 @@
                 _building = _buildingObjData select 2;
                 Zen_RTS_CJ_DoPlace = false;
                 _redArrow = "Sign_Arrow_Large_F" createVehicleLocal [0,0,0]; \
-                _building addAction ["<t color='#D80000'>Place</t>", {Zen_RTS_CJ_DoPlace = true; (_this select 0) removeAction (_this select 2);}, [], 1, false, true, "", "(_this in _target)"];
+                _building addAction ["<t color='#D80000'>Place</t>", {Zen_RTS_CJ_DoPlace = true; (_this select 0) removeAction (_this select 2);}, [], 2.5, false, true, "", "(_this in _target)"];
                 waitUntil {
                     sleep 0.5;
                     _redArrow setPosATL ([_building, 10, getDir _building, "compass", 1] call Zen_ExtendPosition);

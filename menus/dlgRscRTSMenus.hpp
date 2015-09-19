@@ -1,38 +1,41 @@
 #define IDListGroup	1020
 
-class RscMoneyLabel : RscText
+ class RscMoneyLabel : RscActiveText
     {
         idc = 1037;
-        x = 0.01;
+		style = ST_LEFT;
+        x = 0.02;
         y = 0.10;
         w = 0.25;
         h = 0.10;
-        sizeEx = 0.025;
+        sizeEx = 0.025; 
         text = "";
-        colorText[] = {0.02, 0.2, 0.7, 0.6};
+        
     };
 
-class RscSupplyLabel : RscText
+class RscSupplyLabel : RscActiveText
     {
         idc = 1038;
-        x = 0.01;
+		style = ST_LEFT;
+        x = 0.02;
         y = 0.20;
         w = 0.25;
         h = 0.10;
         sizeEx = 0.025;
         text = "";
-        colorText[] ={0.02, 0.2, 0.7, 0.6};
+        
     };
-    class RscFPSLabel : RscText
+    class RscFPSLabel : RscActiveText
     {
         idc = 666;
-        x = 0.01;
+		style = ST_LEFT;
+        x = 0.02;
         y = 0.30;
-        w = 0.25;
+         w = 0.25;
         h = 0.10;
         sizeEx = 0.025;
         text = "";
-        colorText[] = {0.02, 0.2, 0.7, 0.6};
+        
     };
 
 
@@ -41,7 +44,7 @@ class RscSupplyLabel : RscText
 //        idc = 500;
 //        x = "(SafeZoneW + SafeZoneX) - (0.27)";
 //        y = "SafeZoneY + 0.55";
-//        w = 0.25;
+//         w = 0.25;
 //        h = 0.25;
 //        sizeEx = 0.025;
 //        colorText[] = {0.02, 0.2, 0.7, 0.6};
@@ -55,7 +58,7 @@ class RscSupplyLabel : RscText
 //        text = ;
 //        x = "(SafeZoneW + SafeZoneX) - (0.27)";
 //        y = "SafeZoneY + 0.55";
-//        w = 0.25;
+//         w = 0.25;
 //        h = 0.25;
 //    };
 
@@ -66,7 +69,7 @@ class RscQueueList : RscListBox
         x = 0.0;
         y = 0.0;
         w = 0.0;
-       h = 0.0;
+        h = 0.0;
         colorBackground[] = {0,0,0,0};
         color[] = {0,0,0,0};
         sizeEx = 0.3;
@@ -76,10 +79,10 @@ class RscQueueList : RscListBox
 class RscLabelBarracksQueue : RscActiveText
     {
         idc = 1030;
-        x = 0.0;
+        x = 0.02;
         y = 0.60;
 		sizeEx = 0.025;
-        colorText[] = {1,0,0,1};
+        colorText[] = {0, 1, 0, 1};
         text = "Empty";
 
     };
@@ -89,7 +92,7 @@ class RscButtonBarracksQueue : RscButton
         idc = 1031;
         x = 0.15;
         y = 0.60;
-		w = 0.07;
+		 w = 0.07;
 		h = 0.05;
 		colorDisabled[] = {0,0,0,0.3};
         colorBackground[] = { 0, 0, 0, 0 };
@@ -110,10 +113,10 @@ class RscButtonBarracksQueue : RscButton
 class RscLabelLightQueue : RscActiveText
     {
         idc = 1032;
-        x = 0.0;
+        x = 0.02;
         y = 0.65;
 		sizeEx = 0.025;
-        colorText[] = {1,0,0,1};
+        colorText[] = {0, 1, 1, 1};
         text = "Empty";
     };
 
@@ -142,10 +145,10 @@ class RscButtonLightQueue : RscButton
 class RscLabelHeavyQueue : RscActiveText
     {
         idc = 1034;
-        x = 0.0;
+        x = 0.02;
         y = 0.70;
 		sizeEx = 0.025;
-        colorText[] = {1,0,0,1};
+        colorText[] = {0, 1, 1, 1};
         text = "Empty";
     };
 
@@ -174,10 +177,10 @@ class RscButtonHeavyQueue : RscButton
 class RscLabelAirQueue : RscActiveText
     {
         idc = 1036;
-        x = 0.0;
+        x = 0.02;
         y = 0.55;
 		sizeEx = 0.025;
-        colorText[] = {1,0,0,1};
+        colorText[] = {0, 1, 1, 1};
         text = "Empty";
 
     };
@@ -235,8 +238,9 @@ class RscListBackground : RscText
         w = 0.58;
         h = 0.50;
 		font = FontS;
-		sizeEx = 0.30;
+		sizeEx = 0.35;
         colorText[] = {1,1,1,1};
+		
     };
 
     class RESEARCH_LIST : RscListBox
@@ -247,7 +251,7 @@ class RscListBackground : RscText
         y = 0.1;
         w = 0.58;
         h = 0.50;
-		sizeEx = 0.040;
+		sizeEx = 0.047;
 		
     };
     class RESEARCH_TITLE : RscSmallTitleBlack
@@ -270,6 +274,18 @@ class RscListBackground : RscText
         w = 0.58;
         h = 0.50;
 		sizeEx = 0.040;
+
+    };
+	    class RscListMain2 : RscListBox
+    {
+        idc = -1;
+        rowHeight = 0.035;
+        x = 0.22;
+        y = 0.1;
+        w = 0.58;
+        h = 0.50;
+		sizeEx = 0.047;
+
     };
 //Dialog for Mission Control  IDs 1000-1050
 class DlgStatus
@@ -279,23 +295,24 @@ class DlgStatus
     controlsBackground[] =
     {
         CENTER_FRAME_TITLE
-        , TOP_RIGHT_TITLE
+        , TOP_RIGHT_TITLE		
         , RIGHT_FRAME_PICTURE
         , RIGHT_FRAME_TEXT2
         , TOP_left_TITLE
+		
     };
 
         class CENTER_FRAME_TITLE : RscText
         {
         idc = 1050;
-            style = ST_CENTER;
+            style = ST_FRAME;
             x = 0.22;
             y = 0.0;
             w = 0.58;
-            h = 0.1;
+            h = 0.99;
             font = FontTITLE;
             colorText[] = {1, 0, 0, 1};
-            colorBackground[] = {0.91,0.91,0.91,1};
+            colorBackground[] = {0,0,0,0};
             sizeEx = 0.050;
             text = " RTS V Mission Status";
     };
@@ -303,17 +320,18 @@ class DlgStatus
    class TOP_RIGHT_TITLE : RscText
     {
             idc = -1;
-            style = ST_CENTER;
-            x = 0.80;
+            style = ST_FRAME;
+            x = 0.8;
             y = 0.0;
             w = 0.2;
-            h = 0.1;
+            h = 0.99;
             text = "WarGames";
             font = FontTITLE;
-            colorText[] = {1, 1, 1, 1};
-            colorBackground[] ={0.91,0.91,0.91,1};
-            sizeEx = 0.03;
+            colorText[] = {1,0.5,0,1};
+            colorBackground[] = {0,0,0,0};
+            sizeEx = 0.030;
     };
+
     class RIGHT_FRAME_PICTURE : RscPicture
     {
             idc = 50;
@@ -321,15 +339,16 @@ class DlgStatus
             y = 0.12;
             w = 0.2;
             h = 0.15;
-            colorText[] = {1, 1, 1, 1};
-            colorBackground[] =  {0, 0, 1, 0.75};
+            colorText[] = {};
             text = "pictures\rtspatch1.paa";
+			
+			
     };
 
     class RIGHT_FRAME_TEXT2 : RscText
     {
         idc = 52;
-        colorBackground[] = {0.91,0.91,0.91,1};
+        colorBackground[] = {1,0.5,0,1};
         text = "UNIT CONTROL";
         x = 0.80;
         y = 0.35;
@@ -339,32 +358,22 @@ class DlgStatus
         style = ST_CENTER;
         sizeEx = 0.03;
     };
-class TOP_left_TITLE : RscText
+
+    class TOP_left_TITLE : RscText
     {
             idc = -1;
-            style = ST_CENTER;
+            style = ST_FRAME;
             x = 0.02;
             y = 0.0;
             w = 0.2;
-            h = 0.1;
+            h = 0.99;
             text = "INFOMATION";
             font = FontTITLE;
-            colorText[] = {1, 1, 1, 1};
-            colorBackground[] = {0.91,0.91,0.91,1};
-            sizeEx = 0.03;
+            colorText[] = {1,0.5,0,1};
+            colorBackground[] = {0,0,0,0};
+            sizeEx = 0.030;
     };
 
-    class left_FRAME_TEXT2 : RscText
-    {
-        idc = 52;
-        colorBackground[] = {1, 0, 0, 1};
-        text = "";
-        x = 0.02;
-        y = 0.35;
-        w = 0.2;
-        h = 0.05;
-        style = ST_CENTER;
-    };
                 //class List_Background : RscListBackGround {};
 
                 class Group_Background : RscText
@@ -383,13 +392,13 @@ class TOP_left_TITLE : RscText
     class controls
         {
 
-        class List_Assets : RESEARCH_LIST
+        class List_Assets : RscListMain2 //RESEARCH_LIST
         {
             idc = 1000;
             onButtonClick = "[1000] exec ""rts-build-menu.sqs""";
         };
 
-        class Button_Help : RscButton2
+        class Button_Help : RscButton
         {
             idc = -1;
            x = 0.02;
@@ -400,12 +409,12 @@ class TOP_left_TITLE : RscText
 
         class Button_Select : RscButton
         {
-            idc = 1005;
+           idc = 1005;
            x = 0.80;
            y = 0.60;
-            sizeEx = 0.030;
-            text = "View Units";
-            action = "[1000] exec ""rts-build-menu.sqs""";
+           sizeEx = 0.030;
+           text = "View Units";
+           action = "[1000] exec ""rts-build-menu.sqs""";
         };
 
         class SOLDIERS_TITLE : RscSmallTitleBlack
@@ -422,6 +431,7 @@ class TOP_left_TITLE : RscText
         class SOLDIERS_LIST : RscListBox
         {
         idc = IDListGroup;
+		type = CT_LISTBOX;
         x = 0.22;
         y = 0.660;
         w = 0.58;
@@ -444,7 +454,7 @@ class TOP_left_TITLE : RscText
         {
         idc = 1015;
         type = CT_COMBO;
-        x= "(SafeZoneW + SafeZoneX) - (0.71)";
+        x= "(SafeZoneW) - (0.71)";
         y = 0.510;
         w = 0.08;
         h = 0.04;
@@ -455,7 +465,7 @@ class TOP_left_TITLE : RscText
         class Button_FlyinHeight : RscButton
         {
             idc = -1;
-           x = 0.80;
+            x = 0.80;
             y = 0.560;
             sizeEx = 0.020;
             text = "Set AI Flight Height";
@@ -466,7 +476,7 @@ class TOP_left_TITLE : RscText
         {
             idc = 1040;
             type = CT_COMBO;
-            x= "(SafeZoneW + SafeZoneX) - (0.71)";
+            x= "(SafeZoneW) - (0.71)";
             y = 0.560;
             w = 0.08;
             h = 0.04;
@@ -476,7 +486,7 @@ class TOP_left_TITLE : RscText
 
     };
 
-        class Button_CustomSquads : RscButton
+        class Button_refresh : RscButton
         {
             idc = 1003;
             x = 0.80;
@@ -523,7 +533,7 @@ class TOP_left_TITLE : RscText
             text = "Disband Unit";
             action = "[1020] exec ""rts-unit-release.sqs""";
         };
-        class BUTTON_CANCEL : RscButton2
+        class BUTTON_CANCEL : RscButton
         {
         idc = -1;
         x = 0.8;
@@ -560,115 +570,84 @@ class DlgBuild
     {
         CENTER_FRAME_TITLE
         , TOP_RIGHT_TITLE
-        , FRAME_BACKGROUND
-        , RIGHT_FRAME_BACKGROUND
-        , RIGHT_FRAME_BACKGROUND2
         , RIGHT_FRAME_PICTURE
-        , RIGHT_FRAME_TEXT
-        , RIGHT_FRAME_TEXT2
+		, TOP_left_TITLE
+
     };
 
     class CENTER_FRAME_TITLE : RscText
     {
             idc = 1050;
-            style = ST_CENTER;
+            style = ST_FRAME;
             x = 0.22;
             y = 0.0;
             w = 0.58;
             h = 0.1;
             font = FontTITLE;
             colorText[] = {1, 0, 0, 1};
-            colorBackground[] = {0.91,0.91,0.91,1};
+            colorBackground[] = {0,0,0,0};
             sizeEx = 0.050;
             text = " COMMAND & CONTROL ";
-    };
-
-    class FRAME_BACKGROUND : RscText
-    {
-        colorBackground[] = {0,0,0,0};//{0.4, 0.4, 0.4, 0.75};
-        text = "";
-        x = 0.22;
-        y = 0.1;
-        w = 0.58;
-        h = 0.99;
     };
 
     class TOP_RIGHT_TITLE : RscText
     {
             idc = -1;
-            style = ST_CENTER;
+            style = ST_FRAME;
             x = 0.8;
             y = 0.0;
             w = 0.2;
-            h = 0.1;
+            h = 0.99;
             font = FontTITLE;
-            colorText[] = {1, 1, 1, 1};
-            colorBackground[] = {0, 0, 0, 1};
-            sizeEx = 0.03;
+            colorText[] = {1,0.5,0,1};
+            colorBackground[] = {0,0,0,0};
+            sizeEx = 0.030;
             text = "R T S - V";
-    };
-
-    class RIGHT_FRAME_BACKGROUND : RscText
-    {
-        colorBackground[] = {0, 0, 1, 0.75};
-        text = "";
-        x = 0.8;
-        y = 0.1;
-        w = 0.2;
-        h = 0.9;
-    };
-
-    class RIGHT_FRAME_BACKGROUND2 : RscText
-    {
-        colorBackground[] = {0.1, 0.1, 0.1, 0.75};
-        text = "";
-        x = 0.8;
-        y = 0.1;
-        w = 0.2;
-        h = 0.9;
     };
 
     class RIGHT_FRAME_PICTURE : RscPicture
     {
         idc = 50;
-        colorBackground[] = {0.1, 0.1, 0.1, 0.75};
-        colorText[] = {1, 1, 1, 1};
+        colorText[] = {};
         text = "";
         x = 0.8;
         y = 0.135;
         w = 0.2;
         h = 0.13;
     };
+	class TOP_left_TITLE : RscText
+    {
+            idc = -1;
+            style = ST_FRAME;
+            x = 0.02;
+            y = 0.0;
+            w = 0.2;
+            h = 0.99;
+            text = "INFOMATION";
+            font = FontTITLE;
+            colorText[] = {1,0.5,0,1};
+            colorBackground[] = {0,0,0,0};
+            sizeEx = 0.030;
+	};		
+	class TOP_left_TITLE2 : RscText
+	{
+	        idc = -1;
+            style = ST_FRAME;
+            colorText[] = {1, 0, 0, 1};
+            x = 0.02;
+            y = 0.0;
+            w = 0.2;
+            h = 0.1;
+	
+    };
 
-    class RIGHT_FRAME_TEXT : RscText
-    {
-        idc = 51;
-        colorBackground[] = {0.91,0.91,0.91,1};
-        text = "";
-        x = 0.8;
-        y = 0.3;
-        w = 0.2;
-        h = 0.05;
-        style = ST_CENTER;
-    };
-    class RIGHT_FRAME_TEXT2 : RscText
-    {
-        idc = 52;
-        colorBackground[] = {1, 0, 0, 1};
-        text = "BUILD MENU";
-        x = 0.8;
-        y = 0.35;
-        w = 0.2;
-        h = 0.05;
-        style = ST_CENTER;
-    };
             //class List_Background : RscListBackGround {};
 
             class Group_Background : RscText
                 {
                     idc = 2026;
                     text = ;
-                        x = 0.78; //0.771;
+                        x = 0.78;
                         y = 0.400;
                         w = 0.400;
                         h = 0.400;
@@ -691,7 +670,7 @@ class DlgBuild
             class List_CrewCount : RscCombo {
                 idc = 2045;
                 type = CT_COMBO;
-                x= "(SafeZoneW + SafeZoneX) - (0.71)";
+                x= "(SafeZoneW) - (0.71)";
                 y = 0.410;
                 w = 0.08;
                 h = 0.04;
@@ -716,7 +695,7 @@ class DlgBuild
             class Button_Build : RscButton
                 {
                     idc = 2005;
-                    x = 0.80;
+                    x = 0.8;
                     y = 0.2;
                     text = "";
                     action = "[2000,0,False,False] execVM ""rts-build-unit.sqf""";
@@ -726,7 +705,7 @@ class DlgBuild
             class Button_Manned_You : RscButton
                 {
                     idc = 2015;
-                    x = 0.80;
+                    x = 0.8;
                     y = 0.25;
                     text = "";
                         //[ListID,ListID2,Manned,Squad]
@@ -736,7 +715,7 @@ class DlgBuild
             class Button_Custom_Squad : RscButton
                 {
                     idc = 2016;
-                    x = 0.80;
+                    x = 0.8;
                     y = 0.30;
                     text = "";
                     action = "[2000,2030,False,False] execVM ""rts-build-unit.sqf""";
@@ -756,7 +735,7 @@ class DlgBuild
             class Button_Manned_Squad : RscButton
                 {
                     idc = 2020;
-                    x = 0.80;
+                    x = 0.8;
                     y = 0.51;
                     text = "";
                     action = "[2000,2025,True,True] execVM ""rts-build-unit.sqf""";
@@ -773,11 +752,12 @@ class DlgBuild
                     font = PuristaMedium;
         };
 
-            class Button_Exit : RscButton2
+            class Button_Exit : RscButton
                 {
                     idc = -1;
                     x = 0.80;
                     y = 0.92;
+					colorText[] = {1, 0, 0, 1};
                     text = "EXIT MENU";
                     action = "closeDialog 0";
                 };
@@ -969,7 +949,7 @@ class DlgConfirm {
         font = tahomaB;
         colorText[] = {0, 0, 0, 1};
         colorBackground[] = {.25, .25, .25, .75};
-        sizeEx = 0.050;
+        sizeEx = "0.050 /  (getResolution select 4.5)";
         text = "";
     };
 
@@ -997,7 +977,7 @@ class DlgConfirm {
         y = 0.55;
         w = 0.1;
         h = 0.05;
-        sizeEx = 0.030;
+        sizeEx = "0.030 /  (getResolution select 4.5)";
         colorText[] = {1, 1, 1, 1};
         text = "Confirm";
         action = "RTS3_Yes = TRUE";
@@ -1009,7 +989,7 @@ class DlgConfirm {
         y = 0.55;
         w = 0.1;
         h = 0.05;
-        sizeEx = 0.030;
+        sizeEx = "0.030 /  (getResolution select 4.5)";
         colorText[] = {1, 1, 1, 1};
         text = "Cancel";
         action = "RTS3_No = TRUE";
