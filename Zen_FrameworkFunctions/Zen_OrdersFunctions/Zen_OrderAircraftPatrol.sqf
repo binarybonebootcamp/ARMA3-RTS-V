@@ -8,7 +8,7 @@
 _Zen_stack_Trace = ["Zen_OrderAircraftPatrol", _this] call Zen_StackAdd;
 private ["_vehicleArray", "_movecenters", "_blackList", "_speedMode", "_heliHeight", "_mpos", "_heliDirToLand", "_mposCorrected", "_vehDist", "_limitAnglesSet", "_cleanupDead", "_crewGroupArray", "_crew", "_center", "_index", "_behavior", "_positionFilterArgs"];
 
-if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["STRING"], ["STRING"], ["SCALAR"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["STRING", "ARRAY", "SCALAR"], ["SCALAR", "ARRAY"]], 2] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["STRING"], ["STRING"], ["SCALAR"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING", "SCALAR"], ["STRING", "ARRAY", "SCALAR"], ["SCALAR", "ARRAY"]], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 

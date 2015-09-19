@@ -8,7 +8,7 @@
 _Zen_stack_Trace = ["Zen_OrderVehiclePatrol", _this] call Zen_StackAdd;
 private ["_vehicleArray", "_movecenters", "_speedMode", "_mpos", "_limitAnglesSet", "_vehDist", "_cleanupDead", "_crewGroupArray", "_crew", "_findRoads", "_behavior", "_positionFilterArgs", "_center", "_index", "_roadIndex"];
 
-if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["STRING"], ["STRING"], ["BOOL"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["STRING", "ARRAY", "SCALAR"], ["SCALAR", "ARRAY"]], 2] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["STRING"], ["STRING"], ["BOOL"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING", "SCALAR"], ["STRING", "ARRAY", "SCALAR"], ["SCALAR", "ARRAY"]], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -22,7 +22,7 @@ ZEN_STD_Parse_GetArgumentDefault(_behavior, 5, "aware")
 ZEN_STD_Parse_GetArgumentDefault(_cleanupDead, 6, false)
 ZEN_STD_Parse_GetArgumentDefault(_findRoads, 7, true)
 
-if !((typeName _movecenters == "ARRAY") && {typeName (_movecenters select 0) != "SCALAR"}) then {
+if !((typeName _movecenters == "ARRAY") && {(typeName (_movecenters select 0)) != "SCALAR"}) then {
     if (count _this > 2) then {
         _positionFilterArgs = [_this select 2];
     } else {

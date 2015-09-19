@@ -8,7 +8,7 @@
 _Zen_stack_Trace = ["Zen_OrderInfantryPatrol", _this] call Zen_StackAdd;
 private ["_grpsArray", "_movecenters", "_maxx", "_mpos", "_man", "_speedMode", "_limitAnglesSet", "_target", "_behaviorMode", "_chaseEnemy", "_waterPosition", "_divers", "_joinWeak", "_joined", "_center", "_index", "_positionFilterArgs"];
 
-if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY"], ["ARRAY", "SCALAR"], ["STRING"], ["STRING"], ["BOOL"], ["BOOL"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["STRING", "ARRAY", "SCALAR"], ["SCALAR", "ARRAY"]], 2] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY"], ["ARRAY", "SCALAR"], ["STRING"], ["STRING"], ["BOOL"], ["BOOL"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING", "SCALAR"], ["STRING", "ARRAY", "SCALAR"], ["SCALAR", "ARRAY"]], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
