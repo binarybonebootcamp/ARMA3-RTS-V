@@ -12,7 +12,7 @@ class digitalLoadout
       {
 	idc = -1;
 	text = ""; 
-        x = 0.25 * safezoneW + safezoneX;
+    x = 0.25 * safezoneW + safezoneX;
 	y = 0.175 * safezoneH + safezoneY;
 	w = 0.4 * safezoneW;
 	h = 0.4 * safezoneH * 4 / 3;
@@ -259,8 +259,18 @@ class digitalLoadout
 	w = 0.125 * safezoneW;
 	h = 0.025 * safezoneH * 4 / 3;
       };
+             class ICE_button11: IceButton
+      {
+	idc = 15010;
+	text = "sniper";
+       action = "[player] call TAG_FNC_sniper"; 
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.70 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
 
-       class ICE_button11: IceButton
+       class ICE_button12: IceButton
       {
 	idc = -1;
 	text = "X";
@@ -526,7 +536,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx = 0.02;
 	x = 0.5125 * safezoneW + safezoneX;
 	y = 0.5625 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -539,7 +549,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx = "0.02; /  (getResolution select 5)";
 	x = 0.54 * safezoneW + safezoneX;
 	y = 0.5625 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -552,7 +562,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx = "0.02 /  (getResolution select 5)";
 	x = 0.5675 * safezoneW + safezoneX;
 	y = 0.5625 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -565,7 +575,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.595 * safezoneW + safezoneX;
 	y = 0.5625 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -578,7 +588,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.5125 * safezoneW + safezoneX;
 	y = 0.605 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -591,7 +601,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.54 * safezoneW + safezoneX;
 	y = 0.605 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -604,7 +614,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.5675 * safezoneW + safezoneX;
 	y = 0.605 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -617,7 +627,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.595 * safezoneW + safezoneX;
 	y = 0.605 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -630,7 +640,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.5125 * safezoneW + safezoneX;
 	y = 0.6475 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -643,7 +653,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.54 * safezoneW + safezoneX;
 	y = 0.6475 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -656,7 +666,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.5675 * safezoneW + safezoneX;
 	y = 0.6475 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -669,7 +679,7 @@ class digitalLoadout
 	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.595 * safezoneW + safezoneX;
 	y = 0.6475 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -685,7 +695,7 @@ class digitalLoadout
       class ICE_Text_Name: IceText
       {
 	idc = 61500;
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
 	x = 0.25 * safezoneW + safezoneX;
 	y = 0.14 * safezoneH + safezoneY;
 	w = 0.4 * safezoneW;
@@ -695,7 +705,7 @@ class digitalLoadout
       class ICE_Text_PrimW: IceText
       {
 	idc = -1;
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
         text = "Primary Weapon";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.2 * safezoneH + safezoneY;
@@ -707,7 +717,7 @@ class digitalLoadout
       class ICE_Text_No_PrimW: IceText
       {
 	idc = 40500;
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
         text = "N / A";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.235 * safezoneH + safezoneY;
@@ -718,7 +728,7 @@ class digitalLoadout
       class ICE_Text_secW: IceText
       {
 	idc = -1;
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
         text = "Launcher";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.33 * safezoneH + safezoneY;
@@ -729,7 +739,7 @@ class digitalLoadout
        class ICE_Text_No_secW: IceText
       {
 	idc = 40501;
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
         text = "N / A";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.365 * safezoneH + safezoneY;
@@ -740,7 +750,7 @@ class digitalLoadout
       class ICE_Text_pisW: IceText
       {
 	idc = -1;
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
         text = "Pistol";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.44 * safezoneH + safezoneY;
@@ -751,7 +761,7 @@ class digitalLoadout
        class ICE_Text_No_pisW: IceText
       {
 	idc = 40502;
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
         text = "N / A";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.47 * safezoneH + safezoneY;
@@ -762,7 +772,7 @@ class digitalLoadout
       class ICE_Text_bp: IceText
       {
 	idc = -1;
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
         text = "BackPack";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.54 * safezoneH + safezoneY;
@@ -773,7 +783,7 @@ class digitalLoadout
       class ICE_Text_No_bp: IceText
       {
 	idc = 40503;
-        sizeEx = "0.02 / (getResolution select 5)";
+        sizeEx =" 0.02 /  (getResolution select 5)";
         text = "N / A";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.6 * safezoneH + safezoneY;

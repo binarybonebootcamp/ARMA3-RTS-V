@@ -34,6 +34,7 @@ class Mission
 		"A3_Structures_F_Civ_InfoBoards",
 		"A3_Structures_F_Mil_Helipads",
 		"A3_Roads_F",
+		"A3_Modules_F_Curator_Intel"
 	};
 	addOnsAuto[]=
 	{
@@ -408,7 +409,7 @@ class Mission
 					text="East1";
 					description="RTS-Commander";
 					syncId=0;
-					synchronizations[]={0};
+					synchronizations[]={0,10,9,8,7,6,5,4,11,3,1,2,12};
 				};
 			};
 		};
@@ -431,6 +432,8 @@ class Mission
 					skill=1;
 					text="East3";
 					description="RTS-Corporal";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -453,6 +456,8 @@ class Mission
 					skill=1;
 					text="East4";
 					description="RTS-Corporal";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -475,6 +480,8 @@ class Mission
 					skill=1;
 					text="East5";
 					description="RTS-Corporal";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -496,6 +503,8 @@ class Mission
 					skill=1;
 					text="East6";
 					description="RTS-Solder";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -517,6 +526,8 @@ class Mission
 					skill=1;
 					text="East7";
 					description="RTS-Solder";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -538,6 +549,8 @@ class Mission
 					skill=1;
 					text="East8";
 					description="RTS-Solder";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -559,6 +572,8 @@ class Mission
 					skill=1;
 					text="East9";
 					description="RTS-Solder";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -580,6 +595,8 @@ class Mission
 					skill=1;
 					text="East10";
 					description="RTS-Solder";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -601,6 +618,8 @@ class Mission
 					skill=1;
 					text="East11";
 					description="RTS-Solder";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -622,6 +641,8 @@ class Mission
 					skill=1;
 					text="East12";
 					description="RTS-Solder";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -643,6 +664,8 @@ class Mission
 					skill=1;
 					text="East13";
 					description="RTS-Solder";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};
@@ -665,6 +688,8 @@ class Mission
 					skill=1;
 					text="East2";
 					description="RTS-Corporal";
+					syncId=1;
+					synchronizations[]={0};
 				};
 			};
 		};

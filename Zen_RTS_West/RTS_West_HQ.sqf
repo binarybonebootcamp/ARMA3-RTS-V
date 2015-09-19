@@ -55,7 +55,7 @@ Zen_RTS_F_West_HQDestructor = {
     (_buildingObjData select 2) setDamage 1;
 };
 
-Zen_RTS_BuildingType_West_HQ = ["Zen_RTS_F_West_HQConstructor", "Zen_RTS_F_West_HQDestructor", [], "HQ", "Cost: 1000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_HQ = ["Zen_RTS_F_West_HQConstructor", "Zen_RTS_F_West_HQDestructor", [], "HQ", "Cost: 1000, Time: 10, picture: pictures\icon_remote.paa,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_HQ;
 
 /////////////////////////////////
