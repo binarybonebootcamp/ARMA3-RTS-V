@@ -34,7 +34,6 @@ class Mission
 		"A3_Structures_F_Civ_InfoBoards",
 		"A3_Structures_F_Mil_Helipads",
 		"A3_Roads_F",
-		"cabuildings"
 	};
 	addOnsAuto[]=
 	{
@@ -58,7 +57,6 @@ class Mission
 		"A3_Structures_F_Civ_InfoBoards",
 		"A3_Structures_F_Mil_Helipads",
 		"A3_Roads_F",
-		"cabuildings",
 		"A3_Structures_F_Items_Vessels",
 		"a3_map_altis"
 	};
