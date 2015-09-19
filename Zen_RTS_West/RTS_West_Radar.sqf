@@ -1,7 +1,7 @@
 
 Zen_RTS_F_West_RadarConstructor = {
-    player sideChat str "West Radar constructor called";
-    player sideChat str _this;
+    diag_log "West Radar constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
@@ -10,7 +10,6 @@ Zen_RTS_F_West_RadarConstructor = {
     _level = _args select 1;
 
     _assetsToAdd = [];
-
 
     {
         (RTS_Used_Asset_Types select 0) pushBack _x;
@@ -24,11 +23,9 @@ Zen_RTS_F_West_RadarConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_Radar]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
     BUILDING_VISUALS("Land_Radar_Small_F", 1, West)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_Radar)
-
 
     if (_level > 0) then {
         for "_i" from 0 to (_level - 1) do {
@@ -40,21 +37,18 @@ Zen_RTS_F_West_RadarConstructor = {
 };
 
 Zen_RTS_F_West_RadarDestructor = {
-    player sideChat str "West Radar destructor";
+    diag_log "West Radar destructor";
 
     _buildingObjData = _this select 0;
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
     _array set [_index, _level];
 
-
-
     (_buildingObjData select 2) setDamage 1;
 };
-
 
 #define ASSETS []
 UPGRADE(Zen_RTS_F_West_RadarUpgrade01, ASSETS)
@@ -64,4 +58,3 @@ UPGRADE(Zen_RTS_F_West_RadarUpgrade01, ASSETS)
 
 Zen_RTS_BuildingType_West_Radar = ["Zen_RTS_F_West_RadarConstructor", "Zen_RTS_F_West_RadarDestructor", ["Zen_RTS_F_West_RadarUpgrade01"], "Radar", "Cost: 1000, Time: 10, Picture: pictures\zen.paa,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_Radar;
-

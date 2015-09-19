@@ -70,7 +70,9 @@ sleep 1;
 // [] exec "economy\rts-supplyMonitor.sqs";
 // [] exec "rts-build-serverside.sqs";
 [] exec "rts-init-commandermonitor.sqs";
-//[] exec "test.sqs";                                          /////////////i took this out with what ever it was attatched to.. like unit monitor .. geeting errors from east.
+
+// took this out with what ever it was attatched to.. like unit monitor .. geeting errors from east.
+//[] exec "test.sqs";
 //[] exec "rts-build-serverSideMonitor.sqs";
 // rts_hq sideChat "Global Scripts and Variables Initialized";
 0 = [] execVM 'unflip_vehicle.sqf';
@@ -181,7 +183,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _vehicle setVariable ["Zen_RTS_StrategicValue", (call compile ([_assetStrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)), true]; \
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
-    RTS_Recycle_Queue pushBack _vehicle; \
+    (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) min 1)) pushBack _vehicle; \
     _vehicle addEventHandler ["Killed", { \
         if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
             (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
@@ -215,7 +217,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
     _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
-    RTS_Repair_Queue pushBack _building; \
+    (RTS_Repair_Queue select ([west, east] find (_building getVariable "Zen_RTS_StrategicBuildingSide"))) pushBack _building; \
     _building addEventHandler ["Killed", { \
         0 = _this spawn { \
             _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
@@ -237,7 +239,8 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
                 }; \
             } forEach _objects; \
             if !(isNull _deadBuilding) then { \
-                player sideChat str _deadBuilding; \
+                diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH: " + str time); \
+                diag_log ("_deadBuilding" + str _deadBuilding); \
                 _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
                 _deadBuilding setVariable ["Zen_RTS_StrategicType", "Building", true]; \
                 _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
@@ -269,18 +272,12 @@ RTS_Used_Asset_Types = [[], []]; // global
 
 // These arrays and functions are for the server only
 // Do not transfer AI repair/recycle threads or locality to clients
-RTS_Recycle_Queue = [];
-RTS_Repair_Queue = [];
-RTS_Worker_Recycle_Queue = [];
-RTS_Worker_Repair_Queue = [];
-
-Zen_RTS_F_AddRecycle = {
-    RTS_Recycle_Queue pushBack _this;
-};
-
-Zen_RTS_F_AddRepair = {
-    RTS_Repair_Queue pushBack _this;
-};
+// Must follow [[<west objects>], [<east objects>]] format
+RTS_Recycle_Queue = [[], []];
+RTS_Repair_Queue = [[], []];
+RTS_Worker_Recycle_Queue = [[], []];
+RTS_Worker_Repair_Queue = [[], []];
+RTS_CJ_Repair_Queue = [[], []];
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"

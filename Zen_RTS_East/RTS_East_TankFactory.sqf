@@ -10,8 +10,8 @@
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_TankFactoryConstructor = {
-    player sideChat str "East Tank_factory constructor called";
-    player sideChat str _this;
+    diag_log "East Tank_factory constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
@@ -53,11 +53,11 @@ Zen_RTS_F_East_TankFactoryConstructor = {
 };
 
 Zen_RTS_F_East_TankFactoryDestructor = {
-    player sideChat str "East Tank_factory destructor";
+    diag_log "East Tank_factory destructor";
 
     _buildingObjData = _this select 0;
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
@@ -68,8 +68,8 @@ Zen_RTS_F_East_TankFactoryDestructor = {
 
 #define UPGRADE(N, A) \
 N = { \
-    player sideChat str (#N + " called"); \
-    player sideChat str _this; \
+    diag_log (#N + " called"); \
+    diag_log _this; \
     _buildingObjData = _this select 0; \
     _assetsToAdd = A; \
     if (Zen_RTS_TechFlag_East_BuildEnemy) then { \
@@ -103,8 +103,8 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
 
 #define VEHCILE_CONSTRUCTOR(N, T, U) \
     N = { \
-        player sideChat str ("West " + T + " asset constructor called"); \
-        player sideChat str _this; \
+        diag_log ("West " + T + " asset constructor called"); \
+        diag_log _this; \
         _buildingObjData = _this select 0; \
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \

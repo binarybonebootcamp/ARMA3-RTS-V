@@ -3,10 +3,14 @@
         MG
 //*/
 
+#define SWAP_CJ_OWNER(F) \
+    (_this select 3) setVariable ["Zen_RTS_StrategicIsAIOwned", F]; \
+    (_this select 3) setVariable ["Zen_RTS_StrategicIsAIAssigned", false];
+
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_West_CJConstructor = {
-    player sideChat str "West CJ constructor called";
-    player sideChat str _this;
+    diag_log "West CJ constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
@@ -50,8 +54,18 @@ Zen_RTS_F_West_CJConstructor = {
     _vehicle setVariable ["side", West, true];
     ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
 
-    // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "(_this in _target)"]]];
+    // Recycle AI set up
+    (RTS_CJ_Repair_Queue select 0) pushBack _vehicle;
+    _vehicle setVariable ["Zen_RTS_StrategicIsAIOwned", false];
+    _vehicle setVariable ["Zen_RTS_StrategicIsAIAssigned", false];
+
+    _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "(_this in _target) && !(_target getVariable 'Zen_RTS_StrategicIsAIOwned')"]]];
+    ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
+
+    _args = ["addAction", [_vehicle, ["Give CJ to AI", {SWAP_CJ_OWNER(true)}, _vehicle, 1, false, true, "", "((_this distance2D _target) < 5) && !(_target getVariable 'Zen_RTS_StrategicIsAIOwned')"]]];
+    ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
+
+    _args = ["addAction", [_vehicle, ["Take CJ from AI", {SWAP_CJ_OWNER(false)}, _vehicle, 1, false, true, "", "((_this distance2D _target) < 5) && (_target getVariable 'Zen_RTS_StrategicIsAIOwned')"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
     if (_level > 0) then {
@@ -64,11 +78,11 @@ Zen_RTS_F_West_CJConstructor = {
 };
 
 Zen_RTS_F_West_CJDestructor = {
-    player sideChat str "West CJ destructor";
+    diag_log "West CJ destructor";
 
     _buildingObjData = _this select 0;
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
@@ -79,8 +93,8 @@ Zen_RTS_F_West_CJDestructor = {
 
 #define UPGRADE(N, A) \
 N = { \
-    player sideChat str (#N + " called"); \
-    player sideChat str _this; \
+    diag_log (#N + " called"); \
+    diag_log _this; \
     _buildingObjData = _this select 0; \
     _assetsToAdd = A; \
     if (Zen_RTS_TechFlag_West_BuildEnemy) then { \
@@ -105,8 +119,8 @@ Zen_RTS_BuildingType_West_CJ = ["Zen_RTS_F_West_CJConstructor", "Zen_RTS_F_West_
 
 #define FORT_CONSTRUCTOR(N, T) \
     N = { \
-        player sideChat str ("West " + T + " asset constructor called"); \
-        player sideChat str _this; \
+        diag_log ("West " + T + " asset constructor called"); \
+        diag_log _this; \
         _buildingObjData = _this select 0; \
         _assetData = _this select 1; \
         _spawnPos = _this select 3; \

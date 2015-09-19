@@ -5,8 +5,8 @@
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_West_NavalConstructor = {
-    player sideChat str "West Naval constructor called";
-    player sideChat str _this;
+    diag_log "West Naval constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
@@ -45,11 +45,11 @@ Zen_RTS_F_West_NavalConstructor = {
 };
 
 Zen_RTS_F_West_NavalDestructor = {
-    player sideChat str "West Naval destructor";
+    diag_log "West Naval destructor";
 
     _buildingObjData = _this select 0;
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
@@ -60,8 +60,8 @@ Zen_RTS_F_West_NavalDestructor = {
 
 #define UPGRADE(N, A) \
 N = { \
-    player sideChat str (#N + " called"); \
-    player sideChat str _this; \
+    diag_log (#N + " called"); \
+    diag_log _this; \
     _buildingData = _this select 0; \
     _assetsToAdd = A; \
     if (Zen_RTS_TechFlag_West_BuildEnemy) then { \
@@ -89,8 +89,8 @@ Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Ze
 
 #define VEHCILE_CONSTRUCTOR(N, T, U) \
     N = { \
-        player sideChat str ("West " + T + " asset constructor called"); \
-        player sideChat str _this; \
+        diag_log ("West " + T + " asset constructor called"); \
+        diag_log _this; \
         _buildingObjData = _this select 0; \
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \

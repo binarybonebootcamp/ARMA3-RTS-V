@@ -5,8 +5,8 @@
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_CJConstructor = {
-    player sideChat str "East CJ constructor called";
-    player sideChat str _this;
+    diag_log "East CJ constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
@@ -64,11 +64,11 @@ Zen_RTS_F_East_CJConstructor = {
 };
 
 Zen_RTS_F_East_CJDestructor = {
-    player sideChat str "East CJ destructor";
+    diag_log "East CJ destructor";
 
     _buildingObjData = _this select 0;
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
@@ -79,8 +79,8 @@ Zen_RTS_F_East_CJDestructor = {
 
 #define UPGRADE(N, A) \
 N = { \
-    player sideChat str (#N + " called"); \
-    player sideChat str _this; \
+    diag_log (#N + " called"); \
+    diag_log _this; \
     _buildingObjData = _this select 0; \
     _assetsToAdd = A; \
     if (Zen_RTS_TechFlag_East_BuildEnemy) then { \
@@ -105,8 +105,8 @@ Zen_RTS_BuildingType_East_CJ = ["Zen_RTS_F_East_CJConstructor", "Zen_RTS_F_East_
 
 #define FORT_CONSTRUCTOR(N, T) \
     N = { \
-        player sideChat str ("East " + T + " asset constructor called"); \
-        player sideChat str _this; \
+        diag_log ("East " + T + " asset constructor called"); \
+        diag_log _this; \
         _buildingObjData = _this select 0; \
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \

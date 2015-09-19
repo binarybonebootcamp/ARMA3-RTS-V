@@ -10,8 +10,8 @@
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_West_TankFactoryConstructor = {
-    player sideChat str "West Tank_factory constructor called";
-    player sideChat str _this;
+    diag_log "West Tank_factory constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
 
@@ -55,12 +55,12 @@ Zen_RTS_F_West_TankFactoryConstructor = {
 };
 
 Zen_RTS_F_West_TankFactoryDestructor = {
-    player sideChat str "West Tank_factory destructor";
+    diag_log "West Tank_factory destructor";
 
     _buildingObjData = _this select 0;
 
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
@@ -71,8 +71,8 @@ Zen_RTS_F_West_TankFactoryDestructor = {
 
 #define UPGRADE(N, A) \
 N = { \
-    player sideChat str (#N + " called"); \
-    player sideChat str _this; \
+    diag_log (#N + " called"); \
+    diag_log _this; \
     _buildingData = _this select 0; \
     _assetsToAdd = A; \
     if (Zen_RTS_TechFlag_West_BuildEnemy) then { \
@@ -106,8 +106,8 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
 
 #define VEHCILE_CONSTRUCTOR(N, T, U) \
     N = { \
-        player sideChat str ("West " + T + " asset constructor called"); \
-        player sideChat str _this; \
+        diag_log ("West " + T + " asset constructor called"); \
+        diag_log _this; \
         _buildingObjData = _this select 0; \
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \
@@ -204,8 +204,8 @@ Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskiiwd_usarmy = ["Zen_RTS_F_West_Asset_rhsus
 Zen_RTS_Asset_West_rhsusf_m1a2sep1tuskiid_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_m1a2sep1tuskiid_usarmy","m1a2-sep1-tuski-id", "Cost: 100, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 
 Zen_RTS_F_West_Asset_CJ = {
-    player sideChat str ("West CJ asset proxy constructor called");
-    player sideChat str _this;
+    diag_log ("West CJ asset proxy constructor called");
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _building = _buildingObjData select 2;

@@ -6,8 +6,8 @@
 //*/
 
 Zen_RTS_F_East_HQConstructor = {
-    player sideChat str "East HQ constructor called";
-    player sideChat str _this;
+    diag_log "East HQ constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
@@ -22,7 +22,7 @@ Zen_RTS_F_East_HQConstructor = {
 
     DETECT_BUILDING( Zen_RTS_BuildingType_East_TankFactory , Zen_RTS_Asset_Tech_East_Upgrade_TankFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_East_Barracks , Zen_RTS_Asset_Tech_East_Upgrade_Barracks )
-	DETECT_BUILDING( Zen_RTS_BuildingType_East_Radar , Zen_RTS_Asset_Tech_East_Upgrade_Radar )
+    DETECT_BUILDING( Zen_RTS_BuildingType_East_Radar , Zen_RTS_Asset_Tech_East_Upgrade_Radar )
     DETECT_BUILDING( Zen_RTS_BuildingType_East_AirFactory , Zen_RTS_Asset_Tech_East_Upgrade_AirFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_East_NavalFactory , Zen_RTS_Asset_Tech_East_Upgrade_NavalFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_East_SupportFactory , Zen_RTS_Asset_Tech_East_Upgrade_SupportFactory )
@@ -42,11 +42,11 @@ Zen_RTS_F_East_HQConstructor = {
 };
 
 Zen_RTS_F_East_HQDestructor = {
-    player sideChat str "East HQ destructor";
+    diag_log "East HQ destructor";
 
     _buildingObjData = _this select 0;
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
@@ -65,7 +65,7 @@ Zen_RTS_BuildingType_East_HQ = ["Zen_RTS_F_East_HQConstructor", "Zen_RTS_F_East_
 Zen_RTS_TechFlag_East_BuildEnemy = false;
 publicVariable "Zen_RTS_TechFlag_East_BuildEnemy";
 Zen_RTS_F_East_Tech_Enemy = {
-    player sideChat "Build enemy East asset by East called";
+    diag_log "Build enemy East asset by East called";
 
     Zen_RTS_TechFlag_East_BuildEnemy = true;
     // publicVariable "Zen_RTS_TechFlag_East_BuildEnemy";
@@ -92,7 +92,7 @@ Zen_RTS_F_East_Tech_Enemy = {
 
 #define UPGRADE_CONSTRUCTOR(N, B, A) \
     N = { \
-        player sideChat ("upgrade " + #N + " called"); \
+        diag_log ("upgrade " + #N + " called"); \
         ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
         _buildingDataHQ = _this select 0; \
         _assetData = _this select 1; \
