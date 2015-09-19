@@ -30,13 +30,13 @@ if (typeName _objects != "ARRAY") then {
 
 _dialogID = [] call Zen_CreateDialog;
 
-_controlCancel = ["Button", ["Text", "Cancel"], ["Position", [35, 2]], ["Size", [5,2]], ["Function", "Zen_CloseDialog"]] call Zen_CreateControl;
+_controlCancel = ["Button", ["Text", "Cancel"], ["Position", [35, 2]], ["Size", [5,2]], ["ActivationFunction", "Zen_CloseDialog"]] call Zen_CreateControl;
 _controlList = ["List", ["List", _kits], ["ListData", _kits], ["Position", [0, 0]], ["Size", [35,40]]] call Zen_CreateControl;
-_controlOK = ["Button", ["Text", "OK"], ["Position", [35, 0]], ["Size", [5,2]], ["Function", "Zen_LoadoutDialogEquip"], ["LinksTo", [_controlList]]] call Zen_CreateControl;
+_controlOK = ["Button", ["Text", "OK"], ["Position", [35, 0]], ["Size", [5,2]], ["ActivationFunction", "Zen_LoadoutDialogEquip"], ["LinksTo", [_controlList]]] call Zen_CreateControl;
 
-0 = [_dialogID, _controlOK] call Zen_LinkControl;
-0 = [_dialogID, _controlCancel] call Zen_LinkControl;
-0 = [_dialogID, _controlList] call Zen_LinkControl;
+{
+    0 = [_dialogID, _x] call Zen_LinkControl;
+} forEach [_controlOK, _controlCancel, _controlList];
 
 if (!isDedicated && hasInterface) then {
     {
