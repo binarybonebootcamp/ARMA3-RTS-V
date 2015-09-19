@@ -17,6 +17,7 @@ sleep .1;
 
 #include "setup.sqf"
 __cppfln(barrelfun,functions\barrelfun.sqf);
+
 // Compile Zen Functions --------------
 Zen_RTS_AlphaMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_AlphaMenu.sqf";
 Zen_RTS_BuildMenuStructures = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_BuildMenuStructures.sqf";
@@ -27,6 +28,7 @@ Zen_RTS_DeployPlayer = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions
 Zen_RTS_DisbandUnit = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DisbandUnit.sqf";
 Zen_RTS_DestroyStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DestroyStructure.sqf";
 Zen_RTS_EconomyManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_EconomyManager.sqf";
+Zen_RTS_HackBuilding = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_HackBuilding.sqf";
 Zen_RTS_RecycleRepair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RecycleRepair.sqf";
 Zen_RTS_RecycleRepairAIManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RecycleRepairAIManager.sqf";
 Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SetViewDistance.sqf";
@@ -190,7 +192,28 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
         }; \
     }];
 
+#define BUILDING_VISUALS(T, O, S) \
+    _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
+    _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
+    _building setVariable ["Zen_RTS_StrategicBuildingSide", S, true]; \
+    _building setVectorUp (surfaceNormal _spawnPos); \
+    _height = ZEN_STD_OBJ_BBZ(_building); \
+    ZEN_STD_OBJ_TransformATL(_building, 0, 0, -( _height)) \
+    _heightStep = (_height + O) / _buildTime; \
+    for "_i" from 0 to _buildTime do { \
+        sleep 1; \
+        if !(alive _building) exitWith {}; \
+        _building setPosATL ((getPosATL _building) vectorAdd [0, 0, _heightStep]); \
+    };
+
 #define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T) \
+    if !(alive _building) exitWith { \
+        0 = [(_buildingObjData select 1)] spawn { \
+            sleep 5; \
+            0 = _this call Zen_RTS_StrategicBuildingDestroy; \
+        }; \
+        (_building) \
+    }; \
     _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
     _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
     _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
@@ -227,19 +250,6 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
             }; \
         }; \
     }];
-
-#define BUILDING_VISUALS(T, O, S) \
-    _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
-    _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
-    _building setVariable ["side", S, true]; \
-    _building setVectorUp (surfaceNormal _spawnPos); \
-    _height = ZEN_STD_OBJ_BBZ(_building); \
-    ZEN_STD_OBJ_TransformATL(_building, 0, 0, -( _height)) \
-    _heightStep = (_height + O) / _buildTime; \
-    for "_i" from 0 to _buildTime do { \
-        sleep 1; \
-        _building setPosATL ((getPosATL _building) vectorAdd [0, 0, _heightStep]); \
-    };
 
 // all building types must be added here, or they will not be considered
 // must be [[west building types], [east '']]
@@ -292,6 +302,7 @@ Zen_RTS_F_AddRepair = {
 #include "Zen_RTS_East\RTS_East_AirFactory.sqf"
 #include "Zen_RTS_East\RTS_East_NavalFactory.sqf"
 #include "Zen_RTS_East\RTS_East_SupportFactory.sqf"
+#include "Zen_RTS_East\RTS_East_RecyclePlant.sqf"
 #include "Zen_RTS_East\RTS_East_CJ.sqf"
 
 westTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];

@@ -1,7 +1,8 @@
 /* ---------------------------------------------------------------------------------------------------
-made by Dr.Death JM
-credited to lala for making this work
-_nul = [this, 2, 1] execVM "barrelRespawn.sqf";
+
+
+_nul = [this, 2, 1] execVM "barrelRespawn.sqf";fixed by Dr.Deathjm
+this goes in the init of barrel you place on map in editor.. fully mp.
 
 ---------------------------------------------------------------------------------------------------- */
 

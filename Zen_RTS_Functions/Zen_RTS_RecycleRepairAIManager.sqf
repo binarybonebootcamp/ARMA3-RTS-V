@@ -4,10 +4,24 @@ RTS_Worker_Recycle_Queue = [];
 RTS_Worker_Repair_Queue = [];
  */
 
+#include "Zen_FrameworkLibrary.sqf"
 #include "Zen_StandardLibrary.sqf"
 
 while {true} do {
     sleep 5;
+
+    #define CLEAN_WORKERS(A) \
+        _indexesToRemove = []; \
+        { \
+            if !(alive (_x select 0)) then { \
+                _indexesToRemove pushBack _forEachIndex; \
+            }; \
+        } forEach A; \
+        ZEN_FMW_Array_RemoveIndexes(A, _indexesToRemove)
+
+    CLEAN_WORKERS(RTS_Worker_Repair_Queue)
+    CLEAN_WORKERS(RTS_Worker_Recycle_Queue)
+
     #define TASK_WORKERS(W, O, S, T) \
         { \
             _condition = if (S == "Repair") then { \

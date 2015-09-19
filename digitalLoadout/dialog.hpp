@@ -259,18 +259,8 @@ class digitalLoadout
 	w = 0.125 * safezoneW;
 	h = 0.025 * safezoneH * 4 / 3;
       };
-             class ICE_button11: IceButton
-      {
-	idc = 15010;
-	text = "sniper";
-       action = "[player] call TAG_FNC_sniper"; 
-	x = 0.25 * safezoneW + safezoneX;
-	y = 0.70 * safezoneH + safezoneY;
-	w = 0.125 * safezoneW;
-	h = 0.025 * safezoneH * 4 / 3;
-      };
 
-       class ICE_button12: IceButton
+       class ICE_button11: IceButton
       {
 	idc = -1;
 	text = "X";
