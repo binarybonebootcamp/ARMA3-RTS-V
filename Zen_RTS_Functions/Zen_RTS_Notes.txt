@@ -12,8 +12,12 @@ Strategic
             // Correct CJ, MCU, player recycle repair abilities
             // Make sure there is no crew
         // AI automated recycle/repair
+            // recyclers use CJ
+            // clean dead AI
+            // player claim/release CJ control
         AI fire on buildings and unmanned vehicles
         Building Hacking
+            // hacked actions and variable
             y/n menu with dynamic timer
 
     Assets
@@ -45,9 +49,9 @@ Strategic
             // only allow within 200m of HQ (except naval)
         // buildings come out of ground
         // update to current level when rebuilding
+        // handle building destroyed while constructing
         tweak building heights
         building placement shows full building
-        handle building destroyed while constructing
 
         Barracks
             // Level 1: standard infantry (rifleman, AR, etc.)
@@ -83,28 +87,33 @@ Strategic
             Level 1: 1km, 200m floor
             Level 2: 2km, 150m floor
             Level N: etc.
-        Recycler
+        Repair/Recycler Plant
+            // Repair worker for Buildings
+            // Recycle worker for assets
             Level 1: X_1 workers limit, Y_1 repair speed
             Level 2: X_2 workers limit, Y_2 repair speed
             Level N: etc.
         Fortification
             Houses, H-barriers
         CJ
-            parallel queued placement
+            // build from tank factory
+            // parallel queued placement
+            // MP fix, CJ placement needs to be RE on client and pass position back to server.
             // medical
             // static MG
             // ammo crate
             // barbed wire
             beacons (tracker)
             // Level 1: Unarmed, small fortifications
-            Level 2: Static weapons, MG, etc.
+            // Level 2: Static weapons, MG, etc.
 Territory
     // anyone can cap
     // faster capping
     Sub-Territory System
         Zen_RTS_SubTerritoryRemove
     FOB
-        spawn AI defenders on capture
+        // spawn FOB template
+        // spawn AI defenders on capture
         capping with certain vehicles gives fob
         each flag upgraded individually by FOB vehicle
         explosive barrels
@@ -129,6 +138,13 @@ Economy
     // total team resource value gives money increase
     // rewrite rts-moneyMonitor.sqs in SQF
     building and asset build time affected by resources
+        miners
+        3% overall speed increase per cap
+        buildings: 320 to 120 seconds
+        assets: 120 to 45 second
+        60% resource return cut-off
+        resources = (resource per flag) * (flag count)  + (resource per territory) * (territory count) + (number of miners) * (resource per second per miner) * (1 second)
+        time = (max time) - resources / (resources maximum) * (max time - min time) ??
     add JIP player to money data
 AI
     rewrite rts-init-commandermonitor.sqs in SQF
@@ -136,7 +152,9 @@ AI
     commander
     individual
     human commander gives orders/units/money
-Ranking
+Misc
+    Ranking
+    Explosive placement (see RWT)
 Supports
     AI extraction/insertion from action menu (see ZK)
     Artillery vehicles

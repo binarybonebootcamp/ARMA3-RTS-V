@@ -72,7 +72,7 @@
 
     buttonSetAction [_idback, "[player, player, 0] call Zen_RTS_AlphaMenu"];
     buttonSetAction [_idbuild, "[false] call Zen_RTS_BuildUnit"];
-    buttonSetAction [_idRefreshButton, format ["0 = [0, 0, 0, '%1'] spawn Zen_RTS_BuildMenu", _buildingTypeID]];
+    buttonSetAction [_idRefreshButton, "0 = [0, 0, 0, ['" + _buildingTypeID + "','" + _buildingObjID + "']] spawn Zen_RTS_BuildMenu"];
     buttonSetAction [_idbuildsquad, "[true] call Zen_RTS_BuildUnit"];
 
     {
