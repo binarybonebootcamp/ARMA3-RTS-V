@@ -13,7 +13,7 @@ class RscCombo
 	    colorText[] ={1,1,1,1};
 	    colorDisabled[] ={1,1,1,0.25};
 	    colorBackgroundActive[] =  {0.18,0.345,0.58,1};
-        sizeEx = 0.030;
+        sizeEx = "0.030 /  (getResolution select 4.5)";
 	    colorBackground[] = {0,0,0,0.72};
 	    colorSelect[] = {1,0,0,1};
 	    colorSelect2[] = {0,1,1,1};

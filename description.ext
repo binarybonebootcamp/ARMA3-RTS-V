@@ -60,6 +60,7 @@ class CfgRemoteExecCommands {
 #include "menus\dlgRscSquadsMenu.hpp"
 #include "menus\patchname.hpp"
 #include "menus\Sounds_music.hpp"
+#include "menus\test_pic.hpp"
 #include "R3F_LOG\desc_include.h"
 #include "digitalLoadout\defines.hpp"
 #include "digitalLoadout\dialog.hpp"
