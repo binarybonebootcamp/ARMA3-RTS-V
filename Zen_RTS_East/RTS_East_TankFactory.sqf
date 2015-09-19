@@ -26,6 +26,7 @@ Zen_RTS_F_East_TankFactoryConstructor = {
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_vdv;
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_uaz_vdv;
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_uaz_open_vdv;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_CJ;
 
     // if (Zen_RTS_TechFlag_East_BuildEnemy) then {
         // ... to do
@@ -43,11 +44,11 @@ Zen_RTS_F_East_TankFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_TankFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_i_Garage_V1_F", 1, East)
+    BUILDING_VISUALS("Land_i_Garage_V1_F", -0.5, East)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_TankFactory)
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_building, ["Purchase Units", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
+    _args = ["addAction", [_building, ["<img size='3'image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
     (_building)
 };
@@ -231,3 +232,15 @@ Zen_RTS_Asset_East_rhs_t80 = ["Zen_RTS_F_East_Asset_rhs_t80", "t80","Cost: 200, 
 Zen_RTS_Asset_East_rhs_t80a = ["Zen_RTS_F_East_Asset_rhs_t80a", "t80-a","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_t80u = ["Zen_RTS_F_East_Asset_rhs_t80u", "t80-u","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_t90_tv = ["Zen_RTS_F_East_Asset_rhs_t90_tv", "T90","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+
+Zen_RTS_F_East_Asset_CJ = {
+    player sideChat str ("East CJ asset proxy constructor called");
+    player sideChat str _this;
+
+    _buildingObjData = _this select 0;
+    _building = _buildingObjData select 2;
+    _pos = [_building, 20, random 360] call Zen_ExtendPosition;
+    0 = [Zen_RTS_BuildingType_East_CJ, [_pos, 0]] call Zen_RTS_StrategicBuildingInvoke;
+};
+
+Zen_RTS_Asset_East_CJ = ["Zen_RTS_F_East_Asset_CJ","CJ", "Cost: 500, Time: 10, Crew: 0,"] call Zen_RTS_StrategicAssetCreate;

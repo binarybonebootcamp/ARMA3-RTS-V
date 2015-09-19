@@ -15,6 +15,9 @@ sleep .1;
 #include "functions\RTS_FNC_flipACTIONS.sqf"
 #include "functions\RTS_FNC_PUSH.sqf"
 
+#include "setup.sqf"
+__cppfln(barrelfun,functions\barrelfun.sqf);
+
 // Compile Zen Functions --------------
 Zen_RTS_AlphaMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_AlphaMenu.sqf";
 Zen_RTS_BuildMenuStructures = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_BuildMenuStructures.sqf";
@@ -296,6 +299,7 @@ RTS_CJ_Repair_Queue = [[], []];
 #include "Zen_RTS_East\RTS_East_AirFactory.sqf"
 #include "Zen_RTS_East\RTS_East_NavalFactory.sqf"
 #include "Zen_RTS_East\RTS_East_SupportFactory.sqf"
+#include "Zen_RTS_East\RTS_East_RecyclePlant.sqf"
 #include "Zen_RTS_East\RTS_East_CJ.sqf"
 
 westTruck setVariable ["Zen_RTS_IsStrategicRepairable", true, true];

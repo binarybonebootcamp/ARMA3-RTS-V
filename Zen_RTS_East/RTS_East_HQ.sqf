@@ -14,7 +14,6 @@ Zen_RTS_F_East_HQConstructor = {
 
     _spawnPos = _args select 0;
     _level = _args select 1;
-    _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
     _assetsToAddLocal = [];
@@ -32,7 +31,8 @@ Zen_RTS_F_East_HQConstructor = {
     _args = [(_buildingObjData select 1), _assetsToAddLocal];
     ZEN_FMW_MP_RENonDedicated("Zen_RTS_F_StrategicAddAssetLocal", _args, call)
 
-    BUILDING_VISUALS("Land_Research_HQ_F", 1, East)
+    _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
+    BUILDING_VISUALS("Land_Research_HQ_F", -1, East)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_HQ)
 
     // to-do: || false condition needs building hacking logic
