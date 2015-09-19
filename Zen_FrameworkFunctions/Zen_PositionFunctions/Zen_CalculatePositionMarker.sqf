@@ -83,7 +83,7 @@ for "_i" from 1 to _iterationCount step 1 do {
         _roads = _pos nearRoads _roadDist;
         if (count _roads > 0) then {
             _nearestRoad = [_roads, compile format ["-1 * (_this distanceSqr %1)", _pos]] call Zen_ArrayFindExtremum;
-            if (([_nearestRoad, _area] call Zen_IsPointInPoly) && {!([_nearestRoad, _area, [_min, _min], 0, "ellipse"] call Zen_IsPointInPoly)}) then {
+            if (([_nearestRoad, _area] call Zen_IsPointInPoly) && {!([_nearestRoad, getMarkerPos _area, [_min, _min], 0, "ellipse"] call Zen_IsPointInPoly)}) then {
                 _pos = [_nearestRoad] call Zen_ConvertToPosition;
             };
         };

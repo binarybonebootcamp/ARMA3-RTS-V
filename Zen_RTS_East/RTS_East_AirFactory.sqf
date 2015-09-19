@@ -10,8 +10,8 @@
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_AirFactoryConstructor = {
-    player sideChat str "East Air_factory constructor called";
-    player sideChat str _this;
+    diag_log "East Air_factory constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
@@ -23,7 +23,7 @@ Zen_RTS_F_East_AirFactoryConstructor = {
     _assetsToAdd = [];
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_ka60_c;
     _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Mi8mt_vvs;
-	_assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Mi8mt_Cargo_vvs;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Mi8mt_Cargo_vvs;
 
     // if (Zen_RTS_TechFlag_East_BuildEnemy) then {
         // ... to do
@@ -51,11 +51,11 @@ Zen_RTS_F_East_AirFactoryConstructor = {
 };
 
 Zen_RTS_F_East_AirFactoryDestructor = {
-    player sideChat str "East Air_factory destructor";
+    diag_log "East Air_factory destructor";
 
     _buildingObjData = _this select 0;
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
@@ -66,8 +66,8 @@ Zen_RTS_F_East_AirFactoryDestructor = {
 
 #define UPGRADE(N, A) \
 N = { \
-    player sideChat str (#N + " called"); \
-    player sideChat str _this; \
+    diag_log (#N + " called"); \
+    diag_log _this; \
     _buildingData = _this select 0; \
     _assetsToAdd = A; \
     if (Zen_RTS_TechFlag_East_BuildEnemy) then { \
@@ -101,8 +101,8 @@ Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", 
 
 #define AIR_CONSTRUCTOR(N, T, U) \
     N = { \
-        player sideChat str (#N + " asset constructor called"); \
-        player sideChat str _this; \
+        diag_log (#N + " asset constructor called"); \
+        diag_log _this; \
         _buildingObjData = _this select 0; \
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \

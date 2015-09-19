@@ -8,7 +8,7 @@
 _Zen_stack_Trace = ["Zen_OrderBoatPatrol", _this] call Zen_StackAdd;
 private ["_vehicleArray", "_movecenters", "_speedMode", "_mpos", "_limitAnglesSet", "_vehDist", "_cleanupDead", "_crewGroupArray", "_crew", "_positionFilterArgs", "_behavior", "_center", "_index"];
 
-if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["STRING"], ["STRING"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["STRING", "ARRAY", "SCALAR"], ["SCALAR", "ARRAY"]], 2] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY", "SCALAR"], ["ARRAY", "SCALAR"], ["STRING"], ["STRING"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING", "SCALAR"], ["STRING", "ARRAY", "SCALAR"], ["SCALAR", "ARRAY"]], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 

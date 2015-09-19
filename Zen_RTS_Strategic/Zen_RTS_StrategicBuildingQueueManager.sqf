@@ -29,8 +29,9 @@ while {true} do {
     if (count _queue > 0) then {
         _nextInvoke = _queue select 0;
 
-        // player globalChat str _dataGlobal;
-        // player globalChat str _nextInvoke;
+        diag_log ("Zen_RTS_StrategicBuildingQueueManager: " + str time);
+        diag_log ("_dataGlobal: " + str _dataGlobal);
+        diag_log ("_nextInvoke: " + str _nextInvoke);
 
         _function = (_nextInvoke select 0) select 1;
         _h_invoke = ([_dataGlobal] + _nextInvoke) spawn (missionNamespace getVariable _function);

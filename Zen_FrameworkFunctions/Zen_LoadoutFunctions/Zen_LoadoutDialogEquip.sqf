@@ -5,19 +5,14 @@
 _Zen_stack_Trace = ["Zen_LoadoutDialogEquip", _this] call Zen_StackAdd;
 private ["_kit", "_unit", "_object", "_id", "_index", "_maxCount", "_curCount", "_loadoutData"];
 
-_kit = lbData [4002, lbCurSel 4002];
-
-if (_kit == "") exitWith {
-    hint "No loadout selected";
-    call Zen_StackRemove;
-};
-
+_kit = _this select 0;
 _object = player getVariable "Zen_LoadoutsDialogObject";
-_unit = _object getVariable "Zen_LoadoutsDialogUser";
-_id = _object getVariable "Zen_LoadoutsDialogAction";
+_unit = player getVariable "Zen_LoadoutsDialogUser";
+_id = player getVariable "Zen_LoadoutsDialogAction";
 
 player setVariable ["Zen_LoadoutsDialogObject", nil];
-_object setVariable ["Zen_LoadoutsDialogUser", nil];
+player setVariable ["Zen_LoadoutsDialogUser", nil];
+player setVariable ["Zen_LoadoutsDialogAction", nil];
 
 _index = ([Zen_Loadout_Action_Array_Local, _id, 0] call Zen_ArrayGetNestedIndex) select 0;
 _maxCount = (Zen_Loadout_Action_Array_Local select _index) select 1;
@@ -37,6 +32,6 @@ if (count _loadoutData > 0) then {
     0 = [_unit, (side _unit), _kit] call Zen_GiveLoadout;
 };
 
-closeDialog 4000;
+call Zen_CloseDialog;
 call Zen_StackRemove;
 if (true) exitWith {};

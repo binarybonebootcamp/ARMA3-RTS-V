@@ -100,7 +100,7 @@
         buttonSetAction [_idRecycle, "['Recycle', ['Building', 'Asset']] spawn Zen_RTS_RecycleRepair"];
     };
 
-    if ((_buildingTypeData select 4) isEqualTo "HQ") then {
+    if (((_buildingTypeData select 4) isEqualTo "HQ") || {((_buildingTypeData select 4) isEqualTo "Recycle Plant")}) then {
         {
             ctrlShow [ _x, false];
         } forEach [_idDroplist, _idsquadlist, _idbuildsquad];

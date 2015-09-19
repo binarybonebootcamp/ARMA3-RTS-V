@@ -20,7 +20,6 @@ _numCarsRange = _this select 2;
 ZEN_STD_Parse_GetArgumentDefault(_DLC, 3, "")
 
 _townMarkers = [["NameVillage", "NameCity", "NameCityCapital"]] call Zen_ConfigGetLocations;
-
 _townMarkers = [_townMarkers, (compile format ["(getMarkerPos _this) distance %1", _center]), "hash"] call Zen_ArraySort;
 
 if (typeName _numCarsRange != "ARRAY") then {

@@ -12,8 +12,8 @@
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_BarracksConstructor = {
-    player sideChat str "East barracks constructor called";
-    player sideChat str _this;
+    diag_log "East barracks constructor called";
+    diag_log _this;
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
@@ -48,18 +48,17 @@ Zen_RTS_F_East_BarracksConstructor = {
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_Barracks)
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_building, ["<img size='3'
-      image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
+    _args = ["addAction", [_building, ["<img size='3'image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
     (_building)
 };
 
 Zen_RTS_F_East_BarracksDestructor = {
-    player sideChat str "East barracks destructor";
+    diag_log "East barracks destructor";
 
     _buildingObjData = _this select 0;
     _level = _buildingObjData select 3;
-    player commandChat str _level;
+    diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
     _array = RTS_Building_Type_Levels select 0;
@@ -70,8 +69,8 @@ Zen_RTS_F_East_BarracksDestructor = {
 
 #define UPGRADE(N, A) \
 N = { \
-    player sideChat str (#N + " called"); \
-    player sideChat str _this; \
+    diag_log (#N + " called"); \
+    diag_log _this; \
     _buildingObjData = _this select 0; \
     _assetsToAdd = A; \
     if (Zen_RTS_TechFlag_East_BuildEnemy) then { \
@@ -102,8 +101,8 @@ Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen
 
 #define INFANTRY_CONSTRUCTOR(N, T, S) \
     N = { \
-        player sideChat str (#N + " asset constructor called"); \
-        player sideChat str _this; \
+        diag_log (#N + " asset constructor called"); \
+        diag_log _this; \
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
