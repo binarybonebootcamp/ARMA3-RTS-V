@@ -84,10 +84,22 @@
         } else {
             if ((_buildingTypeData select 4) isEqualTo "CJ") then {
                 closeDialog 0;
+                _building = _buildingObjData select 2;
+                Zen_RTS_CJ_DoPlace = false;
+                _redArrow = "Sign_Arrow_Large_F" createVehicleLocal [0,0,0]; \
+                _building addAction ["<t color='#D80000'>Place</t>", {Zen_RTS_CJ_DoPlace = true; (_this select 0) removeAction (_this select 2);}, [], 1, false, true, "", "(_this in _target)"];
+                waitUntil {
+                    sleep 0.5;
+                    _redArrow setPosATL ([_building, 10, getDir _building, "compass", 1] call Zen_ExtendPosition);
+                    (Zen_RTS_CJ_DoPlace)
+                };
+                _args = [_buildingObjId, _assetType, player, getPosATL _redArrow];
+                deleteVehicle _redArrow;
+                ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
+            } else {
+                _args = [_buildingObjId, _assetType, player, _actualCrewCount];
+                ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
             };
-
-            _args = [_buildingObjId, _assetType, player, _actualCrewCount];
-            ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
         };
     // };
 

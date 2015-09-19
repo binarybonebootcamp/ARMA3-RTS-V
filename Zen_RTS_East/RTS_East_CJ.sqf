@@ -51,7 +51,7 @@ Zen_RTS_F_East_CJConstructor = {
     ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
 
     // to-do: || false condition needs building hacking logic
-    _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, (_buildingObjData select 0), 1, false, true, "", "(_this in _target)"]]];
+    _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "(_this in _target)"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
     if (_level > 0) then {
@@ -109,19 +109,11 @@ Zen_RTS_BuildingType_East_CJ = ["Zen_RTS_F_East_CJConstructor", "Zen_RTS_F_East_
         player sideChat str _this; \
         _buildingObjData = _this select 0; \
         _assetData = _this select 1; \
+        _spawnPos = _this select 3; \
         _assetStrRaw = _assetData select 3; \
         _building = _buildingObjData select 2; \
-        Zen_RTS_CJ_DoPlace = false; \
-        _redArrow = "Sign_Arrow_Large_F" createVehicleLocal [0,0,0]; \
-        _building addAction ["<t color='#D80000'>Place</t>", {Zen_RTS_CJ_DoPlace = true; (_this select 0) removeAction (_this select 2);}, [], 1, false, true, "", "(_this in _target)"]; \
-        waitUntil { \
-            sleep 1; \
-            _redArrow setPosATL ([_building, 10, getDir _building, "compass", 1] call Zen_ExtendPosition); \
-            (Zen_RTS_CJ_DoPlace) \
-        }; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        deleteVehicle _redArrow; \
-        _vehicle = [_redArrow, T, 0, getDir _building, false]  call Zen_SpawnVehicle; \
+        _vehicle = [_spawnPos, T, 0, getDir _building, false] call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
     };
 

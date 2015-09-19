@@ -73,16 +73,15 @@
 #define ST_KEEP_ASPECT_RATIO  0x800                   16
 #define ReadAndWrite			    0
 
-#define FontMAIN	"TahomaB"
+#define FontM "Zeppelin33"
 #define FontHTML "EtelkaMonospacePro"
 #define FontHTMLBold "EtelkaMonospacePro"
 #define FontMAINCZ "PuristaMedium"
-#define FontTITLE "PuristaMedium"
+#define FontTITLE "EtelkaMonospaceProBold"
 #define FontTITLEHalf "PuristaMedium"
 #define FontBOOK "tahomaB"
 #define FontNOTES "tahomaB"
-#define FontS "tahomaB"
-#define FontM "tahomaB"
+#define FontS "LucidaConsoleB"
 #define ST_TITLE ST_TITLE_BAR + ST_CENTER
 // Predefined controls
 #define IDC_OK			1
@@ -92,6 +91,77 @@
 #define TextColor	0.08, 0.08, 0.12
 #define InvTextColor	0.35, 0.38, 0.36
 
+class RscText {
+
+    idc = -1;
+    type = CT_STATIC;
+    style = ST_MULTI;
+    linespacing = 1;
+    colorBackground[] = {0,0,0,0};
+    colorText[] = {1,1,1,1};
+    soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
+    soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
+    soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
+    soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.20,1};
+    text = "";
+    shadow = 0;
+    font = FontM;
+    SizeEx = "";
+    fixedWidth = 0;
+    x = 0;
+    y = 0;
+    h = 5;
+    w = 20;
+};
+class RscTitleText
+{
+	type=0;
+	idc=-1;
+	style=2;
+	colorBackground[] = { 0, 0, 0, 0 };
+	colorText[] = { 1, 1, 1, 1 };
+	font="PuristaMedium";
+	size=1;
+};
+class RscActiveText
+	{
+		access = ReadAndWrite;
+		type = CT_ACTIVETEXT;
+		style = ST_CENTER;
+		h = 0.05;
+		w = 0.10;
+		colorBackground[] = { 0, 0, 0, 0 };
+	    colorText[] = { 1, 0, 0, 1 };
+		color[] = {1,1,1,0.8};
+	    colorActive[] = { 1, 0.2, 0.2, 1 };
+		colorDisabled[] = {0,0,0,0.3};
+        soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
+        soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
+        soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
+        soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.20,1};
+	    action = "hint ""WRONG BUTTON!""";
+		font = "PuristaMedium";
+		sizeEx = 0.03;
+        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
+		arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
+		border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
+		thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
+		text = "";
+		default = true;
+	};
+class RscStructuredtext
+{
+		access = ReadAndWrite;
+		type = CT_STATIC;
+		idc = -1;
+		style = ST_LEFT;
+		lineSpacing = 0;
+		w = 0.1;
+		h = 0.05;
+		font = "TahomaB";
+		sizeEx = Size_Text_Small;
+		text = "";
+};	
 class RscSmallTitle
 {
         type = CT_STATIC;
@@ -99,7 +169,7 @@ class RscSmallTitle
         style = ST_CENTER;
         colorBackground[] = {0, 0, 0, 1};
         colorText[] = {0, 0, 1, 1};
-        font = FontTITLEHalf;
+        font = FontMAIN;
         sizeEx = 0.04;
 };
 
@@ -109,11 +179,302 @@ class RscSmallTitleBlack
         idc = -1;
         style = ST_CENTER;
         colorBackground[] = {0, 0, 0, 0};
-        colorText[] = {0, 0, 0, 1};
+        colorText[] = {1,0.5,0,1};
         font = FontTITLEHalf;
         sizeEx = 0.03;
 };
+class RscPicture {
+    access = 0;
+    idc = -1;
+    type = CT_STATIC;
+    style = ST_PICTURE;
+    colorBackground[] = {0,0,0,0};
+    colorText[] = {0,0,0,0};
+    font = "tahomaB";
+    sizeEx = 0;
+    lineSpacing = 0;
+    text = "";
+    fixedWidth = 0;
+    shadow = 0;
+    x = 0;
+    y = 0;
+    w = 0.3;
+    h = 0.2;
+};
 
+class RscPictureKeepAspect: RscPicture {
+	style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+};
+class RscActivePicture
+	{
+		access = ReadAndWrite;
+		type = CT_ACTIVETEXT;
+	        idc = -1;
+	        style = ST_PICTURE;
+	        font = PuristaMedium;
+	        sizeEx = 0.04;
+            soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+	        soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
+	        soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
+	        soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
+	};
+class RscTitles
+  {
+	titles[] = {"crewinfomessage"};
+	
+	class Zen_pic
+	{
+	idd=-1;
+	movingEnable=0;
+	duration=9999;
+	fadein=0;
+	name="intro";
+	controls[]={"Image_1"};
+
+};
+
+	  	class Image_1 : RscPicture
+	  	  {
+			x = safezoneX + safezoneW - 0.40;
+			y = safezoneY + safezoneH - 0.21;
+			w = 0.40;
+			h = 0.21;
+			text = "pictures\rtspatch1.paa";
+	  	  };
+	};
+  		  
+	class Black
+	{
+	idd=-1;
+	movingEnable=0;
+	duration=9999;
+	fadein=0;
+	name="intro";
+	controls[]={"title1"};
+	 
+	  	class title1 : RscText 
+	  	  {
+	  	  	text="";
+	  	  	colorText[]={0.8,0,0,1};
+			sizeEx = 0.05;	  	  	
+	  	  	x=0.000;
+	  	  	y=0.000;
+	  	  	w=1.000;
+	  	  	h=1.000;
+	  	  };
+	};
+
+	class Title
+	{
+	idd=-1;
+	movingEnable=0;
+	duration=9999;
+	fadein=0;
+	name="intro";
+	controls[]={"Image_1","Image_2","title1","title2","title3","title4","title5","title6"};
+
+	  	class Image_1 : RscPicture
+	  	  {
+			x = safezoneX + safezoneW - 0.40;
+			y = safezoneY + safezoneH - 0.21;
+			w = 0.40;
+			h = 0.21;
+			text = "pictures\rtspatch1.paa";
+	  	  };
+
+	  	class Image_2 : RscPicture
+	  	  {
+			x = 0.300;
+			y = 0.060;
+			w = 0.380;
+			h = 0.500;
+			text = "pictures\rtspatch1.paa";
+	  	  };
+
+	  	class title1 : RscText 
+	  	  {
+	  	  	text="Zenophon And";
+	  	  	colorText[]={0.5,0.5,0.5,1};
+			sizeEx = 0.08;
+	  	  	x=0.002;
+	  	  	y=0.082;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+	  	class title2 : RscText 
+	  	  {
+	  	  	text="Zenophon And";
+	  	  	colorText[]={1,1,1,1};
+			sizeEx = 0.08;	  	  	
+	  	  	x=0.000;
+	  	  	y=0.080;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+
+	  	class title3 : RscText 
+	  	  {
+	  	  	text="Dr.Death jm PRESENTS";
+	  	  	colorText[]={0.5,0.5,0.5,1};
+			sizeEx = 0.08;	  	  	
+	  	  	x=0.002;
+	  	  	y=0.137;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+	  	class title4 : RscText 
+	  	  {
+	  	  	text="Dr.Death jm PRESENTS";
+	  	  	colorText[]={1,1,1,1};
+			sizeEx = 0.08;	  	  	
+	  	  	x=0.000;
+	  	  	y=0.134;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+
+	  	class title5 : RscText 
+	  	  {
+	  	  	text="RTS V";
+	  	  	colorText[]={0.5,0.5,0.5,1};
+			sizeEx = 0.06;	  	  	
+	  	  	x=0.002;
+	  	  	y=0.252;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+	  	class title6 : RscText 
+	  	  {
+	  	  	text="RTS V";
+	  	  	colorText[]={1,1,1,1};
+			sizeEx = 0.06;	  	  	
+	  	  	x=0.000;
+	  	  	y=0.250;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+	};
+
+	class Title2
+	{
+	idd=-1;
+	movingEnable=0;
+	duration=9999;
+	fadein=0;
+	name="intro";
+	controls[]={"Image_1","title1","title2","title3","title4","title5","title6"};
+
+	  	class Image_1 : RscPicture
+	  	  {
+			x = safezoneX + safezoneW - 0.40;
+			y = safezoneY + safezoneH - 0.21;
+			w = 0.40;
+			h = 0.21;
+			text = "pictures\rtspatch1.paa";
+	  	  };
+
+	  	class title1 : RscText 
+	  	  {
+	  	  	text="Zenophon And";
+	  	  	colorText[]={0.5,0.5,0.5,1};
+			sizeEx = 0.08;
+	  	  	x=0.002;
+	  	  	y=0.082;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+	  	class title2 : RscText 
+	  	  {
+	  	  	text="Zenophon And";
+	  	  	colorText[]={1,1,1,1};
+			sizeEx = 0.08;	  	  	
+	  	  	x=0.000;
+	  	  	y=0.080;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+
+	  	class title3 : RscText 
+	  	  {
+	  	  	text="Dr.Death jm PRESENTS";
+	  	  	colorText[]={0.5,0.5,0.5,1};
+			sizeEx = 0.08;	  	  	
+	  	  	x=0.002;
+	  	  	y=0.137;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+	  	class title4 : RscText 
+	  	  {
+	  	  	text="Dr.Death jm PRESENTS";
+	  	  	colorText[]={1,1,1,1};
+			sizeEx = 0.08;	  	  	
+	  	  	x=0.000;
+	  	  	y=0.134;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+
+	  	class title5 : RscText 
+	  	  {
+	  	  	text="RTS V";
+	  	  	colorText[]={0.5,0.5,0.5,1};
+			sizeEx = 0.06;	  	  	
+	  	  	x=0.002;
+	  	  	y=0.252;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+	  	class title6 : RscText 
+	  	  {
+	  	  	text="RTS V";
+	  	  	colorText[]={1,1,1,1};
+			sizeEx = 0.06;	  	  	
+	  	  	x=0.000;
+	  	  	y=0.250;
+	  	  	w=1.00;
+	  	  	h=1.00;
+	  	  };
+	};
+	class crewinfomessage
+		{
+		idd = 10100;
+		movingEnable=0;
+		duration = 1000000000; 
+		fadein=0;    
+		name="crewinfomessage";
+		controlsBackground[] = {"crewinfotext", "crewinfoteamtext"};
+		onLoad = "uiNamespace setVariable ['crewinfodisplay', _this select 0];";
+		onunLoad = "uiNamespace setVariable ['crewinfodisplay', objnull];";    
+
+		class crewinfotext { 
+			idc = 10101; 
+			type = CT_STRUCTURED_TEXT; 
+			style = ST_LEFT; 
+			x = (SafeZoneX + 0.02);
+			y = (SafeZoneY + 1.25);
+			w = 0.3;
+			h = 0.6;
+			size = 0.018; 
+			colorBackground[] = { 0, 0, 0, 0 };
+			colortext[] = {0,0,0,0.7};
+			text ="";
+		};
+
+		class crewinfoteamtext { 
+			idc = 10103; 
+			type = CT_STRUCTURED_TEXT; 
+			style = ST_LEFT; 
+			x = (SafeZoneW + SafezoneX) - 0.25;
+			y = (1 + ((0 + SafeZoneY) * -1) - 0.14);
+			w = 0.25;
+			h = 0.14;
+			size = 0.02; 
+			colorBackground[] = { 0, 0, 0, 0 };
+			colortext[] = {0,0,0,0.7};
+			text ="";
+		};
+	};
 
 class RscSlider
 {
@@ -127,38 +488,68 @@ class RscSlider
         h = 0.025;
 };
 
-class RscButton
-{
+class RscButton {
+	access = 0;
     type = CT_BUTTON;
-    idc = 100;
-    Style = ST_CENTER;
-    colorText[] = {0, 0, 0, 1};
-    font = FontTITLEHalf;
-    sizeEx = 0.03;
+    text = "";
+    colorText[] = {1,1,1,1};
+    colorDisabled[] = {0.4,0.4,0.4,0};
+    colorBackground[] = {0.2,0.2,0.2,0.3};
+    colorBackgroundDisabled[] = {0,0,0,0};
+    colorBackgroundActive[] = {0.2,0.2,0.2,0.3};
+    colorFocused[] = {0.75,0.75,0.75,.5};
+    colorShadow[] = {0.023529,0,0.0313725,0};
+    colorBorder[] = {0.023529,0,0.0313725,0};
     soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
     soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
     soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
-    default = false;
+	soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+    style = 2;
+    x = 0;
+    y = 0;
     w = 0.2;
-    h = 0.05;
-    offsetX = 0.001;
-    offsetY = 0.001;
-    offsetPressedX = 0.003;
-    offsetPressedY = 0.003;
-    shadow = 0.000001;
-    borderSize = 0.00003;
-    soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
-    colorDisabled[] = {0,0,0,0};
-    colorTextSelect[] = {1, 0, 0, 1};   
-    colorBackground[] = {0,0,0,0.72};   
-    colorBorder[] = {0.0, 0.1, 0.7, 0.5};
-    colorFocused[] = {0.0, 0.1, 0.7, 0.5};
-    colorShadow[] = {0.02, 0.2, 0.7, 0.6};      
-    colorBackgroundDisabled[] = {1,1,1,1};
-    colorBackgroundActive[] = {0,0.18,0.388,0.4};
+    h = 0.04;
+    shadow = 0;
+    font = FontS;
+    sizeEx = 0.03;
+    offsetX = 0.003;
+    offsetY = 0.003;
+    offsetPressedX = 0.002;
+    offsetPressedY = 0.002;
+    borderSize = 0;
+};
+class RscButton2
+{
+        type = CT_BUTTON;
+        idc = 101;
+        Style = ST_CENTER;
+        colorText[] = {1, 1, 1, 1};
+        font = FontTITLEHalf;
+        sizeEx = 0.03;
+	soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+        soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
+        soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
+        soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
+        default = false;
+        w = 0.2;
+        h = 0.10;
+        offsetX = 0.002;
+        offsetY = 0.002;
+        offsetPressedX = 0.003;
+        offsetPressedY = 0.003;
+        shadow = 0.000001;
+        borderSize = 0.00006;
+        colorDisabled[] = {0,0,0,0};
+        colorFocused[] = {0.0, 0.1, 0.7, 0.5};
+        colorShadow[] = {0.02, 0.2, 0.7, 0.6};              
+        colorBackgroundDisabled[] = {1,1,1,1};
+        colorBackgroundActive[] = {0,0.18,0.388,0.4};
+        colorBackground[] = {0,0,0,0.72};   
+        colorBorder[] = {0.0, 0.1, 0.7, 0.5};
+
 };
 
-class  rscedit {
+class rscedit {
 	type = 2;
 	style = 0x00 + 0x40;
 	font = "PuristaMedium";
@@ -191,4 +582,66 @@ class  rscedit {
 		font = "PuristaMedium";
 		sizeEx = 0.01;
 		text = "";
-	};	
+	};
+
+class Scrollbar {
+    idc = -1; 
+    type = CT_SLIDER; 
+    style = SL_HORZ; 
+    x = 0.4; 
+    y = 0.2; 
+    w = 0.3; 
+    h = 0.01; 
+    color[] = { 1, 1, 1, 1 }; 
+    coloractive[] = { 1, 0, 0, 0.5 };
+    // This is an ctrlEventHandler to show you some response if you move the sliderpointer.
+    onSliderPosChanged = "hint format[""%1"",_this];";
+};
+class RscListBox
+ {
+	access = 0;
+	type = 5;
+	style = 0;
+	w = 0.4;
+	h = 0.4;
+	font = "tahomaB";
+	sizeEx = 0.03;
+	rowHeight = 0.05;
+	colorText[] = {1,1,1,1};
+	colorScrollbar[] = {1,1,1,1};
+	colorSelect[] = {0,0,0,1};
+	colorSelect2[] = {1,0.5,0,1};
+	colorSelectBackground[] = {0.2,0.2,0.2,0.3};
+	colorSelectBackground2[] = {0.2,0.2,0.2,0.3};
+	colorBackground[] = {0.2,0.2,0.2,0.3};
+	colorDisabled[] = {1,1,1,0.3};
+	maxHistoryDelay = 1.0;
+	period = 1;
+	autoScrollSpeed = -1;
+	autoScrollDelay = 5;
+	autoScrollRewind = 0;
+	soundExpand[] = {"a3\sounds_f\weapons\closure\revolver_cylinder_turn_2.wss",0.1,1};
+    soundCollapse[] = {"a3\sounds_f\weapons\closure\revolver_cylinder_turn_1.wss",0.09,1};
+	soundSelect[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.1,1};
+	soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+	soundPush[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+    soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss",0.45,1};
+	soundEscape[] = {"a3\sounds_f\weapons\closure\sfx2.wss",0.09,1};
+	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
+	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+	shadow = 0;
+	borderSize = 0;
+	class ListScrollBar : ScrollBar //ListScrollBar is class name required for Arma 3
+	{
+		color[] = {1,1,1,0.6};
+		colorActive[] = {1,1,1,1};
+		colorDisabled[] = {1,1,1,0.3};
+		thumb = "#(argb,8,8,3)color(1,1,1,1)";
+		arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
+		arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+		border = "";
+		shadow = 0;
+	};
+	onLBSelChanged = "systemChat str ['onLBSelChanged',_this]; true";
+	onLBDblClick = "systemChat str ['onLBDblClick',_this]; false";
+};
