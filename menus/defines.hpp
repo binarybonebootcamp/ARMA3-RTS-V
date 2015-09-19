@@ -73,10 +73,11 @@
 #define ST_KEEP_ASPECT_RATIO  0x800                   16
 #define ReadAndWrite			    0
 
-#define FontM "Zeppelin33"
+#define FontM "EtelkaMonospaceProBold"
 #define FontHTML "EtelkaMonospacePro"
 #define FontHTMLBold "EtelkaMonospacePro"
 #define FontMAINCZ "PuristaMedium"
+#define FontMAIN "PuristaMedium"
 #define FontTITLE "EtelkaMonospaceProBold"
 #define FontTITLEHalf "PuristaMedium"
 #define FontBOOK "tahomaB"
@@ -131,7 +132,7 @@ class RscActiveText
 		h = 0.05;
 		w = 0.10;
 		colorBackground[] = { 0, 0, 0, 0 };
-	    colorText[] = { 1, 0, 0, 1 };
+	    colorText[] = {1,0.5,0,1};
 		color[] = {1,1,1,0.8};
 	    colorActive[] = { 1, 0.2, 0.2, 1 };
 		colorDisabled[] = {0,0,0,0.3};
@@ -139,7 +140,7 @@ class RscActiveText
         soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
         soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
         soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.20,1};
-	    action = "hint ""WRONG BUTTON!""";
+	    action = str formatText ["%1", wtf];
 		font = "PuristaMedium";
 		sizeEx = 0.03;
         arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
@@ -577,8 +578,8 @@ class rscedit {
 		colorBackgroundActive[] = {0,0.13,0.25,0.7};
 		colorFocused[] = {0,0.13,0.25,0.7};
 		colorShadow[] = {0.023529,0,0.0313725,1};
-		colorBorder[] = {0.023529,0,0.0313725,1};
-		colorText[] = {1,1,1,0.9};
+		colorBorder[] = {1, 0, 0, 1};
+		colorText[] = {1, 0, 0, 1};
 		font = "PuristaMedium";
 		sizeEx = 0.01;
 		text = "";
