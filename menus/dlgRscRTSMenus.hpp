@@ -285,8 +285,9 @@ class RscListBackground : RscText
         w = 0.58;
         h = 0.50;
 		sizeEx = 0.047;
-
+        
     };
+
 //Dialog for Mission Control  IDs 1000-1050
 class DlgStatus
 {
@@ -454,7 +455,7 @@ class DlgStatus
         {
         idc = 1015;
         type = CT_COMBO;
-        x= "(SafeZoneW) - (0.71)";
+        x= "(SafeZoneW + SafeZoneX) - (0.71)";
         y = 0.510;
         w = 0.08;
         h = 0.04;
@@ -476,7 +477,7 @@ class DlgStatus
         {
             idc = 1040;
             type = CT_COMBO;
-            x= "(SafeZoneW) - (0.71)";
+            x= "(SafeZoneW + SafeZoneX) - (0.71)";
             y = 0.560;
             w = 0.08;
             h = 0.04;
@@ -670,7 +671,7 @@ class DlgBuild
             class List_CrewCount : RscCombo {
                 idc = 2045;
                 type = CT_COMBO;
-                x= "(SafeZoneW) - (0.71)";
+                x= "(SafeZoneW + SafeZoneX) - (0.71)";
                 y = 0.410;
                 w = 0.08;
                 h = 0.04;
@@ -949,7 +950,7 @@ class DlgConfirm {
         font = tahomaB;
         colorText[] = {0, 0, 0, 1};
         colorBackground[] = {.25, .25, .25, .75};
-        sizeEx = "0.050 /  (getResolution select 4.5)";
+        sizeEx = 0.050;
         text = "";
     };
 
@@ -977,7 +978,7 @@ class DlgConfirm {
         y = 0.55;
         w = 0.1;
         h = 0.05;
-        sizeEx = "0.030 /  (getResolution select 4.5)";
+        sizeEx = 0.030;
         colorText[] = {1, 1, 1, 1};
         text = "Confirm";
         action = "RTS3_Yes = TRUE";
@@ -989,7 +990,7 @@ class DlgConfirm {
         y = 0.55;
         w = 0.1;
         h = 0.05;
-        sizeEx = "0.030 /  (getResolution select 4.5)";
+        sizeEx = 0.030;
         colorText[] = {1, 1, 1, 1};
         text = "Cancel";
         action = "RTS3_No = TRUE";
