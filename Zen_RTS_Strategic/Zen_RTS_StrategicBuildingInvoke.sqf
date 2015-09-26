@@ -24,6 +24,8 @@ if (count _typeData == 0) exitWith {
     ("")
 };
 
+diag_log ("Zen_RTS_StrategicBuildingInvoke  " + str time + "  " + str _this);
+
 _objIdentifier = "Zen_RTS_Strategic_Building_Obj_" + ([10] call Zen_StringGenerateRandom);
 
 Zen_RTS_Strategic_Building_Objects_Local pushBack [_objIdentifier, [], 0];

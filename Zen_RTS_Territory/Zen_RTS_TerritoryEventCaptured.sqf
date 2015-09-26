@@ -27,13 +27,8 @@ _newData = [_marker] call Zen_RTS_TerritoryGetData;
 
 // Debug
 diag_log ("Zen_RTS_TerritoryEventCaptured :" + str time);
-{
-    diag_log _x;
-} forEach _oldData;
-
-{
-    diag_log _x;
-} forEach _newData;
+diag_log _oldData;
+diag_log _newData;
 
 call Zen_StackRemove;
 if (true) exitWith {};

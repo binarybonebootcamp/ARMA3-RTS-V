@@ -29,6 +29,7 @@ Strategic
         // CJ, with repair and recycle
             // placement for assets
         // charge per crew member
+        better spawn placement
         auto tank
             tracked vehicles
         base-in-a-box
@@ -131,7 +132,7 @@ RTS menus
     Give money to another player
     AI fly height
 Revive/Respawn/JIP
-    rewrite rts-init-SetRandomPos.sqs in SQF
+    // rewrite rts-init-SetRandomPos.sqs in SQF
     Get correct respawn positions
 Economy
     // Territories have resource value
@@ -147,7 +148,7 @@ Economy
         time = (max time) - resources / (resources maximum) * (max time - min time) ??
     add JIP player to money data
 AI
-    rewrite rts-init-commandermonitor.sqs in SQF
+    // rewrite rts-init-commandermonitor.sqs in SQF
     On player death
     commander
     individual

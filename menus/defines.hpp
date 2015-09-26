@@ -643,6 +643,9 @@ class RscListBox
 		border = "";
 		shadow = 0;
 	};
-	onLBSelChanged = "systemChat str ['onLBSelChanged',_this]; true";
-	onLBDblClick = "systemChat str ['onLBDblClick',_this]; false";
+	// onLBSelChanged = "systemChat str ['onLBSelChanged',_this]; true";
+	// onLBDblClick = "systemChat str ['onLBDblClick',_this]; false";
+
+	onLBSelChanged = "true";
+	onLBDblClick = "false";
 };

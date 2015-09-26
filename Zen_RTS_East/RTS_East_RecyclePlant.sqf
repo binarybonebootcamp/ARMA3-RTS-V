@@ -94,7 +94,7 @@ Zen_RTS_BuildingType_East_RecyclePlant = ["Zen_RTS_F_East_RecyclePlantConstructo
             0 = [_group, "crew"] call Zen_SetAISkill; \
             removeAllWeapons (leader _group); \
             _group setBehaviour "careless"; \
-            A pushBack [(leader _group), false]; \
+            (A select 0) pushBack [(leader _group), false]; \
         }; \
     };
 

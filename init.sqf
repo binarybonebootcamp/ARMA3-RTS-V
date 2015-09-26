@@ -1,13 +1,17 @@
 #include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
 
+// For debug purposes
+if !(isDedicated) then {
+    diag_log profileNameSteam;
+};
+
 enableSaving [false, false];
 player enableFatigue false;
 player addEventhandler ["Respawn", {player enableFatigue false}];
-My_Title = {Titletext[format ["%1", "-= RTS V =-\nWarGame\nFor Arma 3"], "PLAIN DOWN" , .5]};
-call My_Title;
+RTS_Intro_Titletext_Code = {titleText [format ["%1", "-= RTS V =-\nWarGame\nFor Arma 3"], "PLAIN DOWN" , .5]};
+call RTS_Intro_Titletext_Code;
 [] execVM "briefing.sqf";
 
-sleep .1;
 #include "Zen_RTS_Functions\Zen_RTS_GlobalFunctions.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_GlobalVariables.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_ParseParams.sqf"
@@ -15,7 +19,8 @@ sleep .1;
 #include "functions\RTS_FNC_flipACTIONS.sqf"
 #include "functions\RTS_FNC_PUSH.sqf"
 
-#include "setup.sqf"
+// #include "setup.sqf"
+#define __cppfln(xdfunc,xfile2) xdfunc = compile preprocessFileLineNumbers #xfile2
 __cppfln(barrelfun,functions\barrelfun.sqf);
 
 // Compile Zen Functions --------------
@@ -24,11 +29,13 @@ Zen_RTS_BuildMenuStructures = compileFinal preprocessFileLineNumbers "Zen_RTS_Fu
 Zen_RTS_BuildStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_BuildStructure.sqf";
 Zen_RTS_BuildMenu = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_BuildMenu.sqf";
 Zen_RTS_BuildUnit = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_BuildUnit.sqf";
+Zen_RTS_CommanderManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_CommanderManager.sqf";
 Zen_RTS_DeployPlayer = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DeployPlayer.sqf";
 Zen_RTS_DisbandUnit = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DisbandUnit.sqf";
 Zen_RTS_DestroyStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DestroyStructure.sqf";
 Zen_RTS_EconomyManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_EconomyManager.sqf";
 Zen_RTS_HackBuilding = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_HackBuilding.sqf";
+Zen_RTS_RandomStart = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RandomStart.sqf";
 Zen_RTS_RecycleRepair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RecycleRepair.sqf";
 Zen_RTS_RecycleRepairAIManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RecycleRepairAIManager.sqf";
 Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_SetViewDistance.sqf";
@@ -49,20 +56,21 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
 // [] exec "rts-client-updateArrays.sqs";
 // [] exec "rts-build-structurePosExec.sqs";
 // [] exec "rts-z-endmission.sqs";
-rts_arrays_initialized = true;
 
 // [] execVM "rts-z-intro.sqf";
 // [] exec "rts-showMsg.sqs";
-[] exec "rts-init-SetRandomPos.sqs";
+// [] exec "rts-init-SetRandomPos.sqs";
 // 1 setRadioMsg "Null";
 // if (param3 > 0) then {
     // [] exec "vicpoint\rts-vpInit.sqs";
 // };
+
 execVM "digitalLoadout\client.sqf";
 // Data structure for custom squads, this is local to each player and side specific
 // indexes pair with names/colors, 0 - Alpha, etc.
 RTS_Custom_Squads_Assets = [[], [], [], []];
 
+rts_arrays_initialized = true;
 #include "Zen_RTS_Functions\Zen_RTS_JIPSync.sqf"
 if !(isServer) exitWith {};
 // TitleRsc ["Title","BLACK FADED"];
@@ -70,31 +78,36 @@ if !(isServer) exitWith {};
 sleep 1;
 
 // RTS Server -------------
+["Initialize"] call BIS_fnc_dynamicGroups;
+0 = [] execVM "unflip_vehicle.sqf";
+0 = [] execVM "R3F_LOG\init.sqf";
+0 = [] execVM "VCOM_Driving\init.sqf";
+
+// [] exec "rts-init-commandermonitor.sqs";
 // [] exec "economy\rts-supplyMonitor.sqs";
 // [] exec "rts-build-serverside.sqs";
-[] exec "rts-init-commandermonitor.sqs";
-//[] exec "test.sqs";                                          /////////////i took this out with what ever it was attatched to.. like unit monitor .. geeting errors from east.
-//[] exec "rts-build-serverSideMonitor.sqs";
+// took this out with what ever it was attached to.. like unit monitor ... getting errors from east.
+// [] exec "test.sqs";                                         
+// [] exec "rts-build-serverSideMonitor.sqs";
 // rts_hq sideChat "Global Scripts and Variables Initialized";
-0 = [] execVM 'unflip_vehicle.sqf';
-execVM "R3F_LOG\init.sqf";
-[] execVM "VCOM_Driving\init.sqf";
 // --------------------------
 
 // Zen Server ------------------
+0 = [] call Zen_RTS_RandomStart;
+0 = [] spawn Zen_RTS_CommanderManager;
 0 = [] spawn Zen_RTS_EconomyManager;
 0 = [] spawn Zen_RTS_RecycleRepairAIManager;
-Zen_JIP_Args_Server = [overcast, fog, vd];
-["Initialize"] call BIS_fnc_dynamicGroups;
+Zen_JIP_Args_Server = [overcast, fog, 2000];
 
 {
     call compile format ["xp%1 = 0", _x];
-
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
 } forEach ([West, East] call Zen_ConvertToObjectArray);
-// ----------------------
+
+// For debug purposes
+diag_log date;
 
 // ====================================================================================
 // Zen_RTS_SubTerritory
@@ -259,7 +272,6 @@ RTS_Used_Building_Types = [[], []]; // global
 // must be [[west building levels], [east '']]
 RTS_Building_Type_Levels = [[], []]; // global
 
-
 {
     _array = _x;
     for "_i" from 1 to 9 do {
@@ -271,20 +283,14 @@ RTS_Building_Type_Levels = [[], []]; // global
 // must be [[West asset types, [East '']]
 RTS_Used_Asset_Types = [[], []]; // global
 
-// These arrays and functions are for the server only
+// These arrays are for the server only
 // Do not transfer AI repair/recycle threads or locality to clients
-RTS_Recycle_Queue = [];
-RTS_Repair_Queue = [];
-RTS_Worker_Recycle_Queue = [];
-RTS_Worker_Repair_Queue = [];
-
-Zen_RTS_F_AddRecycle = {
-    RTS_Recycle_Queue pushBack _this;
-};
-
-Zen_RTS_F_AddRepair = {
-    RTS_Repair_Queue pushBack _this;
-};
+// Must follow [[<west objects>], [<east objects>]] format
+RTS_Recycle_Queue = [[], []];
+RTS_Repair_Queue = [[], []];
+RTS_Worker_Recycle_Queue = [[], []];
+RTS_Worker_Repair_Queue = [[], []];
+RTS_CJ_Repair_Queue = [[], []];
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"
