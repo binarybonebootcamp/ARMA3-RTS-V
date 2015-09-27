@@ -26,5 +26,6 @@ _bldObjData = [_bldObjId] call Zen_RTS_StrategicBuildingObjectGetDataServer;
 _queue = _bldObjData select 1;
 _queue pushBack _data;
 
+diag_log ("Zen_RTS_StrategicBuildingQueueAdd queues "+ str _data + "  at  " + str time +  "  " + str _bldObjId );
 call Zen_StackRemove;
 if (true) exitWith {};

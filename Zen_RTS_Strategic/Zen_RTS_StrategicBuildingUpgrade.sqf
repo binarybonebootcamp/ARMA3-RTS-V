@@ -23,6 +23,8 @@ if (count _objData == 0) exitWith {
     ([])
 };
 
+diag_log ("Zen_RTS_StrategicBuildingUpgrade  " + str time + "  " + str _this);
+
 _typeIdentifier = _objData select 0;
 _typeData = [_typeIdentifier] call Zen_RTS_StrategicBuildingTypeGetData;
 

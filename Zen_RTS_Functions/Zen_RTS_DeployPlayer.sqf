@@ -64,13 +64,12 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     (group Player) selectLeader player;
     0 = [player] call Zen_AddRepackMagazines;
     [player,"Death"] call BIS_fnc_setUnitInsignia;
-	player addeventhandler ["fired","_count = player ammo (currentWeapon player); if(_count != 0) then {magazineClass = currentMagazine player;};
- if(_count == 0) then {player addMagazine magazineClass; reload player;};"];
-  onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
-  execVM "RTS_JUMPACTIONS.sqf";
+    player addeventhandler ["fired","_count = player ammo (currentWeapon player); if(_count != 0) then {magazineClass = currentMagazine player;};  if(_count == 0) then {player addMagazine magazineClass; reload player;};"];
+    onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
+    execVM "RTS_JUMPACTIONS.sqf";
 
-player enableFatigue false;
-player addEventhandler ["Respawn", {player enableFatigue false}];
+    player enableFatigue false;
+    player addEventhandler ["Respawn", {player enableFatigue false}];
     // waitUntil {
         // sleep 1;
         // (rts_arrays_initialized)
@@ -176,7 +175,7 @@ player addEventhandler ["Respawn", {player enableFatigue false}];
         _cam camCommit 0;
 
         for "_i" from 1 to 60 step 1 do {
-            if (StopMsg) exitWith {closeDialog 0;};
+            // if (StopMsg) exitWith {closeDialog 0;};
             if !(ctrlVisible _idcList) exitWith {};
             if (_i == 60) then {rts_respawn = true};
             if (rts_respawn) exitWith {};
