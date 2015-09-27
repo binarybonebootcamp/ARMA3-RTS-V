@@ -1,6 +1,6 @@
 #define IDListGroup	1020
 
- class RscMoneyLabel : RscActiveText
+ class RTS_MoneyLabel : RTS_ActiveText
     {
         idc = 1037;
 		style = ST_LEFT;
@@ -13,7 +13,7 @@
         
     };
 
-class RscSupplyLabel : RscActiveText
+class RTS_SupplyLabel : RTS_ActiveText
     {
         idc = 1038;
 		style = ST_LEFT;
@@ -25,7 +25,7 @@ class RscSupplyLabel : RscActiveText
         text = "";
         
     };
-    class RscFPSLabel : RscActiveText
+    class RTS_FPSLabel : RTS_ActiveText
     {
         idc = 666;
 		style = ST_LEFT;
@@ -39,7 +39,7 @@ class RscSupplyLabel : RscActiveText
     };
 
 
-//class RscStatList : RscListBox
+//class RTS_StatList : RTS_ListBox
 //    {
 //        idc = 500;
 //        x = "(SafeZoneW + SafeZoneX) - (0.27)";
@@ -51,7 +51,7 @@ class RscSupplyLabel : RscActiveText
 //        rowHeight = 0.025;
 //        };
 
-//class RscStatBackground : RscText
+//class RTS_StatBackground : RTS_Text
 //    {
 //        colorBackground[] = {0,0,0,0};
 //        color[] = {0,0,0,0};
@@ -63,7 +63,7 @@ class RscSupplyLabel : RscActiveText
 //    };
 
 
-class RscQueueList : RscListBox
+class RTS_QueueList : RTS_ListBox
     {
         idc = 600;
         x = 0.0;
@@ -76,7 +76,7 @@ class RscQueueList : RscListBox
         rowHeight = 0.0;
    };
 
-class RscLabelBarracksQueue : RscActiveText
+class RTS_LabelBarracksQueue : RTS_ActiveText
     {
         idc = 1030;
         x = 0.02;
@@ -87,7 +87,7 @@ class RscLabelBarracksQueue : RscActiveText
 
     };
 
-class RscButtonBarracksQueue : RscButton
+class RTS_ButtonBarracksQueue : RTS_Button
     {
         idc = 1031;
         x = 0.15;
@@ -110,7 +110,7 @@ class RscButtonBarracksQueue : RscButton
 
     };
 
-class RscLabelLightQueue : RscActiveText
+class RTS_LabelLightQueue : RTS_ActiveText
     {
         idc = 1032;
         x = 0.02;
@@ -120,7 +120,7 @@ class RscLabelLightQueue : RscActiveText
         text = "Empty";
     };
 
-class RscButtonLightQueue : RscButton
+class RTS_ButtonLightQueue : RTS_Button
     {
         idc = 1033;
         x = 0.15;
@@ -142,7 +142,7 @@ class RscButtonLightQueue : RscButton
         // action = "[""Vcl""] exec ""rts-build-cancel.sqs""";
     };
 
-class RscLabelHeavyQueue : RscActiveText
+class RTS_LabelHeavyQueue : RTS_ActiveText
     {
         idc = 1034;
         x = 0.02;
@@ -152,7 +152,7 @@ class RscLabelHeavyQueue : RscActiveText
         text = "Empty";
     };
 
-class RscButtonHeavyQueue : RscButton
+class RTS_ButtonHeavyQueue : RTS_Button
     {
         idc = 1035;
         x = 0.15;
@@ -174,7 +174,7 @@ class RscButtonHeavyQueue : RscButton
         // action = "[""Vcl""] exec ""rts-build-cancel.sqs""";
     };
 
-class RscLabelAirQueue : RscActiveText
+class RTS_LabelAirQueue : RTS_ActiveText
     {
         idc = 1036;
         x = 0.02;
@@ -185,7 +185,7 @@ class RscLabelAirQueue : RscActiveText
 
     };
 
-class RscButtonAirQueue : RscButton
+class RTS_ButtonAirQueue : RTS_Button
     {
         idc = 1039;
         x = 0.15;
@@ -207,7 +207,7 @@ class RscButtonAirQueue : RscButton
         // action = "[""Air""] exec ""rts-build-cancel.sqs""";
 
     };
-//class RscLabelNavalQueue : RscText
+//class RTS_LabelNavalQueue : RTS_Text
     //{
     //	idc = 1041;
     //	colorBackground[] = {0.2, 0.2, 0.2, .7};
@@ -219,7 +219,7 @@ class RscButtonAirQueue : RscButton
     //	text = "Empty";
     //};
 
-//class RscButtonNavalQueue : RscButton
+//class RTS_ButtonNavalQueue : RTS_Button
     //{
         //idc = 1042;
         //x = safeZoneX + 0.750;
@@ -230,7 +230,7 @@ class RscButtonAirQueue : RscButton
         //text = "Cancel";
     //	action = "[""Vcl""] exec ""rts-build-cancel.sqs""";
     //};
-class RscListBackground : RscText
+class RTS_ListBackground : RTS_Text
     {
         text = "";
         x = 0.22;
@@ -243,7 +243,7 @@ class RscListBackground : RscText
 		
     };
 
-    class RESEARCH_LIST : RscListBox
+    class RESEARCH_LIST : RTS_ListBox
     {
         idc = -1;//400;
         rowHeight = 0.035;
@@ -254,7 +254,7 @@ class RscListBackground : RscText
 		sizeEx = 0.047;
 		
     };
-    class RESEARCH_TITLE : RscSmallTitleBlack
+    class RESEARCH_TITLE : RTS_SmallTitleBlack
     {
         idc = -1;
         x = 0.22;
@@ -265,7 +265,7 @@ class RscListBackground : RscText
         text = "RESEARCH STATS";
     };
 
-        class RscListMain : RscListBox
+        class RTS_ListMain : RTS_ListBox
     {
         idc = -1;
         rowHeight = 0.035;
@@ -276,7 +276,7 @@ class RscListBackground : RscText
 		sizeEx = 0.040;
 
     };
-	    class RscListMain2 : RscListBox
+	    class RTS_ListMain2 : RTS_ListBox
     {
         idc = -1;
         rowHeight = 0.035;
@@ -285,9 +285,8 @@ class RscListBackground : RscText
         w = 0.58;
         h = 0.50;
 		sizeEx = 0.047;
-        
-    };
 
+    };
 //Dialog for Mission Control  IDs 1000-1050
 class DlgStatus
 {
@@ -303,7 +302,7 @@ class DlgStatus
 		
     };
 
-        class CENTER_FRAME_TITLE : RscText
+        class CENTER_FRAME_TITLE : RTS_Text
         {
         idc = 1050;
             style = ST_FRAME;
@@ -318,7 +317,8 @@ class DlgStatus
             text = " RTS V Mission Status";
     };
 
-   class TOP_RIGHT_TITLE : RscText
+
+   class TOP_RIGHT_TITLE : RTS_Text
     {
             idc = -1;
             style = ST_FRAME;
@@ -328,12 +328,12 @@ class DlgStatus
             h = 0.99;
             text = "WarGames";
             font = FontTITLE;
-            colorText[] = {1,0.5,0,1};
+            colorText[] = {1,0.7,0,1};
             colorBackground[] = {0,0,0,0};
             sizeEx = 0.030;
     };
 
-    class RIGHT_FRAME_PICTURE : RscPicture
+    class RIGHT_FRAME_PICTURE : RTS_Picture
     {
             idc = 50;
             x = 0.80;
@@ -341,15 +341,15 @@ class DlgStatus
             w = 0.2;
             h = 0.15;
             colorText[] = {};
-            text = "pictures\rtspatch1.paa";
+            text = "";     //"pictures\rtspatch1.paa";
 			
 			
     };
 
-    class RIGHT_FRAME_TEXT2 : RscText
+    class RIGHT_FRAME_TEXT2 : RTS_Text
     {
         idc = 52;
-        colorBackground[] = {1,0.5,0,1};
+        colorBackground[] = {1,0.7,0,1};
         text = "UNIT CONTROL";
         x = 0.80;
         y = 0.35;
@@ -360,7 +360,7 @@ class DlgStatus
         sizeEx = 0.03;
     };
 
-    class TOP_left_TITLE : RscText
+    class TOP_left_TITLE : RTS_Text
     {
             idc = -1;
             style = ST_FRAME;
@@ -370,14 +370,14 @@ class DlgStatus
             h = 0.99;
             text = "INFOMATION";
             font = FontTITLE;
-            colorText[] = {1,0.5,0,1};
+            colorText[] = {1,0.7,0,1};
             colorBackground[] = {0,0,0,0};
             sizeEx = 0.030;
     };
 
-                //class List_Background : RscListBackGround {};
+                //class List_Background : RTS_ListBackGround {};
 
-                class Group_Background : RscText
+                class Group_Background : RTS_Text
                     {
                    idc = 2026;
                     text = "";
@@ -388,37 +388,39 @@ class DlgStatus
 					
             };
 
-              //class Stats_Background : RscStatBackGround {};
+              //class Stats_Background : RTS_StatBackGround {};
 
     class controls
         {
 
-        class List_Assets : RscListMain2 //RESEARCH_LIST
+        class List_Assets : RTS_ListMain2 //RESEARCH_LIST
         {
-            idc = 1000;
-            onButtonClick = "[1000] exec ""rts-build-menu.sqs""";
+            idc = 100000;
+           
         };
 
-        class Button_Help : RscButton
+        class Button_Help : RTS_Button2
         {
-            idc = -1;
+           idc = -1;
            x = 0.02;
-           y = 0.91;
-            text = "HELP MENU";
+           y = 0.99;
+		   colorText[] = {1, 0, 0, 1};
+            text = "help";
             action = "[] exec ""rts-z-helpmenu.sqs""";
         };
 
-        class Button_Select : RscButton
+        class Button_Select : RTS_Button
         {
-           idc = 1005;
+           idc = 100005;
            x = 0.80;
            y = 0.60;
            sizeEx = 0.030;
+		   colorText[] = {1, 0, 0, 1};
            text = "View Units";
            action = "[1000] exec ""rts-build-menu.sqs""";
         };
 
-        class SOLDIERS_TITLE : RscSmallTitleBlack
+        class SOLDIERS_TITLE : RTS_SmallTitleBlack
     {
         idc = -1;
         x = 0.24;
@@ -429,7 +431,7 @@ class DlgStatus
         text = "SOLDIERS IN YOUR GROUP";
     };
 
-        class SOLDIERS_LIST : RscListBox
+        class SOLDIERS_LIST : RTS_ListBox
         {
         idc = IDListGroup;
 		type = CT_LISTBOX;
@@ -441,7 +443,7 @@ class DlgStatus
         rowHeight = 0.03;
 
     };
-    class Button_Viewdistance : RscButton
+    class Button_Viewdistance : RTS_Button
         {
         idc = 1010;
         x = 0.80;
@@ -451,11 +453,11 @@ class DlgStatus
         action = "[1015] call Zen_RTS_SetViewDistance""";
         };
 
-        class List_Viewdistance : RscCombo
+        class List_Viewdistance : RTS_Combo
         {
         idc = 1015;
         type = CT_COMBO;
-        x= "(SafeZoneW + SafeZoneX) - (0.71)";
+        x = "(SafeZoneW + SafeZoneX) - (0.71)";
         y = 0.510;
         w = 0.08;
         h = 0.04;
@@ -463,7 +465,7 @@ class DlgStatus
         sizeEx = 0.030;
         };
 
-        class Button_FlyinHeight : RscButton
+        class Button_FlyinHeight : RTS_Button
         {
             idc = -1;
             x = 0.80;
@@ -473,11 +475,11 @@ class DlgStatus
             action = "[1020,1040,1] exec ""rts-units-orders.sqs""";
         };
 
-        class List_Heights : RscCombo
+        class List_Heights : RTS_Combo
         {
             idc = 1040;
             type = CT_COMBO;
-            x= "(SafeZoneW + SafeZoneX) - (0.71)";
+            x = "(SafeZoneW + SafeZoneX) - (0.71)";
             y = 0.560;
             w = 0.08;
             h = 0.04;
@@ -487,17 +489,17 @@ class DlgStatus
 
     };
 
-        class Button_refresh : RscButton
+        class Button_refresh : RTS_Button2
         {
-            idc = 1003;
+            idc = 100003;
             x = 0.80;
             y = 0.610;
             sizeEx = 0.030;
-            text = "Customize Squads";
+            text = "Refresh";
             action = "[] exec ""rts-squads-Menu.sqs""";
         };
 
-        class BUTTON_PUSH : RscButton
+        class BUTTON_PUSH : RTS_Button2
          {
             idc = -1;
             x = 0.80;
@@ -507,17 +509,19 @@ class DlgStatus
             text = "PUSH";
             action = "closeDialog 0; call RTS_FNC_PUSH";
         };
-        class BUTTON_UPRIGHT : RscButton {
+        class BUTTON_UPRIGHT : RTS_Button2
+		{
             idc = -1;
             x = 0.80;
             y = 0.710;
             sizeEx = 0.030;
             colorText[] = {0, 1, 1, 1};
-            text = "free button";
-           // action = "closeDialog 0; call RTS_FNC_flipACTIONS";
+            text = "flip vehicle";
+            action = "closeDialog 0; call RTS_FNC_flipACTIONS";
         };
-         class Button_repair : RscButton {
-            idc = 1007;
+         class Button_repair : RTS_Button2
+		 {
+            idc = 200007;
             x = 0.80;
             y = 0.760;
             sizeEx = 0.030;
@@ -525,7 +529,8 @@ class DlgStatus
             text = "repair";
             action = [];
         };
-        class Button_Release : RscButton {
+        class Button_Release : RTS_Button2
+		{
             idc = 1025;
             x = 0.80;
             y = 0.810;
@@ -534,30 +539,32 @@ class DlgStatus
             text = "Disband Unit";
             action = "[1020] exec ""rts-unit-release.sqs""";
         };
-        class BUTTON_CANCEL : RscButton
+        class BUTTON_CANCEL : RTS_Button2
         {
         idc = -1;
+		style = 2096;
         x = 0.8;
-        y = 0.910;
-        text = "EXIT MENU";
+        y = 0.99;
+		sizeEx = 30;
+        text = "Cancel";
         action = "closeDialog 0";
         };
-        class Label_Money : RscMoneyLabel {};
-        class Label_Supply : RscSupplyLabel {};
-        class Label_FPS : RscFPSLabel {};
-        //class List_Stats : RscStatList {};
-        class List_Queue : RscQueueList {};
+        class Label_Money : RTS_MoneyLabel {};
+        class Label_Supply : RTS_SupplyLabel {};
+        class Label_FPS : RTS_FPSLabel {};
+        //class List_Stats : RTS_StatList {};
+        class List_Queue : RTS_QueueList {};
 
-        class LabelBarracksQueue : RscLabelBarracksQueue {};
-        class ButtonBarracksQueue : RscButtonBarracksQueue {};
-        class LabelLightQueue : RscLabelLightQueue {};
-        class ButtonLightQueue : RscButtonLightQueue {};
-        class LabelHeavyQueue : RscLabelHeavyQueue {};
-        class ButtonHeavyQueue : RscButtonHeavyQueue {};
-        class LabelAirQueue : RscLabelAirQueue {};
-        class ButtonAirQueue : RscButtonAirQueue {};
-        //class LabelNavalQueue : RscLabelNavalQueue {};
-        //class ButtonNavalQueue : RscButtonNavalQueue {};
+        class LabelBarracksQueue : RTS_LabelBarracksQueue {};
+        class ButtonBarracksQueue : RTS_ButtonBarracksQueue {};
+        class LabelLightQueue : RTS_LabelLightQueue {};
+        class ButtonLightQueue : RTS_ButtonLightQueue {};
+        class LabelHeavyQueue : RTS_LabelHeavyQueue {};
+        class ButtonHeavyQueue : RTS_ButtonHeavyQueue {};
+        class LabelAirQueue : RTS_LabelAirQueue {};
+        class ButtonAirQueue : RTS_ButtonAirQueue {};
+        //class LabelNavalQueue : RTS_LabelNavalQueue {};
+        //class ButtonNavalQueue : RTS_ButtonNavalQueue {};
 
         };//end controls
 
@@ -576,7 +583,7 @@ class DlgBuild
 
     };
 
-    class CENTER_FRAME_TITLE : RscText
+    class CENTER_FRAME_TITLE : RTS_Text
     {
             idc = 1050;
             style = ST_FRAME;
@@ -591,7 +598,7 @@ class DlgBuild
             text = " COMMAND & CONTROL ";
     };
 
-    class TOP_RIGHT_TITLE : RscText
+    class TOP_RIGHT_TITLE : RTS_Text
     {
             idc = -1;
             style = ST_FRAME;
@@ -600,13 +607,13 @@ class DlgBuild
             w = 0.2;
             h = 0.99;
             font = FontTITLE;
-            colorText[] = {1,0.5,0,1};
+            colorText[] = {1,0.7,0,1};
             colorBackground[] = {0,0,0,0};
             sizeEx = 0.030;
             text = "R T S - V";
     };
 
-    class RIGHT_FRAME_PICTURE : RscPicture
+    class RIGHT_FRAME_PICTURE : RTS_Picture
     {
         idc = 50;
         colorText[] = {};
@@ -616,7 +623,7 @@ class DlgBuild
         w = 0.2;
         h = 0.13;
     };
-	class TOP_left_TITLE : RscText
+	class TOP_left_TITLE : RTS_Text
     {
             idc = -1;
             style = ST_FRAME;
@@ -626,11 +633,11 @@ class DlgBuild
             h = 0.99;
             text = "INFOMATION";
             font = FontTITLE;
-            colorText[] = {1,0.5,0,1};
+            colorText[] = {1,0.7,0,1};
             colorBackground[] = {0,0,0,0};
             sizeEx = 0.030;
 	};		
-	class TOP_left_TITLE2 : RscText
+	class TOP_left_TITLE2 : RTS_Text
 	{
 	        idc = -1;
             style = ST_FRAME;
@@ -642,9 +649,9 @@ class DlgBuild
 	
     };
 
-            //class List_Background : RscListBackGround {};
+            //class List_Background : RTS_ListBackGround {};
 
-            class Group_Background : RscText
+            class Group_Background : RTS_Text
                 {
                     idc = 2026;
                     text = ;
@@ -654,7 +661,7 @@ class DlgBuild
                         h = 0.400;
                 };
 
-            class Background_CustomSquads : RscText
+            class Background_CustomSquads : RTS_Text
                 {
                     text = ;
                     idc = 2031;
@@ -664,14 +671,14 @@ class DlgBuild
                     h = 0.15;
                 };
 
-            //class Stats_Background : RscStatBackGround {};
+            //class Stats_Background : RTS_StatBackGround {};
 
         class controls
             {
-            class List_CrewCount : RscCombo {
+            class List_CrewCount : RTS_Combo {
                 idc = 2045;
                 type = CT_COMBO;
-                x= "(SafeZoneW + SafeZoneX) - (0.71)";
+                x = "(SafeZoneW + SafeZoneX) - (0.71)";
                 y = 0.410;
                 w = 0.08;
                 h = 0.04;
@@ -679,41 +686,44 @@ class DlgBuild
                 sizeEx = 0.030;
             };
 
-            class List_Vehicles : RscListMain
+            class List_Vehicles : RTS_ListMain
                 {
                     idc = 2000;
                     onButtonClick = "uiNamespace setVariable ['2000', _this select 0] execVM ""rts-build-unit.sqf""";
                 };
-            class Button_Back : RscButton
+            class Button_Back : RTS_Button2
                 {
                     idc = 2001;
                     x = 0.8;
                     y = 0.15;
+					colorText[] = {1, 0, 0, 1};
                     text = "<<Back to Main Menu";
                     action = "[Player,Player,0] exec ""rts-alpha-menu.sqs""";
                 };
 
-            class Button_Build : RscButton
+            class Button_Build : RTS_Button
                 {
                     idc = 2005;
                     x = 0.8;
                     y = 0.2;
                     text = "";
+					colorText[] = {1, 0, 0, 1};
                     action = "[2000,0,False,False] execVM ""rts-build-unit.sqf""";
                 };
 
 
-            class Button_Manned_You : RscButton
+            class Button_Manned_You : RTS_Button
                 {
                     idc = 2015;
                     x = 0.8;
                     y = 0.25;
                     text = "";
+					colorText[] = {1, 0, 0, 1};
                         //[ListID,ListID2,Manned,Squad]
                     action = "[2000,0,True,False] execVM ""rts-build-unit.sqf""";
                 };
 
-            class Button_Custom_Squad : RscButton
+            class Button_Custom_Squad : RTS_Button
                 {
                     idc = 2016;
                     x = 0.8;
@@ -722,7 +732,7 @@ class DlgBuild
                     action = "[2000,2030,False,False] execVM ""rts-build-unit.sqf""";
                 };
 
-            class List_CustomSquads : RscListBox
+            class List_CustomSquads : RTS_ListBox
                 {
                     idc = 2030;
                     x = 0.81;
@@ -733,16 +743,17 @@ class DlgBuild
 
         };
 
-            class Button_Manned_Squad : RscButton
+            class Button_Manned_Squad : RTS_Button
                 {
                     idc = 2020;
                     x = 0.8;
                     y = 0.51;
                     text = "";
+					colorText[] = {1, 0, 0, 1};
                     action = "[2000,2025,True,True] execVM ""rts-build-unit.sqf""";
                 };
 
-            class List_Squads : RscListBox
+            class List_Squads : RTS_ListBox
                 {
                     idc = 2025;
                     x = 0.8;
@@ -753,31 +764,32 @@ class DlgBuild
                     font = PuristaMedium;
         };
 
-            class Button_Exit : RscButton
+            class Button_Exit : RTS_Button2
                 {
                     idc = -1;
-                    x = 0.80;
-                    y = 0.92;
+					style = ST_PICTURE;
+                    x = 0.8;
+                    y = 0.99;
 					colorText[] = {1, 0, 0, 1};
-                    text = "EXIT MENU";
+                    text = "Exit";
                     action = "closeDialog 0";
                 };
 
-            class Label_Money : RscMoneyLabel {};
-            class Label_Supply : RscSupplyLabel {};
-            class Label_FPS : RscFPSLabel {};
-            //class List_Stats : RscStatList {};
+            class Label_Money : RTS_MoneyLabel {};
+            class Label_Supply : RTS_SupplyLabel {};
+            class Label_FPS : RTS_FPSLabel {};
+            //class List_Stats : RTS_StatList {};
 
-            class LabelBarracksQueue : RscLabelBarracksQueue {};
-            class ButtonBarracksQueue : RscButtonBarracksQueue {};
-            class LabelLightQueue : RscLabelLightQueue {};
-            class ButtonLightQueue : RscButtonLightQueue {};
-            class LabelHeavyQueue : RscLabelHeavyQueue {};
-            class ButtonHeavyQueue : RscButtonHeavyQueue {};
-            class LabelAirQueue : RscLabelAirQueue {};
-            class ButtonAirQueue : RscButtonAirQueue {};
-            //class LabelNavalQueue : RscLabelAirQueue {};
-            //class ButtonNavalQueue : RscButtonAirQueue {};
+            class LabelBarracksQueue : RTS_LabelBarracksQueue {};
+            class ButtonBarracksQueue : RTS_ButtonBarracksQueue {};
+            class LabelLightQueue : RTS_LabelLightQueue {};
+            class ButtonLightQueue : RTS_ButtonLightQueue {};
+            class LabelHeavyQueue : RTS_LabelHeavyQueue {};
+            class ButtonHeavyQueue : RTS_ButtonHeavyQueue {};
+            class LabelAirQueue : RTS_LabelAirQueue {};
+            class ButtonAirQueue : RTS_ButtonAirQueue {};
+            //class LabelNavalQueue : RTS_LabelAirQueue {};
+            //class ButtonNavalQueue : RTS_ButtonAirQueue {};
 
         };//End Controls
 
@@ -791,7 +803,7 @@ class DlgRespawn
 
         class controlsBackground
             {
-                class List_Background : RscText
+                class List_Background : RTS_Text
                     {
                         idc = -1;
                         style = ST_CENTER;
@@ -810,7 +822,7 @@ class DlgRespawn
 
         class controls
             {
-                class LABEL_RESPAWN : RscText
+                class LABEL_RESPAWN : RTS_Text
                     {
                         idc = -1;
                         style = ST_CENTER;
@@ -824,7 +836,7 @@ class DlgRespawn
                         text = "Choose Deployment Location";
                     };
 
-                class LABEL_LOCATION : RscText
+                class LABEL_LOCATION : RTS_Text
                     {
                         idc = 1310;
                         style = ST_CENTER;
@@ -838,7 +850,7 @@ class DlgRespawn
                         text = "";
                     };
 
-                class LABEL_TIMERTEXT : RscText
+                class LABEL_TIMERTEXT : RTS_Text
                     {
                         idc = -1;
                         style = ST_LEFT;
@@ -852,7 +864,7 @@ class DlgRespawn
                         text = "Deploy in:";
                     };
 
-                class LABEL_TIMERNUMBER : RscText
+                class LABEL_TIMERNUMBER : RTS_Text
                     {
                         idc = 1311;
                         style = ST_RIGHT;
@@ -866,7 +878,7 @@ class DlgRespawn
                         text = "0";
                     };
 
-                class LIST_LOCATION : RscListBox
+                class LIST_LOCATION : RTS_ListBox
                     {
                         idc = 1312;
                         x = 0.78;
@@ -876,24 +888,9 @@ class DlgRespawn
                         font = PuristaMedium;
                         sizeEx = 0.03;
                         colorText[] = {1, 0, 0, 1};
-            class ScrollBar
-            {
-                type = CT_XSLIDER;
-                color[] = {0,0,0,0};
-                arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
-                arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
-                border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
-                thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
-            };
-            class ListScrollBar: ScrollBar
-            {
-                height = 0.021;
-                width = 0.021;
-                autoScrollEnabled = 0;
-            };
-        };
+                  };
 
-                class BUTTON_RESPAWN : RscButton
+                class BUTTON_RESPAWN : RTS_Button
                     {
                         idc = 1313;
                         x = 0.83;
@@ -919,15 +916,15 @@ class DlgHUD
         duration=58;
         class controlsBackground
             {
-      //  class Stats_Background : RscStatBackGround {};
+      //  class Stats_Background : RTS_StatBackGround {};
             };
 
         class controls
             {
-            //class List_Stats : RscStatList {};
-            class Label_Money : RscMoneyLabel {};
-            class Label_Supply : RscSupplyLabel {};
-            class Labe_FPS : RscFPSLabel {};
+            //class List_Stats : RTS_StatList {};
+            class Label_Money : RTS_MoneyLabel {};
+            class Label_Supply : RTS_SupplyLabel {};
+            class Labe_FPS : RTS_FPSLabel {};
             };
 
     };
@@ -940,7 +937,7 @@ class DlgConfirm {
         CONFIRM_FRAME
     };
 
-    class CONFIRM_BACKGROUND : RscText {
+    class CONFIRM_BACKGROUND : RTS_Text {
         idc = -1;
         style = ST_CENTER;
         x = 0.325;
@@ -950,11 +947,11 @@ class DlgConfirm {
         font = tahomaB;
         colorText[] = {0, 0, 0, 1};
         colorBackground[] = {.25, .25, .25, .75};
-        sizeEx = 0.050;
+        sizeEx = "0.050 /  (getResolution select 4.5)";
         text = "";
     };
 
-    class CONFIRM_FRAME : RscText {
+    class CONFIRM_FRAME : RTS_Text {
         idc = -1;
         style = ST_FRAME;
         colorText[] = {1, 0, 0, 1};
@@ -972,31 +969,33 @@ class DlgConfirm {
         CONFIRM_TEXT
     };
 
-    class BUTTON_YES : RscButton {
+    class BUTTON_YES : RTS_Button 
+	{
         idc = 1305;
         x = 0.39;
         y = 0.55;
         w = 0.1;
         h = 0.05;
-        sizeEx = 0.030;
+        sizeEx = "0.030 /  (getResolution select 4.5)";
         colorText[] = {1, 1, 1, 1};
         text = "Confirm";
         action = "RTS3_Yes = TRUE";
     };
 
-    class BUTTON_NO : RscButton {
+    class BUTTON_NO : RTS_Button 
+	{
         idc = 1315;
         x = 0.56;
         y = 0.55;
         w = 0.1;
         h = 0.05;
-        sizeEx = 0.030;
+        sizeEx = "0.030 /  (getResolution select 4.5)";
         colorText[] = {1, 1, 1, 1};
         text = "Cancel";
         action = "RTS3_No = TRUE";
     };
 
-    class CONFIRM_TEXT : RscText {
+    class CONFIRM_TEXT : RTS_Text {
         idc = 1300;
         style = ST_CENTER;
         colorBackground[] = {0, 0, 0, 0};

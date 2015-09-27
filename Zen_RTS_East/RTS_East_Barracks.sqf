@@ -92,7 +92,7 @@ UPGRADE(Zen_RTS_F_East_BarracksUpgrade02, ASSETS)
 #define ASSETS [Zen_RTS_Asset_East_rhs_msv_LAT, Zen_RTS_Asset_East_rhs_msv_RShG2, Zen_RTS_Asset_East_rhs_msv_strelok_rpg_assist, Zen_RTS_Asset_East_rhs_msv_machinegunner_assistant, Zen_RTS_Asset_East_rhs_msv_grenadier_rpg, Zen_RTS_Asset_East_rhs_msv_efreitor]
 UPGRADE(Zen_RTS_F_East_BarracksUpgrade03, ASSETS)
 
-Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01", "Zen_RTS_F_East_BarracksUpgrade02", "Zen_RTS_F_East_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\rts_barracks.paa,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01", "Zen_RTS_F_East_BarracksUpgrade02", "Zen_RTS_F_East_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\barraks_ca.paa,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_Barracks;
 
 /////////////////////////////////
