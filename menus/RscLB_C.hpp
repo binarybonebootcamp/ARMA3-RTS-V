@@ -1,4 +1,4 @@
-class RscLB_C
+class RTS_LB_C
 {
         style = ST_LEFT;
         idc = -1;
@@ -20,7 +20,7 @@ class RscLB_C
         sizeEx = 0.045;
         rowHeight = 0.08;
         colorSelect2[] = {0,1,1,1};
-        colorScrollbar[] = {0,0.72,0,1};
+        coloRTS_rollbar[] = {0,0.72,0,1};
         colorSelectBackground2[] = {0.02, 0.2, 0.7, 0.6};
         wholeHeight = 0.25;
         soundExpand[] = {"a3\sounds_f\weapons\closure\revolver_cylinder_turn_2.wss",0.1,1};
@@ -35,7 +35,7 @@ class RscLB_C
         autoScrollDelay = 5;
         autoScrollRewind = 0;
 
-        arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
+        arrowEmpty = "\A3\ui_f\data\GUI\RTS_Common\rsccombo\arrow_combo_ca.paa";
         arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
                 class ScrollBar
                         {
@@ -56,7 +56,7 @@ class RscLB_C
         h = 0.035;
         shadow = 0;
         colorSelectBackground[] ={1,1,1,0.7};
-        arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
+        arrowEmpty = "\A3\ui_f\data\GUI\RTS_Common\rsccombo\arrow_combo_ca.paa";
         arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
         wholeHeight = 0.45;
         color[] =       {1,1,1,1};
