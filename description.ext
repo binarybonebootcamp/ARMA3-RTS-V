@@ -10,7 +10,7 @@ respawn = 3;
 respawndelay = 3;
 respawnDialog = false;
 author = "Dr Death jm||Zenophon";
-overviewText = "DEV-Update 090515.";
+overviewText = "DEV-Update 092615.";
 overviewPicture = "pictures\rtsload.paa";
 onLoadName = "RTS V : Arma3 Edition";
 onLoadMission = "Warfare Unleashed: WarGames";
@@ -53,14 +53,11 @@ class CfgRemoteExecCommands {
 #include "vip_sms\resource\vip_sms_dlg.hpp"
 #include "param\description.ext"
 #include "menus\Defines.hpp"
-#include "menus\RscCombo.hpp"
+#include "menus\RTSCombo.hpp"
 #include "menus\dlgRscRTSMenus.hpp"
 #include "menus\RscLB_C.hpp"
 #include "menus\dlgRscHelp.hpp"
-#include "menus\dlgRscSquadsMenu.hpp"
-#include "menus\patchname.hpp"
 #include "menus\Sounds_music.hpp"
-#include "menus\test_pic.hpp"
 #include "R3F_LOG\desc_include.h"
 #include "digitalLoadout\defines.hpp"
 #include "digitalLoadout\dialog.hpp"

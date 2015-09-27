@@ -80,7 +80,7 @@ UPGRADE(Zen_RTS_F_West_NavalUpgrade01, ASSETS)
 // #define ASSETS []
 // UPGRADE(Zen_RTS_F_West_NavalUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Zen_RTS_F_West_NavalDestructor", ["Zen_RTS_F_West_NavalUpgrade01"], "Naval Factory", "Cost: 2000, Time: 10,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Zen_RTS_F_West_NavalDestructor", ["Zen_RTS_F_West_NavalUpgrade01"], "Naval Factory", "Cost: 2000, Time: 10, Picture: pictures\naval_ca.paa"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_NavalFactory;
 
 /////////////////////////////////

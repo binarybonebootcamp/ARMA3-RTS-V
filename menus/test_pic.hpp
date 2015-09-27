@@ -1,4 +1,4 @@
-      class rts_test_Pic: RscPicture
+      class rts_test_Pic: RTS_Picture
       {
 	idc = 20005;
 	x = 0.44 * safezoneW + safezoneX;

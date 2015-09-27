@@ -92,7 +92,7 @@
 #define TextColor	0.08, 0.08, 0.12
 #define InvTextColor	0.35, 0.38, 0.36
 
-class RscText {
+class RTS_Text {
 
     idc = -1;
     type = CT_STATIC;
@@ -114,7 +114,7 @@ class RscText {
     h = 5;
     w = 20;
 };
-class RscTitleText
+class RTS_TitleText
 {
 	type=0;
 	idc=-1;
@@ -124,7 +124,7 @@ class RscTitleText
 	font="PuristaMedium";
 	size=1;
 };
-class RscActiveText
+class RTS_ActiveText
 	{
 		access = ReadAndWrite;
 		type = CT_ACTIVETEXT;
@@ -132,7 +132,7 @@ class RscActiveText
 		h = 0.05;
 		w = 0.10;
 		colorBackground[] = { 0, 0, 0, 0 };
-	    colorText[] = {1,0.5,0,1};
+	    colorText[] = {1,0.7,0,1};
 		color[] = {1,1,1,0.8};
 	    colorActive[] = { 1, 0.2, 0.2, 1 };
 		colorDisabled[] = {0,0,0,0.3};
@@ -150,7 +150,7 @@ class RscActiveText
 		text = "";
 		default = true;
 	};
-class RscStructuredtext
+class RTS_Structuredtext
 {
 		access = ReadAndWrite;
 		type = CT_STATIC;
@@ -163,7 +163,7 @@ class RscStructuredtext
 		sizeEx = Size_Text_Small;
 		text = "";
 };	
-class RscSmallTitle
+class RTS_SmallTitle
 {
         type = CT_STATIC;
         idc = -1;
@@ -174,17 +174,17 @@ class RscSmallTitle
         sizeEx = 0.04;
 };
 
-class RscSmallTitleBlack
+class RTS_SmallTitleBlack
 {
         type = CT_STATIC;
         idc = -1;
         style = ST_CENTER;
         colorBackground[] = {0, 0, 0, 0};
-        colorText[] = {1,0.5,0,1};
+        colorText[] = {1,0.7,0,1};
         font = FontTITLEHalf;
         sizeEx = 0.03;
 };
-class RscPicture {
+class RTS_Picture {
     access = 0;
     idc = -1;
     type = CT_STATIC;
@@ -203,10 +203,10 @@ class RscPicture {
     h = 0.2;
 };
 
-class RscPictureKeepAspect: RscPicture {
+class RTS_PictureKeepAspect: RTS_Picture {
 	style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
 };
-class RscActivePicture
+class RTS_ActivePicture
 	{
 		access = ReadAndWrite;
 		type = CT_ACTIVETEXT;
@@ -219,7 +219,7 @@ class RscActivePicture
 	        soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
 	        soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
 	};
-class RscTitles
+class RTS_Titles
   {
 	titles[] = {"crewinfomessage"};
 	
@@ -234,7 +234,7 @@ class RscTitles
 
 };
 
-	  	class Image_1 : RscPicture
+	  	class Image_1 : RTS_Picture
 	  	  {
 			x = safezoneX + safezoneW - 0.40;
 			y = safezoneY + safezoneH - 0.21;
@@ -253,7 +253,7 @@ class RscTitles
 	name="intro";
 	controls[]={"title1"};
 	 
-	  	class title1 : RscText 
+	  	class title1 : RTS_Text 
 	  	  {
 	  	  	text="";
 	  	  	colorText[]={0.8,0,0,1};
@@ -274,7 +274,7 @@ class RscTitles
 	name="intro";
 	controls[]={"Image_1","Image_2","title1","title2","title3","title4","title5","title6"};
 
-	  	class Image_1 : RscPicture
+	  	class Image_1 : RTS_Picture
 	  	  {
 			x = safezoneX + safezoneW - 0.40;
 			y = safezoneY + safezoneH - 0.21;
@@ -283,7 +283,7 @@ class RscTitles
 			text = "pictures\rtspatch1.paa";
 	  	  };
 
-	  	class Image_2 : RscPicture
+	  	class Image_2 : RTS_Picture
 	  	  {
 			x = 0.300;
 			y = 0.060;
@@ -292,7 +292,7 @@ class RscTitles
 			text = "pictures\rtspatch1.paa";
 	  	  };
 
-	  	class title1 : RscText 
+	  	class title1 : RTS_Text 
 	  	  {
 	  	  	text="Zenophon And";
 	  	  	colorText[]={0.5,0.5,0.5,1};
@@ -302,7 +302,7 @@ class RscTitles
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title2 : RscText 
+	  	class title2 : RTS_Text 
 	  	  {
 	  	  	text="Zenophon And";
 	  	  	colorText[]={1,1,1,1};
@@ -313,7 +313,7 @@ class RscTitles
 	  	  	h=1.00;
 	  	  };
 
-	  	class title3 : RscText 
+	  	class title3 : RTS_Text 
 	  	  {
 	  	  	text="Dr.Death jm PRESENTS";
 	  	  	colorText[]={0.5,0.5,0.5,1};
@@ -323,7 +323,7 @@ class RscTitles
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title4 : RscText 
+	  	class title4 : RTS_Text 
 	  	  {
 	  	  	text="Dr.Death jm PRESENTS";
 	  	  	colorText[]={1,1,1,1};
@@ -334,7 +334,7 @@ class RscTitles
 	  	  	h=1.00;
 	  	  };
 
-	  	class title5 : RscText 
+	  	class title5 : RTS_Text 
 	  	  {
 	  	  	text="RTS V";
 	  	  	colorText[]={0.5,0.5,0.5,1};
@@ -344,7 +344,7 @@ class RscTitles
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title6 : RscText 
+	  	class title6 : RTS_Text 
 	  	  {
 	  	  	text="RTS V";
 	  	  	colorText[]={1,1,1,1};
@@ -365,7 +365,7 @@ class RscTitles
 	name="intro";
 	controls[]={"Image_1","title1","title2","title3","title4","title5","title6"};
 
-	  	class Image_1 : RscPicture
+	  	class Image_1 : RTS_Picture
 	  	  {
 			x = safezoneX + safezoneW - 0.40;
 			y = safezoneY + safezoneH - 0.21;
@@ -374,7 +374,7 @@ class RscTitles
 			text = "pictures\rtspatch1.paa";
 	  	  };
 
-	  	class title1 : RscText 
+	  	class title1 : RTS_Text 
 	  	  {
 	  	  	text="Zenophon And";
 	  	  	colorText[]={0.5,0.5,0.5,1};
@@ -384,7 +384,7 @@ class RscTitles
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title2 : RscText 
+	  	class title2 : RTS_Text 
 	  	  {
 	  	  	text="Zenophon And";
 	  	  	colorText[]={1,1,1,1};
@@ -395,7 +395,7 @@ class RscTitles
 	  	  	h=1.00;
 	  	  };
 
-	  	class title3 : RscText 
+	  	class title3 : RTS_Text 
 	  	  {
 	  	  	text="Dr.Death jm PRESENTS";
 	  	  	colorText[]={0.5,0.5,0.5,1};
@@ -405,7 +405,7 @@ class RscTitles
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title4 : RscText 
+	  	class title4 : RTS_Text 
 	  	  {
 	  	  	text="Dr.Death jm PRESENTS";
 	  	  	colorText[]={1,1,1,1};
@@ -416,7 +416,7 @@ class RscTitles
 	  	  	h=1.00;
 	  	  };
 
-	  	class title5 : RscText 
+	  	class title5 : RTS_Text 
 	  	  {
 	  	  	text="RTS V";
 	  	  	colorText[]={0.5,0.5,0.5,1};
@@ -426,7 +426,7 @@ class RscTitles
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title6 : RscText 
+	  	class title6 : RTS_Text 
 	  	  {
 	  	  	text="RTS V";
 	  	  	colorText[]={1,1,1,1};
@@ -437,47 +437,8 @@ class RscTitles
 	  	  	h=1.00;
 	  	  };
 	};
-	class crewinfomessage
-		{
-		idd = 10100;
-		movingEnable=0;
-		duration = 1000000000; 
-		fadein=0;    
-		name="crewinfomessage";
-		controlsBackground[] = {"crewinfotext", "crewinfoteamtext"};
-		onLoad = "uiNamespace setVariable ['crewinfodisplay', _this select 0];";
-		onunLoad = "uiNamespace setVariable ['crewinfodisplay', objnull];";    
 
-		class crewinfotext { 
-			idc = 10101; 
-			type = CT_STRUCTURED_TEXT; 
-			style = ST_LEFT; 
-			x = (SafeZoneX + 0.02);
-			y = (SafeZoneY + 1.25);
-			w = 0.3;
-			h = 0.6;
-			size = 0.018; 
-			colorBackground[] = { 0, 0, 0, 0 };
-			colortext[] = {0,0,0,0.7};
-			text ="";
-		};
-
-		class crewinfoteamtext { 
-			idc = 10103; 
-			type = CT_STRUCTURED_TEXT; 
-			style = ST_LEFT; 
-			x = (SafeZoneW + SafezoneX) - 0.25;
-			y = (1 + ((0 + SafeZoneY) * -1) - 0.14);
-			w = 0.25;
-			h = 0.14;
-			size = 0.02; 
-			colorBackground[] = { 0, 0, 0, 0 };
-			colortext[] = {0,0,0,0.7};
-			text ="";
-		};
-	};
-
-class RscSlider
+class RTS_Slider
 {
         access = 0;
         type = 3;
@@ -489,7 +450,7 @@ class RscSlider
         h = 0.025;
 };
 
-class RscButton {
+class RTS_Button {
 	access = 0;
     type = CT_BUTTON;
     text = "";
@@ -519,38 +480,98 @@ class RscButton {
     offsetPressedY = 0.002;
     borderSize = 0;
 };
-class RscButton2
+
+
+class RTS_Button2
 {
-        type = CT_BUTTON;
-        idc = 101;
-        Style = ST_CENTER;
-        colorText[] = {1, 1, 1, 1};
-        font = FontTITLEHalf;
-        sizeEx = 0.03;
+	type = 16;
+	idc = -1;
+	style = 0;
+	default = 0;
+	shadow = 1;
+	w = 0.2;
+	h = "(		(		((safezoneW / safezoneH) min 1.2) / 1.2) / 20)";
+	color[] = {1,1,1,1.0};
+	color2[] = {0.95,0.95,0.95,1};
+	colorFocused[] = { 1, 1, 1, 1 };
+	colorDisabled[] = {1,1,1,0.25};
+	colorBackgroundFocused[] = { 1, 1, 1, 0 };
+	colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.5])",1};
+	colorBackground2[] = {1,1,1,1};
+	textureNoShortcut = "";
+	animTextureDefault = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
+	animTextureNormal = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
+	animTextureDisabled = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\normal_ca.paa";
+	animTextureOver = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\over_ca.paa";
+	animTextureFocused = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\focus_ca.paa";
+	animTexturePressed = "\A3\ui_f\data\GUI\RscCommon\RscShortcutButton\down_ca.paa";
+
+	periodFocus = 1.2;
+	periodOver = 0.8;
+	
+	class HitZone
+	{
+		left = 0.0;
+		top = 0.0;
+		right = 0.0;
+		bottom = 0.0;
+
+	};
+
+	class ShortcutPos
+
+	{
+		left = 0;
+		top = "(			(		(		((safezoneW / safezoneH) min 1.2) / 1.2) / 20) - 		(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)) / 2";
+		w = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1) * (3/4)";
+		h = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+
+	};
+
+	class TextPos
+
+	{
+		left = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1) * (3/4)";
+		top = "(			(		(		((safezoneW / safezoneH) min 1.2) / 1.2) / 20) - 		(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)) / 2";
+		right = 0.005;
+		bottom = 0.0;
+
+	};
+
+	period = 0.4;
+	font = "PuristaMedium";
+	size = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	text = "";
 	soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
-        soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
-        soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
-        soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
-        default = false;
-        w = 0.2;
-        h = 0.10;
-        offsetX = 0.002;
-        offsetY = 0.002;
-        offsetPressedX = 0.003;
-        offsetPressedY = 0.003;
-        shadow = 0.000001;
-        borderSize = 0.00006;
-        colorDisabled[] = {0,0,0,0};
-        colorFocused[] = {0.0, 0.1, 0.7, 0.5};
-        colorShadow[] = {0.02, 0.2, 0.7, 0.6};              
-        colorBackgroundDisabled[] = {1,1,1,1};
-        colorBackgroundActive[] = {0,0.18,0.388,0.4};
-        colorBackground[] = {0,0,0,0.72};   
-        colorBorder[] = {0.0, 0.1, 0.7, 0.5};
+    soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
+    soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
+    soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
+	action = "";
+	
+	class Attributes
+
+	{
+
+		font = "PuristaMedium";
+		color = "#E5E5E5";
+		align = "left";
+		shadow = "true";
+
+	};
+
+	class AttributesImage
+
+	{
+		font = "PuristaMedium";
+		color = "#E5E5E5";
+		align = "left";
+
+	};
 
 };
 
-class rscedit {
+class RTS_edit {
 	type = 2;
 	style = 0x00 + 0x40;
 	font = "PuristaMedium";
@@ -566,7 +587,7 @@ class rscedit {
 	canModify = 1;
 };
 
-	class RscFrame
+	class RTS_Frame
 	{
 		type = CT_STATIC;
 		idc = -1;
@@ -598,54 +619,83 @@ class Scrollbar {
     // This is an ctrlEventHandler to show you some response if you move the sliderpointer.
     onSliderPosChanged = "hint format[""%1"",_this];";
 };
-class RscListBox
- {
-	access = 0;
-	type = 5;
-	style = 0;
-	w = 0.4;
-	h = 0.4;
-	font = "tahomaB";
-	sizeEx = 0.03;
-	rowHeight = 0.05;
-	colorText[] = {1,1,1,1};
-	colorScrollbar[] = {1,1,1,1};
-	colorSelect[] = {0,0,0,1};
-	colorSelect2[] = {1,0.5,0,1};
-	colorSelectBackground[] = {0.2,0.2,0.2,0.3};
-	colorSelectBackground2[] = {0.2,0.2,0.2,0.3};
-	colorBackground[] = {0.2,0.2,0.2,0.3};
-	colorDisabled[] = {1,1,1,0.3};
-	maxHistoryDelay = 1.0;
-	period = 1;
-	autoScrollSpeed = -1;
-	autoScrollDelay = 5;
-	autoScrollRewind = 0;
-	soundExpand[] = {"a3\sounds_f\weapons\closure\revolver_cylinder_turn_2.wss",0.1,1};
-    soundCollapse[] = {"a3\sounds_f\weapons\closure\revolver_cylinder_turn_1.wss",0.09,1};
-	soundSelect[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.1,1};
-	soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
-	soundPush[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
-    soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss",0.45,1};
-	soundEscape[] = {"a3\sounds_f\weapons\closure\sfx2.wss",0.09,1};
-	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
-	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
-	shadow = 0;
-	borderSize = 0;
-	class ListScrollBar : ScrollBar //ListScrollBar is class name required for Arma 3
-	{
-		color[] = {1,1,1,0.6};
-		colorActive[] = {1,1,1,1};
-		colorDisabled[] = {1,1,1,0.3};
-		thumb = "#(argb,8,8,3)color(1,1,1,1)";
-		arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
-		arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
-		border = "";
-		shadow = 0;
-	};
-	// onLBSelChanged = "systemChat str ['onLBSelChanged',_this]; true";
-	// onLBDblClick = "systemChat str ['onLBDblClick',_this]; false";
+class RTS_ListBox {
+    access = 0; // Control access (0 - ReadAndWrite, 1 - ReadAndCreate, 2 - ReadOnly, 3 - ReadOnlyVerified)
+    idc = CT_LISTBOX; // Control identification (without it, the control won't be displayed)
+    type = CT_LISTBOX; // Type is 5
+    style = ST_LEFT + LB_TEXTURES; // Style
+    default = 0; // Control selected by default (only one within a display can be used)
+    blinkingPeriod = 0; // Time in which control will fade out and back in. Use 0 to disable the effect.
 
-	onLBSelChanged = "true";
-	onLBDblClick = "false";
+    x = 1 * GUI_GRID_CENTER_W + GUI_GRID_CENTER_X; // Horizontal coordinates
+    y = 11 * GUI_GRID_CENTER_H + GUI_GRID_CENTER_Y; // Vertical coordinates
+    w = 10 * GUI_GRID_CENTER_W; // Width
+    h = 3 * GUI_GRID_CENTER_H; // Height
+
+    colorBackground[] = {0,0,0,0}; // Fill color
+    colorSelectBackground[] = {1,0.7,0,1}; // Selected item fill color
+    colorSelectBackground2[] = {0,0,0,1}; // Selected item fill color (oscillates between this and colorSelectBackground)
+
+    sizeEx = GUI_GRID_CENTER_H; // Text size
+    font = GUI_FONT_NORMAL; // Font from CfgFontFamilies
+    shadow = 1; // Shadow (0 - none, 1 - directional, color affected by colorShadow, 2 - black outline)
+    colorText[] = {1,1,1,1}; // Text and frame color
+    colorDisabled[] = {1,1,1,0.5}; // Disabled text color
+    colorSelect[] = {1,1,1,1}; // Text selection color
+    colorSelect2[] = {1,1,1,1}; // Text selection color (oscillates between this and colorSelect)
+    colorShadow[] = {0,0,0,0.5}; // Text shadow color (used only when shadow is 1)
+
+    pictureColor[] = {1,0.5,0,1}; // Picture color
+    pictureColorSelect[] = {1,1,1,1}; // Selected picture color
+    pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
+
+    tooltip = "CT_LISTBOX"; // Tooltip text
+    tooltipColorShade[] = {0,0,0,1}; // Tooltip background color
+    tooltipColorText[] = {1,1,1,1}; // Tooltip text color
+    tooltipColorBox[] = {1,1,1,1}; // Tooltip frame color
+
+    period = 1; // Oscillation time between colorSelect/colorSelectBackground2 and colorSelect2/colorSelectBackground when selected
+
+    rowHeight = 1.5 * GUI_GRID_CENTER_H; // Row height
+    itemSpacing = 0; // Height of empty space between items
+    maxHistoryDelay = 1; // Time since last keyboard type search to reset it
+    canDrag = 1; // 1 (true) to allow item dragging
+
+    soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect",0.09,1}; // Sound played when an item is selected
+
+    // Scrollbar configuration (applied only when LB_TEXTURES style is used)
+    class ListScrollBar //In older games this class is "ScrollBar"
+    {
+        width = 0; // width of ListScrollBar
+        height = 0; // height of ListScrollBar
+        scrollSpeed = 0.01; // scroll speed of ListScrollBar
+
+        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa"; // Arrow
+        arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa"; // Arrow when clicked on
+        border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa"; // Slider background (stretched vertically)
+        thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa"; // Dragging element (stretched vertically)
+
+        color[] = {1,1,1,1}; // Scrollbar color
+    };
+
+    onCanDestroy = "systemChat str ['onCanDestroy',_this]; true";
+    onDestroy = "systemChat str ['onDestroy',_this]; false";
+    onSetFocus = "systemChat str ['onSetFocus',_this]; false";
+    onKillFocus = "systemChat str ['onKillFocus',_this]; false";
+    onKeyDown = "systemChat str ['onKeyDown',_this]; false";
+    onKeyUp = "systemChat str ['onKeyUp',_this]; false";
+    onMouseButtonDown = "systemChat str ['onMouseButtonDown',_this]; false";
+    onMouseButtonUp = "systemChat str ['onMouseButtonUp',_this]; false";
+    onMouseButtonClick = "systemChat str ['onMouseButtonClick',_this]; false";
+    onMouseButtonDblClick = "systemChat str ['onMouseButtonDblClick',_this]; false";
+    onMouseZChanged = "systemChat str ['onMouseZChanged',_this]; false";
+    onMouseMoving = "";
+    onMouseHolding = "";
+
+    onLBSelChanged = "systemChat str ['onLBSelChanged',_this]; false";
+    onLBDblClick = "systemChat str ['onLBDblClick',_this]; false";
+    onLBDrag = "systemChat str ['onLBDrag',_this]; false";
+    onLBDragging = "systemChat str ['onLBDragging',_this]; false";
+    onLBDrop = "systemChat str ['onLBDrop',_this]; false";
 };
+
