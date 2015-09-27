@@ -5,7 +5,7 @@
 
 @rts_arrays_initialized
 
-@(Count  WestList > 0) && (Count  EastList > 0)
+;;@(Count  WestList > 0) && (Count  EastList > 0)
 
 WestAI = FALSE; PublicVariable "WestAI"
 EastAI = FALSE; PublicVariable "EastAI"

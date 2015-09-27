@@ -50,7 +50,9 @@ while {true} do {
             _subData = [_x] call Zen_RTS_SubTerritoryGetData;
             _index = (_subData select 1) call _sideIndex;
 
-            _sidePoints set [_index, (_sidePoints select _index) + 1];
+            if (_index < 3) then {
+                _sidePoints set [_index, (_sidePoints select _index) + 1];
+            };
         } forEach _subMarkers;
 
         _winningPoints = [_sidePoints, {_this}] call Zen_ArrayFindExtremum;
