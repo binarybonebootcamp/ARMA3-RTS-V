@@ -1,4 +1,4 @@
-class RscSquadList : RscListBox
+class RTS_SquadList : RTS_ListBox
 	{
 		font = FontMAIN;
 		style = "0x90";
@@ -23,7 +23,7 @@ class RscSquadList : RscListBox
 			};
 	};
 
-class RscSquadTitle : RscText
+class RTS_SquadTitle : RTS_Text
 	{
 		font = FontMAIN;
 		style = "0x02";
@@ -36,7 +36,7 @@ class RscSquadTitle : RscText
 
 	};
 
-class RscSquadButton : RscButton
+class RTS_SquadButton : RTS_Button
 	{
 		colorText[] = {0,1,0,1};
 		x = 0.40;
@@ -53,14 +53,14 @@ class DlgSquads
 		movingEnable = true;
 		class controlsBackground
 			{
-				class Title_Types : RscSquadTitle
+				class Title_Types : RTS_SquadTitle
 					{
 						idc = 4000;
 						x = 0.095;
 						text = "Units to Choose From";
 					};
 
-				class Title_Squad : RscSquadTitle
+				class Title_Squad : RTS_SquadTitle
 					{
 						idc = 4001;
 						x = 0.615;
@@ -68,7 +68,7 @@ class DlgSquads
 					};
 
 
-				class Background_Types : RscText
+				class Background_Types : RTS_Text
 				 	{
 				   		colorText[] = {0,1,0,1};
 					   	colorBackground[] = {0.231,0.267,0.294,00.7};
@@ -79,7 +79,7 @@ class DlgSquads
 						h = 0.99;
 					};
 
-				class Background_Squad : RscText
+				class Background_Squad : RTS_Text
 				 	{
 				   		colorText[] = {0,1,0,1};
 					   	colorBackground[] = {0.231,0.267,0.294,00.7};
@@ -90,7 +90,7 @@ class DlgSquads
 						h = 0.99;
 					};
 
-				class Background_CustomSquads : RscText
+				class Background_CustomSquads : RTS_Text
 				 	{
 				   		colorText[] = {0,1,0,1};
 					   	colorBackground[] = {0.231,0.267,0.294,00.7};
@@ -105,21 +105,21 @@ class DlgSquads
 
 		class controls
 			{
-				class List_Types : RscSquadList
+				class List_Types : RTS_SquadList
 					{
-						idc = 4005;
+						idc = 1020;
 						x = 0.1;
 						// onMouseButtonDblClick = "[1] execVM ""rts-squad-update.sqf""";
 					};
 
-				class List_Squad : RscSquadList
+				class List_Squad : RTS_SquadList
 					{
 						idc = 4010;
 						x = 0.62;
 						// onMouseButtonDblClick = "[0] execVM ""rts-squad-update.sqf""";
 					};
 
-				class List_CustomSquads : RscSquadList
+				class List_CustomSquads : RTS_SquadList
 					{
 						idc = 4015;
 						x = 0.40;
@@ -130,7 +130,7 @@ class DlgSquads
 					   	colorBackground[] = {0.231,0.267,0.294,00.7};
 					};
 
-				class Button_Help : RscSquadButton
+				class Button_Help : RTS_SquadButton
 					{
 						idc = -1;
 						y = 0.10;
@@ -140,7 +140,7 @@ class DlgSquads
 						action = "[] exec ""rts-z-helpmenu.sqs""";
 					};
 
-				class Button_Stats : RscSquadButton
+				class Button_Stats : RTS_SquadButton
 					{
 						idc = 4004;
 						y = 0.16;
@@ -151,7 +151,7 @@ class DlgSquads
 					};
 
 
-				class Button_Add : RscSquadButton
+				class Button_Add : RTS_SquadButton
 					{
 						idc = 4002;
 						y = 0.30;
@@ -161,7 +161,7 @@ class DlgSquads
 						action = "[1] execVM ""rts-squad-update.sqf""";
 					};
 
-				class Button_Remove : RscSquadButton
+				class Button_Remove : RTS_SquadButton
 					{
 						idc = 4003;
 						y = 0.36;
@@ -171,7 +171,7 @@ class DlgSquads
 						action = "[0] execVM ""rts-squad-update.sqf""";
 					};
 
-				class Button_Clear : RscSquadButton
+				class Button_Clear : RTS_SquadButton
 					{
 						idc = 4006;
 						y = 0.42;
@@ -182,13 +182,13 @@ class DlgSquads
 					};
 
 
-				class Button_Exit : RscSquadButton
+				class Button_Exit : RTS_button
 					{
 						idc = 4007;
 						y = 0.9;
 						colorText[] = {0,1,0,1};
 					   	colorBackground[] = {0.231,0.267,0.294,00.7};
-						text = "EXIT MENU";
+						text = "Exit";
 						action = "closeDialog 0";
 					};
 

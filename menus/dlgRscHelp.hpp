@@ -5,7 +5,7 @@ class DlgHelpMenu
 		movingEnable = true;
 		class controlsBackground
 			{
-				class Frame_Title : RscText
+				class Frame_Title : RTS_Text
 					{
 							idc = 3000;
 							style = "0x40";
@@ -21,11 +21,11 @@ class DlgHelpMenu
 					};
 
 
-				class Frame_Background : RscText
+				class Frame_Background : RTS_Text
 				 	{
 				   		colorText[] = {1, 0, 0, 1};
 					    colorBackground[] =  {0,0,0,0.72};
-						text = ;
+						text = "";
 						x = 0.22;
 						y = 0.1;
 						w = 0.58;
@@ -34,11 +34,11 @@ class DlgHelpMenu
 
 
 
-				class List_HelpBackground : RscText
+				class List_HelpBackground : RTS_Text
 					{
 						colorText[] = {1, 0, 0, 1};
 					   	colorBackground[] = {0.5, 0.5, 0.5, 0.6};
-						text = ;
+						text ="";
 						x = 0.0;
 						y = 0.15;
 						w = 0.2;
@@ -49,7 +49,7 @@ class DlgHelpMenu
 
 		class controls
 			{
-				class Text_Help : RscStructuredText
+				class Text_Help : RTS_StructuredText
 					{
 						idc = 3005;
 						type = CT_STRUCTURED_TEXT;
@@ -63,7 +63,7 @@ class DlgHelpMenu
 						colorText[] = {1, 0, 0, 1};
 					    colorBackground[] = {0.5, 0.5, 0.5, 0.6};
 					};
-				class List_Help : RscListMain
+				class List_Help : RTS_ListMain
 					{
 						idc = 3010;
 						x = 0.0;
@@ -81,17 +81,16 @@ class DlgHelpMenu
 						colorSelectBackground[] = {0.0, 0.0, 0.0, 1};
 					};
 
-				class Button_Exit : RscButton2
+				class Button_Exit : RTS_Button2
 					{
 						idc = -1;
+						style = ST_PICTURE;
 						x = 0.8;
-						y = 0.9;
-						w = 0.2;
-						h = 0.06;
+						y = 0.90;
 						colorText[] = {1, 1, 1, 1};
-						text = "EXIT MENU";
-					        font = FontMAIN;
-					        sizeEx = 0.025;
+						text = "";
+					    font = FontMAIN;
+					    sizeEx = 0.025;
 						action = "closeDialog 0";
 					};
 

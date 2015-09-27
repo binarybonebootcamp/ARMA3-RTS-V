@@ -87,7 +87,7 @@ UPGRADE(Zen_RTS_F_East_SupportFactoryUpgrade01, ASSETS)
  #define ASSETS [Zen_RTS_Asset_East_RHS_BM21_MSV_01, Zen_RTS_Asset_East_rhs_9k79_K, Zen_RTS_Asset_East_rhs_9k79_B]
  UPGRADE(Zen_RTS_F_East_SupportFactoryUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstructor", "Zen_RTS_F_East_SupportFactoryDestructor", ["Zen_RTS_F_East_SupportFactoryUpgrade01", "Zen_RTS_F_East_SupportFactoryUpgrade02"], "Support factory", "Cost: 2000, Time: 10, Picture: pictures\rts_support.paa"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstructor", "Zen_RTS_F_East_SupportFactoryDestructor", ["Zen_RTS_F_East_SupportFactoryUpgrade01", "Zen_RTS_F_East_SupportFactoryUpgrade02"], "Support factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_SupportFactory;
 
 /////////////////////////////////

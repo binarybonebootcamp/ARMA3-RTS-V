@@ -92,7 +92,7 @@ UPGRADE(Zen_RTS_F_East_AirFactoryUpgrade03, ASSETS)
 #define ASSETS [Zen_RTS_Asset_East_RHS_Su25SM_vvs, Zen_RTS_Asset_East_RHS_Su25SM_KH29_vvs, Zen_RTS_Asset_East_rhs_pchela1t_vvs]
 UPGRADE(Zen_RTS_F_East_AirFactoryUpgrade04, ASSETS)
 
-Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", "Zen_RTS_F_East_AirFactoryDestructor", ["Zen_RTS_F_East_AirFactoryUpgrade01", "Zen_RTS_F_East_AirFactoryUpgrade02", "Zen_RTS_F_East_AirFactoryUpgrade03", "Zen_RTS_F_East_AirFactoryUpgrade04"], "Air Factory", "Cost: 2000, Time: 10, Picture: pictures\rts_air.paa,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", "Zen_RTS_F_East_AirFactoryDestructor", ["Zen_RTS_F_East_AirFactoryUpgrade01", "Zen_RTS_F_East_AirFactoryUpgrade02", "Zen_RTS_F_East_AirFactoryUpgrade03", "Zen_RTS_F_East_AirFactoryUpgrade04"], "Air Factory", "Cost: 2000, Time: 10, Picture: pictures\plane_ca.paa,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_AirFactory;
 
 /////////////////////////////////
