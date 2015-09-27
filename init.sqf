@@ -177,7 +177,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 // Zen RTS Strategic
 /////////
 
-#define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 0.8
+#define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 1.1
 
 #define DETECT_BUILDING(B, U) \
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \

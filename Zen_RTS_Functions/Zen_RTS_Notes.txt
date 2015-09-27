@@ -11,6 +11,9 @@ Strategic
         // CJ/MCU vehicle recycling and repairing
             // Correct CJ, MCU, player recycle repair abilities
             // Make sure there is no crew
+            repair dead objects
+                // assets
+                buildings
         // AI automated recycle/repair
             // recyclers use CJ
             // clean dead AI
