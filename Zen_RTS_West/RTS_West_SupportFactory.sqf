@@ -109,7 +109,7 @@ Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstr
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 20, getDir _building + _phi] call Zen_ExtendPosition; \
+        _pos = [_building, 20, random 360] call Zen_ExtendPosition; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \

@@ -63,7 +63,7 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     player addeventHandler rts_killedSld;
     (group Player) selectLeader player;
     0 = [player] call Zen_AddRepackMagazines;
-    [player,"Death"] call BIS_fnc_setUnitInsignia;
+    // [player,"Death"] call BIS_fnc_setUnitInsignia;
     player addeventhandler ["fired","_count = player ammo (currentWeapon player); if(_count != 0) then {magazineClass = currentMagazine player;};  if(_count == 0) then {player addMagazine magazineClass; reload player;};"];
     onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
     execVM "RTS_JUMPACTIONS.sqf";
@@ -138,6 +138,7 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
         CreateDialog "DLGRespawn";
         lbClear _idclist;
         ctrlShow [_idcbutton, true];
+        // ctrlShow [_idclabel, false];
 
         // #ListLoop
 
