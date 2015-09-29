@@ -64,7 +64,7 @@ Zen_RTS_F_StrategicAddAssetLocal = {
     _buildingID = _this select 0;
     _assetsToAdd = _this select 1;
 
-    player groupChat str _buildingID;
+    diag_log ("Zen_RTS_F_StrategicAddAssetLocal  " + str _this + "  " + str time);
 
     _buildingData = [_buildingID] call Zen_RTS_StrategicBuildingObjectGetDataLocal;
     _assetsArray = _buildingData select 1;

@@ -123,8 +123,8 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
             _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
             0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
             0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
+            {doStop _x;} forEach (units _crewGroup); \
             (units _crewGroup) join _referenceUnit; \
-            doStop (driver _vehicle); \
         }; \
     };
 

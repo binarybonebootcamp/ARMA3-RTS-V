@@ -93,6 +93,7 @@ sleep 1;
 // --------------------------
 
 // Zen Server ------------------
+#include "Zen_RTS_Functions\Zen_CustomLoadouts.sqf"
 0 = [] call Zen_RTS_RandomStart;
 0 = [] spawn Zen_RTS_CommanderManager;
 0 = [] spawn Zen_RTS_EconomyManager;
@@ -253,13 +254,13 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
                 }; \
             } forEach _objects; \
             if !(isNull _deadBuilding) then { \
-                player sideChat str _deadBuilding; \
+                diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH found dead building" + str _deadBuilding); \
                 _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
                 _deadBuilding setVariable ["Zen_RTS_StrategicType", "Building", true]; \
                 _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
                 _deadBuilding setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
             } else { \
-                player sidechat ("Destroyed Building" + str _building + " has no dead object"); \
+                diag_log (" ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH  Destroyed Building" + str _building + " has no dead object"); \
             }; \
         }; \
     }];

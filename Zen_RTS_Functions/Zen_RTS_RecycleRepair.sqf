@@ -41,7 +41,13 @@ if (_isAI) then {
     if (_actionType == "Repair") then {
         if (playerMoney > _value) then {
             playerMoney = playerMoney - _value;
-            _nearestObj setDamage 0;
+            if (damage _nearestObj == 1) then {
+                _args = [_nearestObj, typeOf _nearestObj, 0, getDir _nearestObj, true];
+                deleteVehicle _nearestObj;
+                0 = _args call Zen_SpawnVehicle;
+            } else {
+                _nearestObj setDamage 0;
+            };
         };
     } else {
         if (({alive _x} count (crew _nearestObj)) == 0) then {
@@ -77,7 +83,13 @@ if (_isAI) then {
             if (playerMoney > _value) then {
                 playerMoney = playerMoney - _value;
                 player groupChat ("You have paid: $" + (str round _value) + " to repair this object.");
-                _nearestObj setDamage 0;
+                if (damage _nearestObj == 1) then {
+                    _args = [_nearestObj, typeOf _nearestObj, 0, getDir _nearestObj, true];
+                    deleteVehicle _nearestObj;
+                    0 = _args call Zen_SpawnVehicle;
+                } else {
+                    _nearestObj setDamage 0;
+                };
             } else {
                 player groupChat ("Insufficient funds, you need $" + (str round _value) + " to repair this object.");
             };
