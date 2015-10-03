@@ -65,6 +65,7 @@ Zen_CloseDialog = {
     uiNamespace setVariable ["Zen_Dialog_Object_Local", ["", []]];
     (findDisplay 76) closeDisplay 0;
     closeDialog 0;
+    if (true) exitWith {};
 };
 
 Zen_RefreshDialog = {
@@ -90,6 +91,8 @@ Zen_RefreshDialog = {
         } forEach Zen_Active_Dialog_Control_Data;
         0 = [Zen_Active_Dialog, _controlsToRepeat] spawn Zen_InvokeDialog;
     };
+
+    if (true) exitWith {};
 };
 
 Zen_HashControlData = {
@@ -108,34 +111,31 @@ Zen_HashControlData = {
         } else {
             _return = switch (typeName _this) do {
                 case "SCALAR": {
-                    (str (_this % 10000));
+                    (str round (_this % 10^6));
                 };
                 case "STRING": {
-                    _hash = 0;
+                    _hash = "";
                     {
-                        _hash = _hash * 13 + _x;
+                        _hash = _hash + str _x;
                     } forEach (toArray _this);
-                    _hash = _hash  % 10000;
-                    (str round _hash)
+                    (_hash)
                 };
                 default {
-                    _hash = 0;
+                    _hash = "";
                     {
-                        _hash = _hash * 13 + _x;
+                        _hash = _hash + str _x;
                     } forEach (toArray str _this);
-                    _hash = _hash % 10000;
-                    (str round _hash)
+                    (_hash)
                 };
             };
         };
         (_return)
     };
 
-    _totalHash = "";
+    _totalHash = ((_controlData select 1) call _F_Hash) + "--";
     {
-        _elementHash = _x call _F_Hash;
-        _totalHash = _totalHash + _elementHash;
-    } forEach ([_controlData, 1] call Zen_ArrayGetIndexedSlice);
+        _totalHash = _totalHash + ((_x select 1) call _F_Hash) + "--";
+    } forEach (_controlData select 2);
     (_totalHash)
 };
 
