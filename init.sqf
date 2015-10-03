@@ -234,7 +234,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
     _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
-    RTS_Repair_Queue pushBack _building; \
+    (RTS_Repair_Queue select ([west, east] find (_building getVariable "Zen_RTS_StrategicBuildingSide"))) pushBack _building; \
     _building addEventHandler ["Killed", { \
         0 = _this spawn { \
             _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
