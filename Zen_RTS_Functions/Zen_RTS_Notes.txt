@@ -14,6 +14,8 @@ Strategic
             repair dead objects
                 // assets
                 buildings
+                // run building/asset constructor equivalent
+                // CJ repair menu action
         // AI automated recycle/repair
             // recyclers use CJ
             // clean dead AI
@@ -31,6 +33,7 @@ Strategic
         // check building destroyed while waiting
         // CJ, with repair and recycle
             // placement for assets
+            // AI recycler gets AI owned CJ with spawn
         // charge per crew member
         better spawn placement
         auto tank
@@ -152,6 +155,8 @@ Economy
     add JIP player to money data
 AI
     // rewrite rts-init-commandermonitor.sqs in SQF
+    // Chain of command selection queue
+        // Fix commander selection after respawn
     On player death
     commander
     individual
@@ -163,11 +168,18 @@ Supports
     AI extraction/insertion from action menu (see ZK)
     Artillery vehicles
 Loadouts
+    // Use framework custom loadouts
+        // Loadout dialog displays custom loadouts
+    // Use RHS equipment
+    // Default RHS loadout on mission start
+    need east loadouts:
+        sapper
+        SOF
+        sniper
     assign money value
-    Use framework custom loadouts
-    Loadout dialog displays custom loadouts
 Known MP Issues
     Add more debug
     10 second init delay
     buildings coming out of the ground don't sync
-    Build enemy units technology disappears
+    'Build enemy units' technology disappears
+    Asset crew join group?

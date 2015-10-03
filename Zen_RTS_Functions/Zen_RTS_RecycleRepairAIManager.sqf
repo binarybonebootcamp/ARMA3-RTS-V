@@ -53,16 +53,17 @@
                 }; \
                 _assignedWorkerArray set [1, false]; \
                 diag_log ("Repair/recycle complete: " + str _objToRepair + str _assignedWorkerArray); \
-                _h_repair = [S, [T], true] spawn Zen_RTS_RecycleRepair; \
-                if (S == "Recycle") then { \
+                if ((S == "Recycle") || {S == "Repair" && (damage _objToRepair == 1)}) then { \
                     _indexesToRemove pushBack _index; \
                 }; \
+                _h_repair = [S, [T], true] spawn Zen_RTS_RecycleRepair; \
             }; \
         }; \
         sleep 0.2; \
     } forEach O; \
     ZEN_FMW_Array_RemoveIndexes(O, _indexesToRemove) \
 
+sleep 10;
 while {true} do {
     sleep 5;
     CLEAN_WORKERS(RTS_Worker_Repair_Queue, (_x select 0), true)
@@ -77,10 +78,14 @@ while {true} do {
             if (isNull _vehicle) then {
                 _nextAvailCJ = objNull;
                 {
-                    if ((_x getVariable "Zen_RTS_StrategicIsAIOwned") && {!(_x getVariable "Zen_RTS_StrategicIsAIAssigned")}) exitWith {
+                    if !(alive _x) then {
+                        _CJArray set [_forEachIndex, 0];
+                    };
+                    if ((alive _x) && (_x getVariable "Zen_RTS_StrategicIsAIOwned") && {!(_x getVariable "Zen_RTS_StrategicIsAIAssigned")}) exitWith {
                         _nextAvailCJ = _x;
                     };
                 } forEach _CJArray;
+                0 = [_CJArray, 0] call Zen_ArrayRemoveValue;
 
                 if (!(isNull _nextAvailCJ) && {(alive _nextAvailCJ)}) then {
                     _x set [2, _nextAvailCJ];

@@ -102,6 +102,7 @@ Zen_JIP_Args_Server = [overcast, fog, 2000];
 
 {
     call compile format ["xp%1 = 0", _x];
+    0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
@@ -198,7 +199,8 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _vehicle setVariable ["Zen_RTS_StrategicValue", (call compile ([_assetStrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)), true]; \
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
-    RTS_Recycle_Queue pushBack _vehicle; \
+    _vehicle setVariable ["Zen_RTS_StrategicAssetType", (_assetData select 0), true]; \
+    (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
     _vehicle addEventHandler ["Killed", { \
         if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
             (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
@@ -232,7 +234,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
     _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
-    RTS_Repair_Queue pushBack _building; \
+    (RTS_Repair_Queue select ([west, east] find (_building getVariable "Zen_RTS_StrategicBuildingSide"))) pushBack _building; \
     _building addEventHandler ["Killed", { \
         0 = _this spawn { \
             _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \

@@ -151,7 +151,7 @@ class digitalLoadout
     class ICE_button1: IceButton {
         idc = 15000;
         text = "Rifleman";
-        action = "[player, 'rifleman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player + 'rifleman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.2 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -160,7 +160,7 @@ class digitalLoadout
     class ICE_button2: IceButton {
         idc = 15001;
         text = "Grenadier";
-        action = "[player, 'grenadier'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'grenadier'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.25 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -169,7 +169,7 @@ class digitalLoadout
     class ICE_button3: IceButton {
         idc = 15002;
         text = "Engineer";
-        action = "[player, 'engineer'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'engineer'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.3 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -178,7 +178,7 @@ class digitalLoadout
     class ICE_button4: IceButton {
         idc = 15003;
         text = "Auto-rifleman";
-        action = "[player, 'autorifleman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'autorifleman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.35 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -187,7 +187,7 @@ class digitalLoadout
     class ICE_button5: IceButton {
         idc = 15004;
         text = "AT (light)";
-        action = "[player, 'AT rifleman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'AT rifleman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.4 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -196,7 +196,7 @@ class digitalLoadout
     class ICE_button6: IceButton {
         idc = 15005;
         text = "Sapper";
-        action = "[player, 'sapper'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'sapper'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.45 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -205,7 +205,7 @@ class digitalLoadout
     class ICE_button7: IceButton {
         idc = 15006;
         text = "AA (Titan)";
-        action = "[player, 'AA spec'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'AA spec'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.5 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -214,7 +214,7 @@ class digitalLoadout
     class ICE_button8: IceButton {
         idc = 15007;
         text = "Special Forces";
-        action = "[player, 'SOF'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'SOF'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.55 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -223,7 +223,7 @@ class digitalLoadout
     class ICE_button9: IceButton {
         idc = 15008;
         text = "AT (Titan)";
-        action = "[player, 'AT spec'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'AT spec'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.6 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -232,7 +232,7 @@ class digitalLoadout
     class ICE_button10: IceButton {
         idc = 15009;
         text = "Marksman";
-        action = "[player, 'marksman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'marksman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.65 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
@@ -241,7 +241,7 @@ class digitalLoadout
     class ICE_button11: IceButton {
         idc = 15010;
         text = "sniper";
-        action = "[player, 'sniper'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
+        action = "[player, str side player +  'sniper'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
         x = 0.25 * safezoneW + safezoneX;
         y = 0.70 * safezoneH + safezoneY;
         w = 0.125 * safezoneW;
