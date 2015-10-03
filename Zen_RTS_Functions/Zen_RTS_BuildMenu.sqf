@@ -31,7 +31,7 @@
     _idlist = 2000;
     _idback = 2001;
     _idbuild = 2005;
-	_idpic = 50;
+    _idpic = 50;
 
     _idRefreshButton = 2015;
     _idbuildsquad = 2020;
@@ -108,6 +108,7 @@
     };
 
     ctrlSetText [_idbuild, "Deploy"];
+    ctrlSetText [_idback, "Alpha Menu"];
     ctrlSetText [_idRefreshButton, "Refresh"];
     ctrlSetText [_idbuildsquad, "Deploy for Squad"];
 

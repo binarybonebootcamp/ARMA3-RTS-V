@@ -114,7 +114,7 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 20, getDir _building + _phi] call Zen_ExtendPosition; \
+        _pos = [_building, 20, random 360] call Zen_ExtendPosition; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
@@ -122,8 +122,8 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
             _crewGroup = [_vehicle, ([U, 0, (_crewCount - 1) min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
             0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
             0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
+            {doStop _x;} forEach (units _crewGroup); \
             (units _crewGroup) join _referenceUnit; \
-            doStop (driver _vehicle); \
         }; \
     };
 

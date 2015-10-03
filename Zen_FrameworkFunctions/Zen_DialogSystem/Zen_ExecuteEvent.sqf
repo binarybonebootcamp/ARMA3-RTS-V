@@ -36,7 +36,7 @@ if (count _index > 0) then {
     _linkedArgs pushBack ((_controlBlocks select _index) select 1);
 };
 
-if ((toUpper _type) in ["LIST"]) then {
+if ((toUpper _type) in ["LIST", "DROPLIST"]) then {
     _curControlIndex = ([_Zen_Dialog_Controls_Local, _controlID, 0] call Zen_ArrayGetNestedIndex) select 0;
     _currentControl = (_Zen_Dialog_Controls_Local select _curControlIndex) select 1;
 
@@ -47,6 +47,13 @@ if ((toUpper _type) in ["LIST"]) then {
     };
 };
 
+if ((toUpper _type) in ["SLIDER"]) then {
+    _curControlIndex = ([_Zen_Dialog_Controls_Local, _controlID, 0] call Zen_ArrayGetNestedIndex) select 0;
+    _currentControl = (_Zen_Dialog_Controls_Local select _curControlIndex) select 1;
+
+    _linkedArgs pushBack round (sliderPosition _currentControl);
+};
+
 _index = [_controlBlocks, "LinksTo", 0] call Zen_ArrayGetNestedIndex;
 if (count _index > 0) then {
     _linkedControls = (_controlBlocks select (_index select 0)) select 1;
@@ -54,7 +61,7 @@ if (count _index > 0) then {
     {
         _controlData = [_x] call Zen_GetControlData;
         _type = _controlData select 1;
-        if ((toUpper _type) in ["LIST"]) then {
+        if ((toUpper _type) in ["LIST", "DROPLIST"]) then {
                 _indexLinkedControlLocal = [_Zen_Dialog_Controls_Local, _x, 0] call Zen_ArrayGetNestedIndex;
                 if (count _indexLinkedControlLocal > 0) then {
                     _indexLinkedControlLocal = _indexLinkedControlLocal select 0;
