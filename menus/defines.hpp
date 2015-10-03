@@ -106,7 +106,7 @@ class RTS_Text {
     soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.20,1};
     text = "";
     shadow = 0;
-    font = FontM;
+    font = FontMAIN;
     SizeEx = "";
     fixedWidth = 0;
     x = 0;
@@ -471,14 +471,14 @@ class RTS_Button {
     y = 0;
     w = 0.2;
     h = 0.04;
-    shadow = 0;
-    font = FontS;
+    shadow = 1;
+    font = FontMAIN;
     sizeEx = 0.03;
     offsetX = 0.003;
     offsetY = 0.003;
     offsetPressedX = 0.002;
     offsetPressedY = 0.002;
-    borderSize = 0;
+    borderSize = 1;
 };
 
 
@@ -488,7 +488,7 @@ class RTS_Button2
 	idc = -1;
 	style = 0;
 	default = 0;
-	shadow = 1;
+	shadow = 0;
 	w = 0.2;
 	h = "(		(		((safezoneW / safezoneH) min 1.2) / 1.2) / 20)";
 	color[] = {1,1,1,1.0};
@@ -575,7 +575,7 @@ class RTS_edit {
 	type = 2;
 	style = 0x00 + 0x40;
 	font = "PuristaMedium";
-	shadow = 2;
+	shadow = 0;
 	sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	colorBackground[] = {0, 0, 0, 1};
 	soundSelect[] = {"",0.1,1};
@@ -619,7 +619,8 @@ class Scrollbar {
     // This is an ctrlEventHandler to show you some response if you move the sliderpointer.
     onSliderPosChanged = "hint format[""%1"",_this];";
 };
-class RTS_ListBox {
+class RTS_ListBox 
+{
     access = 0; // Control access (0 - ReadAndWrite, 1 - ReadAndCreate, 2 - ReadOnly, 3 - ReadOnlyVerified)
     idc = CT_LISTBOX; // Control identification (without it, the control won't be displayed)
     type = CT_LISTBOX; // Type is 5
@@ -632,13 +633,13 @@ class RTS_ListBox {
     w = 10 * GUI_GRID_CENTER_W; // Width
     h = 3 * GUI_GRID_CENTER_H; // Height
 
-    colorBackground[] = {0,0,0,0}; // Fill color
+    colorBackground[] = {0.5, 0.5, 0.5, 0.6}; // Fill color
     colorSelectBackground[] = {1,0.7,0,1}; // Selected item fill color
     colorSelectBackground2[] = {0,0,0,1}; // Selected item fill color (oscillates between this and colorSelectBackground)
 
     sizeEx = GUI_GRID_CENTER_H; // Text size
     font = GUI_FONT_NORMAL; // Font from CfgFontFamilies
-    shadow = 1; // Shadow (0 - none, 1 - directional, color affected by colorShadow, 2 - black outline)
+    shadow = 0; // Shadow (0 - none, 1 - directional, color affected by colorShadow, 2 - black outline)
     colorText[] = {1,1,1,1}; // Text and frame color
     colorDisabled[] = {1,1,1,0.5}; // Disabled text color
     colorSelect[] = {1,1,1,1}; // Text selection color

@@ -48,7 +48,7 @@ class RTS_Combo
 			};
 	class ComboScrollBar: ScrollBar
 {
-	style = "9";
+	style = "4";
 	x = 0;
 	y = 0;
 	w = 0.12;
