@@ -162,7 +162,7 @@ class RTS_Structuredtext
 		font = "TahomaB";
 		sizeEx = Size_Text_Small;
 		text = "";
-};	
+};
 class RTS_SmallTitle
 {
         type = CT_STATIC;
@@ -222,7 +222,7 @@ class RTS_ActivePicture
 class RTS_Titles
   {
 	titles[] = {"crewinfomessage"};
-	
+
 	class Zen_pic
 	{
 	idd=-1;
@@ -243,7 +243,7 @@ class RTS_Titles
 			text = "pictures\rtspatch1.paa";
 	  	  };
 	};
-  		  
+
 	class Black
 	{
 	idd=-1;
@@ -252,12 +252,12 @@ class RTS_Titles
 	fadein=0;
 	name="intro";
 	controls[]={"title1"};
-	 
-	  	class title1 : RTS_Text 
+
+	  	class title1 : RTS_Text
 	  	  {
 	  	  	text="";
 	  	  	colorText[]={0.8,0,0,1};
-			sizeEx = 0.05;	  	  	
+			sizeEx = 0.05;
 	  	  	x=0.000;
 	  	  	y=0.000;
 	  	  	w=1.000;
@@ -292,7 +292,7 @@ class RTS_Titles
 			text = "pictures\rtspatch1.paa";
 	  	  };
 
-	  	class title1 : RTS_Text 
+	  	class title1 : RTS_Text
 	  	  {
 	  	  	text="Zenophon And";
 	  	  	colorText[]={0.5,0.5,0.5,1};
@@ -302,53 +302,53 @@ class RTS_Titles
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title2 : RTS_Text 
+	  	class title2 : RTS_Text
 	  	  {
 	  	  	text="Zenophon And";
 	  	  	colorText[]={1,1,1,1};
-			sizeEx = 0.08;	  	  	
+			sizeEx = 0.08;
 	  	  	x=0.000;
 	  	  	y=0.080;
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
 
-	  	class title3 : RTS_Text 
+	  	class title3 : RTS_Text
 	  	  {
 	  	  	text="Dr.Death jm PRESENTS";
 	  	  	colorText[]={0.5,0.5,0.5,1};
-			sizeEx = 0.08;	  	  	
+			sizeEx = 0.08;
 	  	  	x=0.002;
 	  	  	y=0.137;
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title4 : RTS_Text 
+	  	class title4 : RTS_Text
 	  	  {
 	  	  	text="Dr.Death jm PRESENTS";
 	  	  	colorText[]={1,1,1,1};
-			sizeEx = 0.08;	  	  	
+			sizeEx = 0.08;
 	  	  	x=0.000;
 	  	  	y=0.134;
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
 
-	  	class title5 : RTS_Text 
+	  	class title5 : RTS_Text
 	  	  {
 	  	  	text="RTS V";
 	  	  	colorText[]={0.5,0.5,0.5,1};
-			sizeEx = 0.06;	  	  	
+			sizeEx = 0.06;
 	  	  	x=0.002;
 	  	  	y=0.252;
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title6 : RTS_Text 
+	  	class title6 : RTS_Text
 	  	  {
 	  	  	text="RTS V";
 	  	  	colorText[]={1,1,1,1};
-			sizeEx = 0.06;	  	  	
+			sizeEx = 0.06;
 	  	  	x=0.000;
 	  	  	y=0.250;
 	  	  	w=1.00;
@@ -374,7 +374,7 @@ class RTS_Titles
 			text = "pictures\rtspatch1.paa";
 	  	  };
 
-	  	class title1 : RTS_Text 
+	  	class title1 : RTS_Text
 	  	  {
 	  	  	text="Zenophon And";
 	  	  	colorText[]={0.5,0.5,0.5,1};
@@ -384,53 +384,53 @@ class RTS_Titles
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title2 : RTS_Text 
+	  	class title2 : RTS_Text
 	  	  {
 	  	  	text="Zenophon And";
 	  	  	colorText[]={1,1,1,1};
-			sizeEx = 0.08;	  	  	
+			sizeEx = 0.08;
 	  	  	x=0.000;
 	  	  	y=0.080;
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
 
-	  	class title3 : RTS_Text 
+	  	class title3 : RTS_Text
 	  	  {
 	  	  	text="Dr.Death jm PRESENTS";
 	  	  	colorText[]={0.5,0.5,0.5,1};
-			sizeEx = 0.08;	  	  	
+			sizeEx = 0.08;
 	  	  	x=0.002;
 	  	  	y=0.137;
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title4 : RTS_Text 
+	  	class title4 : RTS_Text
 	  	  {
 	  	  	text="Dr.Death jm PRESENTS";
 	  	  	colorText[]={1,1,1,1};
-			sizeEx = 0.08;	  	  	
+			sizeEx = 0.08;
 	  	  	x=0.000;
 	  	  	y=0.134;
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
 
-	  	class title5 : RTS_Text 
+	  	class title5 : RTS_Text
 	  	  {
 	  	  	text="RTS V";
 	  	  	colorText[]={0.5,0.5,0.5,1};
-			sizeEx = 0.06;	  	  	
+			sizeEx = 0.06;
 	  	  	x=0.002;
 	  	  	y=0.252;
 	  	  	w=1.00;
 	  	  	h=1.00;
 	  	  };
-	  	class title6 : RTS_Text 
+	  	class title6 : RTS_Text
 	  	  {
 	  	  	text="RTS V";
 	  	  	colorText[]={1,1,1,1};
-			sizeEx = 0.06;	  	  	
+			sizeEx = 0.06;
 	  	  	x=0.000;
 	  	  	y=0.250;
 	  	  	w=1.00;
@@ -508,7 +508,7 @@ class RTS_Button2
 
 	periodFocus = 1.2;
 	periodOver = 0.8;
-	
+
 	class HitZone
 	{
 		left = 0.0;
@@ -548,7 +548,7 @@ class RTS_Button2
     soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
     soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
 	action = "";
-	
+
 	class Attributes
 
 	{
@@ -607,14 +607,14 @@ class RTS_edit {
 	};
 
 class Scrollbar {
-    idc = -1; 
-    type = CT_SLIDER; 
-    style = SL_HORZ; 
-    x = 0.4; 
-    y = 0.2; 
-    w = 0.3; 
-    h = 0.01; 
-    color[] = { 1, 1, 1, 1 }; 
+    idc = -1;
+    type = CT_SLIDER;
+    style = SL_HORZ;
+    x = 0.4;
+    y = 0.2;
+    w = 0.3;
+    h = 0.01;
+    color[] = { 1, 1, 1, 1 };
     coloractive[] = { 1, 0, 0, 0.5 };
     // This is an ctrlEventHandler to show you some response if you move the sliderpointer.
     onSliderPosChanged = "hint format[""%1"",_this];";
@@ -678,24 +678,24 @@ class RTS_ListBox {
         color[] = {1,1,1,1}; // Scrollbar color
     };
 
-    onCanDestroy = "systemChat str ['onCanDestroy',_this]; true";
-    onDestroy = "systemChat str ['onDestroy',_this]; false";
-    onSetFocus = "systemChat str ['onSetFocus',_this]; false";
-    onKillFocus = "systemChat str ['onKillFocus',_this]; false";
-    onKeyDown = "systemChat str ['onKeyDown',_this]; false";
-    onKeyUp = "systemChat str ['onKeyUp',_this]; false";
-    onMouseButtonDown = "systemChat str ['onMouseButtonDown',_this]; false";
-    onMouseButtonUp = "systemChat str ['onMouseButtonUp',_this]; false";
-    onMouseButtonClick = "systemChat str ['onMouseButtonClick',_this]; false";
-    onMouseButtonDblClick = "systemChat str ['onMouseButtonDblClick',_this]; false";
-    onMouseZChanged = "systemChat str ['onMouseZChanged',_this]; false";
-    onMouseMoving = "";
-    onMouseHolding = "";
+    // onCanDestroy = "systemChat str ['onCanDestroy',_this]; true";
+    // onDestroy = "systemChat str ['onDestroy',_this]; false";
+    // onSetFocus = "systemChat str ['onSetFocus',_this]; false";
+    // onKillFocus = "systemChat str ['onKillFocus',_this]; false";
+    // onKeyDown = "systemChat str ['onKeyDown',_this]; false";
+    // onKeyUp = "systemChat str ['onKeyUp',_this]; false";
+    // onMouseButtonDown = "systemChat str ['onMouseButtonDown',_this]; false";
+    // onMouseButtonUp = "systemChat str ['onMouseButtonUp',_this]; false";
+    // onMouseButtonClick = "systemChat str ['onMouseButtonClick',_this]; false";
+    // onMouseButtonDblClick = "systemChat str ['onMouseButtonDblClick',_this]; false";
+    // onMouseZChanged = "systemChat str ['onMouseZChanged',_this]; false";
+    // onMouseMoving = "";
+    // onMouseHolding = "";
 
-    onLBSelChanged = "systemChat str ['onLBSelChanged',_this]; false";
-    onLBDblClick = "systemChat str ['onLBDblClick',_this]; false";
-    onLBDrag = "systemChat str ['onLBDrag',_this]; false";
-    onLBDragging = "systemChat str ['onLBDragging',_this]; false";
-    onLBDrop = "systemChat str ['onLBDrop',_this]; false";
+    // onLBSelChanged = "systemChat str ['onLBSelChanged',_this]; false";
+    // onLBDblClick = "systemChat str ['onLBDblClick',_this]; false";
+    // onLBDrag = "systemChat str ['onLBDrag',_this]; false";
+    // onLBDragging = "systemChat str ['onLBDragging',_this]; false";
+    // onLBDrop = "systemChat str ['onLBDrop',_this]; false";
 };
 

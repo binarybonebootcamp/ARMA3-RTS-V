@@ -31,10 +31,10 @@
     _side2 = [East, West] select ([West, East] find _side);
 
     // dialog id definitions
-    _idassetlist = 1000;
-    _idRefreshButton = 1003;
-    _idBuildMenu = 1005;
-    _idRepair = 1007;
+    _idassetlist = 100000;
+    _idRefreshButton = 100003;
+    _idBuildMenu = 100005;
+    _idRepair = 200007;
     _idviewsel = 1010;
     _idviewlist = 1015;
     _idgroupList = 1020;

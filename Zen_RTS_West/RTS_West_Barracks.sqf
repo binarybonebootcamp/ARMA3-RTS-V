@@ -104,7 +104,7 @@ Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen
         _assetStrRaw = _assetData select 3; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         if (alive (_buildingData select 2)) then { \
-            _group = [(_this select 2), T] call Zen_SpawnGroup; \
+            _group = [(_buildingData select 2), T] call Zen_SpawnGroup; \
             0 = [_group, S] call Zen_SetAISkill; \
             (units _group) join (_this select 2); \
         }; \

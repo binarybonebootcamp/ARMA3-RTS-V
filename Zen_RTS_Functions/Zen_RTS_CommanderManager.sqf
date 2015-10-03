@@ -4,9 +4,18 @@
 #include "Zen_FrameworkLibrary.sqf"
 
 if !(isServer) exitWith {};
+sleep 2;
 
-WestCommander = ([([west] call Zen_ConvertToObjectArray)] call Zen_ArrayRemoveDead) select 0;
-EastCommander = ([([east] call Zen_ConvertToObjectArray)] call Zen_ArrayRemoveDead) select 0;
+_westQueue = ([west] call Zen_ConvertToObjectArray);
+_eastQueue = ([east] call Zen_ConvertToObjectArray);
+
+if (isMultiplayer) then {
+    _westQueue = [_westQueue, {!(isPlayer _this)}] call Zen_ArrayFilterCondition;
+    _eastQueue = [_eastQueue, {!(isPlayer _this)}] call Zen_ArrayFilterCondition;
+};
+
+WestCommander = _westQueue select 0;
+EastCommander = _eastQueue select 0;
 
 publicVariable "WestCommander";
 publicVariable "EastCommander";
@@ -14,19 +23,18 @@ publicVariable "EastCommander";
 while {true} do {
     sleep 5;
 
-    #define HANDLE_DEATH(S, V) \
-        if !(alive V) then { \
-            V = objNull; \
-            _unitArray = [([S] call Zen_ConvertToObjectArray)] call Zen_ArrayRemoveDead; \
-            if (count _unitArray > 0) then { \
-                V = _unitArray select 0; \
-            }; \
-            if !(isNull V) then { \
+    #define PROCESS_COMMANDER_QUEUE(S, V, A) \
+    { \
+        if (alive _x) exitWith { \
+            if (V != _x) then { \
+                V = _x; \
+                publicVariable #V; \
                 _args = ["sideChat", [[S,"HQ"], (format ["Reassigning %1 as %2 Commander", Name V, S])]]; \
                 ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call) \
             }; \
-        };
+        }; \
+    } forEach A;
 
-    HANDLE_DEATH(west, WestCommander)
-    HANDLE_DEATH(east, EastCommander)
+    PROCESS_COMMANDER_QUEUE(west, WestCommander, _westQueue)
+    PROCESS_COMMANDER_QUEUE(east, EastCommander, _eastQueue)
 };

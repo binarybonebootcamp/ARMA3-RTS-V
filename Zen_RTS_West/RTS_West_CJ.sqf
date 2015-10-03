@@ -52,6 +52,7 @@ Zen_RTS_F_West_CJConstructor = {
     sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
     _vehicle = [_spawnPos, "B_MRAP_01_F"] call Zen_SpawnVehicle;
     _vehicle setVariable ["side", West, true];
+    _assetData = _buildingObjData;
     ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
 
     // Recycle AI set up
@@ -62,10 +63,10 @@ Zen_RTS_F_West_CJConstructor = {
     _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "(_this in _target) && !(_target getVariable 'Zen_RTS_StrategicIsAIOwned')"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
-    _args = ["addAction", [_vehicle, ["Give CJ to AI", {SWAP_CJ_OWNER(true)}, _vehicle, 1, false, true, "", "((_this distance2D _target) < 5) && !(_target getVariable 'Zen_RTS_StrategicIsAIOwned')"]]];
+    _args = ["addAction", [_vehicle, ["Give CJ to AI", {SWAP_CJ_OWNER(true)}, _vehicle, 1, false, true, "", "((_this distance2D _target) < 5) && !(_target getVariable 'Zen_RTS_StrategicIsAIOwned') && (alive _target)"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
-    _args = ["addAction", [_vehicle, ["Take CJ from AI", {SWAP_CJ_OWNER(false)}, _vehicle, 1, false, true, "", "((_this distance2D _target) < 5) && (_target getVariable 'Zen_RTS_StrategicIsAIOwned')"]]];
+    _args = ["addAction", [_vehicle, ["Take CJ from AI", {SWAP_CJ_OWNER(false)}, _vehicle, 1, false, true, "", "((_this distance2D _target) < 5) && (_target getVariable 'Zen_RTS_StrategicIsAIOwned') && (alive _target)"]]];
 
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 

@@ -93,6 +93,7 @@ sleep 1;
 // --------------------------
 
 // Zen Server ------------------
+#include "Zen_RTS_Functions\Zen_CustomLoadouts.sqf"
 0 = [] call Zen_RTS_RandomStart;
 0 = [] spawn Zen_RTS_CommanderManager;
 0 = [] spawn Zen_RTS_EconomyManager;
@@ -101,6 +102,7 @@ Zen_JIP_Args_Server = [overcast, fog, 2000];
 
 {
     call compile format ["xp%1 = 0", _x];
+    0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
@@ -197,7 +199,8 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _vehicle setVariable ["Zen_RTS_StrategicValue", (call compile ([_assetStrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)), true]; \
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
-    RTS_Recycle_Queue pushBack _vehicle; \
+    _vehicle setVariable ["Zen_RTS_StrategicAssetType", (_assetData select 0), true]; \
+    (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
     _vehicle addEventHandler ["Killed", { \
         if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
             (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
@@ -253,13 +256,13 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
                 }; \
             } forEach _objects; \
             if !(isNull _deadBuilding) then { \
-                player sideChat str _deadBuilding; \
+                diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH found dead building" + str _deadBuilding); \
                 _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
                 _deadBuilding setVariable ["Zen_RTS_StrategicType", "Building", true]; \
                 _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
                 _deadBuilding setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
             } else { \
-                player sidechat ("Destroyed Building" + str _building + " has no dead object"); \
+                diag_log (" ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH  Destroyed Building" + str _building + " has no dead object"); \
             }; \
         }; \
     }];

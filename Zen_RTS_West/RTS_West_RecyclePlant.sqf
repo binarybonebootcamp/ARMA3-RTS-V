@@ -81,26 +81,47 @@ Zen_RTS_BuildingType_West_RecyclePlant = ["Zen_RTS_F_West_RecyclePlantConstructo
 // Assets
 /////////////////////////////////
 
-#define INFANTRY_CONSTRUCTOR(N, T, A) \
-    N = { \
-        diag_log (#N + " asset constructor called"); \
-        diag_log _this; \
-        _buildingData = (_this select 0); \
-        _assetData = _this select 1; \
-        _assetStrRaw = _assetData select 3; \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        if (alive (_buildingData select 2)) then { \
-            _group = [(_buildingData select 2), T] call Zen_SpawnGroup; \
-            0 = [_group, "crew"] call Zen_SetAISkill; \
-            removeAllWeapons (leader _group); \
-            (leader _group) setPosATL ([(_buildingData select 2), 5 + random 5, random 360] call Zen_ExtendPosition); \
-            _group setBehaviour "careless"; \
-            (A select 0) pushBack [(leader _group), false, objNull]; \
-        }; \
+Zen_RTS_F_West_Repairer = {
+    diag_log ("Zen_RTS_F_West_Repairer asset constructor called");
+    diag_log _this;
+    _buildingData = (_this select 0);
+    _assetData = _this select 1;
+    _assetStrRaw = _assetData select 3;
+    sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
+    if (alive (_buildingData select 2)) then {
+        _group = [(_buildingData select 2), "rhsusf_army_ocp_rifleman"] call Zen_SpawnGroup;
+        0 = [_group, "crew"] call Zen_SetAISkill;
+        removeAllWeapons (leader _group);
+        (leader _group) setPosATL ([(_buildingData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
+        _group setBehaviour "careless";
+        (RTS_Worker_Repair_Queue select 0) pushBack [(leader _group), false, objNull];
     };
+};
 
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Repairer, "rhsusf_army_ocp_rifleman", RTS_Worker_Repair_Queue)
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Recycler, "rhsusf_army_ocp_rifleman", RTS_Worker_Recycle_Queue)
+Zen_RTS_F_West_Recycler = {
+    diag_log ("Zen_RTS_F_West_Repairer asset constructor called");
+    diag_log _this;
+    _buildingData = (_this select 0);
+    _assetData = _this select 1;
+    _assetStrRaw = _assetData select 3;
+    sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
+    if (alive (_buildingData select 2)) then {
+        _group = [(_buildingData select 2), "rhsusf_army_ocp_rifleman"] call Zen_SpawnGroup;
+        _vehicleID = [Zen_RTS_BuildingType_West_CJ, [[(_buildingData select 2), 10, random 360] call Zen_ExtendPosition, 0]] call Zen_RTS_StrategicBuildingInvoke;
+
+        (leader _group) setPosATL ([(_buildingData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
+        0 = [_group, "crew"] call Zen_SetAISkill;
+        removeAllWeapons (leader _group);
+        _group setBehaviour "careless";
+
+        _CJ = ([_vehicleID] call Zen_RTS_StrategicBuildingObjectGetDataGlobal) select 2;
+        _CJ setVariable ["Zen_RTS_StrategicIsAIOwned", true];
+        _CJ setVariable ["Zen_RTS_StrategicIsAIAssigned", true];
+        0 = [_group, _CJ, "all"] call Zen_MoveInVehicle;
+
+        (RTS_Worker_Recycle_Queue select 0) pushBack [(leader _group), false, _CJ];
+    };
+};
 
 Zen_RTS_Asset_West_Repairer = ["Zen_RTS_F_West_Repairer", "Repairer", "Cost: 50, Time: 10, Classname: rhsusf_army_ocp_rifleman,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_Recycler = ["Zen_RTS_F_West_Recycler", "Recycler", "Cost: 50, Time: 10, Classname: rhsusf_army_ocp_rifleman,"] call Zen_RTS_StrategicAssetCreate;
