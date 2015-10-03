@@ -329,7 +329,7 @@ class DlgStatus
             text = "WarGames";
             font = FontTITLE;
             colorText[] = {1,0.7,0,1};
-            colorBackground[] = {0,0,0,0};
+            colorBackground[] = {0.5, 0.5, 0.5, 0.6};
             sizeEx = 0.030;
     };
 
@@ -339,9 +339,9 @@ class DlgStatus
             x = 0.80;
             y = 0.12;
             w = 0.2;
-            h = 0.15;
+            h = 0.10;
             colorText[] = {};
-            text = "";     //"pictures\rtspatch1.paa";
+            text = "pictures\rtspatch1.paa";
 			
 			
     };
@@ -371,7 +371,7 @@ class DlgStatus
             text = "INFOMATION";
             font = FontTITLE;
             colorText[] = {1,0.7,0,1};
-            colorBackground[] = {0,0,0,0};
+            colorBackground[] = {0.5, 0.5, 0.5, 0.6};
             sizeEx = 0.030;
     };
 
@@ -828,11 +828,11 @@ class DlgRespawn
                         style = ST_CENTER;
                         x = 0.25;
                         y = 0.05;
-                        w = 0.5;
+                        w = 0.9;
                         h = 0.07;
                         font = PuristaMedium;
                         colorText[] = {1, 1, 1, 1};
-                        sizeEx = 0.05;
+                        sizeEx = 0.08;
                         text = "Choose Deployment Location";
                     };
 
@@ -883,20 +883,18 @@ class DlgRespawn
                         idc = 1312;
                         x = 0.78;
                         y = 0.55;
-                        w = 0.2;
-                        h = 0.3;
+                        //w = 0.2;
+                        //h = 0.3;
                         font = PuristaMedium;
                         sizeEx = 0.03;
                         colorText[] = {1, 0, 0, 1};
                   };
 
-                class BUTTON_RESPAWN : RTS_Button
+                class BUTTON_RESPAWN : RTS_Button2
                     {
                         idc = 1313;
-                        x = 0.83;
+                        x = 0.78;
                         y = 0.9;
-                        w = 0.1;
-                        h = 0.05;
                         sizeEx = 0.03;
                         font = PuristaMedium;
                         colorText[] = {1, 1, 1, 1};

@@ -34,8 +34,8 @@ if !(_doRefresh) then {
     (findDisplay 76) closeDisplay 0;
     closeDialog 0;
 
-    createDialog "Zen_Dialog";
     _display = (findDisplay 46) createDisplay "Zen_Dialog";
+    createDialog "Zen_Dialog";
 } else {
     _display = (findDisplay 76);
 };
@@ -51,6 +51,9 @@ if !(_doRefresh) then {
             case "BUTTON": {("RSCButton")};
             case "LIST": {("RscListBox")};
             case "TEXT": {("RscText")};
+            case "SLIDER": {("RscXSliderH")};
+            // case "BACKGROUND": {("RscBackground")};
+            case "DROPLIST": {("RscCombo")};
             default {("")};
         };
 
@@ -58,7 +61,7 @@ if !(_doRefresh) then {
             _control = _display ctrlCreate [_controlInstanClass, NEXT_IDC
             _Zen_Dialog_Controls_Local pushBack [_controlID, _control, ([_controlID] call Zen_HashControlData)];
 
-            if ((toUpper _controlType) == "LIST") then {
+            if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
                 {
                     if ((toUpper (_x select 0)) == "LIST") then {
                         {
@@ -68,12 +71,21 @@ if !(_doRefresh) then {
                 } forEach _controlBlocks;
             };
 
+            if (toUpper _controlType in ["LIST","DROPLIST"]) then {
+                _control lbSetCurSel 0;
+            };
+
+            if (toUpper _controlType in ["SLIDER"]) then {
+                _control sliderSetPosition 0;
+                _control sliderSetSpeed [1, 5];
+            };
+
             {
                 _blockID = _x select 0;
                 _data = _x select 1;
                 switch (toUpper _blockID) do {
                     case "FONTCOLORSELECTED": {
-                        if ((toUpper _controlType) == "LIST") then {
+                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetSelectColor [_i, [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP]];
                             };
@@ -81,8 +93,32 @@ if !(_doRefresh) then {
                             _control ctrlSetActiveColor [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP];
                         };
                     };
+                    case "PICTURE": {
+                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
+                            for "_i" from 0 to (lbSize _control - 1) do {
+                                _control lbSetPicture [_i, _data select _i];
+                            };
+                        };
+                    };
+                    case "PICTURECOLOR": {
+                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
+                            for "_i" from 0 to (lbSize _control - 1) do {
+                                _control lbSetPictureColor [_i, [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP]];
+                            };
+                        };
+                    };
+                    case "PICTURECOLORSELECTED": {
+                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
+                            for "_i" from 0 to (lbSize _control - 1) do {
+                                _control lbSetPictureColorSelected [_i, [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP]];
+                            };
+                        };
+                    };
                     case "FOREGROUNDCOLOR": {
                         _control ctrlSetForegroundColor [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP];
+                    };
+                    case "SLIDERPOSITIONS": {
+                        _control sliderSetRange [0, _data max 1];
                     };
                     case "BACKGROUNDCOLOR": {
                         _control ctrlSetBackgroundColor [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP];
@@ -116,7 +152,7 @@ if !(_doRefresh) then {
                         _control ctrlSetFontHeight _data / FONT_DIVISION;
                     };
                     case "FONTCOLOR": {
-                        if ((toUpper _controlType) == "LIST") then {
+                        if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetColor [_i, [(_data select 0) / COLOR_STEP, (_data select 1) / COLOR_STEP, (_data select 2) / COLOR_STEP, (_data select 3) / COLOR_STEP]];
                             };
@@ -126,7 +162,6 @@ if !(_doRefresh) then {
                     };
                     case "POSITION": {
                         _control ctrlSetPosition [(_data select 0) * GRID_DIVISION, (_data select 1) * GRID_DIVISION];
-                        // _control ctrlCommit 0;
                     };
                     case "SIZE": {
                         _oldPos = ctrlPosition _control;
@@ -143,8 +178,12 @@ if !(_doRefresh) then {
                         };
                     };
                     case "SELECTIONFUNCTION": {
-                       if ((toUpper _controlType) == "LIST") then {
-                            _control ctrlSetEventHandler ["LBSelChanged", (format ["['%1', 'SelectionFunction'] spawn Zen_ExecuteEvent", _controlID])]
+                        if ((toUpper _controlType) in ["LIST", "DROPLIST"]) then {
+                            _control ctrlSetEventHandler ["LBSelChanged", (format ["['%1', 'SelectionFunction'] spawn Zen_ExecuteEvent", _controlID])];
+                        };
+
+                        if ((toUpper _controlType) in ["SLIDER"]) then {
+                            _control ctrlSetEventHandler ["SliderPosChanged", (format ["['%1', 'SelectionFunction'] spawn Zen_ExecuteEvent", _controlID])];
                         };
                     };
                     default {};
@@ -152,9 +191,6 @@ if !(_doRefresh) then {
                 _control ctrlCommit 0;
             } forEach _controlBlocks;
 
-            if (_controlInstanClass in ["RscListBox"]) then {
-                _control lbSetCurSel 0;
-            };
             _control ctrlCommit 0;
         };
     };
