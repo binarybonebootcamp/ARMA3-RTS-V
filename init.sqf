@@ -7,7 +7,7 @@ if !(isDedicated) then {
 
 enableSaving [false, false];
 player enableFatigue false;
-player addEventhandler ["Respawn", {player enableFatigue false}];
+player addEventhandler ["Respawn", {player enableFatigue false;}];
 RTS_Intro_Titletext_Code = {titleText [format ["%1", "-= RTS V =-\nWarGame\nFor Arma 3"], "PLAIN DOWN" , .5]};
 call RTS_Intro_Titletext_Code;
 [] execVM "briefing.sqf";
@@ -65,7 +65,7 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
     // [] exec "vicpoint\rts-vpInit.sqs";
 // };
 
-execVM "digitalLoadout\client.sqf";
+[false] execVM "digitalLoadout\client.sqf";
 // Data structure for custom squads, this is local to each player and side specific
 // indexes pair with names/colors, 0 - Alpha, etc.
 RTS_Custom_Squads_Assets = [[], [], [], []];
@@ -118,6 +118,7 @@ diag_log date;
 WestFC = 0;
 EastFC = 0;
 civFC = 0;
+// ResourceTotal = 20*32;
 
 0 = [] spawn Zen_RTS_SubTerritoryManager;
 
@@ -208,10 +209,9 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
         }; \
     }];
 
-#define BUILDING_VISUALS(T, O, S) \
+#define BUILDING_VISUALS(T, O) \
     _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
     _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
-    _building setVariable ["Zen_RTS_StrategicBuildingSide", S, true]; \
     _building setVectorUp (surfaceNormal _spawnPos); \
     _height = ZEN_STD_OBJ_BBZ(_building); \
     ZEN_STD_OBJ_TransformATL(_building, 0, 0, -( _height)) \
@@ -222,7 +222,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
         _building setPosASL ((getPosASL _building) vectorAdd [0, 0, _heightStep]); \
     };
 
-#define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T) \
+#define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T, S) \
     if !(alive _building) exitWith { \
         0 = [(_buildingObjData select 1)] spawn { \
             sleep 5; \
@@ -234,12 +234,13 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
     _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
-    (RTS_Repair_Queue select ([west, east] find (_building getVariable "Zen_RTS_StrategicBuildingSide"))) pushBack _building; \
+    _building setVariable ["Zen_RTS_StrategicBuildingSide", S, true]; \
+    (RTS_Repair_Queue select ([west, east] find S)) pushBack _building; \
     _building addEventHandler ["Killed", { \
         0 = _this spawn { \
             _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
             _buildingObjData = [T, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal; \
-            diag_log T; \
+            diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH  " + T + "  " + str time); \
             diag_log _buildingObjData; \
             if (count _buildingObjData > 0) then { \
                 diag_log (_buildingObjData select 1); \
@@ -258,9 +259,12 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
             if !(isNull _deadBuilding) then { \
                 diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH found dead building" + str _deadBuilding); \
                 _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
-                _deadBuilding setVariable ["Zen_RTS_StrategicType", "Building", true]; \
+                _deadBuilding setVariable ["Zen_RTS_StrategicType", "BuildingRuins", true]; \
+                _deadBuilding setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
                 _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
                 _deadBuilding setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
+                _deadBuilding setVariable ["Zen_RTS_StrategicRuinsType", T, true]; \
+                _deadBuilding setVariable ["Zen_RTS_StrategicBuildingSide", S, true]; \
             } else { \
                 diag_log (" ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH  Destroyed Building" + str _building + " has no dead object"); \
             }; \

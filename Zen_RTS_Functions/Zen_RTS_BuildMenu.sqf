@@ -97,8 +97,8 @@
         ctrlSetText [_idRepair, "Repair Building"];
         ctrlSetText [_idRecycle, "Recycle"];
 
-        buttonSetAction [_idRepair, "['Repair', ['Building']] spawn Zen_RTS_RecycleRepair"];
-        buttonSetAction [_idRecycle, "['Recycle', ['Building', 'Asset']] spawn Zen_RTS_RecycleRepair"];
+        buttonSetAction [_idRepair, "['Repair', ['Building', 'BuildingRuins']] spawn Zen_RTS_RecycleRepair"];
+        buttonSetAction [_idRecycle, "['Recycle', ['Building', 'Asset', 'BuildingRuins']] spawn Zen_RTS_RecycleRepair"];
     };
 
     if (((_buildingTypeData select 4) isEqualTo "HQ") || {((_buildingTypeData select 4) isEqualTo "Recycle Plant")}) then {

@@ -44,8 +44,8 @@ Zen_RTS_F_East_TankFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_TankFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_i_Garage_V1_F", -0.5, East)
-    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_TankFactory)
+    BUILDING_VISUALS("Land_i_Garage_V1_F", -0.5)
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_TankFactory_deadBuilding)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["<img size='3'image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];

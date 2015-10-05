@@ -32,8 +32,8 @@ Zen_RTS_F_East_HQConstructor = {
     ZEN_FMW_MP_RENonDedicated("Zen_RTS_F_StrategicAddAssetLocal", _args, call)
 
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    BUILDING_VISUALS("Land_Research_HQ_F", -1, East)
-    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_HQ)
+    BUILDING_VISUALS("Land_Research_HQ_F", -1)
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_HQ_deadBuilding)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["Purchase Technologies", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
