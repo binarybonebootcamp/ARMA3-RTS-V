@@ -18,7 +18,6 @@ sleep 1;
     ZEN_FMW_MP_RENonDedicated("Zen_RTS_F_SetMoney", (paramsArray select 0))
 } forEach [West, East];
 
-
 while {true} do {
     sleep 0.9;
     {
@@ -29,7 +28,7 @@ while {true} do {
         _playerData = _dataArray select 3;
         _toRemove = [];
         {
-            if !(isNil "_x" && {!(isNull _x)}) then {
+            if (!(isNil "_x") && {!(isNull _x)}) then {
                 ZEN_FMW_MP_REClient("Zen_RTS_F_ModifyMoney", (_moneyPerMinute / 60), call, _x)
             } else {
                 _toRemove pushBack _forEachIndex;

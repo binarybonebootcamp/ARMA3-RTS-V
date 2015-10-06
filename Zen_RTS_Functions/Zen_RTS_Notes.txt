@@ -11,9 +11,9 @@ Strategic
         // CJ/MCU vehicle recycling and repairing
             // Correct CJ, MCU, player recycle repair abilities
             // Make sure there is no crew
-            repair dead objects
+            // repair dead objects
                 // assets
-                buildings
+                // buildings
                 // run building/asset constructor equivalent
                 // CJ repair menu action
         // AI automated recycle/repair
@@ -57,8 +57,8 @@ Strategic
         // buildings come out of ground
         // update to current level when rebuilding
         // handle building destroyed while constructing
-        tweak building heights
         building placement shows full building
+        tweak building heights
 
         Barracks
             // Level 1: standard infantry (rifleman, AR, etc.)
@@ -153,6 +153,7 @@ Economy
         resources = (resource per flag) * (flag count)  + (resource per territory) * (territory count) + (number of miners) * (resource per second per miner) * (1 second)
         time = (max time) - resources / (resources maximum) * (max time - min time) ??
     add JIP player to money data
+    handle respawned player money data
 AI
     // rewrite rts-init-commandermonitor.sqs in SQF
     // Chain of command selection queue
@@ -178,7 +179,7 @@ Loadouts
         sniper
     assign money value
 Known MP Issues
-    Add more debug
+    // Add more debug
     10 second init delay
     buildings coming out of the ground don't sync
     'Build enemy units' technology disappears

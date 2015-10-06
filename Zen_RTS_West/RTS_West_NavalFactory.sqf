@@ -34,8 +34,8 @@ Zen_RTS_F_West_NavalConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_NavalFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_Lighthouse_small_F", -1, West)
-    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_NavalFactory)
+    BUILDING_VISUALS("Land_Lighthouse_small_F", -1)
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_NavalFactory, West)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["<img size='3'  

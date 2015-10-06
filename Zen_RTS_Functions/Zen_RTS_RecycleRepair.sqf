@@ -46,35 +46,57 @@ if (isNull _nearestObj) exitWith {
 };
 
 if (_actionType == "Repair") then {
-    _value = (damage _nearestObj) * (_nearestObj getVariable "Zen_RTS_StrategicValue") * REPAIR_COST_COEFF;
+    if ((_nearestObj getVariable ["Zen_RTS_StrategicType", ""]) == "BuildingRuins") then {
+        _value = (_nearestObj getVariable "Zen_RTS_StrategicValue") * REPAIR_COST_COEFF;
+    } else {
+        _value = (damage _nearestObj) * (_nearestObj getVariable "Zen_RTS_StrategicValue") * REPAIR_COST_COEFF;
+    };
 } else {
     _value = (_nearestObj getVariable "Zen_RTS_StrategicValue") * RECYCLE_COST_COEFF;
 };
 
+#define PROCESS_REPAIR \
+    switch (_nearestObj getVariable ["Zen_RTS_StrategicType", ""]) do { \
+        case "Asset": { \
+            if (damage _nearestObj == 1) then { \
+                _assetType = _nearestObj getVariable "Zen_RTS_StrategicAssetType"; \
+                _pos = getPosATL _nearestObj; \
+                _classname = typeOf _nearestObj; \
+                _dir = getDir _nearestObj; \
+                deleteVehicle _nearestObj; \
+                if (_assetType in [Zen_RTS_BuildingType_West_CJ, Zen_RTS_BuildingType_East_CJ]) then { \
+                    _args = [_assetType, [_pos, 0]]; \
+                    ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicBuildingInvoke", _args, call) \
+                } else { \
+                    _assetData = ([_assetType] call Zen_RTS_StrategicAssetGetData); \
+                    _assetStrRaw = _assetData select 3; \
+                    _vehicle = [_pos, _classname, 0, _dir, true] call Zen_SpawnVehicle; \
+                    ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
+                }; \
+            } else { \
+                _nearestObj setDamage 0; \
+            }; \
+        }; \
+        case "Building": { \
+            _nearestObj setDamage 0; \
+        }; \
+        case "BuildingRuins": { \
+            _type = _nearestObj getVariable "Zen_RTS_StrategicRuinsType"; \
+            _side = _nearestObj getVariable "Zen_RTS_StrategicBuildingSide"; \
+            _pos = getPosATL _nearestObj; \
+            deleteVehicle _nearestObj; \
+            _index = [_type, (RTS_Used_Building_Types select ([west, east] find _side))] call Zen_ValueFindInArray; \
+            _level = RTS_Building_Type_Levels select ([west, east] find _side) select _index; \
+            0 = [_type, [_pos, _level]] call Zen_RTS_StrategicBuildingInvoke; \
+        }; \
+        default { \
+            diag_log ("Zen_RTS_RecycleRepair + " + str time + "  " + str _this + " Invalid strategic type  " + str _nearestObj + "  " + str (_nearestObj getVariable ["Zen_RTS_StrategicType", ""])); \
+        }; \
+    };
+
 if (_isAI) then {
     if (_actionType == "Repair") then {
-        // if (playerMoney > _value) then {
-            // playerMoney = playerMoney - _value;
-            if (damage _nearestObj == 1) then {
-                _assetType = _nearestObj getVariable "Zen_RTS_StrategicAssetType";
-                _pos = getPosATL _nearestObj;
-                _classname = typeOf _nearestObj;
-                _dir = getDir _nearestObj;
-                deleteVehicle _nearestObj;
-
-                if (_assetType in [Zen_RTS_BuildingType_West_CJ, Zen_RTS_BuildingType_East_CJ]) then {
-                    _args = [_assetType, [_pos, 0]];
-                    ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicBuildingInvoke", _args, call)
-                } else {
-                    _assetData = ([_assetType] call Zen_RTS_StrategicAssetGetData);
-                    _assetStrRaw = _assetData select 3;
-                    _vehicle = [_pos, _classname, 0, _dir, true] call Zen_SpawnVehicle;
-                    ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
-                };
-            } else {
-                _nearestObj setDamage 0;
-            };
-        // };
+        PROCESS_REPAIR
     } else {
         if (({alive _x} count (crew _nearestObj)) == 0) then {
             // playerMoney = playerMoney + _value;
@@ -109,25 +131,9 @@ if (_isAI) then {
             if (playerMoney > _value) then {
                 playerMoney = playerMoney - _value;
                 player groupChat ("You have paid: $" + (str round _value) + " to repair this object.");
-                if (damage _nearestObj == 1) then {
-                    _assetType = _nearestObj getVariable "Zen_RTS_StrategicAssetType";
-                    _pos = getPosATL _nearestObj;
-                    _classname = typeOf _nearestObj;
-                    _dir = getDir _nearestObj;
-                    deleteVehicle _nearestObj;
+                
+                PROCESS_REPAIR
 
-                    if (_assetType in [Zen_RTS_BuildingType_West_CJ, Zen_RTS_BuildingType_East_CJ]) then {
-                        _args = [_assetType, [_pos, 0]];
-                        ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicBuildingInvoke", _args, call)
-                    } else {
-                        _assetData = ([_assetType] call Zen_RTS_StrategicAssetGetData);
-                        _assetStrRaw = _assetData select 3;
-                        _vehicle = [_pos, _classname, 0, _dir, true] call Zen_SpawnVehicle;
-                        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH
-                    };
-                } else {
-                    _nearestObj setDamage 0;
-                };
             } else {
                 player groupChat ("Insufficient funds, you need $" + (str round _value) + " to repair this object.");
             };
