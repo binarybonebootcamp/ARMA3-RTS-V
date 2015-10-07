@@ -399,6 +399,16 @@
 		sound[] = {"\ZKS\Sound\Girl\scream_08.ogg",0.65, 1.0};
 		titles[] = {};
 	};
+	class CfgMusic
+{
+	tracks[]={rtsTheme};
+
+	class rtsTheme
+	{
+		name = "rtsTheme";
+		sound[] = {\Music\rtsTheme.ogg, db+0.8, 1.0};
+	};
+};
 
 
 
