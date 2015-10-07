@@ -1,9 +1,8 @@
 #define IDListGroup	1020
 
- class RTS_MoneyLabel : RTS_ActiveText
+ class RTS_MoneyLabel : RTS_Text
     {
         idc = 1037;
-		style = ST_LEFT;
         x = 0.02;
         y = 0.10;
         w = 0.25;
@@ -13,10 +12,9 @@
         
     };
 
-class RTS_SupplyLabel : RTS_ActiveText
+class RTS_SupplyLabel : RTS_Text
     {
         idc = 1038;
-		style = ST_LEFT;
         x = 0.02;
         y = 0.20;
         w = 0.25;
@@ -25,10 +23,9 @@ class RTS_SupplyLabel : RTS_ActiveText
         text = "";
         
     };
-    class RTS_FPSLabel : RTS_ActiveText
+    class RTS_FPSLabel : RTS_Text
     {
         idc = 666;
-		style = ST_LEFT;
         x = 0.02;
         y = 0.30;
          w = 0.25;
@@ -47,14 +44,14 @@ class RTS_SupplyLabel : RTS_ActiveText
 //         w = 0.25;
 //        h = 0.25;
 //        sizeEx = 0.025;
-//        colorText[] = {0.02, 0.2, 0.7, 0.6};
+//        colorText[] = COLOR_HALF_BLUE;
 //        rowHeight = 0.025;
 //        };
 
 //class RTS_StatBackground : RTS_Text
 //    {
-//        colorBackground[] = {0,0,0,0};
-//        color[] = {0,0,0,0};
+//        colorBackground[] = COLOR_TRANSPARENT;
+//        color[] = COLOR_TRANSPARENT;
 //        text = ;
 //        x = "(SafeZoneW + SafeZoneX) - (0.27)";
 //        y = "SafeZoneY + 0.55";
@@ -63,26 +60,20 @@ class RTS_SupplyLabel : RTS_ActiveText
 //    };
 
 
-class RTS_QueueList : RTS_ListBox
-    {
-        idc = 600;
-        x = 0.0;
-        y = 0.0;
-        w = 0.0;
-        h = 0.0;
-        colorBackground[] = {0,0,0,0};
-        color[] = {0,0,0,0};
-        sizeEx = 0.3;
-        rowHeight = 0.0;
-   };
+//class RTS_QueueList : RTS_ListBox
+//    {
+//        idc = 600;
+//        sizeEx = 0.3;
+//        rowHeight = 0.3;
+//   };
 
-class RTS_LabelBarracksQueue : RTS_ActiveText
+class RTS_LabelBarracksQueue : RTS_Text
     {
         idc = 1030;
         x = 0.02;
         y = 0.60;
 		sizeEx = 0.025;
-        colorText[] = {0, 1, 0, 1};
+        colorText[] = COLOR_LIMEGREEN;
         text = "Empty";
 
     };
@@ -90,33 +81,20 @@ class RTS_LabelBarracksQueue : RTS_ActiveText
 class RTS_ButtonBarracksQueue : RTS_Button
     {
         idc = 1031;
-        x = 0.15;
-        y = 0.60;
-		 w = 0.07;
-		h = 0.05;
-		colorDisabled[] = {0,0,0,0.3};
-        colorBackground[] = { 0, 0, 0, 0 };
-	    colorText[] = { 1, 0, 0, 1 };
-		color[] = {1,1,1,0.8};
-	    colorActive[] = { 1, 0.2, 0.2, 1 };
-        soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
-        soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
-        soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
-        soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.20,1};
-	    action = "hint ""Good choice!""";
-        sizeEx = 0.020;
+        x = 0.02;
+        y = 0.65;
+        sizeEx = 0.030;
+		colorText[] = COLOR_HALF_RED;
         text = "Cancel";
-        // action = "[""Sld""] exec ""rts-build-cancel.sqs""";
 
     };
 
-class RTS_LabelLightQueue : RTS_ActiveText
+/*class RTS_LabelLightQueue : RTS_Text
     {
         idc = 1032;
         x = 0.02;
         y = 0.65;
 		sizeEx = 0.025;
-        colorText[] = {0, 1, 1, 1};
         text = "Empty";
     };
 
@@ -132,28 +110,22 @@ class RTS_ButtonLightQueue : RTS_Button
 	    colorText[] = { 1, 0, 0, 1 };
 		color[] = {1,1,1,0.8};
 	    colorActive[] = { 1, 0.2, 0.2, 1 };
-        soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
-        soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
-        soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
-        soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.20,1};
-	    action = "hint ""Good choice!""";
         sizeEx = 0.020;
         text = "Cancel";
         // action = "[""Vcl""] exec ""rts-build-cancel.sqs""";
     };
 
-class RTS_LabelHeavyQueue : RTS_ActiveText
+class RTS_LabelHeavyQueue : RTS_Text
     {
         idc = 1034;
         x = 0.02;
         y = 0.70;
 		sizeEx = 0.025;
-        colorText[] = {0, 1, 1, 1};
         text = "Empty";
     };
 
-class RTS_ButtonHeavyQueue : RTS_Button
-    {
+class RTS_ButtonHeavyQueue : RTS_Button 
+{
         idc = 1035;
         x = 0.15;
         y = 0.70;
@@ -164,23 +136,17 @@ class RTS_ButtonHeavyQueue : RTS_Button
 	    colorText[] = { 1, 0, 0, 1 };
 		color[] = {1,1,1,0.8};
 	    colorActive[] = { 1, 0.2, 0.2, 1 };
-        soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
-        soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
-        soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
-        soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.20,1};
-	    action = "hint ""Good choice!""";
         sizeEx = 0.020;
         text = "Cancel";
         // action = "[""Vcl""] exec ""rts-build-cancel.sqs""";
     };
 
-class RTS_LabelAirQueue : RTS_ActiveText
+class RTS_LabelAirQueue : RTS_Text
     {
         idc = 1036;
         x = 0.02;
         y = 0.55;
 		sizeEx = 0.025;
-        colorText[] = {0, 1, 1, 1};
         text = "Empty";
 
     };
@@ -197,11 +163,6 @@ class RTS_ButtonAirQueue : RTS_Button
 	    colorText[] = { 1, 0, 0, 1 };
 		color[] = {1,1,1,0.8};
 	    colorActive[] = { 1, 0.2, 0.2, 1 };
-        soundPush[] = {"a3\sounds_f\weapons\closure\sfx1.wss", 0.1, 1};
-        soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss", 0.2, 1};
-        soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss", 0.2, 1};
-        soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.20,1};
-	    action = "hint ""Good choice!""";
         sizeEx = 0.020;
         text = "Cancel";
         // action = "[""Air""] exec ""rts-build-cancel.sqs""";
@@ -229,7 +190,7 @@ class RTS_ButtonAirQueue : RTS_Button
     //	sizeEx = 0.020;
         //text = "Cancel";
     //	action = "[""Vcl""] exec ""rts-build-cancel.sqs""";
-    //};
+*/    //};
 class RTS_ListBackground : RTS_Text
     {
         text = "";
@@ -237,9 +198,7 @@ class RTS_ListBackground : RTS_Text
         y = 0.0;
         w = 0.58;
         h = 0.50;
-		font = FontS;
 		sizeEx = 0.35;
-        colorText[] = {1,1,1,1};
 		
     };
 
@@ -261,7 +220,6 @@ class RTS_ListBackground : RTS_Text
         y = 0.1;
         w = 0.30;
         h = 0.03;
-		font = FontTITLE;
         text = "RESEARCH STATS";
     };
 
@@ -305,14 +263,13 @@ class DlgStatus
         class CENTER_FRAME_TITLE : RTS_Text
         {
         idc = 1050;
-            style = ST_FRAME;
+            style = RTS_ST_FRAME;
             x = 0.22;
             y = 0.0;
             w = 0.58;
             h = 0.99;
-            font = FontTITLE;
-            colorText[] = {1, 0, 0, 1};
-            colorBackground[] = {0,0,0,0};
+            colorText[] = COLOR_HALF_RED;
+            colorBackground[] = COLOR_TRANSPARENT;
             sizeEx = 0.050;
             text = " RTS V Mission Status";
     };
@@ -321,15 +278,14 @@ class DlgStatus
    class TOP_RIGHT_TITLE : RTS_Text
     {
             idc = -1;
-            style = ST_FRAME;
+            style = RTS_ST_FRAME;
             x = 0.8;
             y = 0.0;
             w = 0.2;
             h = 0.99;
             text = "WarGames";
-            font = FontTITLE;
-            colorText[] = {1,0.7,0,1};
-            colorBackground[] = {0.5, 0.5, 0.5, 0.6};
+            colorText[] = RTSV_ORANGEFRAME;
+            colorBackground[] = COLOR_TRANSPARENT;
             sizeEx = 0.030;
     };
 
@@ -339,39 +295,36 @@ class DlgStatus
             x = 0.80;
             y = 0.12;
             w = 0.2;
-            h = 0.10;
+            h = 0.15;
             colorText[] = {};
             text = "pictures\rtspatch1.paa";
-			
-			
+						
     };
 
     class RIGHT_FRAME_TEXT2 : RTS_Text
     {
         idc = 52;
-        colorBackground[] = {1,0.7,0,1};
         text = "UNIT CONTROL";
         x = 0.80;
         y = 0.35;
         w = 0.2;
         h = 0.1;
-		font = FontTITLE;
-        style = ST_CENTER;
+        style = RTS_ST_CENTER;
+		colorBackground[] = RTSV_ORANGEFRAME;
         sizeEx = 0.03;
     };
 
     class TOP_left_TITLE : RTS_Text
     {
             idc = -1;
-            style = ST_FRAME;
+            style = RTS_ST_FRAME;
             x = 0.02;
             y = 0.0;
             w = 0.2;
             h = 0.99;
             text = "INFOMATION";
-            font = FontTITLE;
-            colorText[] = {1,0.7,0,1};
-            colorBackground[] = {0.5, 0.5, 0.5, 0.6};
+            colorText[] = RTSV_ORANGEFRAME;
+            colorBackground[] = COLOR_TRANSPARENT;
             sizeEx = 0.030;
     };
 
@@ -399,26 +352,26 @@ class DlgStatus
            
         };
 
-        class Button_Help : RTS_Button2
+        class Button_Help : RTS_ShortcutButton
         {
            idc = -1;
            x = 0.02;
            y = 0.99;
-		   colorText[] = {1, 0, 0, 1};
+		   colorText[] = COLOR_HALF_RED;
             text = "help";
             action = "[] exec ""rts-z-helpmenu.sqs""";
         };
 
-        class Button_Select : RTS_Button
-        {
-           idc = 100005;
-           x = 0.80;
-           y = 0.60;
-           sizeEx = 0.030;
-		   colorText[] = {1, 0, 0, 1};
-           text = "View Units";
-           action = "[1000] exec ""rts-build-menu.sqs""";
-        };
+        //class Button_Select : RTS_Button
+        //{
+        //   idc = -1;
+        //   x = 0.8;
+        //   y = 0.21;
+        //   sizeEx = 0.030;
+		//   colorText[] = COLOR_HALF_RED;
+        //   text = "View Units";
+        //   action = "[1000] exec ""rts-build-menu.sqs""";
+       // };
 
         class SOLDIERS_TITLE : RTS_SmallTitleBlack
     {
@@ -427,14 +380,12 @@ class DlgStatus
         y = 0.610;
         w = 0.40;
         h = 0.05;
-		font = FontTITLE;
         text = "SOLDIERS IN YOUR GROUP";
     };
 
         class SOLDIERS_LIST : RTS_ListBox
         {
         idc = IDListGroup;
-		type = CT_LISTBOX;
         x = 0.22;
         y = 0.660;
         w = 0.58;
@@ -448,7 +399,8 @@ class DlgStatus
         idc = 1010;
         x = 0.80;
         y = 0.510;
-        sizeEx = 0.020;
+		colorText[] = COLOR_HALF_RED;
+        sizeEx = 0.030;
         text = "ViewDistance";
         action = "[1015] call Zen_RTS_SetViewDistance""";
         };
@@ -456,7 +408,6 @@ class DlgStatus
         class List_Viewdistance : RTS_Combo
         {
         idc = 1015;
-        type = CT_COMBO;
         x = "(SafeZoneW + SafeZoneX) - (0.71)";
         y = 0.510;
         w = 0.08;
@@ -470,7 +421,8 @@ class DlgStatus
             idc = -1;
             x = 0.80;
             y = 0.560;
-            sizeEx = 0.020;
+			colorText[] = COLOR_HALF_RED;
+            sizeEx = 0.030;
             text = "Set AI Flight Height";
             action = "[1020,1040,1] exec ""rts-units-orders.sqs""";
         };
@@ -478,18 +430,17 @@ class DlgStatus
         class List_Heights : RTS_Combo
         {
             idc = 1040;
-            type = CT_COMBO;
             x = "(SafeZoneW + SafeZoneX) - (0.71)";
             y = 0.560;
             w = 0.08;
             h = 0.04;
             wholeHeight = 0.3;
             sizeEx = 0.030;
-            onMouseButtonDblClick= "[1020,1040,1] exec ""rts-units-orders.sqs""";
+            action= "[1020,1040,1] exec ""rts-units-orders.sqs""";
 
     };
 
-        class Button_refresh : RTS_Button2
+        class Button_refresh : RTS_ShortcutButton
         {
             idc = 100003;
             x = 0.80;
@@ -499,70 +450,69 @@ class DlgStatus
             action = "[] exec ""rts-squads-Menu.sqs""";
         };
 
-        class BUTTON_PUSH : RTS_Button2
+        class BUTTON_PUSH : RTS_ShortcutButton
          {
             idc = -1;
             x = 0.80;
             y = 0.660;
             sizeEx = 0.030;
-            colorText[] = {0, 1, 1, 1};
+            colorText[] = COLOR_CYAN;
             text = "PUSH";
             action = "closeDialog 0; call RTS_FNC_PUSH";
         };
-        class BUTTON_UPRIGHT : RTS_Button2
+        class BUTTON_UPRIGHT : RTS_ShortcutButton
 		{
             idc = -1;
             x = 0.80;
             y = 0.710;
             sizeEx = 0.030;
-            colorText[] = {0, 1, 1, 1};
+            colorText[] = COLOR_CYAN;
             text = "flip vehicle";
             action = "closeDialog 0; call RTS_FNC_flipACTIONS";
         };
-         class Button_repair : RTS_Button2
+         class Button_repair : RTS_ShortcutButton
 		 {
             idc = 200007;
             x = 0.80;
             y = 0.760;
             sizeEx = 0.030;
-            colorText[] = {0, 1, 0, 1};
+            colorText[] = COLOR_LIMEGREEN;
             text = "repair";
             action = [];
         };
-        class Button_Release : RTS_Button2
+        class Button_Release : RTS_ShortcutButton
 		{
             idc = 1025;
             x = 0.80;
             y = 0.810;
             sizeEx = 0.030;
-            colorText[] = {0, 1, 0, 1};
+            colorText[] = COLOR_LIMEGREEN;
             text = "Disband Unit";
             action = "[1020] exec ""rts-unit-release.sqs""";
         };
-        class BUTTON_CANCEL : RTS_Button2
+        class BUTTON_CANCEL : RTS_ShortcutButton
         {
         idc = -1;
-		style = 2096;
         x = 0.8;
         y = 0.99;
 		sizeEx = 30;
-        text = "Cancel";
+        text = "EXIT";
         action = "closeDialog 0";
         };
         class Label_Money : RTS_MoneyLabel {};
         class Label_Supply : RTS_SupplyLabel {};
         class Label_FPS : RTS_FPSLabel {};
         //class List_Stats : RTS_StatList {};
-        class List_Queue : RTS_QueueList {};
+        //class List_Queue : RTS_QueueList {};
 
         class LabelBarracksQueue : RTS_LabelBarracksQueue {};
         class ButtonBarracksQueue : RTS_ButtonBarracksQueue {};
-        class LabelLightQueue : RTS_LabelLightQueue {};
-        class ButtonLightQueue : RTS_ButtonLightQueue {};
-        class LabelHeavyQueue : RTS_LabelHeavyQueue {};
-        class ButtonHeavyQueue : RTS_ButtonHeavyQueue {};
-        class LabelAirQueue : RTS_LabelAirQueue {};
-        class ButtonAirQueue : RTS_ButtonAirQueue {};
+        //class LabelLightQueue : RTS_LabelLightQueue {};
+        //class ButtonLightQueue : RTS_ButtonLightQueue {};
+       // class LabelHeavyQueue : RTS_LabelHeavyQueue {};
+       // class ButtonHeavyQueue : RTS_ButtonHeavyQueue {};
+       // class LabelAirQueue : RTS_LabelAirQueue {};
+       // class ButtonAirQueue : RTS_ButtonAirQueue {};
         //class LabelNavalQueue : RTS_LabelNavalQueue {};
         //class ButtonNavalQueue : RTS_ButtonNavalQueue {};
 
@@ -586,14 +536,13 @@ class DlgBuild
     class CENTER_FRAME_TITLE : RTS_Text
     {
             idc = 1050;
-            style = ST_FRAME;
+            style = RTS_ST_FRAME;
             x = 0.22;
             y = 0.0;
             w = 0.58;
             h = 0.1;
-            font = FontTITLE;
-            colorText[] = {1, 0, 0, 1};
-            colorBackground[] = {0,0,0,0};
+            colorText[] = COLOR_HALF_RED;
+            colorBackground[] = COLOR_TRANSPARENT;
             sizeEx = 0.050;
             text = " COMMAND & CONTROL ";
     };
@@ -601,14 +550,13 @@ class DlgBuild
     class TOP_RIGHT_TITLE : RTS_Text
     {
             idc = -1;
-            style = ST_FRAME;
+            style = RTS_ST_FRAME;
             x = 0.8;
             y = 0.0;
             w = 0.2;
             h = 0.99;
-            font = FontTITLE;
-            colorText[] = {1,0.7,0,1};
-            colorBackground[] = {0,0,0,0};
+            colorText[] = RTSV_ORANGEFRAME;
+            colorBackground[] = COLOR_TRANSPARENT;
             sizeEx = 0.030;
             text = "R T S - V";
     };
@@ -626,22 +574,21 @@ class DlgBuild
 	class TOP_left_TITLE : RTS_Text
     {
             idc = -1;
-            style = ST_FRAME;
+            style = RTS_ST_FRAME;
             x = 0.02;
             y = 0.0;
             w = 0.2;
             h = 0.99;
             text = "INFOMATION";
-            font = FontTITLE;
-            colorText[] = {1,0.7,0,1};
-            colorBackground[] = {0,0,0,0};
+            colorText[] = RTSV_ORANGEFRAME;
+            colorBackground[] = COLOR_TRANSPARENT;
             sizeEx = 0.030;
 	};		
 	class TOP_left_TITLE2 : RTS_Text
 	{
 	        idc = -1;
-            style = ST_FRAME;
-            colorText[] = {1, 0, 0, 1};
+            style = RTS_ST_FRAME;
+            colorText[] = COLOR_HALF_RED;
             x = 0.02;
             y = 0.0;
             w = 0.2;
@@ -677,7 +624,6 @@ class DlgBuild
             {
             class List_CrewCount : RTS_Combo {
                 idc = 2045;
-                type = CT_COMBO;
                 x = "(SafeZoneW + SafeZoneX) - (0.71)";
                 y = 0.410;
                 w = 0.08;
@@ -691,14 +637,14 @@ class DlgBuild
                     idc = 2000;
                     onButtonClick = "uiNamespace setVariable ['2000', _this select 0] execVM ""rts-build-unit.sqf""";
                 };
-            class Button_Back : RTS_Button2
+					class Button_Back : RTS_Button
                 {
                     idc = 2001;
                     x = 0.8;
                     y = 0.15;
-					colorText[] = {1, 0, 0, 1};
-                    text = "<<Back to Main Menu";
-                    action = "[Player,Player,0] exec ""rts-alpha-menu.sqs""";
+					colorText[] = COLOR_HALF_RED;
+                    text = "Player Menu";
+                    action = "[player, player, 0] call Zen_RTS_AlphaMenu";
                 };
 
             class Button_Build : RTS_Button
@@ -707,7 +653,7 @@ class DlgBuild
                     x = 0.8;
                     y = 0.2;
                     text = "";
-					colorText[] = {1, 0, 0, 1};
+					colorText[] = COLOR_HALF_RED;
                     action = "[2000,0,False,False] execVM ""rts-build-unit.sqf""";
                 };
 
@@ -718,7 +664,7 @@ class DlgBuild
                     x = 0.8;
                     y = 0.25;
                     text = "";
-					colorText[] = {1, 0, 0, 1};
+					colorText[] = COLOR_HALF_RED;
                         //[ListID,ListID2,Manned,Squad]
                     action = "[2000,0,True,False] execVM ""rts-build-unit.sqf""";
                 };
@@ -739,7 +685,6 @@ class DlgBuild
                     y = 0.35;
                     w = 0.18;
                     h = 0.15;
-                    font = PuristaMedium;
 
         };
 
@@ -749,7 +694,7 @@ class DlgBuild
                     x = 0.8;
                     y = 0.51;
                     text = "";
-					colorText[] = {1, 0, 0, 1};
+					colorText[] = COLOR_HALF_RED;
                     action = "[2000,2025,True,True] execVM ""rts-build-unit.sqf""";
                 };
 
@@ -761,16 +706,14 @@ class DlgBuild
                     w = 0.20;
                     h = 0.35;
                     sizeEx = 0.02;
-                    font = PuristaMedium;
         };
 
-            class Button_Exit : RTS_Button2
+            class Button_Exit : RTS_ShortcutButton
                 {
                     idc = -1;
-					style = ST_PICTURE;
                     x = 0.8;
                     y = 0.99;
-					colorText[] = {1, 0, 0, 1};
+					colorText[] = COLOR_HALF_RED;
                     text = "Exit";
                     action = "closeDialog 0";
                 };
@@ -782,12 +725,12 @@ class DlgBuild
 
             class LabelBarracksQueue : RTS_LabelBarracksQueue {};
             class ButtonBarracksQueue : RTS_ButtonBarracksQueue {};
-            class LabelLightQueue : RTS_LabelLightQueue {};
-            class ButtonLightQueue : RTS_ButtonLightQueue {};
-            class LabelHeavyQueue : RTS_LabelHeavyQueue {};
-            class ButtonHeavyQueue : RTS_ButtonHeavyQueue {};
-            class LabelAirQueue : RTS_LabelAirQueue {};
-            class ButtonAirQueue : RTS_ButtonAirQueue {};
+            //class LabelLightQueue : RTS_LabelLightQueue {};
+            //class ButtonLightQueue : RTS_ButtonLightQueue {};
+            //class LabelHeavyQueue : RTS_LabelHeavyQueue {};
+            //class ButtonHeavyQueue : RTS_ButtonHeavyQueue {};
+            //class LabelAirQueue : RTS_LabelAirQueue {};
+            //class ButtonAirQueue : RTS_ButtonAirQueue {};
             //class LabelNavalQueue : RTS_LabelAirQueue {};
             //class ButtonNavalQueue : RTS_ButtonAirQueue {};
 
@@ -806,13 +749,12 @@ class DlgRespawn
                 class List_Background : RTS_Text
                     {
                         idc = -1;
-                        style = ST_CENTER;
+                        style = RTS_ST_CENTER;
                         x = 0.78;
                         y = 0.55;
                         w = 0.2;
                         h = 0.3;
-                        font = PuristaMedium;
-                        colorText[] = {1, 1, 1, 1};
+                        colorText[] = COLOR_SNOW;
                         sizeEx = 0.03;
                         text = "";
                     };
@@ -825,27 +767,25 @@ class DlgRespawn
                 class LABEL_RESPAWN : RTS_Text
                     {
                         idc = -1;
-                        style = ST_CENTER;
+                        style = RTS_ST_CENTER;
                         x = 0.25;
                         y = 0.05;
-                        w = 0.9;
+                        w = 0.5;
                         h = 0.07;
-                        font = PuristaMedium;
-                        colorText[] = {1, 1, 1, 1};
-                        sizeEx = 0.08;
+                        colorText[] = COLOR_SNOW;
+                        sizeEx = 0.05;
                         text = "Choose Deployment Location";
                     };
 
                 class LABEL_LOCATION : RTS_Text
                     {
                         idc = 1310;
-                        style = ST_CENTER;
+                        style = RTS_ST_CENTER;
                         x = 0.25;
                         y = 0.9;
                         w = 0.5;
                         h = 0.07;
-                        font = PuristaMedium;
-                        colorText[] = {0.02, 0.2, 0.7, 0.6};
+                        colorText[] = COLOR_HALF_BLUE;
                         sizeEx = 0.05;
                         text = "";
                     };
@@ -853,13 +793,12 @@ class DlgRespawn
                 class LABEL_TIMERTEXT : RTS_Text
                     {
                         idc = -1;
-                        style = ST_LEFT;
+                        style = RTS_ST_LEFT;
                         x = 0.78;
                         y = 0.5;
                         w = 0.15;
                         h = 0.05;
-                        font = PuristaMedium;
-                        colorText[] = {1, 1, 1, 1};
+                        colorText[] = COLOR_SNOW;
                         sizeEx = 0.03;
                         text = "Deploy in:";
                     };
@@ -867,13 +806,12 @@ class DlgRespawn
                 class LABEL_TIMERNUMBER : RTS_Text
                     {
                         idc = 1311;
-                        style = ST_RIGHT;
+                        style = RTS_ST_RIGHT;
                         x = 0.93;
                         y = 0.5;
                         w = 0.05;
                         h = 0.05;
-                        font = PuristaMedium;
-                        colorText[] = {1, 1, 1, 1};
+                        colorText[] = COLOR_SNOW;
                         sizeEx = 0.03;
                         text = "0";
                     };
@@ -883,21 +821,21 @@ class DlgRespawn
                         idc = 1312;
                         x = 0.78;
                         y = 0.55;
-                        //w = 0.2;
-                        //h = 0.3;
-                        font = PuristaMedium;
+                        w = 0.2;
+                        h = 0.3;
                         sizeEx = 0.03;
-                        colorText[] = {1, 0, 0, 1};
+                        colorText[] = COLOR_HALF_RED;
                   };
 
-                class BUTTON_RESPAWN : RTS_Button2
+                class BUTTON_RESPAWN : RTS_Button
                     {
                         idc = 1313;
-                        x = 0.78;
+                        x = 0.83;
                         y = 0.9;
+                        w = 0.1;
+                        h = 0.05;
                         sizeEx = 0.03;
-                        font = PuristaMedium;
-                        colorText[] = {1, 1, 1, 1};
+                        colorText[] = COLOR_SNOW;
                         text = "Deploy";
                         action = "rts_respawn = TRUE"; 
                     };
@@ -937,22 +875,21 @@ class DlgConfirm {
 
     class CONFIRM_BACKGROUND : RTS_Text {
         idc = -1;
-        style = ST_CENTER;
+        style = RTS_ST_CENTER;
         x = 0.325;
         y = 0.375;
         w = 0.40;
         h = 0.25;
-        font = tahomaB;
-        colorText[] = {0, 0, 0, 1};
-        colorBackground[] = {.25, .25, .25, .75};
+        colorText[] = COLOR_BLACK;
+        colorBackground[] = RTSV_HALFBLACKBACKROUND;
         sizeEx = "0.050 /  (getResolution select 4.5)";
         text = "";
     };
 
     class CONFIRM_FRAME : RTS_Text {
         idc = -1;
-        style = ST_FRAME;
-        colorText[] = {1, 0, 0, 1};
+        style = RTS_ST_FRAME;
+        colorText[] = COLOR_RED;
         text = "";
         sizeEx = 0.040;
         x = 0.335;
@@ -975,7 +912,7 @@ class DlgConfirm {
         w = 0.1;
         h = 0.05;
         sizeEx = "0.030 /  (getResolution select 4.5)";
-        colorText[] = {1, 1, 1, 1};
+        colorText[] = COLOR_SNOW;
         text = "Confirm";
         action = "RTS3_Yes = TRUE";
     };
@@ -988,16 +925,16 @@ class DlgConfirm {
         w = 0.1;
         h = 0.05;
         sizeEx = "0.030 /  (getResolution select 4.5)";
-        colorText[] = {1, 1, 1, 1};
+        colorText[] = COLOR_SNOW;
         text = "Cancel";
         action = "RTS3_No = TRUE";
     };
 
     class CONFIRM_TEXT : RTS_Text {
         idc = 1300;
-        style = ST_CENTER;
-        colorBackground[] = {0, 0, 0, 0};
-        colorText[] = {1, 0.5, 0, 1};
+        style = RTS_ST_CENTER;
+        colorBackground[] = COLOR_TRANSPARENT;
+        colorText[] = RTSV_ORANGEBRIGHT;
         text = "Confirm";
         sizeEx = 0.022;
         x = 0.35;

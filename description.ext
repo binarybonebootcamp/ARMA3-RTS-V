@@ -52,12 +52,13 @@ class CfgRemoteExecCommands {
 #include "vip_cmn\resource\vip_dlg_defaults.hpp"
 #include "vip_sms\resource\vip_sms_dlg.hpp"
 #include "param\description.ext"
-#include "menus\Defines.hpp"
-#include "menus\RTSCombo.hpp"
+
+#include "menus\rtsdefine.hpp"
+#include "menus\RTSV_COLOR.EXT"
+#include "menus\intro.hpp"
 #include "menus\dlgRscRTSMenus.hpp"
-#include "menus\RscLB_C.hpp"
 #include "menus\dlgRscHelp.hpp"
-#include "menus\Sounds_music.hpp"
+
 #include "R3F_LOG\desc_include.h"
 #include "digitalLoadout\defines.hpp"
 #include "digitalLoadout\dialog.hpp"
