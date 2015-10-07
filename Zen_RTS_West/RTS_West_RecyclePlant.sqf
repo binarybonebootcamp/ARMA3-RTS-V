@@ -31,8 +31,8 @@ Zen_RTS_F_West_RecyclePlantConstructor = {
         // 0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_Barracks]] call Zen_RTS_F_StrategicAddAssetGlobal;
     // };
 
-    BUILDING_VISUALS("Land_Cargo_House_V2_F", -1, west)
-    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_RecyclePlant)
+    BUILDING_VISUALS("Land_Cargo_House_V2_F", -1)
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_RecyclePlant, West)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["<img size='3' image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];

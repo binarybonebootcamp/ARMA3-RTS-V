@@ -24,7 +24,7 @@ if (count _typeData == 0) exitWith {
     ("")
 };
 
-diag_log ("Zen_RTS_StrategicBuildingInvoke  " + str time + "  " + str _this);
+diag_log ("Zen_RTS_StrategicBuildingInvoke beginning invoke:  " + str time + "  " + str _this);
 
 _objIdentifier = "Zen_RTS_Strategic_Building_Obj_" + ([10] call Zen_StringGenerateRandom);
 
@@ -39,10 +39,11 @@ Zen_RTS_Strategic_Building_Objects_Global pushBack ([_typeIdentifier, _objIdenti
 _objData = Zen_RTS_Strategic_Building_Objects_Global select _index;
 
 _buildingObj = [_objData, _constrArgs] call (missionNamespace getVariable (_typeData select 1));
-_objData = Zen_RTS_Strategic_Building_Objects_Global select _index;
+_objData = [Zen_RTS_Strategic_Building_Objects_Global, _typeIdentifier, 0] call Zen_ArrayGetNestedValue;
 
 _objData set [2, _buildingObj];
 publicVariable "Zen_RTS_Strategic_Building_Objects_Global";
 
+diag_log ("Zen_RTS_StrategicBuildingInvoke finished instantiation:  " + str time + "  " + str _this);
 call Zen_StackRemove;
 (_objIdentifier)

@@ -10,8 +10,16 @@ _westQueue = ([west] call Zen_ConvertToObjectArray);
 _eastQueue = ([east] call Zen_ConvertToObjectArray);
 
 if (isMultiplayer) then {
-    _westQueue = [_westQueue, {!(isPlayer _this)}] call Zen_ArrayFilterCondition;
-    _eastQueue = [_eastQueue, {!(isPlayer _this)}] call Zen_ArrayFilterCondition;
+    _westQueuePlayers = [_westQueue, {!(isPlayer _this)}] call Zen_ArrayFilterCondition;
+    _eastQueuePlayers = [_eastQueue, {!(isPlayer _this)}] call Zen_ArrayFilterCondition;
+
+    if (count _westQueuePlayers > 0) then {
+        _westQueue = _westQueuePlayers;
+    };
+
+    if (count _eastQueuePlayers > 0) then {
+        _eastQueue = _eastQueuePlayers;
+    };
 };
 
 WestCommander = _westQueue select 0;

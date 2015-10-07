@@ -221,6 +221,11 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     player cameraEffect ["terminate","back"];
     camDestroy _cam;
 
+    // /**
+    sleep 2;
+    [player] call TAG_loadoutRespawnDialog;
+    //*/
+
     /** Music
     5 fadeMusic 0;
     sleep 1
@@ -249,7 +254,3 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
 
     // Exit
 };
-waitUntil {
-        sleep 1.2;
-CreateDialog "DigitalLoadout";
-    };
