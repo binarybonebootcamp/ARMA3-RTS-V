@@ -115,8 +115,8 @@ Zen_RTS_F_West_Recycler = {
         _group setBehaviour "careless";
 
         _CJ = ([_vehicleID] call Zen_RTS_StrategicBuildingObjectGetDataGlobal) select 2;
-        _CJ setVariable ["Zen_RTS_StrategicIsAIOwned", true];
-        _CJ setVariable ["Zen_RTS_StrategicIsAIAssigned", true];
+        _CJ setVariable ["Zen_RTS_StrategicIsAIOwned", true, true];
+        _CJ setVariable ["Zen_RTS_StrategicIsAIAssigned", true, true];
         0 = [_group, _CJ, "all"] call Zen_MoveInVehicle;
 
         (RTS_Worker_Recycle_Queue select 0) pushBack [(leader _group), false, _CJ];

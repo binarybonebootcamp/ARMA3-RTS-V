@@ -10,19 +10,19 @@
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
     _vehicle setVariable ["Zen_RTS_StrategicAssetType", (_assetData select 0), true]; \
+    _vehicle setVariable ["Zen_RTS_IsStrategicDebris", false, true]; \
     (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
     _vehicle addEventHandler ["Killed", { \
-        if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
-            (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
-            _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
-        }; \
+        (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
     }];
+    // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
 
-private ["_isAI", "_value"];
+private ["_isAI", "_value", "_unit"];
 
 _actionType = _this select 0;
 _stratTypes = _this select 1;
 ZEN_STD_Parse_GetArgumentDefault(_isAI, 2, false)
+ZEN_STD_Parse_GetArgumentDefault(_unit, 3, player)
 
 _checkVar = "Zen_RTS_IsStrategicDebris";
 if (_actionType == "Repair") then {
@@ -30,11 +30,9 @@ if (_actionType == "Repair") then {
 };
 
 _nearestObj = objNull;
-_objects = nearestObjects [getPosATL vehicle player, ["All"], 25];
-_objects = [_objects, compile format ["_this distance %1", getPosATL vehicle player], "hash"] call Zen_ArraySort;
+_objects = nearestObjects [getPosATL vehicle _unit, ["All"], 25];
+_objects = [_objects, compile format ["_this distance %1", getPosATL vehicle _unit], "hash"] call Zen_ArraySort;
 
-// player sideChat str _objects;
-// player sideChat str _checkVar;
 {
     if ((_x getVariable [_checkVar, false]) && {((_x getVariable ["Zen_RTS_StrategicType", ""]) in _stratTypes)}) exitWith {
         _nearestObj = _x;
@@ -42,7 +40,8 @@ _objects = [_objects, compile format ["_this distance %1", getPosATL vehicle pla
 } forEach _objects;
 
 if (isNull _nearestObj) exitWith {
-    player groupChat "No valid object found.";
+    diag_log ("Zen_RTS_RecycleRepair  " + str _time + "  " + str _this + " no valid object found from " + str _objects);
+    _unit groupChat "No valid object found.";
 };
 
 if (_actionType == "Repair") then {
@@ -130,20 +129,20 @@ if (_isAI) then {
         if (_actionType == "Repair") then {
             if (playerMoney > _value) then {
                 playerMoney = playerMoney - _value;
-                player groupChat ("You have paid: $" + (str round _value) + " to repair this object.");
+                _unit groupChat ("You have paid: $" + (str round _value) + " to repair this object.");
                 
                 PROCESS_REPAIR
 
             } else {
-                player groupChat ("Insufficient funds, you need $" + (str round _value) + " to repair this object.");
+                _unit groupChat ("Insufficient funds, you need $" + (str round _value) + " to repair this object.");
             };
         } else {
             if (({alive _x} count (crew _nearestObj)) == 0) then {
                 playerMoney = playerMoney + _value;
-                player groupChat ("You have received: $" + (str round _value) + " from recycling this object.");
+                _unit groupChat ("You have received: $" + (str round _value) + " from recycling this object.");
                 deleteVehicle _nearestObj;
             } else {
-                player groupChat ("You cannot recycle a vehicle with a crew in it!");
+                _unit groupChat ("You cannot recycle a vehicle with a crew in it!");
             };
         };
     };

@@ -119,8 +119,14 @@ Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", 
             _crewGroup = [_vehicle, ([U, 0, (_crewCount - 1) min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
             0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
             0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
-            (units _crewGroup) join _referenceUnit; \
-            doStop (driver _vehicle); \
+            0 = [_crewGroup, _referenceUnit] spawn { \
+                _crewGroup = _this select 0; \
+                _referenceUnit = _this select 1; \
+                sleep 1; \
+                (units _crewGroup) join _referenceUnit; \
+                sleep 1; \
+                {doStop _x;} forEach (units _crewGroup); \
+            }; \
         }; \
     };
 

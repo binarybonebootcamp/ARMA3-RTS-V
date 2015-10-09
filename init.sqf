@@ -185,7 +185,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 // Zen RTS Strategic
 /////////
 
-#define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 1.1
+// #define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 1.1
 
 #define DETECT_BUILDING(B, U) \
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
@@ -206,13 +206,12 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
     _vehicle setVariable ["Zen_RTS_StrategicAssetType", (_assetData select 0), true]; \
+    _vehicle setVariable ["Zen_RTS_IsStrategicDebris", false, true]; \
     (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
     _vehicle addEventHandler ["Killed", { \
-        if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
-            (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
-            _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
-        }; \
+        (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
     }];
+    // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
 
 #define BUILDING_VISUALS(T, O) \
     _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \

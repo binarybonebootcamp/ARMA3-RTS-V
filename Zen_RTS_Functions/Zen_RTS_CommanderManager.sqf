@@ -28,10 +28,8 @@ Zen_RTS_CommanderQueue set [1, +_eastQueue];
 WestCommander = _westQueue select 0;
 EastCommander = _eastQueue select 0;
 
-publicVariable "WestCommander";
-publicVariable "EastCommander";
-
 while {true} do {
+    publicVariable "WestCommander"; publicVariable "EastCommander";
     sleep 5;
 
     #define PROCESS_COMMANDER_QUEUE(S, V, A) \
@@ -41,7 +39,6 @@ while {true} do {
         Zen_RTS_CommanderQueue set [A, _array]; \
         if (V != (_array select 0)) then { \
             V = _array select 0; \
-            publicVariable #V; \
             _args = ["sideChat", [[S,"HQ"], (format ["Reassigning %1 as %2 Commander", Name V, S])]]; \
             ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call) \
         };
