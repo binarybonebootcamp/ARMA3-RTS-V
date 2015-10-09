@@ -31,13 +31,12 @@
             (_x getVariable ["Zen_RTS_IsStrategicDebris", false]) \
         }; \
         if (_condition) then { \
-            diag_log W; \
             if (count _repairQueueReady == 0) exitWith {}; \
-            diag_log _repairQueueReady; \
+            diag_log ("Zen_RTS_RecycleRepairAIManager  All ready workers  " + S + "  " + T + str _repairQueueReady); \
             _assignedWorkerArray = [_repairQueueReady, compile format ["-1 * ((_this select 0) distanceSqr %1)", getPosATL _x]] call Zen_ArrayFindExtremum; \
             _globalIndex = [_assignedWorkerArray, W] call Zen_ValueFindInArray; \
             _assignedWorkerArray = W select 0; \
-            diag_log _assignedWorkerArray; \
+            diag_log ("Zen_RTS_RecycleRepairAIManager  selected task worker  " + S + "  " + T + str _assignedWorkerArray); \
             _assignedWorkerArray set [1, true]; \
             _assignedWorker = _assignedWorkerArray select 0; \
             0 = [_assignedWorkerArray, _x, _forEachIndex, _indexesToRemove] spawn { \
@@ -52,7 +51,7 @@
                     (([vehicle _worker, _objToRepair] call Zen_Find2dDistance) < 20) \
                 }; \
                 _assignedWorkerArray set [1, false]; \
-                diag_log ("Repair/recycle complete: " + str _objToRepair + str _assignedWorkerArray); \
+                diag_log (S + " complete: " + str _objToRepair + str _assignedWorkerArray); \
                 if ((S == "Recycle") || {S == "Repair" && (damage _objToRepair == 1)}) then { \
                     _indexesToRemove pushBack _index; \
                 }; \

@@ -93,6 +93,11 @@ sleep 1;
 // --------------------------
 
 // Zen Server ------------------
+
+// [west], [east] format, see global functions for modify
+// This is for server only
+Zen_RTS_CommanderQueue = [[], []];
+
 #include "Zen_RTS_Functions\Zen_CustomLoadouts.sqf"
 0 = [] call Zen_RTS_RandomStart;
 0 = [] spawn Zen_RTS_CommanderManager;
