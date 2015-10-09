@@ -35,7 +35,7 @@ _para setVelocity [0,0,0];
     displayAddEventHandler ["KeyDown", {
         (if (_this select 1 == 0x39) then {
             deleteVehicle vehicle player;
-            [] call BIS_FNC_DISPLAYMISSION displayRemoveEventHandler ["KeyDown", ZSP_EH_SPACE_TO_EJECT_PARACHUTE];
+            ([] call BIS_FNC_DISPLAYMISSION) displayRemoveEventHandler ["KeyDown", ZSP_EH_SPACE_TO_EJECT_PARACHUTE];
             (true)
         } else {
             (false)
@@ -44,5 +44,5 @@ _para setVelocity [0,0,0];
 
     waitUntil {vehicle player == player or {not alive player}};
     player switchMove "AcrgPknlMstpSnonWnonDnon_AmovPercMstpSnonWnonDnon_getOutLow";
-    [] call BIS_FNC_DISPLAYMISSION displayRemoveEventHandler ["KeyDown",ZSP_EH_SPACE_TO_EJECT_PARACHUTE];
+    ([] call BIS_FNC_DISPLAYMISSION) displayRemoveEventHandler ["KeyDown",ZSP_EH_SPACE_TO_EJECT_PARACHUTE];
 };
