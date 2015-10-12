@@ -93,7 +93,7 @@ sleep 1;
 // --------------------------
 
 // Zen Server ------------------
-
+diag_log diag_tickTime;
 // [west], [east] format, see global functions for modify
 // This is for server only
 Zen_RTS_CommanderQueue = [[], []];
@@ -105,6 +105,7 @@ Zen_RTS_CommanderQueue = [[], []];
 0 = [] spawn Zen_RTS_RecycleRepairAIManager;
 Zen_JIP_Args_Server = [overcast, fog, 2000];
 
+diag_log diag_tickTime;
 {
     call compile format ["xp%1 = 0", _x];
     0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
@@ -114,6 +115,7 @@ Zen_JIP_Args_Server = [overcast, fog, 2000];
 } forEach ([West, East] call Zen_ConvertToObjectArray);
 
 // For debug purposes
+diag_log diag_tickTime;
 diag_log date;
 
 // ====================================================================================
@@ -133,6 +135,7 @@ for "_i" from 1 to 32 do {
     _flagMarkers pushBack _marker;
     0 = [_marker, "Flag " + str _i, [0, 5, 10, 20]] call Zen_RTS_SubTerritoryCreate;
 };
+diag_log diag_tickTime;
 
 // ====================================================================================
 // Zen_RTS_Territory
@@ -185,6 +188,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 // Zen RTS Strategic
 /////////
 
+diag_log diag_tickTime;
 // #define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 1.1
 
 #define DETECT_BUILDING(B, U) \
@@ -338,5 +342,6 @@ publicVariable "RTS_Building_Type_Levels";
 publicVariable "Zen_RTS_BuildingType_West_HQ";
 publicVariable "Zen_RTS_BuildingType_East_HQ";
 
-rts_Initialized = TRUE;
+rts_Initialized = true;
 publicVariable "rts_Initialized";
+diag_log diag_tickTime;
