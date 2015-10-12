@@ -180,7 +180,13 @@ Loadouts
     assign money value
 Known MP Issues
     // Add more debug
-    10 second init delay
-    buildings coming out of the ground don't sync
-    'Build enemy units' technology disappears
-    Asset crew join group?
+    Logic Issues
+        // AI recycle tasking
+        // AI Repair activation
+        'Build enemy units' technology disappears
+    Synch Issues
+        // Asset crew join group
+        // CJ remote actions missing
+        // Commander definition synch
+        20 second init delay (Unfixable ?)
+        buildings coming out of the ground don't sync (Unfixable ?)

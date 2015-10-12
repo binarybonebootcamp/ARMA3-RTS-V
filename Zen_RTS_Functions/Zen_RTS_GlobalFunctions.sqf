@@ -53,3 +53,11 @@ Zen_RTS_F_PrintMoney = {
         ctrlSetText [idFPS, format ["FPS: %1", round diag_fps]];
     };
 };
+
+Zen_RTS_F_CommanderQueueAdd = {
+    _unit = _this select 0;
+    _side = _this select 1;
+
+    _subArray = Zen_RTS_CommanderQueue select ([west, east] find _side);
+    _subArray pushBack _unit;
+};

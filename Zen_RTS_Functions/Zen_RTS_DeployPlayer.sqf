@@ -4,6 +4,9 @@
 
 // if (StopMsg) then {Exit};
 
+#include "Zen_StandardLibrary.sqf";
+#include "Zen_FrameworkLibrary.sqf";
+
 _unit = _this select 0;
 
 if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
@@ -32,7 +35,6 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     0 fadeMusic .6;
     playMusic _music;
     //*/
-
 
     /** Camera
         sleep 1;
@@ -70,6 +72,8 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
 
     player enableFatigue false;
     player addEventhandler ["Respawn", {player enableFatigue false}];
+    _args = [player, side player];
+    ZEN_FMW_MP_REServerOnly("Zen_RTS_F_CommanderQueueAdd", _args, call)
     // waitUntil {
         // sleep 1;
         // (rts_arrays_initialized)
@@ -221,11 +225,6 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     player cameraEffect ["terminate","back"];
     camDestroy _cam;
 
-    // /**
-    sleep 2;
-    [player] call TAG_loadoutRespawnDialog;
-    //*/
-
     /** Music
     5 fadeMusic 0;
     sleep 1
@@ -254,3 +253,7 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
 
     // Exit
 };
+waitUntil {
+        sleep 1.2;
+CreateDialog "DigitalLoadout";
+    };

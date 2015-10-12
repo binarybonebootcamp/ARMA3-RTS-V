@@ -3,6 +3,10 @@
         MG
 //*/
 
+#define SWAP_CJ_OWNER(F) \
+    (_this select 3) setVariable ["Zen_RTS_StrategicIsAIOwned", F, true]; \
+    (_this select 3) setVariable ["Zen_RTS_StrategicIsAIAssigned", false, true];
+
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_East_CJConstructor = {
     diag_log "East CJ constructor called";
@@ -53,8 +57,9 @@ Zen_RTS_F_East_CJConstructor = {
 
      // Recycle AI set up
     (RTS_CJ_Repair_Queue select 0) pushBack _vehicle;
-    _vehicle setVariable ["Zen_RTS_StrategicIsAIOwned", false];
-    _vehicle setVariable ["Zen_RTS_StrategicIsAIAssigned", false];   // to-do: || false condition needs building hacking logic
+    _vehicle setVariable ["Zen_RTS_StrategicIsAIOwned", false, true];
+    _vehicle setVariable ["Zen_RTS_StrategicIsAIAssigned", false, true];
+
     _args = ["addAction", [_vehicle, ["CJ Menu", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "(_this in _target)"]]];
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
@@ -64,7 +69,6 @@ Zen_RTS_F_East_CJConstructor = {
     _args = ["addAction", [_vehicle, ["Take CJ from AI", {SWAP_CJ_OWNER(false)}, _vehicle, 1, false, true, "", "((_this distance2D _target) < 5) && (_target getVariable 'Zen_RTS_StrategicIsAIOwned') && (alive _target)"]]];
 
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
-
 
     if (_level > 0) then {
         for "_i" from 0 to (_level - 1) do {

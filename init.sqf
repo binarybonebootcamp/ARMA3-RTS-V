@@ -7,7 +7,7 @@ if !(isDedicated) then {
 
 enableSaving [false, false];
 player enableFatigue false;
-player addEventhandler ["Respawn", {player enableFatigue false;}];
+player addEventhandler ["Respawn", {player enableFatigue false}];
 RTS_Intro_Titletext_Code = {titleText [format ["%1", "-= RTS V =-\nWarGame\nFor Arma 3"], "PLAIN DOWN" , .5]};
 call RTS_Intro_Titletext_Code;
 [] execVM "briefing.sqf";
@@ -19,7 +19,6 @@ call RTS_Intro_Titletext_Code;
 #include "functions\RTS_FNC_flipACTIONS.sqf"
 #include "functions\RTS_FNC_PUSH.sqf"
 
-// #include "setup.sqf"
 #define __cppfln(xdfunc,xfile2) xdfunc = compile preprocessFileLineNumbers #xfile2
 __cppfln(barrelfun,functions\barrelfun.sqf);
 
@@ -43,7 +42,17 @@ Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functi
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Territory\Zen_RTS_TerritoryCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTerritoryCompile.sqf";
-
+//adding rotation menu
+call compile preProcessFile "ROTATION_MENU_SYSTEM\InitRotationMenuSystem.sqf";
+_null = [] spawn RTMS_InitRotationMenuSystem;
+_null = [] spawn {
+waituntil {player == player};
+waituntil {!isnil "RTMS_INITIALIZED"};
+_menu = (call compile preprocessFile "ROTATION_MENU_SYSTEM\DEFAULT_CLASSES\ManSlay_Class.sqf") call RTMS_CreateMenuObject;
+[_menu, true] call RTMS_SendRequest;
+waituntil {[_menu] call RTMS_IsInstalled};
+[_menu, false] call RTMS_SendRequest;
+};
 // RTS Client ---------------------
 // #include "Zen_RTS_Functions\Zen_RTS_ClientExec.sqf"
 //[] exec "Karr-SquadMarkers.sqs";
@@ -65,7 +74,7 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
     // [] exec "vicpoint\rts-vpInit.sqs";
 // };
 
-[false] execVM "digitalLoadout\client.sqf";
+execVM "digitalLoadout\client.sqf";
 // Data structure for custom squads, this is local to each player and side specific
 // indexes pair with names/colors, 0 - Alpha, etc.
 RTS_Custom_Squads_Assets = [[], [], [], []];
@@ -78,7 +87,6 @@ if !(isServer) exitWith {};
 sleep 1;
 
 // RTS Server -------------
-["Initialize"] call BIS_fnc_dynamicGroups;
 0 = [] execVM "unflip_vehicle.sqf";
 0 = [] execVM "R3F_LOG\init.sqf";
 0 = [] execVM "VCOM_Driving\init.sqf";
@@ -93,7 +101,11 @@ sleep 1;
 // --------------------------
 
 // Zen Server ------------------
-#include "Zen_RTS_Functions\Zen_CustomLoadouts.sqf"
+
+// [west], [east] format, see global functions for modify
+// This is for server only
+Zen_RTS_CommanderQueue = [[], []];
+
 0 = [] call Zen_RTS_RandomStart;
 0 = [] spawn Zen_RTS_CommanderManager;
 0 = [] spawn Zen_RTS_EconomyManager;
@@ -102,15 +114,10 @@ Zen_JIP_Args_Server = [overcast, fog, 2000];
 
 {
     call compile format ["xp%1 = 0", _x];
-    0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
 } forEach ([West, East] call Zen_ConvertToObjectArray);
-
-// For debug purposes
-diag_log date;
-
 // ====================================================================================
 // Zen_RTS_SubTerritory
 // ====================================================================================
@@ -128,7 +135,6 @@ for "_i" from 1 to 32 do {
     _flagMarkers pushBack _marker;
     0 = [_marker, "Flag " + str _i, [0, 5, 10, 20]] call Zen_RTS_SubTerritoryCreate;
 };
-
 // ====================================================================================
 // Zen_RTS_Territory
 // ====================================================================================
@@ -180,7 +186,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 // Zen RTS Strategic
 /////////
 
-#define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 1.1
+// #define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 1.1
 
 #define DETECT_BUILDING(B, U) \
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
@@ -201,13 +207,12 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
     _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
     _vehicle setVariable ["Zen_RTS_StrategicAssetType", (_assetData select 0), true]; \
+    _vehicle setVariable ["Zen_RTS_IsStrategicDebris", false, true]; \
     (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
     _vehicle addEventHandler ["Killed", { \
-        if ((damage (_this select 0)) > ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD) then { \
-            (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
-            _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
-        }; \
+        (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
     }];
+    // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
 
 #define BUILDING_VISUALS(T, O) \
     _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
@@ -333,6 +338,5 @@ publicVariable "RTS_Building_Type_Levels";
 
 publicVariable "Zen_RTS_BuildingType_West_HQ";
 publicVariable "Zen_RTS_BuildingType_East_HQ";
-
 rts_Initialized = TRUE;
 publicVariable "rts_Initialized";

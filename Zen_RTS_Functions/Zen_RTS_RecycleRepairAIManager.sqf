@@ -20,24 +20,24 @@
 
 #define TASK_WORKERS(W, O, S, T) \
     _indexesToRemove = []; \
+    _workerArray = W; \
     { \
-        if (count W == 0) exitWith {}; \
+        if (count _workerArray == 0) exitWith {}; \
         _repairQueueReady = []; \
         _condition = if (S == "Repair") then { \
-            _repairQueueReady = [W, {(_this select 1)}] call Zen_ArrayFilterCondition; \
+            _repairQueueReady = [_workerArray, {(_this select 1)}] call Zen_ArrayFilterCondition; \
             (damage _x > 0.1) \
         } else { \
-            _repairQueueReady = [W, {(_this select 1) || ((isNull (_this select 2)) || {!((_this select 0) in (_this select 2))})}] call Zen_ArrayFilterCondition; \
+            _repairQueueReady = [_workerArray, {(_this select 1) || ((isNull (_this select 2)) || {!((_this select 0) in (_this select 2))})}] call Zen_ArrayFilterCondition; \
             (_x getVariable ["Zen_RTS_IsStrategicDebris", false]) \
         }; \
         if (_condition) then { \
-            diag_log W; \
             if (count _repairQueueReady == 0) exitWith {}; \
-            diag_log _repairQueueReady; \
+            diag_log ("Zen_RTS_RecycleRepairAIManager  All ready workers  " + S + "  " + T + str _repairQueueReady); \
             _assignedWorkerArray = [_repairQueueReady, compile format ["-1 * ((_this select 0) distanceSqr %1)", getPosATL _x]] call Zen_ArrayFindExtremum; \
-            _globalIndex = [_assignedWorkerArray, W] call Zen_ValueFindInArray; \
-            _assignedWorkerArray = W select 0; \
-            diag_log _assignedWorkerArray; \
+            _globalIndex = [_assignedWorkerArray, _workerArray] call Zen_ValueFindInArray; \
+            _assignedWorkerArray = _workerArray select 0; \
+            diag_log ("Zen_RTS_RecycleRepairAIManager  selected task worker  " + S + "  " + T + str _assignedWorkerArray); \
             _assignedWorkerArray set [1, true]; \
             _assignedWorker = _assignedWorkerArray select 0; \
             0 = [_assignedWorkerArray, _x, _forEachIndex, _indexesToRemove] spawn { \
@@ -52,11 +52,11 @@
                     (([vehicle _worker, _objToRepair] call Zen_Find2dDistance) < 20) \
                 }; \
                 _assignedWorkerArray set [1, false]; \
-                diag_log ("Repair/recycle complete: " + str _objToRepair + str _assignedWorkerArray); \
+                diag_log (S + " complete: " + str _objToRepair + str _assignedWorkerArray); \
                 if ((S == "Recycle") || {S == "Repair" && (damage _objToRepair == 1)}) then { \
                     _indexesToRemove pushBack _index; \
                 }; \
-                _h_repair = [S, [T], true] spawn Zen_RTS_RecycleRepair; \
+                _h_repair = [S, [T], true, _worker] spawn Zen_RTS_RecycleRepair; \
             }; \
         }; \
         sleep 0.2; \
