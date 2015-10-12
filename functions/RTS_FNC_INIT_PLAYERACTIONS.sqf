@@ -3,7 +3,6 @@ RTS_FNC_INIT_PLAYERACTIONS = {
     _playerunit = _this select 0;
     _unit = _this select 1;
     _unitname = Name _unit;
-    // _oldactionid = _this select 2;
     waitUntil {!(isNil "rts_Initialized")};
     waitUntil {(rts_Initialized && {rts_arrays_initialized})};
 

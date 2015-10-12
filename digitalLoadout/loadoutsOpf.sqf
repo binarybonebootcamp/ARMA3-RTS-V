@@ -41,14 +41,16 @@ TAG_FNC_Grenadier =
   _unit addUniform "U_O_CombatUniform_ocamo";
   _unit addVest "V_harnessO_brn";
   _Unit addBackPack "B_Fieldpack_cbr";
-  
+
   _unit addWeapon "binocular";
-  (unitBackpack _unit) addMagazineCargo ["UGL_FlareCIR_F",1];
+  (unitBackpack _unit) addMagazineCargo ["smokeshell",1];
+  (unitBackpack _unit) addMagazineCargo ["1Rnd_HE_Grenade_shell",3];
   (unitBackpack _unit) addMagazineCargo ["MiniGrenade",5];
   (unitBackpack _unit) addMagazineCargo ["HandGrenade",5]; 
-  (unitBackpack _unit) addMagazineCargo ["1Rnd_HE_Grenade_shell",5]; 
-  [_unit, "arifle_Katiba_GL_ARCO_pointer_F" ,10 ,"30Rnd_65x39_caseless_green_mag_Tracer"] call BIS_fnc_addWeapon;
+  (unitBackpack _unit) addMagazineCargo ["Chemlight_Yellow",5]; 
+  [_unit, "arifle_TRG21_GL_F" ,10 ,"30Rnd_65x39_caseless_Green"] call BIS_fnc_addWeapon;
   [_unit, "hgun_pistol_heavy_02_F" ,6 ,"6Rnd_45ACP_Cylinder"] call BIS_fnc_addWeapon;
+  _unit addPrimaryWeaponItem "optic_ACO_grn";
   _unit addPrimaryWeaponItem "acc_pointer_IR";
   [_unit] call loadChange;
 };
