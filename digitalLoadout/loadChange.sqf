@@ -61,7 +61,7 @@ if (paramsArray select 4 == 1) then {
     case "SERGEANT":{{ctrlEnable [_x, false]} forEach [15003,15004,15005,15006,15007,15008,15009];_rankHeader ctrlSetText format ["\A3\Ui_f\data\GUI\Cfg\Ranks\sergeant_gs.paa"];};
     case "LIEUTENANT":{{ctrlEnable [_x, false]} forEach [15005,15006,15007,15008,15009];_rankHeader ctrlSetText format ["\A3\Ui_f\data\GUI\Cfg\Ranks\lieutenant_gs.paa"];};
     case "CAPTAIN":{{ctrlEnable [_x, false]} forEach [15007,15008,15009];_rankHeader ctrlSetText format ["\A3\Ui_f\data\GUI\Cfg\Ranks\captain_gs.paa"];};
-    case "MAJOR":{{ctrlEnable [_x, false]} forEach [15008,15009];_rankHeader ctrlSetText format ["\A3\Ui_f\data\GUI\Cfg\Ranks\major_gs.paa"];};
+    case "MAJOR":{{ctrlEnable [_x, false]} forEach [15008,15009,15010];_rankHeader ctrlSetText format ["\A3\Ui_f\data\GUI\Cfg\Ranks\major_gs.paa"];};
     case "COLONEL":{{ctrlEnable [_x, false]} forEach [];_rankHeader ctrlSetText format ["\A3\Ui_f\data\GUI\Cfg\Ranks\colonel_gs.paa"];}; 
    }; 
 

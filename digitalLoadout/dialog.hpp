@@ -3,16 +3,16 @@ class digitalLoadout
 {
     idd = 3000;
     movingenable = true;
-    onLoad = "uiNamespace setVariable ['DLoad', (_this select 0)]";
+    onLoad = "uiNamespace setVariable ['DLoad', (_this select 0)]"; 
 
     class Controls
     {
-
+      
       class ICE_BG: rscbackgroundGUI
       {
 	idc = -1;
-	text = "";
-    x = 0.25 * safezoneW + safezoneX;
+	text = ""; 
+        x = 0.25 * safezoneW + safezoneX;
 	y = 0.175 * safezoneH + safezoneY;
 	w = 0.4 * safezoneW;
 	h = 0.4 * safezoneH * 4 / 3;
@@ -21,7 +21,7 @@ class digitalLoadout
       class ICE_TopStripe: rscTopStripe
       {
 	idc = -1;
-	text = "";
+	text = ""; 
         x = 0.25 * safezoneW + safezoneX;
 	y = 0.14 * safezoneH + safezoneY;
 	w = 0.4 * safezoneW;
@@ -62,7 +62,7 @@ class digitalLoadout
 	w = 0.025 * safezoneW;
 	h = 0.025 * safezoneH * 4 / 3;
       };
-
+     
       class ICE_rank3: IcePicture
       {
 	idc = 100004;
@@ -132,7 +132,7 @@ class digitalLoadout
 	w = 0.025 * safezoneW;
 	h = 0.025 * safezoneH * 4 / 3;
       };
-
+     
       class ICE_rank10: IcePicture
       {
 	idc = 100011;
@@ -147,116 +147,141 @@ class digitalLoadout
 
                   BUTTONS
 
-    -------------------------------*/
-    class ICE_button1: IceButton {
-        idc = 15000;
-        text = "Rifleman";
-        action = "[player, str side player + 'rifleman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.2 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button2: IceButton {
-        idc = 15001;
-        text = "Grenadier";
-        action = "[player, str side player +  'grenadier'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.25 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button3: IceButton {
-        idc = 15002;
-        text = "Engineer";
-        action = "[player, str side player +  'engineer'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.3 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button4: IceButton {
-        idc = 15003;
-        text = "Auto-rifleman";
-        action = "[player, str side player +  'autorifleman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.35 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button5: IceButton {
-        idc = 15004;
-        text = "AT (light)";
-        action = "[player, str side player +  'AT rifleman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.4 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button6: IceButton {
-        idc = 15005;
-        text = "Sapper";
-        action = "[player, str side player +  'sapper'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.45 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button7: IceButton {
-        idc = 15006;
-        text = "AA (Titan)";
-        action = "[player, str side player +  'AA spec'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.5 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button8: IceButton {
-        idc = 15007;
-        text = "Special Forces";
-        action = "[player, str side player +  'SOF'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.55 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button9: IceButton {
-        idc = 15008;
-        text = "AT (Titan)";
-        action = "[player, str side player +  'AT spec'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.6 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button10: IceButton {
-        idc = 15009;
-        text = "Marksman";
-        action = "[player, str side player +  'marksman'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.65 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button11: IceButton {
-        idc = 15010;
-        text = "sniper";
-        action = "[player, str side player +  'sniper'] call Zen_GiveLoadoutCustom; [player] call loadChange;";
-        x = 0.25 * safezoneW + safezoneX;
-        y = 0.70 * safezoneH + safezoneY;
-        w = 0.125 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
-    class ICE_button12: IceButton {
-        idc = -1;
-        text = "X";
+      -------------------------------*/
+      class ICE_button1: IceButton
+      {
+	idc = 15000;
+	text = "Rifleman";
+        action = "[player] call TAG_FNC_Rifleman";
+ 
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.2 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+
+      class ICE_button2: IceButton
+      {
+	idc = 15001;
+	text = "Grenadier"; 
+        action = "[player] call TAG_FNC_Grenadier";
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.25 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+
+      class ICE_button3: IceButton
+      {
+	idc = 15002;
+	text = "Engineer";
+        action = "[player] call TAG_FNC_Engineer"; 
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.3 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+     
+     
+      class ICE_button4: IceButton
+      {
+	idc = 15003;
+	text = "Auto-rifleman"; 
+        action = "[player] call TAG_FNC_AutoRifleman";
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.35 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+
+      class ICE_button5: IceButton
+      {
+	idc = 15004;
+	text = "AT (light)"; 
+        action = "[player] call TAG_FNC_AT_Light";
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.4 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+
+       class ICE_button6: IceButton
+      {
+	idc = 15005;
+	text = "Sapper";
+        action = "[player] call TAG_FNC_sapper"; 
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.45 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+
+       class ICE_button7: IceButton
+      {
+	idc = 15006;
+	text = "AA (Titan)"; 
+        action = "[player] call TAG_FNC_AA";
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.5 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+
+      class ICE_button8: IceButton
+      {
+	idc = 15007;
+	text = "Special Forces"; 
+        action = "[player] call TAG_FNC_specialF";
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.55 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+
+      class ICE_button9: IceButton
+      {
+	idc = 15008;
+	text = "AT (Titan)"; 
+        action = "[player] call TAG_FNC_AT_Heavy";
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.6 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+     
+       class ICE_button10: IceButton
+      {
+	idc = 15009;
+	text = "Marksman"; 
+        action = "[player] call TAG_FNC_Marksman";
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.65 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+             class ICE_button11: IceButton
+      {
+	idc = 15010;
+	text = "sniper";
+       action = "[player] call TAG_FNC_sniper"; 
+	x = 0.25 * safezoneW + safezoneX;
+	y = 0.70 * safezoneH + safezoneY;
+	w = 0.125 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+
+       class ICE_button12: IceButton
+      {
+	idc = -1;
+	text = "X";
         style = ST_CENTER;
-        action = "closeDialog 0";
-        x = 0.625 * safezoneW + safezoneX;
-        y = 0.14 * safezoneH + safezoneY;
-        w = 0.025 * safezoneW;
-        h = 0.025 * safezoneH * 4 / 3;
-    };
+        action = "closeDialog 0"; 
+	x = 0.625 * safezoneW + safezoneX;
+	y = 0.14 * safezoneH + safezoneY;
+	w = 0.025 * safezoneW;
+	h = 0.025 * safezoneH * 4 / 3;
+      };
+
 
       /* ---------------------------------
 
@@ -299,7 +324,7 @@ class digitalLoadout
 	h = 0.075 * safezoneH * 4 / 3;
       };
 
-
+      
 
       /* ---------------------------------
 
@@ -332,7 +357,7 @@ class digitalLoadout
 	w = 0.025 * safezoneW;
 	h = 0.025 * safezoneH * 4 / 3;
       };
-
+     
       class ICE_HE_Ammo_Pic: IcePicture
       {
 	idc = 71522;
@@ -347,7 +372,7 @@ class digitalLoadout
             **Pictures attatchments
 
       --------------------------------- */
-
+     
 
       class ICE_attch1_Pic: IcePicture
       {
@@ -440,7 +465,7 @@ class digitalLoadout
 	h = 0.025 * safezoneH * 4 / 3;
       };
 
-
+   
       class ICE_BPitem7_Pic: IcePicture
       {
 	idc = 71516;
@@ -508,10 +533,10 @@ class digitalLoadout
       class ICE_Text_bp1: IceText
       {
 	idc = 26500;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = 0.02;
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.5125 * safezoneW + safezoneX;
 	y = 0.5625 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -521,10 +546,10 @@ class digitalLoadout
       class ICE_Text_bp2: IceText
       {
 	idc = 26501;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02; /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.54 * safezoneW + safezoneX;
 	y = 0.5625 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -534,10 +559,10 @@ class digitalLoadout
       class ICE_Text_bp3: IceText
       {
 	idc = 26502;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx = "0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.5675 * safezoneW + safezoneX;
 	y = 0.5625 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -547,10 +572,10 @@ class digitalLoadout
       class ICE_Text_bp4: IceText
       {
 	idc = 26503;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.595 * safezoneW + safezoneX;
 	y = 0.5625 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -560,10 +585,10 @@ class digitalLoadout
       class ICE_Text_bp5: IceText
       {
 	idc = 26504;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.5125 * safezoneW + safezoneX;
 	y = 0.605 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -573,10 +598,10 @@ class digitalLoadout
       class ICE_Text_bp6: IceText
       {
 	idc = 26505;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.54 * safezoneW + safezoneX;
 	y = 0.605 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -586,10 +611,10 @@ class digitalLoadout
       class ICE_Text_bp7: IceText
       {
 	idc = 26506;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.5675 * safezoneW + safezoneX;
 	y = 0.605 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -599,10 +624,10 @@ class digitalLoadout
       class ICE_Text_bp8: IceText
       {
 	idc = 26507;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.595 * safezoneW + safezoneX;
 	y = 0.605 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -612,10 +637,10 @@ class digitalLoadout
       class ICE_Text_bp9: IceText
       {
 	idc = 26508;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.5125 * safezoneW + safezoneX;
 	y = 0.6475 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -625,10 +650,10 @@ class digitalLoadout
       class ICE_Text_bp10: IceText
       {
 	idc = 26509;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.54 * safezoneW + safezoneX;
 	y = 0.6475 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -638,10 +663,10 @@ class digitalLoadout
       class ICE_Text_bp11: IceText
       {
 	idc = 26510;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.5675 * safezoneW + safezoneX;
 	y = 0.6475 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
@@ -651,17 +676,17 @@ class digitalLoadout
       class ICE_Text_bp12: IceText
       {
 	idc = 26511;
-	text = "0";
+	text = "0"; 
         action = "";
         colorText[] = {1,1,1,0.4};
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.595 * safezoneW + safezoneX;
 	y = 0.6475 * safezoneH + safezoneY;
 	w = 0.025 * safezoneW;
 	h = 0.025 * safezoneH * 4 / 3;
       };
 
-
+   
       /* ---------------------------------
 
                       Text
@@ -670,7 +695,7 @@ class digitalLoadout
       class ICE_Text_Name: IceText
       {
 	idc = 61500;
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
 	x = 0.25 * safezoneW + safezoneX;
 	y = 0.14 * safezoneH + safezoneY;
 	w = 0.4 * safezoneW;
@@ -680,7 +705,7 @@ class digitalLoadout
       class ICE_Text_PrimW: IceText
       {
 	idc = -1;
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
         text = "Primary Weapon";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.2 * safezoneH + safezoneY;
@@ -692,7 +717,7 @@ class digitalLoadout
       class ICE_Text_No_PrimW: IceText
       {
 	idc = 40500;
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
         text = "N / A";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.235 * safezoneH + safezoneY;
@@ -703,7 +728,7 @@ class digitalLoadout
       class ICE_Text_secW: IceText
       {
 	idc = -1;
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
         text = "Launcher";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.33 * safezoneH + safezoneY;
@@ -714,7 +739,7 @@ class digitalLoadout
        class ICE_Text_No_secW: IceText
       {
 	idc = 40501;
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
         text = "N / A";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.365 * safezoneH + safezoneY;
@@ -725,7 +750,7 @@ class digitalLoadout
       class ICE_Text_pisW: IceText
       {
 	idc = -1;
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
         text = "Pistol";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.44 * safezoneH + safezoneY;
@@ -736,7 +761,7 @@ class digitalLoadout
        class ICE_Text_No_pisW: IceText
       {
 	idc = 40502;
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
         text = "N / A";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.47 * safezoneH + safezoneY;
@@ -747,7 +772,7 @@ class digitalLoadout
       class ICE_Text_bp: IceText
       {
 	idc = -1;
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
         text = "BackPack";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.54 * safezoneH + safezoneY;
@@ -758,7 +783,7 @@ class digitalLoadout
       class ICE_Text_No_bp: IceText
       {
 	idc = 40503;
-        sizeEx =" 0.02 /  (getResolution select 5)";
+        sizeEx = "0.02 / (getResolution select 5)";
         text = "N / A";
 	x = 0.45 * safezoneW + safezoneX;
 	y = 0.6 * safezoneH + safezoneY;

@@ -7,7 +7,7 @@ if !(isDedicated) then {
 
 enableSaving [false, false];
 player enableFatigue false;
-player addEventhandler ["Respawn", {player enableFatigue false;}];
+player addEventhandler ["Respawn", {player enableFatigue false}];
 RTS_Intro_Titletext_Code = {titleText [format ["%1", "-= RTS V =-\nWarGame\nFor Arma 3"], "PLAIN DOWN" , .5]};
 call RTS_Intro_Titletext_Code;
 [] execVM "briefing.sqf";
@@ -19,7 +19,6 @@ call RTS_Intro_Titletext_Code;
 #include "functions\RTS_FNC_flipACTIONS.sqf"
 #include "functions\RTS_FNC_PUSH.sqf"
 
-// #include "setup.sqf"
 #define __cppfln(xdfunc,xfile2) xdfunc = compile preprocessFileLineNumbers #xfile2
 __cppfln(barrelfun,functions\barrelfun.sqf);
 
@@ -44,6 +43,18 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_Strategic
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Territory\Zen_RTS_TerritoryCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTerritoryCompile.sqf";
 
+//adding rotation menu
+call compile preProcessFile "ROTATION_MENU_SYSTEM\InitRotationMenuSystem.sqf";
+_null = [] spawn RTMS_InitRotationMenuSystem;
+_null = [] spawn {
+    waitUntil {player == player};
+    waitUntil {!(isNil "RTMS_INITIALIZED")};
+    _menu = (call compile preprocessFile "ROTATION_MENU_SYSTEM\DEFAULT_CLASSES\ManSlay_Class.sqf") call RTMS_CreateMenuObject;
+    [_menu, true] call RTMS_SendRequest;
+    waitUntil {[_menu] call RTMS_IsInstalled};
+    [_menu, false] call RTMS_SendRequest;
+};
+
 // RTS Client ---------------------
 // #include "Zen_RTS_Functions\Zen_RTS_ClientExec.sqf"
 //[] exec "Karr-SquadMarkers.sqs";
@@ -65,7 +76,7 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
     // [] exec "vicpoint\rts-vpInit.sqs";
 // };
 
-[false] execVM "digitalLoadout\client.sqf";
+execVM "digitalLoadout\client.sqf";
 // Data structure for custom squads, this is local to each player and side specific
 // indexes pair with names/colors, 0 - Alpha, etc.
 RTS_Custom_Squads_Assets = [[], [], [], []];
@@ -78,7 +89,6 @@ if !(isServer) exitWith {};
 sleep 1;
 
 // RTS Server -------------
-["Initialize"] call BIS_fnc_dynamicGroups;
 0 = [] execVM "unflip_vehicle.sqf";
 0 = [] execVM "R3F_LOG\init.sqf";
 0 = [] execVM "VCOM_Driving\init.sqf";
@@ -108,7 +118,7 @@ Zen_JIP_Args_Server = [overcast, fog, 2000];
 diag_log diag_tickTime;
 {
     call compile format ["xp%1 = 0", _x];
-    0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
+    // 0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
@@ -117,7 +127,6 @@ diag_log diag_tickTime;
 // For debug purposes
 diag_log diag_tickTime;
 diag_log date;
-
 // ====================================================================================
 // Zen_RTS_SubTerritory
 // ====================================================================================
@@ -135,8 +144,8 @@ for "_i" from 1 to 32 do {
     _flagMarkers pushBack _marker;
     0 = [_marker, "Flag " + str _i, [0, 5, 10, 20]] call Zen_RTS_SubTerritoryCreate;
 };
-diag_log diag_tickTime;
 
+diag_log diag_tickTime;
 // ====================================================================================
 // Zen_RTS_Territory
 // ====================================================================================
