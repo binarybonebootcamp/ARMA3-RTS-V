@@ -38,28 +38,23 @@ _para disableCollisionWith player;
 player moveInDriver _para;
 _para setVelocity [0,0,0];
 
-[] spawn
-{
- disableSerialization;
-   
-    hint "PRESS SPACE BAR TO JUMP OUT OF PARACHUTE";
-   
-    ZSP_EH_SPACE_TO_EJECT_PARACHUTE = [] call BIS_FNC_DISPLAYMISSION displayAddEventHandler
-    [
-        "KeyDown",
-        {
-            if (_this select 1 == 0x39) then
-            {
-                deleteVehicle vehicle player;
-                [] call BIS_FNC_DISPLAYMISSION displayRemoveEventHandler ["KeyDown", ZSP_EH_SPACE_TO_EJECT_PARACHUTE];
+0 = [] spawn {
+    disableSerialization;
 
-                true
-            }
-            else
-            {
-                false
-            }
-        }
-    ]; waitUntil {vehicle player == player or {not alive player}};
+    hint "PRESS SPACE BAR TO JUMP OUT OF PARACHUTE";
+    ZSP_EH_SPACE_TO_EJECT_PARACHUTE = [] call BIS_FNC_DISPLAYMISSION;
+
+    displayAddEventHandler ["KeyDown", {
+        (if (_this select 1 == 0x39) then {
+            deleteVehicle vehicle player;
+            ([] call BIS_FNC_DISPLAYMISSION) displayRemoveEventHandler ["KeyDown", ZSP_EH_SPACE_TO_EJECT_PARACHUTE];
+            (true)
+        } else {
+            (false)
+        })
+    }];
+
+    waitUntil {vehicle player == player or {not alive player}};
     player switchMove "AcrgPknlMstpSnonWnonDnon_AmovPercMstpSnonWnonDnon_getOutLow";
-    [] call BIS_FNC_DISPLAYMISSION displayRemoveEventHandler ["KeyDown", ZSP_EH_SPACE_TO_EJECT_PARACHUTE];};
+    ([] call BIS_FNC_DISPLAYMISSION) displayRemoveEventHandler ["KeyDown",ZSP_EH_SPACE_TO_EJECT_PARACHUTE];
+};

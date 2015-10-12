@@ -42,17 +42,19 @@ Zen_RTS_SetViewDistance = compileFinal preprocessFileLineNumbers "Zen_RTS_Functi
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Territory\Zen_RTS_TerritoryCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTerritoryCompile.sqf";
+
 //adding rotation menu
 call compile preProcessFile "ROTATION_MENU_SYSTEM\InitRotationMenuSystem.sqf";
 _null = [] spawn RTMS_InitRotationMenuSystem;
 _null = [] spawn {
-waituntil {player == player};
-waituntil {!isnil "RTMS_INITIALIZED"};
-_menu = (call compile preprocessFile "ROTATION_MENU_SYSTEM\DEFAULT_CLASSES\ManSlay_Class.sqf") call RTMS_CreateMenuObject;
-[_menu, true] call RTMS_SendRequest;
-waituntil {[_menu] call RTMS_IsInstalled};
-[_menu, false] call RTMS_SendRequest;
+    waitUntil {player == player};
+    waitUntil {!(isNil "RTMS_INITIALIZED")};
+    _menu = (call compile preprocessFile "ROTATION_MENU_SYSTEM\DEFAULT_CLASSES\ManSlay_Class.sqf") call RTMS_CreateMenuObject;
+    [_menu, true] call RTMS_SendRequest;
+    waitUntil {[_menu] call RTMS_IsInstalled};
+    [_menu, false] call RTMS_SendRequest;
 };
+
 // RTS Client ---------------------
 // #include "Zen_RTS_Functions\Zen_RTS_ClientExec.sqf"
 //[] exec "Karr-SquadMarkers.sqs";
@@ -101,23 +103,30 @@ sleep 1;
 // --------------------------
 
 // Zen Server ------------------
-
+diag_log diag_tickTime;
 // [west], [east] format, see global functions for modify
 // This is for server only
 Zen_RTS_CommanderQueue = [[], []];
 
+#include "Zen_RTS_Functions\Zen_CustomLoadouts.sqf"
 0 = [] call Zen_RTS_RandomStart;
 0 = [] spawn Zen_RTS_CommanderManager;
 0 = [] spawn Zen_RTS_EconomyManager;
 0 = [] spawn Zen_RTS_RecycleRepairAIManager;
 Zen_JIP_Args_Server = [overcast, fog, 2000];
 
+diag_log diag_tickTime;
 {
     call compile format ["xp%1 = 0", _x];
+    // 0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
 } forEach ([West, East] call Zen_ConvertToObjectArray);
+
+// For debug purposes
+diag_log diag_tickTime;
+diag_log date;
 // ====================================================================================
 // Zen_RTS_SubTerritory
 // ====================================================================================
@@ -135,6 +144,8 @@ for "_i" from 1 to 32 do {
     _flagMarkers pushBack _marker;
     0 = [_marker, "Flag " + str _i, [0, 5, 10, 20]] call Zen_RTS_SubTerritoryCreate;
 };
+
+diag_log diag_tickTime;
 // ====================================================================================
 // Zen_RTS_Territory
 // ====================================================================================
@@ -186,6 +197,7 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 // Zen RTS Strategic
 /////////
 
+diag_log diag_tickTime;
 // #define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 1.1
 
 #define DETECT_BUILDING(B, U) \
@@ -338,5 +350,7 @@ publicVariable "RTS_Building_Type_Levels";
 
 publicVariable "Zen_RTS_BuildingType_West_HQ";
 publicVariable "Zen_RTS_BuildingType_East_HQ";
-rts_Initialized = TRUE;
+
+rts_Initialized = true;
 publicVariable "rts_Initialized";
+diag_log diag_tickTime;

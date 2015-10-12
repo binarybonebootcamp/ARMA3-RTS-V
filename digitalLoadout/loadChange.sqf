@@ -8,9 +8,6 @@ THIS FUNCTION (loadChange) ASSIGNS PICTURES AND ITEM COUNT TO THE DIALOG
 
 ---------------------------------------------------------------------------------------------- */
 
-loadChange = 
-{ 
-
 /*------------------------------------------------------------
 SET SOME LOCAL VARIABLES PRIVATE OVER THE ENTIRE SCRIPTS SCOPE
 ------------------------------------------------------------*/
@@ -226,11 +223,3 @@ if (paramsArray select 4 == 1) then {
     _attachCtrl ctrlSetText format ["%1", _attachPicture];
    };
   };
-};
-
-
-
-
-
- 
-
