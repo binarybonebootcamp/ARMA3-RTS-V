@@ -40,7 +40,7 @@ _objects = [_objects, compile format ["_this distance %1", getPosATL vehicle _un
 } forEach _objects;
 
 if (isNull _nearestObj) exitWith {
-    diag_log ("Zen_RTS_RecycleRepair  " + str _time + "  " + str _this + " no valid object found from " + str _objects);
+    diag_log ("Zen_RTS_RecycleRepair  " + str time + "  " + str _this + " no valid object found from " + str _objects);
     _unit groupChat "No valid object found.";
 };
 
