@@ -117,7 +117,7 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
         _building = _buildingObjData select 2; \
         _pos = [_building, 20, random 360] call Zen_ExtendPosition; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
+        _vehicle = [_pos, T, 0, getDir _building + _theta, false] call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_crewCount > 0) then { \
             _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
@@ -131,6 +131,9 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
                 sleep 1; \
                 {doStop _x;} forEach (units _crewGroup); \
             }; \
+        }; \
+        if (T in ["rhsusf_m1025_w_s_m2", "rhsusf_m113d_usarmy", "RHS_M2A3_BUSKIII", "m1a2sep1tuskiid_usarmy"]) then { \
+            _vehicle call FNC_AUTOTANK; \
         }; \
     };
 

@@ -131,6 +131,9 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
                 {doStop _x;} forEach (units _crewGroup); \
             }; \
         }; \
+        if (T in [""]) then { \
+            _vehicle call FNC_AUTOTANK; \
+        }; \
     };
 
 #define CREW_UNITS ["rhs_msv_driver"]

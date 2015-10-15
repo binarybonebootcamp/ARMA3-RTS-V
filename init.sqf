@@ -89,6 +89,7 @@ if !(isServer) exitWith {};
 sleep 1;
 
 // RTS Server -------------
+FNC_AUTOTANK = compileFinal preprocessFileLineNumbers "FNC_AUTOTANK.sqf";
 0 = [] execVM "unflip_vehicle.sqf";
 0 = [] execVM "R3F_LOG\init.sqf";
 0 = [] execVM "VCOM_Driving\init.sqf";
