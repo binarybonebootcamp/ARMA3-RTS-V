@@ -57,7 +57,6 @@ Zen_RTS_F_West_TankFactoryDestructor = {
     diag_log "West Tank_factory destructor";
 
     _buildingObjData = _this select 0;
-
     _level = _buildingObjData select 3;
     diag_log _level;
 

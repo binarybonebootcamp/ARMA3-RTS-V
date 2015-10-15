@@ -19,7 +19,7 @@ Zen_RTS_F_East_BarracksConstructor = {
     _args = _this select 1;
 
     _spawnPos = _args select 0;
-    _level = _args select 1;
+    // _level = _args select 1;
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
@@ -45,7 +45,7 @@ Zen_RTS_F_East_BarracksConstructor = {
     };
 
     BUILDING_VISUALS("Land_Cargo_House_V1_F", -1)
-    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_Barracks_deadBuilding)
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_Barracks, east)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["<img size='3'image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
@@ -61,7 +61,7 @@ Zen_RTS_F_East_BarracksDestructor = {
     diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
-    _array = RTS_Building_Type_Levels select 0;
+    _array = RTS_Building_Type_Levels select 1;
     _array set [_index, _level];
 
     (_buildingObjData select 2) setDamage 1;
@@ -103,12 +103,15 @@ Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen
     N = { \
         diag_log (#N + " asset constructor called"); \
         diag_log _this; \
+        _buildingData = (_this select 0); \
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        _group = [(_buildingData select 2), T] call Zen_SpawnGroup; \
-        0 = [_group, S] call Zen_SetAISkill; \
-        (units _group) join (_this select 2); \
+        if (alive (_buildingData select 2)) then { \
+            _group = [(_buildingData select 2), T] call Zen_SpawnGroup; \
+            0 = [_group, S] call Zen_SetAISkill; \
+            (units _group) join (_this select 2); \
+        }; \
     };
 
 INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_rifleman, "rhs_msv_rifleman", "infantry")

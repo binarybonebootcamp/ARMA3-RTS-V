@@ -104,7 +104,7 @@ Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Ze
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_crewCount > 0) then { \
-            _crewGroup = [_vehicle, ([U, 0, (_crewCount - 1) min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
+            _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
             0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
             0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
             0 = [_crewGroup, _referenceUnit] spawn { \
@@ -124,5 +124,5 @@ VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetGunBoat, "B_Boat_Armed_01_minigun_F", CR
 #define CREW_UNITS ["rhsusf_army_ocp_driver"]
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetZodiac, "B_Boat_Transport_01_F", CREW_UNITS)
 
-Zen_RTS_Asset_West_Zodiac = ["Zen_RTS_F_West_AssetZodiac","Zodiac", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_GunBoat = ["Zen_RTS_F_West_AssetGunBoat","Armed Patrol Boat", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_Zodiac = ["Zen_RTS_F_West_AssetZodiac","Zodiac", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
