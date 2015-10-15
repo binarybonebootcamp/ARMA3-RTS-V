@@ -1,11 +1,11 @@
-
 /**
     Level 1:
         Zen_RTS_F_West_Asset_Hummingbird
         Zen_RTS_F_West_Hummingbird_stripped
     Level 2:
-         Zen_RTS_F_West_AH_9_Pawnee
-         Zen_RTS_F_West_UH_80_Ghost
+        Zen_RTS_F_West_AH_9_Pawnee
+        Zen_RTS_F_West_UH_80_Ghost
+
 //*/
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
@@ -23,6 +23,7 @@ Zen_RTS_F_West_AirFactoryConstructor = {
     _assetsToAdd = [];
     _assetsToAdd pushBack Zen_RTS_Asset_West_RHS_UH1Y_UNARMED;
     _assetsToAdd pushBack Zen_RTS_Asset_West_RHS_UH1Y_UNARMED_d;
+
 
     // if (Zen_RTS_TechFlag_West_BuildEnemy) then {
         // ... to do
@@ -85,12 +86,11 @@ UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade01, ASSETS)
 #define ASSETS [Zen_RTS_Asset_West_RHS_CH_47F_10, Zen_RTS_Asset_West_RHS_UH60M, Zen_RTS_Asset_West_RHS_UH60M_d, Zen_RTS_Asset_West_RHS_UH60M_MEV2_d]
 UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade02, ASSETS)
 
- #define ASSETS [Zen_RTS_Asset_West_RHS_AH64D_GS, Zen_RTS_Asset_West_RHS_AH64D_wd_GS, Zen_RTS_Asset_West_RHS_AH64D_AA, Zen_RTS_Asset_West_RHS_AH64DGrey]
- UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade03, ASSETS)
-  #define ASSETS [Zen_RTS_Asset_West_RHS_C130J, Zen_RTS_Asset_West_RHS_AH1Z, Zen_RTS_Asset_West_RHS_A10]
+#define ASSETS [Zen_RTS_Asset_West_RHS_AH64D_GS, Zen_RTS_Asset_West_RHS_AH64D_wd_GS, Zen_RTS_Asset_West_RHS_AH64D_AA, Zen_RTS_Asset_West_RHS_AH64DGrey]
+UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade03, ASSETS)
 
-
- UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade04, ASSETS)
+#define ASSETS [Zen_RTS_Asset_West_RHS_C130J, Zen_RTS_Asset_West_RHS_AH1Z, Zen_RTS_Asset_West_RHS_A10]
+UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade04, ASSETS)
 
 Zen_RTS_BuildingType_West_AirFactory = ["Zen_RTS_F_West_AirFactoryConstructor", "Zen_RTS_F_West_AirFactoryDestructor", ["Zen_RTS_F_West_AirFactoryUpgrade01", "Zen_RTS_F_West_AirFactoryUpgrade02", "Zen_RTS_F_West_AirFactoryUpgrade03", "Zen_RTS_F_West_AirFactoryUpgrade04"], "Air Factory", "Cost: 2000, Time: 10, Picture: pictures\plane_ca.paa,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_AirFactory;

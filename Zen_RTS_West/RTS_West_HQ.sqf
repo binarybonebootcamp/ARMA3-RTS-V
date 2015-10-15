@@ -11,6 +11,7 @@ Zen_RTS_F_West_HQConstructor = {
 
     _buildingObjData = _this select 0;
     _args = _this select 1;
+
     _spawnPos = _args select 0;
     _level = _args select 1;
 
@@ -24,7 +25,6 @@ Zen_RTS_F_West_HQConstructor = {
     DETECT_BUILDING( Zen_RTS_BuildingType_West_AirFactory , Zen_RTS_Asset_Tech_West_Upgrade_AirFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_West_NavalFactory , Zen_RTS_Asset_Tech_West_Upgrade_NavalFactory )
     DETECT_BUILDING( Zen_RTS_BuildingType_West_SupportFactory , Zen_RTS_Asset_Tech_West_Upgrade_SupportFactory )
-
 
     0 = [(_buildingObjData select 1), _assetsToAdd] call Zen_RTS_F_StrategicAddAssetGlobal;
 
