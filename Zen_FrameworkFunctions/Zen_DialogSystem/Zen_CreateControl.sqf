@@ -16,7 +16,7 @@ if !([_this, [["STRING"], ["ARRAY"], ["ARRAY"], ["ARRAY"], ["ARRAY"], ["ARRAY"],
 _controlType = _this select 0;
 _ID = "Zen_Control_" + ([10] call Zen_StringGenerateRandom);
 
-_controlTypes = ["Button","List","Text", "BACKGROUND", "DROPLIST", "SLIDER"];
+_controlTypes = ["Button","List","Text", "BACKGROUND", "DROPLIST", "SLIDER", "PICTURE"];
 if !([_controlType, _controlTypes] call Zen_ValueIsInArray) exitWith {
     ZEN_FMW_Code_ErrorExitValue("Zen_CreateControl", "Invalid control type given", (""))
 };

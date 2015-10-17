@@ -52,6 +52,7 @@ if !(_doRefresh) then {
             case "LIST": {("RscListBox")};
             case "TEXT": {("RscText")};
             case "SLIDER": {("RscXSliderH")};
+            case "PICTURE": {("RscPicture")};
             // case "BACKGROUND": {("RscBackground")};
             case "DROPLIST": {("RscCombo")};
             default {("")};
@@ -97,6 +98,10 @@ if !(_doRefresh) then {
                         if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetPicture [_i, _data select _i];
+                            };
+                        } else {
+                            if ([".paa", _data] call Zen_StringIsInString) then {
+                                _control ctrlSetText _data;
                             };
                         };
                     };

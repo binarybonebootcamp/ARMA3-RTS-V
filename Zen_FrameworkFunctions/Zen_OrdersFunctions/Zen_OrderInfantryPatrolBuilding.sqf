@@ -41,7 +41,7 @@ _housePosArray = [];
 
 while {(count _units > 0)} do {
     {
-        if (isNull _x || {(alive _x)}) then {
+        if (isNull _x || {!(alive _x)}) then {
             _units set [_forEachIndex, 0];
         } else {
             (group _x) setBehaviour _behavior;
