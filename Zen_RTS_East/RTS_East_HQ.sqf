@@ -33,7 +33,7 @@ Zen_RTS_F_East_HQConstructor = {
 
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
     BUILDING_VISUALS("Land_Research_HQ_F", -1)
-    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_HQ_deadBuilding)
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_HQ, east)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["Purchase Technologies", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
@@ -49,7 +49,7 @@ Zen_RTS_F_East_HQDestructor = {
     diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
-    _array = RTS_Building_Type_Levels select 0;
+    _array = RTS_Building_Type_Levels select 1;
     _array set [_index, _level];
 
     (_buildingObjData select 2) setDamage 1;

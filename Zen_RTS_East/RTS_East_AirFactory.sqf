@@ -58,7 +58,7 @@ Zen_RTS_F_East_AirFactoryDestructor = {
     diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
-    _array = RTS_Building_Type_Levels select 0;
+    _array = RTS_Building_Type_Levels select 1;
     _array set [_index, _level];
 
     (_buildingObjData select 2) setDamage 1;

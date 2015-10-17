@@ -83,12 +83,12 @@ Zen_RTS_F_West_CJDestructor = {
     diag_log "West CJ destructor";
 
     _buildingObjData = _this select 0;
-    _level = _buildingObjData select 3;
-    diag_log _level;
+    // _level = _buildingObjData select 3;
+    // diag_log _level;
 
-    _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
-    _array = RTS_Building_Type_Levels select 0;
-    _array set [_index, _level];
+    // _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
+    // _array = RTS_Building_Type_Levels select 0;
+    // _array set [_index, _level];
 
     (_buildingObjData select 2) setDamage 1;
 };

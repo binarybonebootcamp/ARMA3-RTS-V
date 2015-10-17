@@ -1,3 +1,4 @@
+//
 
 Zen_RTS_F_West_RadarConstructor = {
     diag_log "West Radar constructor called";
@@ -53,8 +54,8 @@ Zen_RTS_F_West_RadarDestructor = {
 #define ASSETS []
 UPGRADE(Zen_RTS_F_West_RadarUpgrade01, ASSETS)
 
-//#define ASSETS []
-//UPGRADE(Zen_RTS_F_West_RadarUpgrade02, ASSETS)
+// #define ASSETS []
+// UPGRADE(Zen_RTS_F_West_RadarUpgrade02, ASSETS)
 
 Zen_RTS_BuildingType_West_Radar = ["Zen_RTS_F_West_RadarConstructor", "Zen_RTS_F_West_RadarDestructor", ["Zen_RTS_F_West_RadarUpgrade01"], "Radar", "Cost: 1000, Time: 10, Picture: pictures\target1.paa"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_Radar;

@@ -76,7 +76,7 @@ _null = [] spawn {
     // [] exec "vicpoint\rts-vpInit.sqs";
 // };
 
-execVM "digitalLoadout\client.sqf";
+[false] execVM "digitalLoadout\client.sqf";
 // Data structure for custom squads, this is local to each player and side specific
 // indexes pair with names/colors, 0 - Alpha, etc.
 RTS_Custom_Squads_Assets = [[], [], [], []];
@@ -118,7 +118,7 @@ Zen_JIP_Args_Server = [overcast, fog, 2000];
 
 diag_log diag_tickTime;
 {
-    call compile format ["xp%1 = 0", _x];
+    // call compile format ["xp%1 = 0", _x];
     // 0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
     if (isPlayer _x) then {
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)

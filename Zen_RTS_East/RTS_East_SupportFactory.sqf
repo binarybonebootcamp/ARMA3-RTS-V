@@ -21,11 +21,12 @@ Zen_RTS_F_East_SupportFactoryConstructor = {
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_ammo_msv;	
+    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_ammo_msv;
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_repair_msv;
     _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_Fuel_MSV_01;
     _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_typhoon_vdv;
     _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Ural_VDV_01;
+
     // if (Zen_RTS_TechFlag_East_BuildEnemy) then {
         // ... to do
     // };
@@ -43,7 +44,7 @@ Zen_RTS_F_East_SupportFactoryConstructor = {
     };
 
     BUILDING_VISUALS("Land_Research_house_V1_F", -1)
-    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_SupportFactory_deadBuilding)
+    ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_SupportFactory, east)
 
     // to-do: || false condition needs building hacking logic
     _args = ["addAction", [_building, ["<img size='3'image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
@@ -59,7 +60,7 @@ Zen_RTS_F_East_SupportFactoryDestructor = {
     diag_log _level;
 
     _index = [(_buildingObjData select 0), (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
-    _array = RTS_Building_Type_Levels select 0;
+    _array = RTS_Building_Type_Levels select 1;
     _array set [_index, _level];
 
     (_buildingObjData select 2) setDamage 1;
@@ -152,4 +153,4 @@ Zen_RTS_Asset_East_rhs_prp3_vdv = ["Zen_RTS_F_East_Asset_rhs_prp3_vdv", "prp3_vd
 Zen_RTS_Asset_East_rhs_gaz66_r142_vdv = ["Zen_RTS_F_East_Asset_rhs_gaz66_r142_vdv", "Gaz (future radar extention)", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_RHS_BM21_MSV_01 = ["Zen_RTS_F_East_Asset_RHS_BM21_MSV_01", "test","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_9k79_K = ["Zen_RTS_F_East_Asset_rhs_9k79_K", "missile","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_9k79_B = ["Zen_RTS_F_East_Asset_rhs_9k79_B", "NUKE","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate; 
+Zen_RTS_Asset_East_rhs_9k79_B = ["Zen_RTS_F_East_Asset_rhs_9k79_B", "NUKE","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
