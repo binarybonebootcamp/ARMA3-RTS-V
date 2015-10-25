@@ -109,6 +109,15 @@ diag_log diag_tickTime;
 // This is for server only
 Zen_RTS_CommanderQueue = [[], []];
 
+// These arrays are for the server only
+// Do not transfer AI repair/recycle threads or locality to clients
+// Must follow [[<west objects>], [<east objects>]] format
+RTS_Recycle_Queue = [[], []];
+RTS_Repair_Queue = [[], []];
+RTS_Worker_Recycle_Queue = [[], []];
+RTS_Worker_Repair_Queue = [[], []];
+RTS_CJ_Repair_Queue = [[], []];
+
 #include "Zen_RTS_Functions\Zen_CustomLoadouts.sqf"
 0 = [] call Zen_RTS_RandomStart;
 0 = [] spawn Zen_RTS_CommanderManager;
@@ -307,15 +316,6 @@ RTS_Building_Type_Levels = [[], []]; // global
 // all asset types must be added here, or they will not be considered for custom squads
 // must be [[West asset types, [East '']]
 RTS_Used_Asset_Types = [[], []]; // global
-
-// These arrays are for the server only
-// Do not transfer AI repair/recycle threads or locality to clients
-// Must follow [[<west objects>], [<east objects>]] format
-RTS_Recycle_Queue = [[], []];
-RTS_Repair_Queue = [[], []];
-RTS_Worker_Recycle_Queue = [[], []];
-RTS_Worker_Repair_Queue = [[], []];
-RTS_CJ_Repair_Queue = [[], []];
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"
