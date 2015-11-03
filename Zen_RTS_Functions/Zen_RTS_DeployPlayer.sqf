@@ -4,8 +4,8 @@
 
 // if (StopMsg) then {Exit};
 
-#include "Zen_StandardLibrary.sqf";
-#include "Zen_FrameworkLibrary.sqf";
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf";
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf";
 
 _unit = _this select 0;
 

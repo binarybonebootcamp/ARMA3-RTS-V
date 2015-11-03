@@ -1,7 +1,7 @@
 // from GUI
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 #define RECYCLE_COST_COEFF 0.5
 #define REPAIR_COST_COEFF 0.5
 

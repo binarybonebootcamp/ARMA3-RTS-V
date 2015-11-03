@@ -122,7 +122,7 @@ rts_arrays_initialized = FALSE;
 // rts_commander = true;
 
 rts_killedSld = ["killed",{_this execVM "rts-event-RemoveDeadEH.sqf"}];
-rts_killedBase = ["killed",{_this execVM "rts-event-baseKilledEH.sqf"}];
+// rts_killedBase = ["killed",{_this execVM "rts-event-baseKilledEH.sqf"}];
 rts_killedRsc = ["killed",{_this exec "rts-event-resourceKilled.sqs"}];
 
 // Amount of time til player can re-deploy - set in description.ext parameters

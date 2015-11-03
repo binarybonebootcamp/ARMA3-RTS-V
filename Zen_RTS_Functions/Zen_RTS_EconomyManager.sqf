@@ -1,5 +1,5 @@
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 #define HASH_SIDE(V) (if (V == West) then {0} else {1})
 #define MONEY_COEF 3

@@ -15,8 +15,8 @@
             6. Scalar, FOB status
 //*/
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_RTS_SubTerritoryGetData", _this] call Zen_StackAdd;
 private ["_marker", "_data"];

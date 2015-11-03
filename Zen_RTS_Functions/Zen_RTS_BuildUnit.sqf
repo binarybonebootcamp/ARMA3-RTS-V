@@ -1,7 +1,7 @@
 //
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 #define PROCESS_PURCHASE \
     _cost = call compile ([(_assetData select 3), "Cost: ", ","] call Zen_StringGetDelimitedPart); \

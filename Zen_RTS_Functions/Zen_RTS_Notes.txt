@@ -34,6 +34,7 @@ Strategic
         // CJ, with repair and recycle
             // placement for assets
             // AI recycler gets AI owned CJ with spawn
+            limit 5 each repairers and recyclers
         // charge per crew member
         better spawn placement
         auto tank
@@ -135,8 +136,8 @@ RTS menus
     // Cancel asset button refunds
     // Refresh button
     // Repair/Recycle y/n menu with $$
+    // Give money to another player
     Use radial menu GUI for actions
-    Give money to another player
     AI fly height
 Revive/Respawn/JIP
     // rewrite rts-init-SetRandomPos.sqs in SQF
@@ -185,6 +186,8 @@ Known MP Issues
         // AI recycle tasking
         // AI Repair activation
         'Build enemy units' technology disappears
+        Repair tank factory with MCU
+        AI recycler not resetting ready flag ??
     Synch Issues
         // Asset crew join group
         // CJ remote actions missing

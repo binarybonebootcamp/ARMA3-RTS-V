@@ -1,7 +1,7 @@
 // Exec'd from an action on the player added by rts-init-playeractions.sqs
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 0 = _this spawn {
     // re-init the most basic vars in case JIP doesn't.
@@ -60,11 +60,13 @@
     ctrlSetText [_idtitle, "RTS V Mission Status"];
     ctrlSetText [_idRefreshButton, "Refresh"];
     ctrlSetText [_idRepair, "Repair Asset"];
+    ctrlSetText [_idLightQButton, "Donate"];
 
     buttonSetAction [_idRepair, "['Repair', ['Asset']] spawn Zen_RTS_RecycleRepair"];
     buttonSetAction [_idRefreshButton, "0 = [] spawn Zen_RTS_AlphaMenu"];
     buttonSetAction [_idDisband, "[1020] call Zen_RTS_DisbandUnit"];
     buttonSetAction [_idviewsel, "[1015] call Zen_RTS_SetViewDistance"];
+    buttonSetAction [_idLightQButton, "0 = [] spawn Zen_RTS_GiveMoney"];
 
     // ;;ctrlShow [_idScramble, false];
     // ;;ctrlShow [_idsatellite,false];
@@ -74,7 +76,7 @@
     ctrlEnable [_idstats, false];
     {
         ctrlShow [ _x, false];
-    } forEach [_idLightQButton, _idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idBuildMenu];
+    } forEach [_idHeavyQButton, _idAirQButton, _idLightQ, _idHeavyQ, _idAirQ, _idBuildMenu];
 
     if (player in [WestCommander,EastCommander]) then {
         // ctrlShow [_iddestruct, false];
