@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 
 Zen_Fire_Support_Round_Local = objNull;
 Zen_Fire_Support_Target_Pos_Local = [];

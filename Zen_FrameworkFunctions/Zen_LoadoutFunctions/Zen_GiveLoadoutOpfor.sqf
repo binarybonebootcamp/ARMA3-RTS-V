@@ -2,8 +2,8 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 
 #define RECON_HEADGEAR ["H_HelmetSpecO_ocamo", "H_MilCap_ocamo", "H_Watchcap_blk", "H_Bandanna_gry"]
 #define STD_UNIFORM ["U_O_CombatUniform_ocamo", "U_O_SpecopsUniform_ocamo"]

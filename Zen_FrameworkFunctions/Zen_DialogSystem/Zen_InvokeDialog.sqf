@@ -3,8 +3,8 @@
 // See Legal.txt
 
 disableSerialization;
-#include "Zen_FrameworkLibrary.sqf"
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_InvokeDialog", _this] call Zen_StackAdd;
 private ["_dialogID", "_controlsArray", "_Zen_Dialog_Controls_Local", "_idcCur", "_display", "_controlData", "_controlType", "_controlBlocks", "_controlInstanClass", "_control", "_blockID", "_data", "_doRefresh"];
@@ -52,6 +52,10 @@ if !(_doRefresh) then {
             case "LIST": {("RscListBox")};
             case "TEXT": {("RscText")};
             case "SLIDER": {("RscXSliderH")};
+            case "PICTURE": {("RscPicture")};
+            // case "CHECKBOXES": {("RscCheckBox")};
+            // case "RADIOBUTTONS": {("RscToolboxButton")};
+            case "TEXTFIELD": {("RscEdit")};
             // case "BACKGROUND": {("RscBackground")};
             case "DROPLIST": {("RscCombo")};
             default {("")};
@@ -98,6 +102,10 @@ if !(_doRefresh) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetPicture [_i, _data select _i];
                             };
+                        } else {
+                            if ([".paa", _data] call Zen_StringIsInString) then {
+                                _control ctrlSetText _data;
+                            };
                         };
                     };
                     case "PICTURECOLOR": {
@@ -136,7 +144,7 @@ if !(_doRefresh) then {
                         _control ctrlSetTooltip _data;
                     };
                     case "LISTTOOLTIP": {
-                        if ((toUpper _controlType) == "LIST") then {
+                        if ((toUpper _controlType) in ["LIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
                                 _control lbSetTooltip [_i, _data select _i];
                             };
