@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 #define BIN_LIMITS 5
 
 _Zen_stack_Trace = ["Zen_FindRoadDirection", _this] call Zen_StackAdd;

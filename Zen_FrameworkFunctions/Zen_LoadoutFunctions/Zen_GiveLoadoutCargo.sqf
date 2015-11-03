@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 #define GIVE_GEAR_SINGLE(SLOT, COMMAND) _gear = [_loadout, SLOT, 0] call Zen_ArrayGetNestedValue; \
     if !(typeName _gear == typeName [] && {count _gear == 0}) then { \
@@ -22,7 +22,7 @@
         }; \
     };
 
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_GiveLoadoutCargo", _this] call Zen_StackAdd;
 private ["_units", "_givenLoadoutArray", "_unit", "_loadout", "_gear", "_weaponsIndexes", "_gearWeapons", "_randomWeaponArrays", "_randomMagCount", "_randomMag", "_magIndex", "_weaponsList", "_weaponArray", "_weapIndex"];

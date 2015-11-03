@@ -2,8 +2,8 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_OrderHelicopterLand", _this] call Zen_StackAdd;
 private ["_heli", "_heliDriver", "_heliGrp", "_heliZ", "_inPos", "_heliCorrectLandPos", "_heliDirToLand", "_speedMode", "_heliPad", "_fastRope", "_cleanupCrash", "_isCrash"];

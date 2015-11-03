@@ -3,8 +3,8 @@
 // See Legal.txt
 
 disableSerialization;
-#include "Zen_FrameworkLibrary.sqf"
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_ExecuteEvent", _this] call Zen_StackAdd;
 private ["_controlID", "_controlData", "_controlBlocks", "_index", "_function"];
@@ -61,30 +61,40 @@ if (count _index > 0) then {
     {
         _controlData = [_x] call Zen_GetControlData;
         _type = _controlData select 1;
-        if ((toUpper _type) in ["LIST", "DROPLIST"]) then {
+        _properties = _controlData select 2;
+        switch (true) do {
+            case ((toUpper _type) in ["LIST", "DROPLIST"]): {
                 _indexLinkedControlLocal = [_Zen_Dialog_Controls_Local, _x, 0] call Zen_ArrayGetNestedIndex;
                 if (count _indexLinkedControlLocal > 0) then {
                     _indexLinkedControlLocal = _indexLinkedControlLocal select 0;
                     _linkedControl = (_Zen_Dialog_Controls_Local select _indexLinkedControlLocal) select 1;
                     _listDataIndex = lbCurSel _linkedControl;
 
-                    _indexLinkControlBlock = [(_controlData select 2), "Data", 0] call Zen_ArrayGetNestedIndex;
+                    _indexLinkControlBlock = [_properties, "Data", 0] call Zen_ArrayGetNestedIndex;
                     if (count _indexLinkControlBlock > 0) then {
                         _indexLinkControlBlock = _indexLinkControlBlock select 0;
-                        _linkedArgs pushBack ((((_controlData select 2) select _indexLinkControlBlock) select 1) select _listDataIndex);
+                        _linkedArgs pushBack (((_properties select _indexLinkControlBlock) select 1) select _listDataIndex);
                     };
 
-                    _indexLinkControlBlock = [(_controlData select 2), "ListData", 0] call Zen_ArrayGetNestedIndex;
+                    _indexLinkControlBlock = [_properties, "ListData", 0] call Zen_ArrayGetNestedIndex;
                     if (count _indexLinkControlBlock > 0) then {
                         _indexLinkControlBlock = _indexLinkControlBlock select 0;
-                        _linkedArgs pushBack ((((_controlData select 2) select _indexLinkControlBlock) select 1) select _listDataIndex);
+                        _linkedArgs pushBack (((_properties select _indexLinkControlBlock) select 1) select _listDataIndex);
                     };
                 };
-        } else {
-            _indexLinkControlBlock = [(_controlData select 2), "Data", 0] call Zen_ArrayGetNestedIndex;
-            if (count _indexLinkControlBlock > 0) then {
-                _indexLinkControlBlock = _indexLinkControlBlock select 0;
-                _linkedArgs pushBack (((_controlData select 2) select _indexLinkControlBlock) select 1);
+            };
+            case ((toUpper _type) in ["TEXTFIELD"]) : {
+                _curControlIndex = ([_Zen_Dialog_Controls_Local, _x, 0] call Zen_ArrayGetNestedIndex) select 0;
+                _currentControl = (_Zen_Dialog_Controls_Local select _curControlIndex) select 1;
+
+                _linkedArgs pushBack (ctrlText _currentControl);
+            };
+            default {
+                _indexLinkControlBlock = [_properties, "Data", 0] call Zen_ArrayGetNestedIndex;
+                if (count _indexLinkControlBlock > 0) then {
+                    _indexLinkControlBlock = _indexLinkControlBlock select 0;
+                    _linkedArgs pushBack ((_properties select _indexLinkControlBlock) select 1);
+                };
             };
         };
     } forEach (_linkedControls arrayIntersect _dialogControls);

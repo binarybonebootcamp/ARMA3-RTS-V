@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_ArraySearch(", _this] call Zen_StackAdd;
 private ["_arrays", "_indexes", "_ranges", "_hashes", "_counts", "_returnIndexes", "_arrayIndex", "_array", "_checksPassed", "_element", "_range", "_hashFunc", "_elementHash", "_lowerBound", "_upperBound"];

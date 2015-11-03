@@ -2,8 +2,8 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_AddFireSupportAction", _this] call Zen_StackAdd;
 private ["_units", "_supportString", "_titleString", "_maxCalls", "_guideObj", "_guideType", "_templateArray", "_args", "_sendPacket"];
