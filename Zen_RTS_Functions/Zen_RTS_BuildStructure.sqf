@@ -20,7 +20,7 @@
     _type = lbData [_idc, _index];
 
     _buildingObjs = [Zen_RTS_Strategic_Building_Objects_Global, _type, 0] call Zen_ArrayGetNestedIndex;
-    if (count _buildingObjs > 0) exitWith {
+    if ((count _buildingObjs > 0) && {!(_type in [Zen_RTS_BuildingType_West_CJ, Zen_RTS_BuildingType_East_CJ])}) exitWith {
         player sideChat "This building type has already been constructed.";
     };
 

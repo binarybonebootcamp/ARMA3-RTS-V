@@ -64,7 +64,7 @@ Strategic
         Barracks
             // Level 1: standard infantry (rifleman, AR, etc.)
             // Level 2: special weapons infantry (MG, AT, AA)
-            Level 3: SOF, snipers
+            // Level 3: SOF, snipers
         // Vehicle Factory
             // Level 1: unarmed utility, transport vehicles, MG pick-up truck
             // Level 2: armed MRAP's
@@ -137,8 +137,8 @@ RTS menus
     // Refresh button
     // Repair/Recycle y/n menu with $$
     // Give money to another player
+    Test AI fly height
     Use radial menu GUI for actions
-    AI fly height
 Revive/Respawn/JIP
     // rewrite rts-init-SetRandomPos.sqs in SQF
     Get correct respawn positions
@@ -186,8 +186,6 @@ Known MP Issues
         // AI recycle tasking
         // AI Repair activation
         'Build enemy units' technology disappears
-        Repair tank factory with MCU
-        AI recycler not resetting ready flag ??
     Synch Issues
         // Asset crew join group
         // CJ remote actions missing
