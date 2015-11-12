@@ -98,6 +98,9 @@ Zen_RTS_F_East_Tech_Enemy = {
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \
         _buildingDataOther = [B, true] call Zen_RTS_StrategicBuildingObjectGetDataGlobal; \
+        if (count _buildingDataOther == 0) exitWith { \
+            diag_log ("upgrade " + #N + " type has no existing objects  " + str _this + "  "+ str time); \
+        }; \
         _typeDataOther = [(_buildingDataOther select 0)] call Zen_RTS_StrategicBuildingTypeGetData; \
         _level = _buildingDataOther select 3; \
         _maxLevel = count (_typeDataOther select 3); \

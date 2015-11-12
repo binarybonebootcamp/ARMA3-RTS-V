@@ -490,6 +490,16 @@ class DlgStatus
             text = "Disband Unit";
             action = "[1020] exec ""rts-unit-release.sqs""";
         };
+        class Button_GiveMoney : RTS_ShortcutButton
+		{
+            idc = 1027;
+            x = 0.80;
+            y = 0.860;
+            sizeEx = 0.030;
+            colorText[] = COLOR_LIMEGREEN;
+            text = "Donate";
+            action = "";
+        };
         class BUTTON_CANCEL : RTS_ShortcutButton
         {
         idc = -1;
@@ -655,6 +665,17 @@ class DlgBuild
                     text = "";
 					colorText[] = COLOR_HALF_RED;
                     action = "[2000,0,False,False] execVM ""rts-build-unit.sqf""";
+                };
+
+
+            class Button_Recycle : RTS_Button
+                {
+                    idc = 2007;
+                    x = 0.8;
+                    y = 0.4;
+                    text = "";
+					colorText[] = COLOR_HALF_RED;
+                    action = "";
                 };
 
 

@@ -33,7 +33,7 @@ _data = [];
 } forEach Zen_RTS_Strategic_Building_Objects_Global;
 
 if ((_printError) && {count _data == 0}) then {
-    0 = ["Zen_RTS_StrategicBuildingObjectGetDataGlobal", "Given building object does not exist", _this] call Zen_PrintError;
+    0 = ["Zen_RTS_StrategicBuildingObjectGetDataGlobal", "Given building " + (if (_isTypeID) then {"type"} else {"object"}) + " does not exist", _this] call Zen_PrintError;
     call Zen_StackPrint;
     ([])
 };

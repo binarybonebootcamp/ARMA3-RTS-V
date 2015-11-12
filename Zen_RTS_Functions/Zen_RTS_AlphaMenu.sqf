@@ -39,6 +39,7 @@
     _idviewlist = 1015;
     _idgroupList = 1020;
     _idDisband = 1025;
+    _idGiveMoney = 1027;
     _idtitle = 1050;
     _idstats = 500;
 
@@ -60,13 +61,13 @@
     ctrlSetText [_idtitle, "RTS V Mission Status"];
     ctrlSetText [_idRefreshButton, "Refresh"];
     ctrlSetText [_idRepair, "Repair Asset"];
-    ctrlSetText [_idLightQButton, "Donate"];
+    ctrlSetText [_idGiveMoney, "Donate"];
 
     buttonSetAction [_idRepair, "['Repair', ['Asset']] spawn Zen_RTS_RecycleRepair"];
     buttonSetAction [_idRefreshButton, "0 = [] spawn Zen_RTS_AlphaMenu"];
     buttonSetAction [_idDisband, "[1020] call Zen_RTS_DisbandUnit"];
     buttonSetAction [_idviewsel, "[1015] call Zen_RTS_SetViewDistance"];
-    buttonSetAction [_idLightQButton, "0 = [] spawn Zen_RTS_GiveMoney"];
+    buttonSetAction [_idGiveMoney, "0 = [] spawn Zen_RTS_GiveMoney"];
 
     // ;;ctrlShow [_idScramble, false];
     // ;;ctrlShow [_idsatellite,false];
