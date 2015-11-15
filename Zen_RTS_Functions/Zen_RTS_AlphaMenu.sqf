@@ -154,7 +154,7 @@
                 _buildingObjData = [_x, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
                 _descrRaw = _buildingTypeData select 5;
 
-                private "_info";
+                _info = "";
                 if ((count _buildingObjData == 0) || {isNull (_buildingObjData select 2)}) then {
                     _info = (_buildingName + " - Offline");
                 } else {

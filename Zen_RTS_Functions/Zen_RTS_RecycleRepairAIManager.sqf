@@ -37,9 +37,8 @@
                 _assignedWorkerArray = [_repairQueueReady, compile format ["-1 * ((_this select 0) distanceSqr %1)", getPosATL _x]] call Zen_ArrayFindExtremum; \
                 _globalIndex = [_assignedWorkerArray, _workerArray] call Zen_ValueFindInArray; \
                 _assignedWorkerArray = _workerArray select 0; \
-                diag_log ("Zen_RTS_RecycleRepairAIManager  selected task worker  " + S + "  " + T + str _assignedWorkerArray); \
                 _assignedWorkerArray set [1, true]; \
-                _assignedWorker = _assignedWorkerArray select 0; \
+                diag_log ("Zen_RTS_RecycleRepairAIManager  selected task worker  " + S + "  " + T + str _assignedWorkerArray); \
                 0 = [_assignedWorkerArray, _x] spawn { \
                     _assignedWorkerArray = _this select 0; \
                     _objToRepair = _this select 1; \
@@ -55,8 +54,8 @@
                         sleep 5; \
                         if (([vehicle _worker, _objToRepair] call Zen_Find2dDistance) < 20) exitWith {}; \
                     }; \
+                    _assignedWorkerArray set [1, false]; \
                     if !(_cancelled) then { \
-                        _assignedWorkerArray set [1, false]; \
                         diag_log (S + " complete: " + str _objToRepair + str _assignedWorkerArray); \
                         _h_repair = [S, [T], true, _worker] spawn Zen_RTS_RecycleRepair; \
                     }; \

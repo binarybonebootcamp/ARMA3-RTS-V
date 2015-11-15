@@ -132,7 +132,7 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
             }; \
         }; \
         if (T in [""]) then { \
-            _vehicle call FNC_AUTOTANK; \
+            ZEN_FMW_MP_REAll("FNC_AUTOTANK", _vehicle, call) \
         }; \
     };
 

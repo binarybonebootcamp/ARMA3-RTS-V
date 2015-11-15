@@ -86,7 +86,8 @@ if (_actionType == "Repair") then {
             deleteVehicle _nearestObj; \
             _index = [_type, (RTS_Used_Building_Types select ([west, east] find _side))] call Zen_ValueFindInArray; \
             _level = RTS_Building_Type_Levels select ([west, east] find _side) select _index; \
-            0 = [_type, [_pos, _level]] call Zen_RTS_StrategicBuildingInvoke; \
+            _args = [_type, [_pos, _level]]; \
+            ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicBuildingInvoke", _args, call) \
         }; \
         default { \
             diag_log ("Zen_RTS_RecycleRepair + " + str time + "  " + str _this + " Invalid strategic type  " + str _nearestObj + "  " + str (_nearestObj getVariable ["Zen_RTS_StrategicType", ""])); \
