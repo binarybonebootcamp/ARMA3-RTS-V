@@ -9,7 +9,7 @@
         call compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicCompile.sqf";
 //*/
 
-#include "Zen_Frameworklibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 Zen_RTS_Strategic_Building_Types = [];
 Zen_RTS_Strategic_Building_Objects_Server = [];

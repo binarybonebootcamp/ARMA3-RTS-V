@@ -13,8 +13,8 @@
             4. String, a nearly identical helper marker for color
 //*/
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_RTS_TerritoryGetData", _this] call Zen_StackAdd;
 private ["_marker", "_data"];
