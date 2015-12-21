@@ -3,9 +3,10 @@
 // See Legal.txt
 
 #define ZEN_FMW_Array_RemoveIndexes(A, I) \
+    _Zen_IndexesToRemoveSorted = [A, {(-1 * _this)}, "hash"] call Zen_ArraySort; \
     { \
-        0 = [A, _x - _forEachIndex] call Zen_ArrayRemoveIndex; \
-    } forEach I;
+        0 = [A, _x] call Zen_ArrayRemoveIndex; \
+    } forEach _Zen_IndexesToRemoveSorted;
 
 #define ZEN_FMW_CFG_VehicleWeapons(V) \
     _Zen_WeaponsArray = []; \

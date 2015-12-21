@@ -58,6 +58,7 @@ if !(_doRefresh) then {
             case "TEXTFIELD": {("RscEdit")};
             // case "BACKGROUND": {("RscBackground")};
             case "DROPLIST": {("RscCombo")};
+            case "PROGRESSBAR": {("RscProgress")};
             default {("")};
         };
 
@@ -84,10 +85,17 @@ if !(_doRefresh) then {
                 _control sliderSetSpeed [1, 5];
             };
 
+            if (toUpper _controlType in ["PROGRESSBAR"]) then {
+                _control progressSetPosition 0;
+            };
+
             {
                 _blockID = _x select 0;
                 _data = _x select 1;
                 switch (toUpper _blockID) do {
+                    case "PROGRESS": {
+                        _control progressSetPosition (((_data max 0) min 255) / 255);
+                    };
                     case "FONTCOLORSELECTED": {
                         if ((toUpper _controlType) in ["LIST","DROPLIST"]) then {
                             for "_i" from 0 to (lbSize _control - 1) do {
