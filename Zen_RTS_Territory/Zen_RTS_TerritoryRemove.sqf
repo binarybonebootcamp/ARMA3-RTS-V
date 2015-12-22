@@ -10,8 +10,8 @@
     Return: Void
 //*/
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_RTS_TerritoryRemove", _this] call Zen_StackAdd;
 private ["_marker", "_index", "_indexes"];

@@ -1,7 +1,7 @@
 //
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 0 = _this spawn {
     _Zen_stack_Trace = ["Zen_RTS_BuildMenu", _this] call Zen_StackAdd;
@@ -39,7 +39,7 @@
     _idtitle = 1050;
 
     _idRepair = 2016;
-    _idRecycle = 2031;
+    _idRecycle = 2007;
     _idListCustom = 2030;
 
     // _indexCustoms = 0;
@@ -92,6 +92,7 @@
 
         {
             ctrlShow [ _x, true];
+            ctrlEnable [ _x, true];
         } forEach [_idRepair, _idRecycle];
 
         ctrlSetText [_idRepair, "Repair Building"];
