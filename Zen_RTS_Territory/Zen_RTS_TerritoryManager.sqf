@@ -12,8 +12,8 @@
     Return: Void
 //*/
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_RTS_TerritoryManager", _this] call Zen_StackAdd;
 private ["_markers", "_oldData", "_indexSide", "_subMarkers", "_sidePoints", "_winningPoints", "_winningIndex", "_winningSide", "_winningAdvantage", "_sideIndex", "_subData", "_index"];

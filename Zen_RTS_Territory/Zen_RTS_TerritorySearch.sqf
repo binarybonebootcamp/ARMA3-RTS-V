@@ -16,8 +16,8 @@
     Return: Array of strings, [] if there is no match
 //*/
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_RTS_TerritorySearch", _this] call Zen_StackAdd;
 private ["_side", "_lowerSubMarkers", "_upperSubMarkers", "_subMarkerCount", "_markers", "_data"];

@@ -33,10 +33,6 @@ class Header {
     maxPlayers = 26;
 };
 
-class CfgFunctions {
-    #include "vip_cmn\fn\vip_cmn_fnc.hpp"
-    #include "vip_sms\fn\vip_sms_fnc.hpp"
-};
 
 class TAG {
     class MyMission {
@@ -44,13 +40,6 @@ class TAG {
    };
 };
 
-class CfgRemoteExecCommands {
-    #include "vip_cmn\fn\vip_cmn_fnc_remoteExec.hpp"
-    #include "vip_sms\fn\vip_sms_fnc_remoteExec.hpp"
-};
-
-#include "vip_cmn\resource\vip_dlg_defaults.hpp"
-#include "vip_sms\resource\vip_sms_dlg.hpp"
 #include "param\description.ext"
 
 #include "menus\rtsdefine.hpp"

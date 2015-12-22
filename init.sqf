@@ -33,6 +33,7 @@ Zen_RTS_DeployPlayer = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions
 Zen_RTS_DisbandUnit = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DisbandUnit.sqf";
 Zen_RTS_DestroyStructure = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_DestroyStructure.sqf";
 Zen_RTS_EconomyManager = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_EconomyManager.sqf";
+Zen_RTS_GiveMoney = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_GiveMoney.sqf";
 Zen_RTS_HackBuilding = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_HackBuilding.sqf";
 Zen_RTS_RandomStart = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RandomStart.sqf";
 Zen_RTS_RecycleRepair = compileFinal preprocessFileLineNumbers "Zen_RTS_Functions\Zen_RTS_RecycleRepair.sqf";
@@ -89,10 +90,12 @@ if !(isServer) exitWith {};
 sleep 1;
 
 // RTS Server -------------
-FNC_AUTOTANK = compileFinal preprocessFileLineNumbers "FNC_AUTOTANK.sqf";
+//FNC_AUTOTANK = compileFinal preprocessFileLineNumbers "FNC_AUTOTANK.sqf";
+#include "FNC_AUTOTANK.sqf";
+ 
 0 = [] execVM "unflip_vehicle.sqf";
 0 = [] execVM "R3F_LOG\init.sqf";
-0 = [] execVM "VCOM_Driving\init.sqf";
+
 
 // [] exec "rts-init-commandermonitor.sqs";
 // [] exec "economy\rts-supplyMonitor.sqs";
@@ -109,7 +112,17 @@ diag_log diag_tickTime;
 // This is for server only
 Zen_RTS_CommanderQueue = [[], []];
 
-#include "Zen_RTS_Functions\Zen_CustomLoadouts.sqf"
+// These arrays are for the server only
+// Do not transfer AI repair/recycle threads or locality to clients
+// Must follow [[<west objects>], [<east objects>]] format
+RTS_Recycle_Queue = [[], []];
+RTS_Repair_Queue = [[], []];
+RTS_Worker_Recycle_Queue = [[], []];
+RTS_Worker_Repair_Queue = [[], []];
+RTS_CJ_Repair_Queue = [[], []];
+
+#include "Zen_RTS_Functions\Zen_RTS_CustomLoadouts.sqf"
+#include "Zen_RTS_Functions\Zen_RTS_InitGiveMoneyDialog.sqf"
 0 = [] call Zen_RTS_RandomStart;
 0 = [] spawn Zen_RTS_CommanderManager;
 0 = [] spawn Zen_RTS_EconomyManager;
@@ -307,15 +320,6 @@ RTS_Building_Type_Levels = [[], []]; // global
 // all asset types must be added here, or they will not be considered for custom squads
 // must be [[West asset types, [East '']]
 RTS_Used_Asset_Types = [[], []]; // global
-
-// These arrays are for the server only
-// Do not transfer AI repair/recycle threads or locality to clients
-// Must follow [[<west objects>], [<east objects>]] format
-RTS_Recycle_Queue = [[], []];
-RTS_Repair_Queue = [[], []];
-RTS_Worker_Recycle_Queue = [[], []];
-RTS_Worker_Repair_Queue = [[], []];
-RTS_CJ_Repair_Queue = [[], []];
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"

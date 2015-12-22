@@ -4,8 +4,8 @@
     for RTS V
 */
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_RTS_StrategicBuildingCreate", _this] call Zen_StackAdd;
 private ["_constructor", "_destructor", "_upgrades", "_name", "_description", "_identifier"];
