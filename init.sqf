@@ -92,16 +92,15 @@ sleep 1;
 // RTS Server -------------
 //FNC_AUTOTANK = compileFinal preprocessFileLineNumbers "FNC_AUTOTANK.sqf";
 #include "FNC_AUTOTANK.sqf";
- 
+
 0 = [] execVM "unflip_vehicle.sqf";
 0 = [] execVM "R3F_LOG\init.sqf";
-
 
 // [] exec "rts-init-commandermonitor.sqs";
 // [] exec "economy\rts-supplyMonitor.sqs";
 // [] exec "rts-build-serverside.sqs";
 // took this out with what ever it was attached to.. like unit monitor ... getting errors from east.
-// [] exec "test.sqs";                                         
+// [] exec "test.sqs";
 // [] exec "rts-build-serverSideMonitor.sqs";
 // rts_hq sideChat "Global Scripts and Variables Initialized";
 // --------------------------

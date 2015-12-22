@@ -813,7 +813,7 @@ class DlgRespawn
 
                 class LABEL_TIMERTEXT : RTS_Text
                     {
-                        idc = -1;
+                        idc = 1308;
                         style = RTS_ST_LEFT;
                         x = 0.78;
                         y = 0.5;

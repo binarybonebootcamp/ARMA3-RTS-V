@@ -2,8 +2,8 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 
 #define RECON_VEST ["V_Chestrig_khk", "V_Chestrig_rgr", "V_Chestrig_oli", "V_TacVest_camo", "V_TacVest_khk", "V_TacVest_oli"]
 #define RECON_HEADGEAR ["H_MilCap_mcamo", "H_Watchcap_sgg", "H_Bandanna_mcamo", "H_Cap_tan_specops_US", "H_Cap_oli_hs", "H_HelmetB_light_snakeskin", "H_HelmetB_light_desert", "H_HelmetB_light_black", "H_HelmetB_light_sand"]

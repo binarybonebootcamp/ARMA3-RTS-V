@@ -2,8 +2,8 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_FrameworkLibrary.sqf"
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_UpdateControl", _this] call Zen_StackAdd;
 private ["_controlType", "_ID", "_dataTypes", "_dataArray", "_type", "_data"];
@@ -13,8 +13,8 @@ if !([_this, [["STRING"], ["ARRAY"], ["ARRAY"], ["ARRAY"], ["ARRAY"], ["ARRAY"],
 };
 
 _controlID = _this select 0;
-_controlTypes = ["Button", "List","Text"];
-_dataTypes = ["LinksTo","Text","FontColor","Position","Size","ActivationFunction", "SelectionFunction","List","ListData","Data","FontSize", "Font", "FontColorSelected", "ListTooltip", "ForegroundColor", "BackgroundColor", "Tooltip", "TooltipFontColor", "TooltipBackgroundColor", "TooltipBorderColor", "Picture", "PictureColor", "PictureColorSelected", "SliderPositions"];
+_controlTypes = ["Button","List","Text", "BACKGROUND", "DROPLIST", "SLIDER", "PICTURE", "CHECKBOXES", "RADIOBUTTONS", "TEXTFIELD", "PROGRESSBAR"];
+_dataTypes = ["LinksTo","Text","FontColor","Position","Size","ActivationFunction", "SelectionFunction","List","ListData","Data","FontSize", "Font", "FontColorSelected", "ListTooltip", "ForegroundColor", "BackgroundColor", "Tooltip", "TooltipFontColor", "TooltipBackgroundColor", "TooltipBorderColor", "Picture", "PictureColor", "PictureColorSelected", "SliderPositions", "Progress"];
 
 _index = [Zen_Control_Classes_Global, _controlID, 0] call Zen_ArrayGetNestedIndex;
 if (count _index == 0) exitWith {

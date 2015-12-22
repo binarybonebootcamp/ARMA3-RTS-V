@@ -131,8 +131,8 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
                 {doStop _x;} forEach (units _crewGroup); \
             }; \
         }; \
-        if (T in ["m1a2sep1tuskiid_usarmy"]) then { \
-            _vehicle call FNC_AUTOTANK; \
+        if (T in ["rhsusf_m1025_w_s_m2", "rhsusf_m113d_usarmy", "RHS_M2A3_BUSKIII", "m1a2sep1tuskiid_usarmy"]) then { \
+            ZEN_FMW_MP_REAll("FNC_AUTOTANK", _vehicle, call) \
         }; \
     };
 

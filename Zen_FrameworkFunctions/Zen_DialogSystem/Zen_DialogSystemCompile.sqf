@@ -2,50 +2,14 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_FrameworkLibrary.sqf"
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 Zen_Dialog_Classes_Global = [];
 Zen_Control_Classes_Global = [];
 Zen_Active_Dialog_Control_Data = [];
 Zen_Active_Dialog = "";
 uiNamespace setVariable ["Zen_Dialog_Object_Local", ["", []]];
-/**
-    Control Types:
-        "Button"
-        "List"
-        "Text"
-
-    Control Properties:
-        "ActivationFunction"
-        "SelectionFunction"
-        "LinksTo"
-        "Data"
-        "Text"
-        "Font"
-        "FontColor"
-        "FontSize"
-        "Position"
-        "Size"
-        "List"
-        "ListData"
-        FontColorSelected
-            lbSetSelectColor
-        ListTooltip
-            lbSetTooltip
-        ForegroundColor
-            ctrlSetForegroundColor
-        BackgroundColor
-            ctrlSetBackgroundColor
-        Tooltip
-            ctrlSetTooltip
-        TooltipFontColor
-            ctrlSetTooltipColorText
-        TooltipBackgroundColor
-            ctrlSetTooltipColorShade
-        TooltipBorderColor
-            ctrlSetTooltipColorBox
-//*/
 
 Zen_LinkControl = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_DialogSystem\Zen_LinkControl.sqf";
 Zen_CopyControl = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_DialogSystem\Zen_CopyControl.sqf";

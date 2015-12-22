@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_CreateObjective", _this] call Zen_StackAdd;
 private ["_objType", "_objPos", "_objects", "_rangers", "_convoyStart", "_convoySpeed", "_taskUniqueName", "_side", "_extraVars1", "_extraVars2", "_markerColor", "_objClass", "_triggerType", "_objMarker", "_spawned", "_h_arrive"];

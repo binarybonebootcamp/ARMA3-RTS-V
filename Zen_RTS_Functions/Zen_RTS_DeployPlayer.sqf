@@ -20,9 +20,10 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     rts_respawn = false;
 
     _idclabel = 1310;
-    _idctimer = 1311;
-    _idclist = 1312;
+    _idcTimerNumber = 1311;
+    _idcList = 1312;
     _idcbutton = 1313;
+    _idcTimerText = 1308;
 
     /** Music
     _num = random 10;
@@ -139,8 +140,8 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     _respawnloc = getPosATL _mcu;
     _camTarget = _mcu;
     while {true} do {
-        CreateDialog "DLGRespawn";
-        lbClear _idclist;
+        createDialog "DLGRespawn";
+        lbClear _idcList;
         ctrlShow [_idcbutton, true];
         // ctrlShow [_idclabel, false];
 
@@ -158,68 +159,87 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
         // #AddList
         // _info = _bldName
 
+        _index = lbAdd [_idcList, "MCU"];
+        lbSetData [_idcList, _index, str _mcu];
+        lbSetValue [_idcList, _index, 0];
 
-        _index = lbAdd [_idclist, "MCU"];
-        lbSetData [_idclist, _index,str _mcu];
-        // lbSetValue [_idclist, _index, _x];
-
+        _sideFlags = [[1], [[1, 1]], [compile format ["(if (str _this isEqualTo '%1') then {1} else {0})", str side player]]] call Zen_RTS_SubTerritorySearch;
+        {
+            _flagData = [_x] call Zen_RTS_SubTerritoryGetData;
+            _index = lbAdd [_idcList, _flagData select 2];
+            lbSetData [_idcList, _index, _x];
+            lbSetValue [_idcList, _index, 1];
+        } forEach _sideFlags;
+        
         // #LBAdd
 
         // _x = _x + 1
         // ?_x < Count _baseList : Goto "ListLoop"
 
-        // ?lbSize _idclist <= 0 : _info = _mcuName; _unitInfo = Format["%1",_mcu]; Goto "LBAdd"
+        // ?lbSize _idcList <= 0 : _info = _mcuName; _unitInfo = Format["%1",_mcu]; Goto "LBAdd"
 
-        lbSetCurSel [_idclist, 0];
-        _index = lbCurSel _idclist;
-        _data = lbData [_idclist, _index];
+        lbSetCurSel [_idcList, 0];
+        ctrlSetText [_idcTimerNumber, "60"];
+        // _index = lbCurSel _idcList;
+        // _data = lbData [_idcList, _index];
 
-        _camTarget = call compile format ["%1",_data];
-        _cam camSetTarget (getPosATL _camTarget);
-        _cam camSetRelPos [0,-20,10];
-        _cam camCommit 0;
+        // _camTarget = call compile format ["%1",_data];
+        // _cam camSetTarget (getPosATL _camTarget);
+        // _cam camSetRelPos [0,-20,10];
+        // _cam camCommit 0;
 
-        for "_i" from 1 to 60 step 1 do {
+        _maxTime = 60;
+        for "_i" from 1 to _maxTime step 1 do {
             // if (StopMsg) exitWith {closeDialog 0;};
             if !(ctrlVisible _idcList) exitWith {};
-            if (_i == 60) then {rts_respawn = true};
+            if (_i == _maxTime) then {rts_respawn = true};
             if (rts_respawn) exitWith {};
 
-            _index = lbCurSel _idclist;
-            _data = lbData [_idclist, _index];
-            _camtarget = call compile format ["%1",_data];
+            _index = lbCurSel _idcList;
+            _data = lbData [_idcList, _index];
+            _dataType = lbVAlue [_idcList, _index];
 
-            _timertext = Format["%1",_timer];
-            CtrlSetText [_idctimer,_timertext];
+            _camTarget = [0,0,0];
+            switch (_dataType) do {
+                case 0: {
+                    _camTarget = getposATL (call compile format ["%1",_data]);
+                };
+                case 1: {
+                    _camTarget = markerPos _data;
+                };
+            };
+
+            // _timertext = Format["%1",_timer];
+            // CtrlSetText [_idctimer,_timertext];
             // ?_timer <= 0 : ctrlshow [_idcbutton,TRUE];
             // ?_timer > 0 : _timer = _timer - 1;
 
-            _respawnLoc = getposATL _camTarget;
+            _respawnLoc = _camTarget;
             _cam camSetTarget _camTarget;
 
-            _camY = -50;
-            // _text = lbText [_idclist, _index];
+            _camY = -20;
+            // _text = lbText [_idcList, _index];
             // ?_text in ["Forward Base Perimeter"] : _camY = -400;
             // ?_text in ["Back Base Perimeter"] : _camY = +400;
-            _cam camSetRelPos [0,_camY,10];
+            _cam camSetRelPos [0, _camY, 10];
             _cam camCommit 0;
+            ctrlSetText [_idcTimerNumber, str (_maxTime - _i)];
             sleep 1;
         };
 
         // CtrlSetText [_idclabel,_text];
-        if (!(rts_respawn) && {!(ctrlVisible _idclist)}) then {
+        if (!(rts_respawn) && {!(ctrlVisible _idcList)}) then {
             cutText ["DON'T EXIT THE MENU USING ESC!","PLAIN"];
         };
         if (rts_respawn) exitWith {};
     };
-
 
     closeDialog 0;
     // 2 fadeMusic 0;
     // ?_text in ["Forward Base Perimeter"] : _dist = -400
     // ?_text in ["Back Base Perimeter"] : _dist = +400
 
-    player setposATL ([_respawnloc, 12, getDir _camTarget] call Zen_ExtendPosition);
+    player setposATL ([_respawnloc, 12, random 360] call Zen_ExtendPosition);
 
     player switchCamera "INTERNAL";
     player cameraEffect ["terminate","back"];

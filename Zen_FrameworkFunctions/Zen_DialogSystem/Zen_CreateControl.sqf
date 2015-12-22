@@ -2,8 +2,8 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_FrameworkLibrary.sqf"
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_CreateControl", _this] call Zen_StackAdd;
 private ["_controlType", "_ID", "_dataTypes", "_dataArray", "_type", "_data"];
@@ -16,12 +16,13 @@ if !([_this, [["STRING"], ["ARRAY"], ["ARRAY"], ["ARRAY"], ["ARRAY"], ["ARRAY"],
 _controlType = _this select 0;
 _ID = "Zen_Control_" + ([10] call Zen_StringGenerateRandom);
 
-_controlTypes = ["Button","List","Text", "BACKGROUND", "DROPLIST", "SLIDER"];
+_controlTypes = ["Button","List","Text", "BACKGROUND", "DROPLIST", "SLIDER", "PICTURE", "CHECKBOXES", "RADIOBUTTONS", "TEXTFIELD", "PROGRESSBAR"];
+
 if !([_controlType, _controlTypes] call Zen_ValueIsInArray) exitWith {
     ZEN_FMW_Code_ErrorExitValue("Zen_CreateControl", "Invalid control type given", (""))
 };
 
-_dataTypes = ["LinksTo","Text","FontColor","Position","Size","ActivationFunction", "SelectionFunction","List","ListData","Data","FontSize", "Font", "FontColorSelected", "ListTooltip", "ForegroundColor", "BackgroundColor", "Tooltip", "TooltipFontColor", "TooltipBackgroundColor", "TooltipBorderColor", "Picture", "PictureColor", "PictureColorSelected", "SliderPositions"];
+_dataTypes = ["LinksTo","Text","FontColor","Position","Size","ActivationFunction", "SelectionFunction","List","ListData","Data","FontSize", "Font", "FontColorSelected", "ListTooltip", "ForegroundColor", "BackgroundColor", "Tooltip", "TooltipFontColor", "TooltipBackgroundColor", "TooltipBorderColor", "Picture", "PictureColor", "PictureColorSelected", "SliderPositions", "Progress"];
 _dataArray = [];
 
 {
