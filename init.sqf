@@ -120,6 +120,7 @@ RTS_Worker_Recycle_Queue = [[], []];
 RTS_Worker_Repair_Queue = [[], []];
 RTS_CJ_Repair_Queue = [[], []];
 
+
 #include "Zen_RTS_Functions\Zen_RTS_CustomLoadouts.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_InitGiveMoneyDialog.sqf"
 0 = [] call Zen_RTS_RandomStart;
@@ -127,7 +128,6 @@ RTS_CJ_Repair_Queue = [[], []];
 0 = [] spawn Zen_RTS_EconomyManager;
 0 = [] spawn Zen_RTS_RecycleRepairAIManager;
 Zen_JIP_Args_Server = [overcast, fog, 2000];
-
 diag_log diag_tickTime;
 {
     // call compile format ["xp%1 = 0", _x];

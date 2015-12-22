@@ -3,7 +3,7 @@
 // See Legal.txt
 
 #define ZEN_FMW_Array_RemoveIndexes(A, I) \
-    _Zen_IndexesToRemoveSorted = [A, {(-1 * _this)}, "hash"] call Zen_ArraySort; \
+    _Zen_IndexesToRemoveSorted = [I, {(-1 * _this)}, "hash"] call Zen_ArraySort; \
     { \
         0 = [A, _x] call Zen_ArrayRemoveIndex; \
     } forEach _Zen_IndexesToRemoveSorted;
