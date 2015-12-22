@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 #define FORT_CLASSES ["Land_BagBunker_Small_F", "Land_BagFence_Long_F", "Land_BagFence_Long_F", "Land_BagFence_Long_F", "Land_BagFence_Long_F", "Land_CncBarrierMedium_F", "Land_CncBarrierMedium_F", "Land_HBarrier_3_F", "Land_HBarrier_3_F", "Land_HBarrier_3_F"]
 
 _Zen_stack_Trace = ["Zen_SpawnFortification", _this] call Zen_StackAdd;

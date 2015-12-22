@@ -2,8 +2,8 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_OrderBoatPatrol", _this] call Zen_StackAdd;
 private ["_vehicleArray", "_movecenters", "_speedMode", "_mpos", "_limitAnglesSet", "_vehDist", "_cleanupDead", "_crewGroupArray", "_crew", "_positionFilterArgs", "_behavior", "_center", "_index"];
@@ -107,9 +107,9 @@ while {(count _vehicleArray != 0)} do {
             };
         };
     } forEach _vehicleArray;
-    sleep 10;
     0 = [_vehicleArray, 0] call Zen_ArrayRemoveValue;
     0 = [_crewGroupArray, 0] call Zen_ArrayRemoveValue;
+    sleep 10;
 };
 
 call Zen_StackRemove;

@@ -2,8 +2,8 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_OrderVehicleMove", _this] call Zen_StackAdd;
 private ["_vehicle", "_inPos", "_speedMode", "_vehicleDriver", "_vehicleGrp", "_height", "_cleanupEnd", "_cleanupCrash", "_isCrash", "_completionDistance"];
@@ -95,7 +95,7 @@ _vehicleDriver enableAI "Move";
 
 sleep 2;
 
-if (_cleanupEnd && {(([_vehicle, _inPos] call Zen_Find2dDistance) < 25)}) then {
+if (_cleanupEnd && {(([_vehicle, _inPos] call Zen_Find2dDistance) < _completionDistance)}) then {
     ZEN_STD_OBJ_DeleteVehCrew(_vehicle);
 };
 

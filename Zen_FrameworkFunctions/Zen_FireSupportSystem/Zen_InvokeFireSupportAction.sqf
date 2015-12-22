@@ -2,8 +2,8 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
-#include "Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
+#include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_InvokeFireSupportAction", _this] call Zen_StackAdd;
 private ["_nameString", "_pos", "_fireSupportTime", "_marker", "_guideType", "_guideObj", "_templateData", "_salvoTime", "_commArray", "_EHID", "_args", "_data", "_supportTemplate"];

@@ -26,7 +26,7 @@
             }; \
         } forEach _vehicleTurrets;
 
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_SpawnVehicleCrew", _this] call Zen_StackAdd;
 private ["_vehicle", "_crewClasses", "_crewGroup", "_vehicleConfigEntry", "_side", "_carCrewClass", "_tankCrewClass", "_heliCrewClass", "_jetCrewClass", "_heliPilotClass", "_turretTypes", "_hasDriver"];

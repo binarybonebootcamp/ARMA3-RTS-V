@@ -2,7 +2,7 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-#include "Zen_StandardLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_OrderInfantryPatrolBuilding", _this] call Zen_StackAdd;
 private ["_units", "_centerPos", "_unitsRemove", "_patrolOutside", "_behavior", "_houseCount", "_positions", "_randHouseIndex", "_randPosArray", "_randHouse"];
@@ -41,7 +41,7 @@ _housePosArray = [];
 
 while {(count _units > 0)} do {
     {
-        if (isNull _x || {(alive _x)}) then {
+        if (isNull _x || {!(alive _x)}) then {
             _units set [_forEachIndex, 0];
         } else {
             (group _x) setBehaviour _behavior;
