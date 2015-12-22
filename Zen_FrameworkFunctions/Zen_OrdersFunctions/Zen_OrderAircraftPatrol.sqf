@@ -114,9 +114,9 @@ while {(count _vehicleArray != 0)} do {
             };
         };
     } forEach _vehicleArray;
-    sleep 10;
     0 = [_vehicleArray, 0] call Zen_ArrayRemoveValue;
     0 = [_crewGroupArray, 0] call Zen_ArrayRemoveValue;
+    sleep 10;
 };
 
 call Zen_StackRemove;
