@@ -131,7 +131,7 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
                 {doStop _x;} forEach (units _crewGroup); \
             }; \
         }; \
-        if (T in [""]) then { \
+        if (T in ["rhs_bmp3mera_msv"]) then { \
             ZEN_FMW_MP_REAll("FNC_AUTOTANK", _vehicle, call) \
         }; \
     };
@@ -216,7 +216,7 @@ Zen_RTS_Asset_East_rhs_bmp2e_vdv = ["Zen_RTS_F_East_Asset_rhs_bmp2e_vdv", "BMP-2
 Zen_RTS_Asset_East_rhs_bmp2k_vdv = ["Zen_RTS_F_East_Asset_rhs_bmp2k_vdv", "BMP-2k","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_bmp2d_vdv = ["Zen_RTS_F_East_Asset_rhs_bmp2d_vdv", "BMP-2d","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_bmp3_late_msv = ["Zen_RTS_F_East_Asset_rhs_bmp3_late_msv", "BM3-late","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp3mera_msv = ["Zen_RTS_F_East_Asset_rhs_bmp3mera_msv", "BMP3-mera","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_rhs_bmp3mera_msv = ["Zen_RTS_F_East_Asset_rhs_bmp3mera_msv", "BMP3-Auto","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 //tank 3 upgrade assests
 Zen_RTS_Asset_East_rhs_bmd1 = ["Zen_RTS_F_East_Asset_rhs_bmd1", "bmd1","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_bmd1k = ["Zen_RTS_F_East_Asset_rhs_bmd1k", "bmd1k","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
