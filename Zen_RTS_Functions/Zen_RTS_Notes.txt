@@ -20,6 +20,7 @@ Strategic
             // recyclers use CJ
             // clean dead AI
             // player claim/release CJ control
+            AI repair destroyed buildings
         AI fire on buildings and unmanned vehicles
         Building Hacking
             // hacked actions and variable
@@ -141,7 +142,7 @@ RTS menus
     Use radial menu GUI for actions
 Revive/Respawn/JIP
     // rewrite rts-init-SetRandomPos.sqs in SQF
-    Get correct respawn positions
+    // Get correct respawn positions
 Economy
     // Territories have resource value
     // total team resource value gives money increase
@@ -185,6 +186,7 @@ Known MP Issues
     Logic Issues
         // AI recycle tasking
         // AI Repair activation
+        // Respawn may not use all correct/possible positions as the mission progress?
         'Build enemy units' technology disappears
     Synch Issues
         // Asset crew join group
@@ -193,3 +195,5 @@ Known MP Issues
         // 20 second init delay
         buildings coming out of the ground don't sync
             create local building for every client ??
+    JIP
+        auto tank
