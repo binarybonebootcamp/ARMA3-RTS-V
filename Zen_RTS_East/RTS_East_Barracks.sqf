@@ -92,7 +92,7 @@ UPGRADE(Zen_RTS_F_East_BarracksUpgrade02, ASSETS)
 #define ASSETS [Zen_RTS_Asset_East_rhs_msv_LAT, Zen_RTS_Asset_East_rhs_msv_RShG2, Zen_RTS_Asset_East_rhs_msv_strelok_rpg_assist, Zen_RTS_Asset_East_rhs_msv_machinegunner_assistant, Zen_RTS_Asset_East_rhs_msv_grenadier_rpg, Zen_RTS_Asset_East_rhs_msv_efreitor]
 UPGRADE(Zen_RTS_F_East_BarracksUpgrade03, ASSETS)
 
-Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01", "Zen_RTS_F_East_BarracksUpgrade02", "Zen_RTS_F_East_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\barraks_ca.paa,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01", "Zen_RTS_F_East_BarracksUpgrade02", "Zen_RTS_F_East_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\barraks_ca.paa, Classname: Land_Cargo_House_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_Barracks;
 
 /////////////////////////////////
@@ -103,14 +103,16 @@ Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen
     N = { \
         diag_log (#N + " asset constructor called"); \
         diag_log _this; \
-        _buildingData = (_this select 0); \
+        _buildingObjData = (_this select 0); \
         _assetData = _this select 1; \
+        _referenceUnit = _this select 2; \
         _assetStrRaw = _assetData select 3; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        if (alive (_buildingData select 2)) then { \
-            _group = [(_buildingData select 2), T] call Zen_SpawnGroup; \
+        if (alive (_buildingObjData select 2)) then { \
+            ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+            _group = [([(_buildingObjData select 2), 10 + random 10, random 360] call Zen_ExtendPosition), T] call Zen_SpawnGroup; \
             0 = [_group, S] call Zen_SetAISkill; \
-            (units _group) join (_this select 2); \
+            (units _group) join _referenceUnit; \
         }; \
     };
 

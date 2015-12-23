@@ -95,7 +95,7 @@ UPGRADE(Zen_RTS_F_East_TankFactoryUpgrade03, ASSETS)
 #define ASSETS [Zen_RTS_Asset_East_rhs_t80b, Zen_RTS_Asset_East_rhs_t80bk, Zen_RTS_Asset_East_rhs_t80bv, Zen_RTS_Asset_East_rhs_t80bvk, Zen_RTS_Asset_East_rhs_t80, Zen_RTS_Asset_East_rhs_t80a, Zen_RTS_Asset_East_rhs_t80u, Zen_RTS_Asset_East_rhs_t90_tv]
 UPGRADE(Zen_RTS_F_East_TankFactoryUpgrade04, ASSETS)
 
-Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor", "Zen_RTS_F_East_TankFactoryDestructor", ["Zen_RTS_F_East_TankFactoryUpgrade01", "Zen_RTS_F_East_TankFactoryUpgrade02", "Zen_RTS_F_East_TankFactoryUpgrade03","Zen_RTS_F_East_TankFactoryUpgrade04"], "Tank factory", "Cost: 2000, Time: 10, Picture: pictures\tank_ca.paa"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor", "Zen_RTS_F_East_TankFactoryDestructor", ["Zen_RTS_F_East_TankFactoryUpgrade01", "Zen_RTS_F_East_TankFactoryUpgrade02", "Zen_RTS_F_East_TankFactoryUpgrade03","Zen_RTS_F_East_TankFactoryUpgrade04"], "Tank factory", "Cost: 2000, Time: 10, Picture: pictures\tank_ca.paa, Classname: Land_i_Garage_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_TankFactory;
 
 /////////////////////////////////
@@ -114,9 +114,10 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 20, random 360] call Zen_ExtendPosition; \
+        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_crewCount > 0) then { \
             _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \

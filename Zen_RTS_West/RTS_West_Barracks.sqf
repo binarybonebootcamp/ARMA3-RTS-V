@@ -1,14 +1,4 @@
-/**
-    Level 1:
-        
-        
-        
-        
-    Level 2:
-        
-        
-        
-//*/
+//
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_West_BarracksConstructor = {
@@ -97,7 +87,7 @@ UPGRADE(Zen_RTS_F_West_BarracksUpgrade02, ASSETS)
 #define ASSETS [Zen_RTS_Asset_West_rhsusf_army_ocp_engineer, Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m590,Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m16,Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m4,Zen_RTS_Asset_West_rhsusf_army_ocp_marksman,Zen_RTS_Asset_West_rhsusf_army_ocp_fso]
 UPGRADE(Zen_RTS_F_West_BarracksUpgrade03, ASSETS)
 
-Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen_RTS_F_West_BarracksDestructor", ["Zen_RTS_F_West_BarracksUpgrade01", "Zen_RTS_F_West_BarracksUpgrade02","Zen_RTS_F_West_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\barraks_ca.paa,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen_RTS_F_West_BarracksDestructor", ["Zen_RTS_F_West_BarracksUpgrade01", "Zen_RTS_F_West_BarracksUpgrade02","Zen_RTS_F_West_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\barraks_ca.paa, Classname: Land_Cargo_House_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_Barracks;
 
 /////////////////////////////////
@@ -108,14 +98,16 @@ Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen
     N = { \
         diag_log (#N + " asset constructor called"); \
         diag_log _this; \
-        _buildingData = (_this select 0); \
+        _buildingObjData = (_this select 0); \
         _assetData = _this select 1; \
+        _referenceUnit = _this select 2; \
         _assetStrRaw = _assetData select 3; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        if (alive (_buildingData select 2)) then { \
-            _group = [(_buildingData select 2), T] call Zen_SpawnGroup; \
+        if (alive (_buildingObjData select 2)) then { \
+            ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+            _group = [([(_buildingObjData select 2), 10 + random 10, random 360] call Zen_ExtendPosition), T] call Zen_SpawnGroup; \
             0 = [_group, S] call Zen_SetAISkill; \
-            (units _group) join (_this select 2); \
+            (units _group) join _referenceUnit; \
         }; \
     };
 

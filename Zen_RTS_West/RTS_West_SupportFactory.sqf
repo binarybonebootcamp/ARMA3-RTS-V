@@ -88,7 +88,7 @@ UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade01, ASSETS)
 #define ASSETS [Zen_RTS_Asset_West_rhsusf_m1025_w, Zen_RTS_Asset_West_rhsusf_m1025_d, Zen_RTS_Asset_West_rhsusf_m1025_w_s, Zen_RTS_Asset_West_rhsusf_m1025_d_s, Zen_RTS_Asset_West_rhsusf_m1025_w_m2, Zen_RTS_Asset_West_rhsusf_m1025_d_m2, Zen_RTS_Asset_West_rhs_9k79_K, Zen_RTS_Asset_West_rhs_9k79_B]
 UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstructor", "Zen_RTS_F_West_SupportFactoryDestructor", ["Zen_RTS_F_West_SupportFactoryUpgrade01","Zen_RTS_F_West_SupportFactoryUpgrade02"], "Support Factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstructor", "Zen_RTS_F_West_SupportFactoryDestructor", ["Zen_RTS_F_West_SupportFactoryUpgrade01","Zen_RTS_F_West_SupportFactoryUpgrade02"], "Support Factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa, Classname: Land_Research_house_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_SupportFactory;
 
 /////////////////////////////////
@@ -107,9 +107,10 @@ Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstr
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 20, random 360] call Zen_ExtendPosition; \
+        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_crewCount > 0) then { \
             _crewGroup = [_vehicle, ([U, 0, (_crewCount - 1) min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \

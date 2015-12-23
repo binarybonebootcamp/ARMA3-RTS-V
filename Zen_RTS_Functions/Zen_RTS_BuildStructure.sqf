@@ -11,6 +11,9 @@
         I = _objData select 1; \
     };
 
+#define BB_Volume(O) (ZEN_STD_OBJ_BBX(O) * ZEN_STD_OBJ_BBY(O) * ZEN_STD_OBJ_BBZ(O))
+#define BB_AreaXY(O) (ZEN_STD_OBJ_BBX(O) * ZEN_STD_OBJ_BBY(O))
+
 0 = _this spawn {
     _Zen_stack_Trace = ["Zen_RTS_BuildStructure", _this] call Zen_StackAdd;
     _idc = _this;
@@ -53,7 +56,7 @@
         };
 
         if ((([vehicle player, _HQObject] call Zen_Find2dDistance) > 200) && {!(_isNaval)}) exitWith {
-            player sideChat "This building must be constructed within 200 meters of the HQ.";
+            player sideChat "This building must be constructed within 300 meters of the HQ.";
             _exit = true;
         };
     };
@@ -62,70 +65,91 @@
     cLoseDialog 0;
     playerMoney = playerMoney - _cost;
 
-    hintSilent "When helipad appears,\nbuilding placement is valid\nUse confirm action to build";
-    _heliPad = "Land_HelipadCivil_F" createVehicleLocal [0,0,0];
+    _buildingPreviewType = [_buildingTypeData select 5, "Classname: ", ","] call Zen_StringGetDelimitedPart;
+    if (_buildingPreviewType == "") then {
+        _buildingPreviewType = "Land_HelipadCivil_F";
+    };
+
+    _safezoneMarkers = RTS_Building_Spawn_Grid_Markers select ([west, east] find (side player));
+
+    hintSilent "When the preview appears,\nplacement is valid\nUse confirm action to build";
+    _heliPad = _buildingPreviewType createVehicleLocal [0,0,0];
     _vehicle = vehicle player;
 
     Zen_RTS_Show_Preview = true;
     player addAction ["Confirm Building Placement", {Zen_RTS_Show_Preview = false; (_this select 0) removeAction (_this select 2);}];
 
-    _objectType = [_descrRaw, "Classname", ","] call Zen_StringGetDelimitedPart;
-    _objectType = if (_objectType == "") then {("Land_HelipadCivil_F")};
-
     scopeName "main";
     while {true} do {
-        _pos = [_vehicle, 25, getDir _vehicle, "compass", 0] call Zen_ExtendPosition;
+        if (speed _vehicle < 20) then {
+            _pos = [_vehicle, 31, getDir _vehicle, "compass", 0] call Zen_ExtendPosition;
 
-        _slope = [_pos, 10] call Zen_FindTerrainSlope;
-        _clutter = [_pos, 20] call Zen_GetAmbientClutterCount;
-        _objects = nearestObjects [_pos, [""], 20];
-
-        _bool = (if (_isNaval) then {
-            // player sidechat "--------";
-            // player sidechat str (!(surfaceIsWater _pos));
-            // player sidechat str (([_pos, 25, "water"] call Zen_IsNearTerrain));
-            // player sidechat str (((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)}));
-            ((!(surfaceIsWater _pos) && {([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 2)})})
-        } else {
-            ((!(surfaceIsWater _pos) && {!([_pos, 25, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})})
-            // ((_slope < 10) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 1, 0]) < 2)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 200)})
-        });
-        if (_bool) then {
-            if (_isNaval) then {
-                _heliPad setPosASL _pos;
-            } else {
-                _heliPad setPosATL _pos;
-            };
-
-            if !(Zen_RTS_Show_Preview) then {
-                _level = 0;
-                _index = [_type, (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
-                if (_index == -1) then {
-                    _index = [_type, (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
-                    _level = (RTS_Building_Type_Levels select 1) select _index;
-                } else {
-                    _level = (RTS_Building_Type_Levels select 0) select _index;
+            _inSafezone = false;
+            {
+                if ([_pos, markerPos _x, [60, 60], markerDir _x, "rectangle"] call Zen_IsPointInPoly) exitWith {
+                    _inSafezone = true;
                 };
+            } forEach _safezoneMarkers;
 
-                _args = [_type, [_pos, _level]];
-                ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicBuildingInvoke", _args, call)
-                breakTo "main";
-            };
-        } else {
-            if ((([_pos, _HQObject] call Zen_Find2dDistance) > 200) && {!(_isNaval)}) then {
-                hintSilent "Placing this building more than 200m from the HQ is not allowed.";
-            };
-            _heliPad setPosATL [0,0,0];
-            if !(Zen_RTS_Show_Preview) then {
-                player sideChat "Building here is not allowed";
-                breakTo "main";
+            _slope = [_pos, 32] call Zen_FindTerrainSlope;
+            _clutter = [_pos, 32] call Zen_GetAmbientClutterCount;
+            _objects = nearestObjects [_pos, [""], 30];
+
+            {
+                if ((BB_Volume(_x) < 1) || (BB_AreaXY(_x) < 0.5)) then {
+                    _objects set [_forEachIndex, 0];
+                };
+            } forEach _objects;
+            0 = [_objects, 0] call Zen_ArrayRemoveValue;
+
+            // player sidechat "--------";
+            // player sidechat str _slope;
+            // player sidechat str _clutter;
+            // player sidechat str _objects;
+            // player sidechat str _safezoneMarkers;
+            // player sidechat str _inSafezone;
+            _canPlace = (if (_isNaval) then {
+                (!(_inSafezone) && (!(surfaceIsWater _pos) && {([_pos, 10, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 1)})})
+            } else {
+                (!(_inSafezone) && (!(surfaceIsWater _pos) && {!([_pos, 35, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 1)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 300)})})
+            });
+
+            if (_canPlace) then {
+                // if (_isNaval) then {
+                    // _heliPad setPosASL _pos;
+                // } else {
+                    _heliPad setPosATL _pos;
+                // };
+
+                if !(Zen_RTS_Show_Preview) then {
+                    deleteVehicle _heliPad;
+                    _level = 0;
+                    _index = [_type, (RTS_Used_Building_Types select 0)] call Zen_ValueFindInArray;
+                    if (_index == -1) then {
+                        _index = [_type, (RTS_Used_Building_Types select 1)] call Zen_ValueFindInArray;
+                        _level = (RTS_Building_Type_Levels select 1) select _index;
+                    } else {
+                        _level = (RTS_Building_Type_Levels select 0) select _index;
+                    };
+
+                    _args = [_type, [_pos, _level]];
+                    ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicBuildingInvoke", _args, call)
+                    breakTo "main";
+                };
+            } else {
+                if ((([_pos, _HQObject] call Zen_Find2dDistance) > 200) && {!(_isNaval)}) then {
+                    hintSilent "Placing this building more than 300 meters from the HQ is not allowed.";
+                };
+                _heliPad setPosATL [0,0,0];
+                if !(Zen_RTS_Show_Preview) then {
+                    player sideChat "Building here is not allowed";
+                    breakTo "main";
+                };
             };
         };
-
         ZEN_STD_Code_SleepFrames(2)
     };
 
-    deleteVehicle _heliPad;
     call Zen_StackRemove;
     if (true) exitWith {};
 };
