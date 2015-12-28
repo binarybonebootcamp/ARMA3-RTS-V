@@ -120,7 +120,6 @@ RTS_Worker_Recycle_Queue = [[], []];
 RTS_Worker_Repair_Queue = [[], []];
 RTS_CJ_Repair_Queue = [[], []];
 
-
 #include "Zen_RTS_Functions\Zen_RTS_CustomLoadouts.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_InitGiveMoneyDialog.sqf"
 0 = [] call Zen_RTS_RandomStart;
@@ -213,6 +212,31 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 diag_log diag_tickTime;
 // #define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 1.1
 
+#define ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+    _buildingType = _buildingObjData select 0; \
+    _buildingTypeData = [_buildingType] call Zen_RTS_StrategicBuildingTypeGetData; \
+    _args = ["hintSilent", [("Your " + (_assetData select 2) + " has been created at " + (_buildingTypeData select 4) + ".")]]; \
+    ZEN_FMW_MP_REClient("Zen_ExecuteCommand", _args, call, _referenceUnit)
+
+#define ZEN_RTS_STRATEGIC_BUILDING_UPGRADE_MESSAGE() \
+    _args = ["hintSilent", [((_typeDataOther select 4) + " has been upgraded.")]]; \
+    ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
+
+#define ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
+    _marker = (_buildingObjData select 2 ) getVariable "Zen_RTS_StrategicBuildingMarker"; \
+    _pos = ([_marker] call Zen_ConvertToPosition); \
+    scopeName "main"; \
+    for "_r" from 10 to 50 step 10 do { \
+        for "_phi" from 0 to 315 step 45 do { \
+            _spawnPos = _pos vectorAdd [_r * round cos _phi, _r * round sin _phi, 0]; \
+            _objects = (nearestObjects [_spawnPos, ["LandVehicle"], 10]) + (nearestObjects [_spawnPos, ["Air"], 10]); \
+            if (count _objects == 0) then { \
+                _pos = _spawnPos; \
+                breakTo "main"; \
+            }; \
+        }; \
+    };
+
 #define DETECT_BUILDING(B, U) \
     ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
     if (_ID != "") then { \
@@ -244,7 +268,7 @@ diag_log diag_tickTime;
     _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
     _building setVectorUp (surfaceNormal _spawnPos); \
     _height = ZEN_STD_OBJ_BBZ(_building); \
-    ZEN_STD_OBJ_TransformATL(_building, 0, 0, -( _height)) \
+    ZEN_STD_OBJ_TransformATL(_building, 0, 0, -(_height)) \
     _heightStep = (_height + O) / _buildTime; \
     for "_i" from 0 to _buildTime do { \
         sleep 1; \
@@ -261,11 +285,14 @@ diag_log diag_tickTime;
         (_building) \
     }; \
     _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
+    (RTS_Repair_Queue select ([west, east] find S)) pushBack _building; \
+    _buildingSpawnGrid = [_building, "", "colorBlack", [30, 30], "rectangle", getDir _building, 0] call Zen_SpawnMarker; \
+    (RTS_Building_Spawn_Grid_Markers select ([west, east] find S)) pushBack _buildingSpawnGrid; \
+    _building setVariable ["Zen_RTS_StrategicBuildingMarker", _buildingSpawnGrid, true]; \
     _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
     _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
     _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
     _building setVariable ["Zen_RTS_StrategicBuildingSide", S, true]; \
-    (RTS_Repair_Queue select ([west, east] find S)) pushBack _building; \
     _building addEventHandler ["Killed", { \
         0 = _this spawn { \
             _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
@@ -319,6 +346,11 @@ RTS_Building_Type_Levels = [[], []]; // global
 // all asset types must be added here, or they will not be considered for custom squads
 // must be [[West asset types, [East '']]
 RTS_Used_Asset_Types = [[], []]; // global
+
+// all created buildings have a safe zone for spawning
+// must be [[West markers, [East '']]
+// every building object has its marker recorded as the Zen_RTS_StrategicBuildingMarker variable
+RTS_Building_Spawn_Grid_Markers = [[], []];
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"

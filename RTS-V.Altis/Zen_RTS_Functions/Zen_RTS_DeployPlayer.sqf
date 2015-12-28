@@ -136,6 +136,7 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     // #Dialog
     // _x = 0
 
+    // sleep 5;
     _cam = "camera" camCreate [0,0,0];
     _cam cameraEffect ["internal","back"];
 
