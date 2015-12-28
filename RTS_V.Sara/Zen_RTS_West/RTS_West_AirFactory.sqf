@@ -87,7 +87,7 @@ UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade03, ASSETS)
 #define ASSETS [Zen_RTS_Asset_West_CUP_B_AV8B_Deepstrike, Zen_RTS_Asset_West_CUP_B_AV8B_Hydra19, Zen_RTS_Asset_West_CUP_B_AV8B_FFAR_19, Zen_RTS_Asset_West_CUP_B_AV8B_LGB, Zen_RTS_Asset_West_CUP_B_AV8B_Heavy, Zen_RTS_Asset_West_CUP_B_A10_AT_USA, Zen_RTS_Asset_West_CUP_B_A10_CAS_USA]
 UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade04, ASSETS)
 
-Zen_RTS_BuildingType_West_AirFactory = ["Zen_RTS_F_West_AirFactoryConstructor", "Zen_RTS_F_West_AirFactoryDestructor", ["Zen_RTS_F_West_AirFactoryUpgrade01", "Zen_RTS_F_West_AirFactoryUpgrade02", "Zen_RTS_F_West_AirFactoryUpgrade03", "Zen_RTS_F_West_AirFactoryUpgrade04"], "Air Factory", "Cost: 2000, Time: 10, Picture: pictures\plane_ca.paa,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_AirFactory = ["Zen_RTS_F_West_AirFactoryConstructor", "Zen_RTS_F_West_AirFactoryDestructor", ["Zen_RTS_F_West_AirFactoryUpgrade01", "Zen_RTS_F_West_AirFactoryUpgrade02", "Zen_RTS_F_West_AirFactoryUpgrade03", "Zen_RTS_F_West_AirFactoryUpgrade04"], "Air Factory", "Cost: 2000, Time: 10, Picture: pictures\plane_ca.paa, Classname: Land_Airport_Tower_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_AirFactory;
 
 /////////////////////////////////
@@ -106,9 +106,10 @@ Zen_RTS_BuildingType_West_AirFactory = ["Zen_RTS_F_West_AirFactoryConstructor", 
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, [20, 75], [], 1, [3, 15], 0, [1, 20, 0], 0, [1, 20], [1, 15, 10], [1, [0, 1, -1], 20], 0, 2] call Zen_FindGroundPosition; \
+        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_crewCount > 0) then { \
             _crewGroup = [_vehicle, ([U, 0, (_crewCount - 1) min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \

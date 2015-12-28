@@ -35,7 +35,7 @@
     Zen_RTS_Asset_West_CUP_B_AAV_USMC,
     Zen_RTS_Asset_West_CUP_B_BRDM2_CDF,
     Zen_RTS_Asset_West_CUP_B_BRDM2_ATGM_CDF,
-    Zen_RTS_Asset_West_CUP_B_ZSU23_CDF,	
+    Zen_RTS_Asset_West_CUP_B_ZSU23_CDF,
 	Level 4:
 	Zen_RTS_Asset_West_CUP_B_M1A1_Woodland_USMC
     Zen_RTS_Asset_West_CUP_B_M1A1_DES_USMC
@@ -63,7 +63,7 @@ Zen_RTS_F_West_TankFactoryConstructor = {
     _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_HMMWV_Unarmed_USA;
     _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_UAZ_Open_CDF;
     _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_HMMWV_Transport_USA;
-	_assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_Dingo_Des; 
+	_assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_Dingo_Des;
     _assetsToAdd pushBack Zen_RTS_Asset_West_CJ;
 
     // if (Zen_RTS_TechFlag_West_BuildEnemy) then {
@@ -133,7 +133,7 @@ UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade03, ASSETS)
 #define ASSETS [Zen_RTS_Asset_West_CUP_B_M1A1_Woodland_USMC, Zen_RTS_Asset_West_CUP_B_M1A1_DES_USMC, Zen_RTS_Asset_West_CUP_B_M1A1_DES_US_Army, Zen_RTS_Asset_West_CUP_B_M1A2_TUSK_MG_DES_US_Army, Zen_RTS_Asset_West_CUP_B_M1A2_TUSK_MG_USMC,Zen_RTS_Asset_West_CUP_B_BM21_CDF]
 UPGRADE(Zen_RTS_F_West_TankFactoryUpgrade04, ASSETS)
 
-Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor", "Zen_RTS_F_West_TankFactoryDestructor", ["Zen_RTS_F_West_TankFactoryUpgrade01","Zen_RTS_F_West_TankFactoryUpgrade02","Zen_RTS_F_West_TankFactoryUpgrade03","Zen_RTS_F_West_TankFactoryUpgrade04"], "Tank factory", "Cost: 2000, Time: 10, Picture: pictures\tank_ca.paa"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor", "Zen_RTS_F_West_TankFactoryDestructor", ["Zen_RTS_F_West_TankFactoryUpgrade01","Zen_RTS_F_West_TankFactoryUpgrade02","Zen_RTS_F_West_TankFactoryUpgrade03","Zen_RTS_F_West_TankFactoryUpgrade04"], "Tank factory", "Cost: 2000, Time: 10, Picture: pictures\tank_ca.paa, Classname: LAND_CARGO_HOUSE_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_TankFactory;
 
 /////////////////////////////////
@@ -152,9 +152,10 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 20, random 360] call Zen_ExtendPosition; \
+        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, false] call Zen_SpawnVehicle; \
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+        _vehicle = [_pos, T, 0, getDir _building + _theta, true] call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_crewCount > 0) then { \
             _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
@@ -169,13 +170,16 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
                 {doStop _x;} forEach (units _crewGroup); \
             }; \
         }; \
+        if (T in ["rhsusf_m1025_w_s_m2", "rhsusf_m113d_usarmy", "RHS_M2A3_BUSKIII", "m1a2sep1tuskiid_usarmy"]) then { \
+            ZEN_FMW_MP_REAll("FNC_AUTOTANK", _vehicle, call) \
+        }; \
     };
+
 #define CREW_UNITS ["CUP_B_BAF_Officer_MTP"]
 VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_Unarmed_USA, "CUP_B_HMMWV_Unarmed_USA", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(CUP_B_UAZ_Open_CDF, "CUP_B_UAZ_Open_CDF", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_Transport_USA, "CUP_B_HMMWV_Transport_USA", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(CUP_B_Dingo_Des, "CUP_B_Dingo_Des", CREW_UNITS)
-
 
 #define CREW_UNITS ["CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Crew_MTP"]
 VEHCILE_CONSTRUCTOR(CUP_LR_MG_Base, "CUP_LR_MG_Base", CREW_UNITS)
@@ -256,7 +260,7 @@ Zen_RTS_Asset_West_CUP_B_AAV_USMC = ["CUP_B_AAV_USMC","AAV USMC", "Cost: 800, Ti
 Zen_RTS_Asset_West_CUP_B_BRDM2_CDF = ["CUP_B_BRDM2_CDF","BRDM2 CDF", "Cost: 800, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_BRDM2_ATGM_CDF = ["CUP_B_BRDM2_ATGM_CDF","BRDM2_ATGM CDF", "Cost: 900, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_BRDM2_HQ_CDF = ["CUP_B_BRDM2_HQ_CDF","BRDM2 type CDF", "Cost: 900, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_CUP_B_ZSU23_CDF = ["CUP_B_ZSU23_CDF","ZSU23 CDF", "Cost: 1200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;	
+Zen_RTS_Asset_West_CUP_B_ZSU23_CDF = ["CUP_B_ZSU23_CDF","ZSU23 CDF", "Cost: 1200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 	//**Level 4:
 Zen_RTS_Asset_West_CUP_B_M1A1_Woodland_USMC = ["CUP_B_M1A1_Woodland_USMC","M1A1 Woodland USMC", "Cost: 2000, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_M1A1_DES_USMC = ["CUP_B_M1A1_DES_USMC","M1A1 DES USMC", "Cost: 2500, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
@@ -266,7 +270,7 @@ Zen_RTS_Asset_West_CUP_B_M1A2_TUSK_MG_USMC = ["CUP_B_M1A2_TUSK_MG_USMC","M1A2 TU
 Zen_RTS_Asset_West_CUP_B_BM21_CDF = ["CUP_B_BM21_CDF","BM21", "Cost: 8000, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
 
 
-	
+
 Zen_RTS_F_West_Asset_CJ = {
     diag_log ("West CJ asset proxy constructor called");
     diag_log _this;

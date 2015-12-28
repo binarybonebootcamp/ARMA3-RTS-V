@@ -1,10 +1,10 @@
 /**
 Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_RU
-Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_TKA 
+Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_TKA
 Zen_RTS_Asset_East_CUP_O_LR_Transport_TKA
 Zen_RTS_Asset_East_CUP_O_LR_MG_TKA
 Level 1:
-  
+
 Zen_RTS_Asset_East_CUP_O_LR_SPG9_TKA
 Zen_RTS_Asset_East_CUP_O_LR_Transport_TKM
 Zen_RTS_Asset_East_CUP_O_LR_MG_TKM
@@ -133,7 +133,7 @@ UPGRADE(Zen_RTS_F_East_TankFactoryUpgrade03, ASSETS)
 #define ASSETS [Zen_RTS_Asset_East_CUP_O_T55_TK, Zen_RTS_Asset_East_O_MBT_02_cannon_F, Zen_RTS_Asset_East_CUP_O_BM21_RU, Zen_RTS_Asset_East_CUP_O_BM21_TKA]
 UPGRADE(Zen_RTS_F_East_TankFactoryUpgrade04, ASSETS)
 
-Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor", "Zen_RTS_F_East_TankFactoryDestructor", ["Zen_RTS_F_East_TankFactoryUpgrade01", "Zen_RTS_F_East_TankFactoryUpgrade02", "Zen_RTS_F_East_TankFactoryUpgrade03","Zen_RTS_F_East_TankFactoryUpgrade04"], "Tank factory", "Cost: 2000, Time: 10, Picture: pictures\tank_ca.paa"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor", "Zen_RTS_F_East_TankFactoryDestructor", ["Zen_RTS_F_East_TankFactoryUpgrade01", "Zen_RTS_F_East_TankFactoryUpgrade02", "Zen_RTS_F_East_TankFactoryUpgrade03","Zen_RTS_F_East_TankFactoryUpgrade04"], "Tank factory", "Cost: 2000, Time: 10, Picture: pictures\tank_ca.paa, Classname: LAND_CARGO_HOUSE_V2_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_TankFactory;
 
 /////////////////////////////////
@@ -152,9 +152,10 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 20, random 360] call Zen_ExtendPosition; \
+        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, false] call Zen_SpawnVehicle; \
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_crewCount > 0) then { \
             _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
@@ -169,11 +170,13 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
                 {doStop _x;} forEach (units _crewGroup); \
             }; \
         }; \
+        if (T in ["rhs_bmp3mera_msv"]) then { \
+            ZEN_FMW_MP_REAll("FNC_AUTOTANK", _vehicle, call) \
+        }; \
     };
 
 #define CREW_UNITS ["CUP_O_RU_Soldier_Saiga"]
 VEHCILE_CONSTRUCTOR(CUP_O_UAZ_Unarmed_RU, "CUP_O_UAZ_Unarmed_RU", CREW_UNITS)
-
 
 #define CREW_UNITS ["CUP_O_RU_Soldier_Saiga", "CUP_O_RU_Crew", "CUP_O_RU_Crew", "CUP_O_RU_Crew"]
 VEHCILE_CONSTRUCTOR(CUP_O_UAZ_Unarmed_TKA, "CUP_O_UAZ_Unarmed_TKA", CREW_UNITS)
@@ -275,7 +278,7 @@ Zen_RTS_F_East_Asset_CJ = {
 
     _buildingObjData = _this select 0;
     _building = _buildingObjData select 2;
-    _pos = [_building, 20, random 360] call Zen_ExtendPosition;
+    ZEN_RTS_STRATEGIC_ASSET_PLACEMENT()
     0 = [Zen_RTS_BuildingType_East_CJ, [_pos, 0]] call Zen_RTS_StrategicBuildingInvoke;
 };
 

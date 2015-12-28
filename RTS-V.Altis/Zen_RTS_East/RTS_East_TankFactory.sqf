@@ -249,7 +249,7 @@ Zen_RTS_F_East_Asset_CJ = {
 
     _buildingObjData = _this select 0;
     _building = _buildingObjData select 2;
-    _pos = [_building, 20, random 360] call Zen_ExtendPosition;
+    ZEN_RTS_STRATEGIC_ASSET_PLACEMENT()
     0 = [Zen_RTS_BuildingType_East_CJ, [_pos, 0]] call Zen_RTS_StrategicBuildingInvoke;
 };
 
