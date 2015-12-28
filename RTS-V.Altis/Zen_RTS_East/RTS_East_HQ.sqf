@@ -55,7 +55,7 @@ Zen_RTS_F_East_HQDestructor = {
     (_buildingObjData select 2) setDamage 1;
 };
 
-Zen_RTS_BuildingType_East_HQ = ["Zen_RTS_F_East_HQConstructor", "Zen_RTS_F_East_HQDestructor", [], "HQ", "Cost: 1000, Time: 10, Picture: pictures\icon_remote.paa,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_HQ = ["Zen_RTS_F_East_HQConstructor", "Zen_RTS_F_East_HQDestructor", [], "HQ", "Cost: 1000, Time: 10, Picture: pictures\icon_remote.paa, Classname: Land_Research_HQ_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_HQ;
 
 /////////////////////////////////
@@ -109,6 +109,7 @@ Zen_RTS_F_East_Tech_Enemy = {
             _assets = _buildingDataHQ select 4; \
             0 = [_assets, A] call Zen_ArrayRemoveValue; \
         }; \
+        ZEN_RTS_STRATEGIC_BUILDING_UPGRADE_MESSAGE() \
         0 = [(_buildingDataOther select 1)] call Zen_RTS_StrategicBuildingUpgrade; \
     };
 
