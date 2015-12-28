@@ -1,11 +1,12 @@
 /**
+    Zen_RTS_Asset_West_CUP_B_Ural_Refuel_CDF
+    Zen_RTS_Asset_West_CUP_B_Ural_Repair_CDF
+    Zen_RTS_Asset_West_CUP_B_Ural_Reammo_CDF
     Level 1:
-        Zen_RTS_Asset_West_HEMTT_Repair
-        Zen_RTS_Asset_West_Quadbike
-        Zen_RTS_Asset_West_Offroad
-    Level 2:
-        Zen_RTS_Asset_West_OffroadArmed
-        Zen_RTS_Asset_West_HunterHMG
+	Zen_RTS_Asset_West_CUP_B_Ural_Open_CDF
+    Zen_RTS_Asset_West_CUP_B_Ural_ZU23_CDF
+
+
 //*/
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
@@ -21,11 +22,10 @@ Zen_RTS_F_West_SupportFactoryConstructor = {
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_open_fmtv_usarmy;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_flatbed_fmtv_usarmy;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_Ural_Refuel_CDF;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_Ural_Repair_CDF;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_Ural_Reammo_CDF;
+
 
     // if (Zen_RTS_TechFlag_West_BuildEnemy) then {
         // ... to do
@@ -43,7 +43,7 @@ Zen_RTS_F_West_SupportFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_SupportFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_Research_house_V1_F", -1)
+    BUILDING_VISUALS("LAND_CARGO_TOWER_V1_F", -2)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_SupportFactory, West)
 
     // to-do: || false condition needs building hacking logic
@@ -82,13 +82,10 @@ N = { \
     (true) \
 };
 
-#define ASSETS [Zen_RTS_Asset_West_rhsusf_M977A2_usarmy_wd, Zen_RTS_Asset_West_rhsusf_M977A2_CPK_usarmy_wd, Zen_RTS_Asset_West_rhsusf_M978A2_usarmy_wd, Zen_RTS_Asset_West_rhsusf_M978A2_CPK_usarmy_wd]
+#define ASSETS [Zen_RTS_Asset_West_CUP_B_M270_HE_USMC, Zen_RTS_Asset_West_CUP_B_M270_DPICM_USMC]
 UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade01, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_West_rhsusf_m1025_w, Zen_RTS_Asset_West_rhsusf_m1025_d, Zen_RTS_Asset_West_rhsusf_m1025_w_s, Zen_RTS_Asset_West_rhsusf_m1025_d_s, Zen_RTS_Asset_West_rhsusf_m1025_w_m2, Zen_RTS_Asset_West_rhsusf_m1025_d_m2, Zen_RTS_Asset_West_rhs_9k79_K, Zen_RTS_Asset_West_rhs_9k79_B]
-UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade02, ASSETS)
-
-Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstructor", "Zen_RTS_F_West_SupportFactoryDestructor", ["Zen_RTS_F_West_SupportFactoryUpgrade01","Zen_RTS_F_West_SupportFactoryUpgrade02"], "Support Factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa, Classname: Land_Research_house_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstructor", "Zen_RTS_F_West_SupportFactoryDestructor", ["Zen_RTS_F_West_SupportFactoryUpgrade01","Zen_RTS_F_West_SupportFactoryUpgrade02"], "Support Factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa, Classname: LAND_CARGO_TOWER_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_SupportFactory;
 
 /////////////////////////////////
@@ -127,44 +124,19 @@ Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstr
         }; \
     };
 
-#define CREW_UNITS ["rhsusf_army_ocp_driver"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy, "rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy, "rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_open_fmtv_usarmy, "rhsusf_M1083A1P2_B_M2_d_open_fmtv_usarmy", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_flatbed_fmtv_usarmy, "rhsusf_M1083A1P2_B_M2_d_flatbed_fmtv_usarmy", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy, "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M978A2_CPK_usarmy_wd, "rhsusf_M978A2_CPK_usarmy_wd", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M978A2_usarmy_wd, "rhsusf_M978A2_usarmy_wd", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M977A2_CPK_usarmy_wd, "rhsusf_M977A2_CPK_usarmy_wd", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M977A2_usarmy_wd, "rhsusf_M977A2_usarmy_wd", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_d_s, "rhsusf_m1025_d_s", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_w_s, "rhsusf_m1025_w_s", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_d, "rhsusf_m1025_d", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_w, "rhsusf_m1025_w", CREW_UNITS)
+#define CREW_UNITS ["CUP_B_BAF_Officer_MTP"]
+VEHCILE_CONSTRUCTOR(CUP_B_Ural_Refuel_CDF, "CUP_B_Ural_Refuel_CDF", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_B_Ural_Repair_CDF, "CUP_B_Ural_Repair_CDF", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_B_Ural_Reammo_CDF, "CUP_B_Ural_Reammo_CDF", CREW_UNITS)
 
-#define CREW_UNITS ["rhsusf_army_ocp_driver", "rhsusf_army_ucp_driver", "rhsusf_army_ucp_crewman"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m109d_usarmy, "rhsusf_m109d_usarmy", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m109_usarmy, "rhsusf_m109_usarmy", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_d_m2, "rhsusf_m1025_d_m2", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_w_m2, "rhsusf_m1025_w_m2", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhs_9k79_K, "rhs_9k79_k", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhs_9k79_B, "rhs_9k79_B", CREW_UNITS)
+#define CREW_UNITS ["CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Crew_MTP"]
+VEHCILE_CONSTRUCTOR(CUP_B_M270_HE_USMC, "CUP_B_M270_HE_USMC", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_B_M270_DPICM_USMC, "CUP_B_M270_DPICM_USMC", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_B_M270_HE_USA, "CUP_B_M270_HE_USA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_B_M270_DPICM_USA, "CUP_B_M270_DPICM_USA", CREW_UNITS)
 
-Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy","Medical", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy","M2_d_fmtv", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_open_fmtv_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_open_fmtv_usarmy","open_fmtv", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_flatbed_fmtv_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_flatbed_fmtv_usarmy","flatbed_fmtv", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy = ["Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy","MHQ_fmtv", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_M978A2_CPK_usarmy_wd = ["Zen_RTS_F_West_Asset_rhsusf_M978A2_CPK_usarmy_wd","M978A2_CPK_wd", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_M978A2_usarmy_wd = ["Zen_RTS_F_West_Asset_rhsusf_M978A2_usarmy_wd","M978A2_wd", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-
- Zen_RTS_Asset_West_rhsusf_M977A2_CPK_usarmy_wd = ["Zen_RTS_F_West_Asset_rhsusf_M977A2_CPK_usarmy_wd","M977A2_CPK_wd", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_M977A2_usarmy_wd = ["Zen_RTS_F_West_Asset_rhsusf_M977A2_usarmy_wd","M977A2_wd", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_m1025_d_m2 = ["Zen_RTS_F_West_Asset_rhsusf_m1025_d_m2","m1025_d_m2", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_m1025_w_m2 = ["Zen_RTS_F_West_Asset_rhsusf_m1025_w_m2","m1025_w_m2", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_m1025_d_s = ["Zen_RTS_F_West_Asset_rhsusf_m1025_d_s","m1025_d_s", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_m1025_w_s = ["Zen_RTS_F_West_Asset_rhsusf_m1025_w_s","m1025_w_s", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_m1025_d = ["Zen_RTS_F_West_Asset_rhsusf_m1025_d","m1025_d", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_m1025_w = ["Zen_RTS_F_West_Asset_rhsusf_m1025_w","m1025_w", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhs_9k79_K = ["Zen_RTS_F_West_Asset_rhs_9k79_K", "missile","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhs_9k79_B = ["Zen_RTS_F_West_Asset_rhs_9k79_B", "NUKE","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_Ural_Refuel_CDF = ["CUP_B_Ural_Refuel_CDF","Ural Refuel", "Cost: 200, Time: 15, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_Ural_Repair_CDF = ["CUP_B_Ural_Repair_CDF","Ural Repair", "Cost: 200, Time: 15, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_Ural_Reammo_CDF = ["CUP_B_Ural_Reammo_CDF","Ural Reammo", "Cost: 200, Time: 15, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_M270_HE_USMC = ["CUP_B_M270_HE_USMC","M270 HE USMC", "Cost: 8000, Time: 30, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_M270_DPICM_USMC = ["CUP_B_M270_DPICM_USMC","M270 DPICM USMC", "Cost: 8000, Time: 30,Crew: 3,"] call Zen_RTS_StrategicAssetCreate;

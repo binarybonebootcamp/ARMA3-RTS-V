@@ -1,11 +1,49 @@
 /**
-    Level 1:
-        Zen_RTS_Asset_East_RHS_Ural_Flat_VDV_01
-        Zen_RTS_Asset_East_Quadbike
-        Zen_RTS_Asset_East_Offroad
-    Level 2:
-        Zen_RTS_Asset_East_OffroadArmed
-        Zen_RTS_Asset_East_IfritHMG
+Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_RU
+Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_TKA
+Zen_RTS_Asset_East_CUP_O_LR_Transport_TKA
+Zen_RTS_Asset_East_CUP_O_LR_MG_TKA
+Level 1:
+
+Zen_RTS_Asset_East_CUP_O_LR_SPG9_TKA
+Zen_RTS_Asset_East_CUP_O_LR_Transport_TKM
+Zen_RTS_Asset_East_CUP_O_LR_MG_TKM
+Zen_RTS_Asset_East_CUP_O_LR_SPG9_TKM
+Zen_RTS_Asset_East_CUP_O_Datsun_PK
+Zen_RTS_Asset_East_CUP_O_Datsun_PK_Random
+Zen_RTS_Asset_East_CUP_O_UAZ_MG_CHDKZ
+Zen_RTS_Asset_East_CUP_O_UAZ_AGS30_CHDKZ
+Zen_RTS_Asset_East_CUP_O_UAZ_SPG9_CHDKZ
+Zen_RTS_Asset_East_CUP_O_UAZ_Open_RU
+Zen_RTS_Asset_East_CUP_O_UAZ_MG_RU
+Zen_RTS_Asset_East_CUP_O_UAZ_AGS30_RU
+Level 2:
+
+Zen_RTS_Asset_East_CUP_O_UAZ_SPG9_RU
+Zen_RTS_Asset_East_CUP_O_UAZ_MG_TKA
+Zen_RTS_Asset_East_CUP_O_UAZ_AGS30_TKA
+Zen_RTS_Asset_East_CUP_O_UAZ_SPG9_TKA
+Zen_RTS_Asset_East_CUP_O_BTR60_TK
+Zen_RTS_Asset_East_CUP_O_BTR90_RU
+Zen_RTS_Asset_East_CUP_O_BTR90_HQ_RU
+Zen_RTS_Asset_East_CUP_O_BRDM2_TKA
+Zen_RTS_Asset_East_CUP_O_BRDM2_ATGM_TKA
+Level 3:
+
+Zen_RTS_Asset_East_CUP_O_BRDM2_HQ_TKA
+Zen_RTS_Asset_East_O_APC_Wheeled_02_rcws_F//Marid
+Zen_RTS_Asset_East_CUP_O_T72_TKA
+Zen_RTS_Asset_East_CUP_O_T72_RU
+Zen_RTS_Asset_East_CUP_O_M113_TKA
+Zen_RTS_Asset_East_O_APC_Tracked_02_AA_F
+Zen_RTS_Asset_East_O_APC_Tracked_02_cannon_F//Kamysh
+Zen_RTS_Asset_East_CUP_O_ZSU23_TK
+Zen_RTS_Asset_East_CUP_O_ZSU23_SLA
+Level 4:
+Zen_RTS_Asset_East_CUP_O_T55_TK
+Zen_RTS_Asset_East_O_MBT_02_cannon_F//Varsuk
+Zen_RTS_Asset_East_CUP_O_BM21_RU
+Zen_RTS_Asset_East_CUP_O_BM21_TKA
 //*/
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
@@ -22,10 +60,10 @@ Zen_RTS_F_East_TankFactoryConstructor = {
 
     _assetsToAdd = [];
 
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66o_flat_vdv;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_gaz66_vdv;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_uaz_vdv;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_uaz_open_vdv;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_RU;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_TKA;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_CUP_O_LR_Transport_TKA;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_CUP_O_LR_MG_TKA;
     _assetsToAdd pushBack Zen_RTS_Asset_East_CJ;
 
     // if (Zen_RTS_TechFlag_East_BuildEnemy) then {
@@ -44,7 +82,7 @@ Zen_RTS_F_East_TankFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_TankFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_i_Garage_V1_F", -0.5)
+    BUILDING_VISUALS("LAND_CARGO_HOUSE_V2_F", -0.5)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_TankFactory, east)
 
     // to-do: || false condition needs building hacking logic
@@ -83,19 +121,19 @@ N = { \
     (true) \
 };
 
-#define ASSETS [Zen_RTS_Asset_East_rhs_tigr_3camo_vmf, Zen_RTS_Asset_East_rhs_tigr_ffv_vmf, Zen_RTS_Asset_East_rhs_tigr_ffv_3camo_vmf, Zen_RTS_Asset_East_rhs_btr60_vmf, Zen_RTS_Asset_East_rhs_btr80_vdv, Zen_RTS_Asset_East_rhs_btr70_vdv, Zen_RTS_Asset_East_rhs_brm1k_vdv]
+#define ASSETS [Zen_RTS_Asset_East_CUP_O_LR_SPG9_TKA, Zen_RTS_Asset_East_CUP_O_LR_Transport_TKM, Zen_RTS_Asset_East_CUP_O_LR_MG_TKM, Zen_RTS_Asset_East_CUP_O_LR_SPG9_TKM, Zen_RTS_Asset_East_CUP_O_Datsun_PK, Zen_RTS_Asset_East_CUP_O_Datsun_PK_Random, Zen_RTS_Asset_East_CUP_O_UAZ_MG_CHDKZ, Zen_RTS_Asset_East_CUP_O_UAZ_AGS30_CHDKZ, Zen_RTS_Asset_East_CUP_O_UAZ_SPG9_CHDKZ, Zen_RTS_Asset_East_CUP_O_UAZ_Open_RU, Zen_RTS_Asset_East_CUP_O_UAZ_MG_RU, Zen_RTS_Asset_East_CUP_O_UAZ_AGS30_RU]
 UPGRADE(Zen_RTS_F_East_TankFactoryUpgrade01, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_East_rhs_btr80a_vdv, Zen_RTS_Asset_East_rhs_bmp1_vmf, Zen_RTS_Asset_East_rhs_bmp1k_vdv, Zen_RTS_Asset_East_rhs_bmp1d_vdv, Zen_RTS_Asset_East_rhs_bmp1p_vdv, Zen_RTS_Asset_East_rhs_bmp2e_vdv, Zen_RTS_Asset_East_rhs_bmp2k_vdv, Zen_RTS_Asset_East_rhs_bmp2d_vdv, Zen_RTS_Asset_East_rhs_bmp3_late_msv, Zen_RTS_Asset_East_rhs_bmp3mera_msv]
+#define ASSETS [Zen_RTS_Asset_East_CUP_O_UAZ_SPG9_RU, Zen_RTS_Asset_East_CUP_O_UAZ_MG_TKA, Zen_RTS_Asset_East_CUP_O_UAZ_AGS30_TKA, Zen_RTS_Asset_East_CUP_O_UAZ_SPG9_TKA, Zen_RTS_Asset_East_CUP_O_BTR60_TK, Zen_RTS_Asset_East_CUP_O_BTR90_RU, Zen_RTS_Asset_East_CUP_O_BTR90_HQ_RU, Zen_RTS_Asset_East_CUP_O_BRDM2_TKA, Zen_RTS_Asset_East_CUP_O_BRDM2_ATGM_TKA]
 UPGRADE(Zen_RTS_F_East_TankFactoryUpgrade02, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_East_rhs_bmd1, Zen_RTS_Asset_East_rhs_bmd1k, Zen_RTS_Asset_East_rhs_bmd1p, Zen_RTS_Asset_East_rhs_bmd1pk, Zen_RTS_Asset_East_rhs_bmd1r, Zen_RTS_Asset_East_rhs_bmd2, Zen_RTS_Asset_East_rhs_bmd2m, Zen_RTS_Asset_East_rhs_bmd2k, Zen_RTS_Asset_East_rhs_bmd4ma_vdv, Zen_RTS_Asset_East_rhs_sprut_vdv, Zen_RTS_Asset_East_rhs_t72bc_tv, Zen_RTS_Asset_East_rhs_t72bd_tv, Zen_RTS_Asset_East_rhs_t72ba_tv, Zen_RTS_Asset_East_rhs_zsu234_aa]
+#define ASSETS [Zen_RTS_Asset_East_CUP_O_BRDM2_HQ_TKA, Zen_RTS_Asset_East_O_APC_Wheeled_02_rcws_F, Zen_RTS_Asset_East_CUP_O_T72_TKA, Zen_RTS_Asset_East_CUP_O_T72_RU, Zen_RTS_Asset_East_CUP_O_M113_TKA, Zen_RTS_Asset_East_O_APC_Tracked_02_AA_F, Zen_RTS_Asset_East_O_APC_Tracked_02_cannon_F, Zen_RTS_Asset_East_CUP_O_ZSU23_TK, Zen_RTS_Asset_East_CUP_O_ZSU23_SLA]
 UPGRADE(Zen_RTS_F_East_TankFactoryUpgrade03, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_East_rhs_t80b, Zen_RTS_Asset_East_rhs_t80bk, Zen_RTS_Asset_East_rhs_t80bv, Zen_RTS_Asset_East_rhs_t80bvk, Zen_RTS_Asset_East_rhs_t80, Zen_RTS_Asset_East_rhs_t80a, Zen_RTS_Asset_East_rhs_t80u, Zen_RTS_Asset_East_rhs_t90_tv]
+#define ASSETS [Zen_RTS_Asset_East_CUP_O_T55_TK, Zen_RTS_Asset_East_O_MBT_02_cannon_F, Zen_RTS_Asset_East_CUP_O_BM21_RU, Zen_RTS_Asset_East_CUP_O_BM21_TKA]
 UPGRADE(Zen_RTS_F_East_TankFactoryUpgrade04, ASSETS)
 
-Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor", "Zen_RTS_F_East_TankFactoryDestructor", ["Zen_RTS_F_East_TankFactoryUpgrade01", "Zen_RTS_F_East_TankFactoryUpgrade02", "Zen_RTS_F_East_TankFactoryUpgrade03","Zen_RTS_F_East_TankFactoryUpgrade04"], "Tank factory", "Cost: 2000, Time: 10, Picture: pictures\tank_ca.paa, Classname: Land_i_Garage_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor", "Zen_RTS_F_East_TankFactoryDestructor", ["Zen_RTS_F_East_TankFactoryUpgrade01", "Zen_RTS_F_East_TankFactoryUpgrade02", "Zen_RTS_F_East_TankFactoryUpgrade03","Zen_RTS_F_East_TankFactoryUpgrade04"], "Tank factory", "Cost: 2000, Time: 10, Picture: pictures\tank_ca.paa, Classname: LAND_CARGO_HOUSE_V2_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_TankFactory;
 
 /////////////////////////////////
@@ -137,111 +175,102 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
         }; \
     };
 
-#define CREW_UNITS ["rhs_msv_driver"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_uaz_open_vdv, "rhs_uaz_open_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_vdv, "rhs_gaz66_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_uaz_vdv, "rhs_uaz_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66o_flat_vdv, "rhs_gaz66o_flat_vdv", CREW_UNITS)
+#define CREW_UNITS ["CUP_O_RU_Soldier_Saiga"]
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_Unarmed_RU, "CUP_O_UAZ_Unarmed_RU", CREW_UNITS)
 
-#define CREW_UNITS ["rhs_vdv_driver_armored", "rhs_vdv_crew_commander", "rhs_vdv_armoredcrew", "rhs_vdv_combatcrew"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1k_vdv, "rhs_bmp1k_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1d_vdv, "rhs_bmp1d_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1p_vdv, "rhs_bmp1p_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp2e_vdv, "rhs_bmp2e_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp2k_vdv, "rhs_bmp2k_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp2d_vdv, "rhs_bmp2d_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp3_late_msv, "rhs_bmp3_late_msv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp3mera_msv, "rhs_bmp3mera_msv", CREW_UNITS)
+#define CREW_UNITS ["CUP_O_RU_Soldier_Saiga", "CUP_O_RU_Crew", "CUP_O_RU_Crew", "CUP_O_RU_Crew"]
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_Unarmed_TKA, "CUP_O_UAZ_Unarmed_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_LR_Transport_TKA, "CUP_O_LR_Transport_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_LR_MG_TKA, "CUP_O_LR_MG_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_LR_SPG9_TKA, "CUP_O_LR_SPG9_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_LR_Transport_TKM, "CUP_O_LR_Transport_TKM", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_LR_MG_TKM, "CUP_O_LR_MG_TKM", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_LR_SPG9_TKM, "CUP_O_LR_SPG9_TKM", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_Datsun_PK, "CUP_O_Datsun_PK", CREW_UNITS)
 
-#define CREW_UNITS ["rhs_msv_driver", "rhs_msv_crew"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_AssetTigr, "rhs_tigr_ffv_msv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr60_vmf, "rhs_btr60_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1_vmf, "rhs_bmp1_vmf", CREW_UNITS)
+#define CREW_UNITS ["CUP_O_RU_Soldier_Saiga", "CUP_O_RU_Crew"]
+VEHCILE_CONSTRUCTOR(CUP_O_Datsun_PK_Random, "CUP_O_Datsun_PK_Random", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_MG_CHDKZ, "CUP_O_UAZ_MG_CHDKZ", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_AGS30_CHDKZ, "CUP_O_UAZ_AGS30_CHDKZ", CREW_UNITS)
 
-#define CREW_UNITS ["rhs_vdv_driver_armored", "rhs_vdv_officer_armored", "rhs_vdv_crew"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_ap2_vdv, "rhs_gaz66_ap2_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr60_vmf, "rhs_btr60_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr80_vdv, "rhs_btr80_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr70_vdv, "rhs_btr70_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_prp3_vdv, "rhs_prp3_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_brm1k_vdv, "rhs_brm1k_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr80a_vdv, "rhs_btr80a_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1, "rhs_bmd1", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd2, "rhs_bmd2", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1r, "rhs_bmd1r", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1pk, "rhs_bmd1pk", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1p, "rhs_bmd1p", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1k, "rhs_bmd1k", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd2k, "rhs_bmd2k", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd4ma_vdv, "rhs_bmd4ma_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_sprut_vdv, "rhs_sprut_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t72bc_tv, "rhs_t72bc_tv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_zsu234_aa, "rhs_zsu234_aa", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd2m, "rhs_bmd2m", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_tigr_3camo_vmf, "rhs_tigr_3camo_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_tigr_ffv_vmf, "rhs_tigr_ffv_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_tigr_ffv_3camo_vmf, "rhs_tigr_ffv_3camo_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80b, "rhs_t80b", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t72bd_tv, "rhs_t72bd_tv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t72ba_tv, "rhs_t72ba_tv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80bk, "rhs_t80bk", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80bv, "rhs_t80bv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80bvk, "rhs_t80bvk", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80, "rhs_t80", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80a, "rhs_t80a", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80u, "rhs_t80u", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t90_tv, "rhs_t90_tv", CREW_UNITS)
+#define CREW_UNITS ["CUP_O_RU_Soldier_Saiga", "CUP_O_RU_Soldier_Saiga", "CUP_O_RU_Crew"]
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_SPG9_CHDKZ, "CUP_O_UAZ_SPG9_CHDKZ", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_Open_RU, "CUP_O_UAZ_Open_RU", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_MG_RU, "CUP_O_UAZ_MG_RU", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_AGS30_RU, "CUP_O_UAZ_AGS30_RU", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_SPG9_RU, "CUP_O_UAZ_SPG9_RU", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_MG_TKA, "CUP_O_UAZ_MG_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_AGS30_TKA, "CUP_O_UAZ_AGS30_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_UAZ_SPG9_TKA, "CUP_O_UAZ_SPG9_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_BTR60_TK, "CUP_O_BTR60_TK", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_BTR90_RU, "CUP_O_BTR90_RU", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_BTR90_HQ_RU, "CUP_O_BTR90_HQ_RU", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_BRDM2_TKA, "CUP_O_BRDM2_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_BRDM2_ATGM_TKA, "CUP_O_BRDM2_ATGM_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_BRDM2_HQ_TKA, "CUP_O_BRDM2_HQ_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(O_APC_Wheeled_02_rcws_F, "O_APC_Wheeled_02_rcws_F", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_T72_TKA, "CUP_O_T72_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_T72_RU, "CUP_O_T72_RU", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_M113_TKA, "CUP_O_M113_TKA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(O_APC_Tracked_02_AA_F, "O_APC_Tracked_02_AA_F", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(O_APC_Tracked_02_cannon_F, "O_APC_Tracked_02_cannon_F", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_ZSU23_TK, "CUP_O_ZSU23_TK", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_ZSU23_SLA, "CUP_O_ZSU23_SLA", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_T55_TK, "CUP_O_T55_TK", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(O_MBT_02_cannon_F, "O_MBT_02_cannon_F", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_BM21_RU, "CUP_O_BM21_RU", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(CUP_O_BM21_TKA, "CUP_O_BM21_TKA", CREW_UNITS)
+
 
 //tank 0 upgrade assests
-Zen_RTS_Asset_East_rhs_gaz66o_flat_vdv = ["Zen_RTS_F_East_Asset_rhs_gaz66o_flat_vdv", "Gaz_flat", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_gaz66_vdv = ["Zen_RTS_F_East_Asset_rhs_gaz66_vdv", "Gaz_vdv", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_uaz_vdv = ["Zen_RTS_F_East_Asset_rhs_uaz_vdv", "uaz-jeep","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_uaz_open_vdv = ["Zen_RTS_F_East_Asset_rhs_uaz_open_vdv","uaz_jeep (open)", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_RU = ["CUP_O_UAZ_Unarmed_RU", "UAZ (unarmed)RU", "Cost: 200, Time: 10, Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_TKA = ["CUP_O_UAZ_Unarmed_TKA", "UAZ Unarmed TKA", "Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_LR_Transport_TKA = ["CUP_O_LR_Transport_TKA", "LR Transport TKA","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_LR_MG_TKA = ["CUP_O_LR_MG_TKA","LR MG", "Cost: 100, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
 //tank 1 upgrade assests
-Zen_RTS_Asset_East_rhs_tigr_3camo_vmf = ["Zen_RTS_F_East_Asset_rhs_tigr_3camo_vmf", "tigr-3 (gunner seat)","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_tigr_ffv_vmf = ["Zen_RTS_F_East_Asset_rhs_tigr_ffv_vmf", "tigr-ffv(gunner seat)","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_tigr_ffv_3camo_vmf = ["Zen_RTS_F_East_Asset_rhs_tigr_ffv_3camo_vmf", "tigr-ffv-3(gunner seat)","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_gaz66_ap2_vdv = ["Zen_RTS_F_East_Asset_rhs_gaz66_ap2_vdv", "gaz-ap2","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_btr60_vmf = ["Zen_RTS_F_East_Asset_rhs_btr60_vmf", "APC-BTR60","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_btr70_vdv = ["Zen_RTS_F_East_Asset_rhs_btr70_vdv", "APC-BTR70","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_btr80_vdv = ["Zen_RTS_F_East_Asset_rhs_btr80_vdv", "APC-BTR80","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_LR_SPG9_TKA = ["CUP_O_LR_SPG9_TKA", "LR SPG9","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_LR_Transport_TKM = ["CUP_O_LR_Transport_TKM", "LR Transport","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_LR_MG_TKM = ["CUP_O_LR_MG_TKM", "LR MG","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_LR_SPG9_TKM = ["CUP_O_LR_SPG9_TKM", "LR SPG9","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Datsun_PK = ["CUP_O_Datsun_PK", "Datsun PK","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Datsun_PK_Random = ["CUP_O_Datsun_PK_Random", "Datsun pK Random","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_MG_CHDKZ = ["CUP_O_UAZ_MG_CHDKZ", "APC-BTR80","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_AGS30_CHDKZ = ["CUP_O_UAZ_AGS30_CHDKZ", "UAZ AGS30","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_SPG9_CHDKZ = ["CUP_O_UAZ_SPG9_CHDKZ", "UAZ SPG9","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_Open_RU = ["CUP_O_UAZ_Open_RU", "UAZ Open","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_MG_RU = ["CUP_O_UAZ_MG_RU", "UAZ MG","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_AGS30_RU = ["CUP_O_UAZ_AGS30_RU", "UAZ AGS30","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+
 //tank 2 upgrade assests
 
-Zen_RTS_Asset_East_rhs_brm1k_vdv = ["Zen_RTS_F_East_Asset_rhs_brm1k_vdv", "brm-1k","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_btr80a_vdv = ["Zen_RTS_F_East_Asset_rhs_btr80a_vdv", "APC-BTRA-80","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp1_vmf = ["Zen_RTS_F_East_Asset_rhs_bmp1_vmf", "BMP","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp1k_vdv = ["Zen_RTS_F_East_Asset_rhs_bmp1k_vdv", "BMP-1k","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp1d_vdv = ["Zen_RTS_F_East_Asset_rhs_bmp1d_vdv", "BMP-1d","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp1p_vdv = ["Zen_RTS_F_East_Asset_rhs_bmp1p_vdv", "BMP1p","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp2e_vdv = ["Zen_RTS_F_East_Asset_rhs_bmp2e_vdv", "BMP-2e","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp2k_vdv = ["Zen_RTS_F_East_Asset_rhs_bmp2k_vdv", "BMP-2k","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp2d_vdv = ["Zen_RTS_F_East_Asset_rhs_bmp2d_vdv", "BMP-2d","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp3_late_msv = ["Zen_RTS_F_East_Asset_rhs_bmp3_late_msv", "BM3-late","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmp3mera_msv = ["Zen_RTS_F_East_Asset_rhs_bmp3mera_msv", "BMP3-Auto","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_SPG9_RU = ["CUP_O_UAZ_SPG9_RU", "UAZ SPG9","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_MG_TKA = ["CUP_O_UAZ_MG_TKA", "UAZ MG","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_AGS30_TKA = ["CUP_O_UAZ_AGS30_TKA", "UAZ AGS30","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_UAZ_SPG9_TKA = ["CUP_O_UAZ_SPG9_TKA", "UAZ SPG9","Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_BTR60_TK = ["CUP_O_BTR60_TK", "BTR60","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_BTR90_RU = ["CUP_O_BTR90_RU", "BTR90","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_BTR90_HQ_RU = ["CUP_O_BTR90_HQ_RU", "BTR90 HQ","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_BRDM2_TKA = ["CUP_O_BRDM2_TKA", "BRDM2","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_BRDM2_ATGM_TKA = ["CUP_O_BRDM2_ATGM_TKA", "BRDM2_ATGM","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+
 //tank 3 upgrade assests
-Zen_RTS_Asset_East_rhs_bmd1 = ["Zen_RTS_F_East_Asset_rhs_bmd1", "bmd1","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmd1k = ["Zen_RTS_F_East_Asset_rhs_bmd1k", "bmd1k","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmd1p = ["Zen_RTS_F_East_Asset_rhs_bmd1p", "bmd1p","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmd1pk = ["Zen_RTS_F_East_Asset_rhs_bmd1pk", "bmd1pk","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmd1r = ["Zen_RTS_F_East_Asset_rhs_bmd1r", "bmd1r","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmd2 = ["Zen_RTS_F_East_Asset_rhs_bmd2", "bmd2","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmd2m = ["Zen_RTS_F_East_Asset_rhs_bmd2m", "bmd2m","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmd2k = ["Zen_RTS_F_East_Asset_rhs_bmd2k", "bmd2k","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_bmd4ma_vdv = ["Zen_RTS_F_East_Asset_rhs_bmd4ma_vdv", "BMD4ma","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_sprut_vdv = ["Zen_RTS_F_East_Asset_rhs_sprut_vdv", "Spurt","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t72bc_tv = ["Zen_RTS_F_East_Asset_rhs_t72bc_tv", "t72bc-tv","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t72bd_tv = ["Zen_RTS_F_East_Asset_rhs_t72bd_tv", "t72bd-tv","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t72ba_tv = ["Zen_RTS_F_East_Asset_rhs_t72ba_tv", "t72ba-tv","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_zsu234_aa = ["Zen_RTS_F_East_Asset_rhs_zsu234_aa", "ZSU234-AA","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+
+Zen_RTS_Asset_East_CUP_O_BRDM2_HQ_TKA = ["CUP_O_BRDM2_HQ_TKA", "BRDM2_HQ","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_O_APC_Wheeled_02_rcws_F = ["O_APC_Wheeled_02_rcws_F", "Marid","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_T72_TKA = ["CUP_O_T72_TKA", "T72 TKA","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_T72_RU = ["CUP_O_T72_RU", "T72 RU","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_M113_TKA = ["CUP_O_M113_TKA", "M113","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_O_APC_Tracked_02_AA_F = ["O_APC_Tracked_02_AA_F", "AA","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_O_APC_Tracked_02_cannon_F = ["O_APC_Tracked_02_cannon_F", "Kamysh","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_ZSU23_TK = ["CUP_O_ZSU23_TK", "ZSU23","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_ZSU23_SLA = ["CUP_O_ZSU23_SLA", "ZSU23 SLA","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+
 //tank 4 upgrade assests
-Zen_RTS_Asset_East_rhs_t80b = ["Zen_RTS_F_East_Asset_rhs_t80b", "t80b","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t80bk = ["Zen_RTS_F_East_Asset_rhs_t80bk", "t80-bk","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t80bv = ["Zen_RTS_F_East_Asset_rhs_t80bv", "t80-tv","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t80bvk = ["Zen_RTS_F_East_Asset_rhs_t80bvk", "t80-bvk","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t80 = ["Zen_RTS_F_East_Asset_rhs_t80", "t80","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t80a = ["Zen_RTS_F_East_Asset_rhs_t80a", "t80-a","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t80u = ["Zen_RTS_F_East_Asset_rhs_t80u", "t80-u","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_t90_tv = ["Zen_RTS_F_East_Asset_rhs_t90_tv", "T90","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+
+Zen_RTS_Asset_East_CUP_O_T55_TK = ["CUP_O_T55_TK", "T55","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_O_MBT_02_cannon_F = ["O_MBT_02_cannon_F", "Varsuk","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_BM21_RU = ["CUP_O_BM21_RU", "BM21","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_BM21_TKA = ["CUP_O_BM21_TKA", "BM21 TKA","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 
 Zen_RTS_F_East_Asset_CJ = {
     player sideChat str ("East CJ asset proxy constructor called");

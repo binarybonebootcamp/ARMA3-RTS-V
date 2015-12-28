@@ -1,4 +1,42 @@
-//
+/**
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_MTP
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_GL_MTP
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Marksman_MTP
+    Level 1:
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Light_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Backpack_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AAR_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AMG_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AAT_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AHAT_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AAA_MTP        
+        
+    Level 2:
+Zen_RTS_Asset_West_CUP_B_BAF_Officer_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_SL_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_TL_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AR_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_MG_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AT_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_HAT_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AA_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Night_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_scout_MTP	
+
+    Level 3:
+Zen_RTS_Asset_West_CUP_B_BAF_Spotter_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Spotter_L85TWS_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Pilot_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Crew_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Medic_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_JTAC_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Engineer_MTP,
+Zen_RTS_Asset_West_CUP_B_BAF_Sniper_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Sniper_AS50_MTP, 
+Zen_RTS_Asset_West_CUP_B_BAF_Sniper_AS50_TWS_MTP	
+ 
+        
+//*/
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
 Zen_RTS_F_West_BarracksConstructor = {
@@ -13,10 +51,9 @@ Zen_RTS_F_West_BarracksConstructor = {
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_army_ocp_grenadier;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_army_ocp_autoriflemana;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_rhsusf_army_ocp_medic;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_BAF_Soldier_MTP;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_BAF_Soldier_GL_MTP;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Marksman_MTP;
 
     if (Zen_RTS_TechFlag_West_BuildEnemy) then {
         // ... to do
@@ -34,7 +71,7 @@ Zen_RTS_F_West_BarracksConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_Barracks]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_Cargo_House_V1_F", -1.3)
+    BUILDING_VISUALS("LAND_CARGO_PATROL_V1_F", -2)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_Barracks, West)
 
     _args = ["addAction", [_building, ["<img size='3'image='pictures\build_CA.paa'/>", Zen_RTS_BuildMenu, [(_buildingObjData select 0), (_buildingObjData select 1)], 1, false, true, "", "((_target distance _this) < 15) && {(side _this == (_target getVariable 'Zen_RTS_StrategicBuildingSide')) || (false)}"]]];
@@ -78,16 +115,16 @@ N = { \
     (true) \
 };
 
-#define ASSETS [Zen_RTS_Asset_West_rhsusf_army_ocp_autorifleman, Zen_RTS_Asset_West_rhsusf_army_ocp_javelin]
+#define ASSETS [Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Light_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Backpack_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AAR_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AMG_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AAT_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AHAT_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AAA_MTP]
 UPGRADE(Zen_RTS_F_West_BarracksUpgrade01, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_West_rhsusf_army_ocp_aa, Zen_RTS_Asset_West_rhsusf_army_ocp_sniper, Zen_RTS_Asset_West_rhsusf_army_ocp_officer, Zen_RTS_Asset_West_rhsusf_army_ocp_riflemanat, Zen_RTS_Asset_West_rhsusf_army_ocp_riflemanl]
+#define ASSETS [Zen_RTS_Asset_West_CUP_B_BAF_Officer_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_SL_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_TL_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AR_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_MG_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AT_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_HAT_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AA_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Night_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_scout_MTP]
 UPGRADE(Zen_RTS_F_West_BarracksUpgrade02, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_West_rhsusf_army_ocp_engineer, Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m590,Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m16,Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m4,Zen_RTS_Asset_West_rhsusf_army_ocp_marksman,Zen_RTS_Asset_West_rhsusf_army_ocp_fso]
+#define ASSETS [Zen_RTS_Asset_West_CUP_B_BAF_Spotter_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Spotter_L85TWS_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Pilot_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Crew_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Medic_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Soldier_JTAC_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Engineer_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Sniper_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Sniper_AS50_MTP, Zen_RTS_Asset_West_CUP_B_BAF_Sniper_AS50_TWS_MTP]
 UPGRADE(Zen_RTS_F_West_BarracksUpgrade03, ASSETS)
 
-Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen_RTS_F_West_BarracksDestructor", ["Zen_RTS_F_West_BarracksUpgrade01", "Zen_RTS_F_West_BarracksUpgrade02","Zen_RTS_F_West_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\barraks_ca.paa, Classname: Land_Cargo_House_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen_RTS_F_West_BarracksDestructor", ["Zen_RTS_F_West_BarracksUpgrade01", "Zen_RTS_F_West_BarracksUpgrade02","Zen_RTS_F_West_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\barraks_ca.paa, Classname: LAND_CARGO_PATROL_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_Barracks;
 
 /////////////////////////////////
@@ -111,38 +148,67 @@ Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen
         }; \
     };
 
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_rhsusf_army_ocp_rifleman, "rhsusf_army_ocp_rifleman", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_grenadier, "rhsusf_army_ocp_grenadier", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_autorifleman, "rhsusf_army_ocp_autorifleman", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_medic, "rhsusf_army_ocp_medic", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_autoriflemana, "rhsusf_army_ocp_autoriflemana", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_javelin, "rhsusf_army_ocp_javelin", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_aa, "rhsusf_army_ocp_aa", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_sniper, "rhsusf_army_ocp_sniper", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_officer, "rhsusf_army_ocp_officer", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_riflemanat, "rhsusf_army_ocp_riflemanat", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_riflemanl, "rhsusf_army_ocp_riflemanl", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_engineer, "rhsusf_army_ocp_engineer", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m590, "rhsusf_army_ocp_rifleman_m590", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m16, "rhsusf_army_ocp_rifleman_m16", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m4, "rhsusf_army_ocp_rifleman_m4", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_marksman, "rhsusf_army_ocp_marksman", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_West_Assetrhsusf_army_ocp_fso, "rhsusf_army_ocp_fso", "infantry")
-
-Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman = ["Zen_RTS_F_West_rhsusf_army_ocp_rifleman", "Rifleman", "Cost: 50, Time: 10, Classname: b_soldier_02_f,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_grenadier = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_grenadier", "Grenadier", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_autoriflemana = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_autoriflemana", "Assistant Autorifleman", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_medic = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_medic", "medic", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_autorifleman = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_autorifleman", "autorifleman", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_javelin = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_javelin", "Javelin Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_aa = ["Zen_RTS_F_West_Assetrhsusf_army_ocp_aa", "AA Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_sniper= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_sniper", "sniper", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_officer= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_officer", "officer", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_riflemanat= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_riflemanat", "AT Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_riflemanl= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_riflemanl", "l Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_engineer= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_engineer", "engineer", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m590= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m590", "m590-Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m16= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m16", "m16-Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_rifleman_m4= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_rifleman_m4", "m4-Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_marksman= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_marksman", "marksman", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_rhsusf_army_ocp_fso= ["Zen_RTS_F_West_Assetrhsusf_army_ocp_fso", "FSO-Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_MTP, "CUP_B_BAF_Soldier_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_GL_MTP, "CUP_B_BAF_Soldier_GL_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_Marksman_MTP, "CUP_B_BAF_Soldier_Marksman_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_Light_MTP, "CUP_B_BAF_Soldier_Light_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_Backpack_MTP, "CUP_B_BAF_Soldier_Backpack_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AAR_MTP, "CUP_B_BAF_Soldier_AAR_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AMG_MTP, "CUP_B_BAF_Soldier_AMG_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AAT_MTP, "CUP_B_BAF_Soldier_AAT_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AHAT_MTP, "CUP_B_BAF_Soldier_AHAT_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AAA_MTP, "CUP_B_BAF_Soldier_AAA_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Officer_MTP, "CUP_B_BAF_Officer_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_SL_MTP, "CUP_B_BAF_Soldier_SL_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_TL_MTP, "CUP_B_BAF_Soldier_TL_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AR_MTP, "CUP_B_BAF_Soldier_AR_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_MG_MTP, "CUP_B_BAF_Soldier_MG_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AT_MTP, "CUP_B_BAF_Soldier_AT_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_HAT_MTP, "CUP_B_BAF_Soldier_HAT_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AA_MTP, "CUP_B_BAF_Soldier_AA_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_Night_MTP, "CUP_B_BAF_Soldier_Night_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_scout_MTP, "CUP_B_BAF_Soldier_scout_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Spotter_MTP, "CUP_B_BAF_Spotter_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Spotter_L85TWS_MTP, "CUP_B_BAF_Spotter_L85TWS_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Pilot_MTP, "CUP_B_BAF_Pilot_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Crew_MTP, "CUP_B_BAF_Crew_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Medic_MTP, "CUP_B_BAF_Medic_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_JTAC_MTP, "CUP_B_BAF_Soldier_JTAC_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Engineer_MTP, "CUP_B_BAF_Engineer_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Sniper_MTP, "CUP_B_BAF_Sniper_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_B_BAF_Sniper_AS50_MTP, "CUP_B_BAF_Sniper_AS50_MTP", "infantry")
+INFANTRY_CONSTRUCTOR(UP_B_BAF_Sniper_AS50_TWS_MTP, "UP_B_BAF_Sniper_AS50_TWS_MTP", "infantry")
+//**// LEVEL 0
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_MTP = ["CUP_B_BAF_Soldier_MTP", "Soldier", "Cost: 150, Time: 10, Classname: b_soldier_02_f,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_GL_MTP = ["CUP_B_BAF_Soldier_GL_MTP", "Grenadier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Marksman_MTP = ["CUP_B_BAF_Soldier_Marksman_MTP", "Marksman", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+//**// LEVEL 1
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Light_MTP = ["CUP_B_BAF_Soldier_Light_MTP", "Soldier Light", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Backpack_MTP = ["CUP_B_BAF_Soldier_Backpack_MTP", "Soldier Bp", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AAR_MTP = ["CUP_B_BAF_Soldier_AAR_MTP", "Soldier AAR", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AMG_MTP = ["CUP_B_BAF_Soldier_AMG_MTP", "Soldier AMG", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AAT_MTP = ["CUP_B_BAF_Soldier_AAT_MTP", "Soldier AAT", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AHAT_MTP = ["CUP_B_BAF_Soldier_AHAT_MTP", "Soldier AHAT", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AAA_MTP = ["CUP_B_BAF_Soldier_AAA_MTP", "Soldier AAA", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+//**// LEVEL 2
+Zen_RTS_Asset_West_CUP_B_BAF_Officer_MTP = ["CUP_B_BAF_Officer_MTP", "Officer", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_SL_MTP = ["CUP_B_BAF_Soldier_SL_MTP", "Rifleman SL", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_TL_MTP = ["CUP_B_BAF_Soldier_TL_MTP", "Rifleman TL", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AR_MTP = ["CUP_B_BAF_Soldier_AR_MTP", "Rifleman AR", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_MG_MTP = ["CUP_B_BAF_Soldier_MG_MTP", "Rifleman MG", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AT_MTP = ["CUP_B_BAF_Soldier_AT_MTP", "Rifleman AT", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_HAT_MTP = ["CUP_B_BAF_Soldier_HAT_MTP", "Rifleman HAT", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_AA_MTP = ["CUP_B_BAF_Soldier_AA_MTP", "Rifleman AA", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_Night_MTP = ["CUP_B_BAF_Soldier_Night_MTP", "Soldier Night", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_scout_MTP = ["CUP_B_BAF_Soldier_scout_MTP", "scout", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+//**// LEVEL 3
+Zen_RTS_Asset_West_CUP_B_BAF_Spotter_MTP = ["CUP_B_BAF_Spotter_MTP", "Spotter", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Spotter_L85TWS_MTP = ["CUP_B_BAF_Spotter_L85TWS_MTP", "Spotter L85TWS", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Pilot_MTP  = ["CUP_B_BAF_Pilot_MTP", "Pilot", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Crew_MTP = ["CUP_B_BAF_Crew_MTP", "Crew", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate; 
+Zen_RTS_Asset_West_CUP_B_BAF_Medic_MTP  = ["CUP_B_BAF_Medic_MTP", "Medic", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Soldier_JTAC_MTP  = ["CUP_B_BAF_Soldier_JTAC_MTP", "Soldier JTAC", "Cost: 150, Time: 20,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Engineer_MTP = ["CUP_B_BAF_Engineer_MTP", "Engineer", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Sniper_MTP = ["CUP_B_BAF_Sniper_MTP", "Sniper MTP", "Cost: 350, Time: 15,"] call Zen_RTS_StrategicAssetCreate; 
+Zen_RTS_Asset_West_CUP_B_BAF_Sniper_AS50_MTP  = ["CUP_B_BAF_Sniper_AS50_MTP", "Sniper AS50 MTP", "Cost: 150, Time: 15,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_BAF_Sniper_AS50_TWS_MTP = ["UP_B_BAF_Sniper_AS50_TWS_MTP", "Sniper AS50 TWS", "Cost: 150, Time: 20,"] call Zen_RTS_StrategicAssetCreate;

@@ -9,7 +9,7 @@ class CfgCommunicationMenu {
 respawn = 3;
 respawndelay = 3;
 respawnDialog = false;
-author = "Dr Death jm||Zenophon";
+author = "Dr Death jm |*| Zenophon";
 overviewText = "DEV-Update 092615.";
 overviewPicture = "pictures\rtsload.paa";
 onLoadName = "RTS V : Arma3 Edition";
@@ -24,7 +24,6 @@ disabledAI = 0;
 showUAVFeed = 1;
 showGroupIndicator = 0;
 enableDebugConsole = 1;
-taskManagement_markers3D = 1;
 showHUD = 1;
 
 class Header {

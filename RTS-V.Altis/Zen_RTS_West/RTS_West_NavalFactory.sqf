@@ -34,7 +34,7 @@ Zen_RTS_F_West_NavalConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_NavalFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_Lighthouse_small_F", -1)
+    BUILDING_VISUALS("Land_Nav_Boathouse", -5)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_NavalFactory, West)
 
     // to-do: || false condition needs building hacking logic
@@ -80,7 +80,7 @@ UPGRADE(Zen_RTS_F_West_NavalUpgrade01, ASSETS)
 // #define ASSETS []
 // UPGRADE(Zen_RTS_F_West_NavalUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Zen_RTS_F_West_NavalDestructor", ["Zen_RTS_F_West_NavalUpgrade01"], "Naval Factory", "Cost: 2000, Time: 10, Picture: pictures\naval_ca.paa, Classname: Land_Lighthouse_small_F,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Zen_RTS_F_West_NavalDestructor", ["Zen_RTS_F_West_NavalUpgrade01"], "Naval Factory", "Cost: 2000, Time: 10, Picture: pictures\naval_ca.paa, Classname: Land_Nav_Boathouse,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_NavalFactory;
 
 /////////////////////////////////
@@ -119,11 +119,11 @@ Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Ze
         }; \
     };
 
-#define CREW_UNITS ["rhsusf_army_ocp_driver", "rhsusf_army_ocp_rifleman"]
+#define CREW_UNITS ["CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Engineer_MTP","CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Engineer_MTP"]
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetGunBoat, "B_Boat_Armed_01_minigun_F", CREW_UNITS)
 
-#define CREW_UNITS ["rhsusf_army_ocp_driver"]
+#define CREW_UNITS ["CUP_B_BAF_Officer_MTP","CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Engineer_MTP","CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Engineer_MTP"]
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetZodiac, "B_Boat_Transport_01_F", CREW_UNITS)
 
-Zen_RTS_Asset_West_GunBoat = ["Zen_RTS_F_West_AssetGunBoat","Armed Patrol Boat", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_Zodiac = ["Zen_RTS_F_West_AssetZodiac","Zodiac", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_GunBoat = ["Zen_RTS_F_West_AssetGunBoat","Armed Patrol Boat", "Cost: 200, Time: 10, Crew: 4,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_Zodiac = ["Zen_RTS_F_West_AssetZodiac","Zodiac", "Cost: 100, Time: 10, Crew: 5,"] call Zen_RTS_StrategicAssetCreate;

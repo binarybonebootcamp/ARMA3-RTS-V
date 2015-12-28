@@ -1,11 +1,14 @@
 /**
     Level 1:
-     Zen_RTS_Asset_East_rhs_gaz66_repair_msv;
-     Zen_RTS_Asset_East_rhs_typhoon_vdv;
-     Zen_RTS_Asset_East_RHS_Ural_VDV_01;
-    Level 2:
-        Zen_RTS_Asset_East_rhs_prp3_vdv
-        Zen_RTS_Asset_East_IfritHMG
+vehicletype -: CUP_O_Ural_RU
+vehicletype -: CUP_O_Ural_Open_RU
+vehicletype -: CUP_O_Ural_Empty_RU
+vehicletype -: CUP_O_Ural_ZU23_RU
+vehicletype -: CUP_O_Ural_TKA
+vehicletype -: CUP_O_Ural_Open_TKA
+vehicletype -: CUP_O_Ural_Empty_TKA
+vehicletype -: CUP_O_Ural_ZU23_TKA
+vehicletype -: CUP_O_Ural_ZU23_TKM
 //*/
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
@@ -43,7 +46,7 @@ Zen_RTS_F_East_SupportFactoryConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_SupportFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_Research_house_V1_F", -1)
+    BUILDING_VISUALS("LAND_CARGO_TOWER_V2_F", -2)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_SupportFactory, east)
 
     // to-do: || false condition needs building hacking logic
@@ -88,7 +91,7 @@ UPGRADE(Zen_RTS_F_East_SupportFactoryUpgrade01, ASSETS)
  #define ASSETS [Zen_RTS_Asset_East_RHS_BM21_MSV_01, Zen_RTS_Asset_East_rhs_9k79_K, Zen_RTS_Asset_East_rhs_9k79_B]
  UPGRADE(Zen_RTS_F_East_SupportFactoryUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstructor", "Zen_RTS_F_East_SupportFactoryDestructor", ["Zen_RTS_F_East_SupportFactoryUpgrade01", "Zen_RTS_F_East_SupportFactoryUpgrade02"], "Support factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa, Classname: Land_Research_house_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstructor", "Zen_RTS_F_East_SupportFactoryDestructor", ["Zen_RTS_F_East_SupportFactoryUpgrade01", "Zen_RTS_F_East_SupportFactoryUpgrade02"], "Support factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa, Classname: LAND_CARGO_TOWER_V2_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_SupportFactory;
 
 /////////////////////////////////

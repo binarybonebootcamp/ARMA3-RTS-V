@@ -32,7 +32,7 @@ Zen_RTS_F_East_HQConstructor = {
     ZEN_FMW_MP_RENonDedicated("Zen_RTS_F_StrategicAddAssetLocal", _args, call)
 
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    BUILDING_VISUALS("Land_Research_HQ_F", -1)
+    BUILDING_VISUALS("LAND_CARGO_HQ_V2_F", -1.5)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_HQ, east)
 
     // to-do: || false condition needs building hacking logic
@@ -55,7 +55,7 @@ Zen_RTS_F_East_HQDestructor = {
     (_buildingObjData select 2) setDamage 1;
 };
 
-Zen_RTS_BuildingType_East_HQ = ["Zen_RTS_F_East_HQConstructor", "Zen_RTS_F_East_HQDestructor", [], "HQ", "Cost: 1000, Time: 10, Picture: pictures\icon_remote.paa, Classname: Land_Research_HQ_F,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_HQ = ["Zen_RTS_F_East_HQConstructor", "Zen_RTS_F_East_HQDestructor", [], "HQ", "Cost: 1000, Time: 10, Picture: pictures\icon_remote.paa, Classname: LAND_CARGO_HQ_V2_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_HQ;
 
 /////////////////////////////////

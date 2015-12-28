@@ -31,7 +31,7 @@ Zen_RTS_F_West_RecyclePlantConstructor = {
         // 0 = [_ID, [Zen_RTS_Asset_Tech_West_Upgrade_Barracks]] call Zen_RTS_F_StrategicAddAssetGlobal;
     // };
 
-    BUILDING_VISUALS("Land_Cargo_House_V2_F", -1)
+    BUILDING_VISUALS("LAND_SLUM_HOUSE01_F", -1)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_RecyclePlant, West)
 
     // to-do: || false condition needs building hacking logic
@@ -73,7 +73,7 @@ N = { \
 // #define ASSETS []
 // UPGRADE(, ASSETS)
 
-Zen_RTS_BuildingType_West_RecyclePlant = ["Zen_RTS_F_West_RecyclePlantConstructor", "Zen_RTS_F_West_RecyclePlantDestructor", [], "Recycle Plant", "Cost: 1000, Time: 10, Picture: pictures\depot_ca.paa, Classname: Land_Cargo_House_V2_F,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_RecyclePlant = ["Zen_RTS_F_West_RecyclePlantConstructor", "Zen_RTS_F_West_RecyclePlantDestructor", [], "Recycle Plant", "Cost: 1000, Time: 10, Picture: pictures\depot_ca.paa, Classname: LAND_SLUM_HOUSE01_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_RecyclePlant;
 
 /////////////////////////////////
@@ -90,7 +90,7 @@ Zen_RTS_F_West_Repairer = {
     sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
     if (alive (_buildingObjData select 2)) then {
         ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _group = [(_buildingObjData select 2), "rhsusf_army_ocp_rifleman"] call Zen_SpawnGroup;
+        _group = [(_buildingObjData select 2), "CUP_B_BAF_Engineer_MTP"] call Zen_SpawnGroup;
         0 = [_group, "crew"] call Zen_SetAISkill;
         removeAllWeapons (leader _group);
         (leader _group) setPosATL ([(_buildingObjData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
@@ -109,7 +109,7 @@ Zen_RTS_F_West_Recycler = {
     sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
     if (alive (_buildingObjData select 2)) then {
         ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _group = [(_buildingObjData select 2), "rhsusf_army_ocp_rifleman"] call Zen_SpawnGroup;
+        _group = [(_buildingObjData select 2), "CUP_B_BAF_Engineer_MTP"] call Zen_SpawnGroup;
         _vehicleID = [Zen_RTS_BuildingType_West_CJ, [[(_buildingObjData select 2), 10, random 360] call Zen_ExtendPosition, 0]] call Zen_RTS_StrategicBuildingInvoke;
 
         (leader _group) setPosATL ([(_buildingObjData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
@@ -126,5 +126,5 @@ Zen_RTS_F_West_Recycler = {
     };
 };
 
-Zen_RTS_Asset_West_Repairer = ["Zen_RTS_F_West_Repairer", "Repairer", "Cost: 50, Time: 10, Classname: rhsusf_army_ocp_rifleman,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_Recycler = ["Zen_RTS_F_West_Recycler", "Recycler", "Cost: 50, Time: 10, Classname: rhsusf_army_ocp_rifleman,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_Repairer = ["Zen_RTS_F_West_Repairer", "Repairer", "Cost: 50, Time: 10, Classname: CUP_B_BAF_Engineer_MTP,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_Recycler = ["Zen_RTS_F_West_Recycler", "Recycler", "Cost: 50, Time: 10, Classname: CUP_B_BAF_Engineer_MTP,"] call Zen_RTS_StrategicAssetCreate;
