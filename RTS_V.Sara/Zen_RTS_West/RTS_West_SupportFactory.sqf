@@ -85,6 +85,9 @@ N = { \
 #define ASSETS [Zen_RTS_Asset_West_CUP_B_M270_HE_USMC, Zen_RTS_Asset_West_CUP_B_M270_DPICM_USMC]
 UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade01, ASSETS)
 
+#define ASSETS []
+UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade02, ASSETS)
+
 Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstructor", "Zen_RTS_F_West_SupportFactoryDestructor", ["Zen_RTS_F_West_SupportFactoryUpgrade01","Zen_RTS_F_West_SupportFactoryUpgrade02"], "Support Factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa, Classname: LAND_CARGO_TOWER_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_SupportFactory;
 

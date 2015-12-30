@@ -169,6 +169,10 @@ INFANTRY_CONSTRUCTOR(CUP_O_RU_Spotter, "CUP_O_RU_Spotter", "infantry")
 INFANTRY_CONSTRUCTOR(CUP_O_RU_Sniper, "CUP_O_RU_Sniper", "infantry")
 INFANTRY_CONSTRUCTOR(CUP_O_RU_Sniper_KSVK, "CUP_O_RU_Sniper_KSVK", "infantry")
 INFANTRY_CONSTRUCTOR(CUP_O_INS_Sniper, "CUP_O_INS_Sniper", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_AK74, "CUP_O_INS_Soldier_AK74", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_GL, "CUP_O_INS_Soldier_GL", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_Marksman, "CUP_O_RU_Soldier_Marksman", "infantry")
+
 //**// LEVEL 0
 Zen_RTS_Asset_East_CUP_O_INS_Soldier_AK74 = ["CUP_O_INS_Soldier_AK74", "Rifleman AK74", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_CUP_O_INS_Soldier_GL = ["CUP_O_INS_Soldier_GL", "Rifleman GL", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;

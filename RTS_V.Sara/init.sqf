@@ -273,11 +273,11 @@ diag_log diag_tickTime;
     _building setVectorUp (surfaceNormal _spawnPos); \
     _height = ZEN_STD_OBJ_BBZ(_building); \
     _heightStep = (_height + O) / _buildTime; \
-    _building setPos ((setPos _building) vectorAdd [0, 0, -(_height)]); \
+    _building setPos ((getPos _building) vectorAdd [0, 0, -(_height)]); \
     for "_i" from 0 to _buildTime do { \
         sleep 1; \
         if !(alive _building) exitWith {}; \
-        _building setPos ((setPos _building) vectorAdd [0, 0, _heightStep]); \
+        _building setPos ((getPos _building) vectorAdd [0, 0, _heightStep]); \
     };
     // ZEN_STD_OBJ_TransformATL(_building, 0, 0, -(_height)) \
         // _building setPosWorld ((setPosWorld _building) vectorAdd [0, 0, _heightStep]); \
