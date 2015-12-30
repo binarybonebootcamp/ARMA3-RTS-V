@@ -1,0 +1,69 @@
+File: QS_icons_documentation.txt
+Script:
+
+	Soldier Tracker
+	
+Author: 
+
+	Quiksilver
+	
+Version:
+
+	2.1 Stable (24/07/2015)
+	
+ArmA 3 Compatibility:
+
+	1.48.131561 - Stable Branch
+	
+Description:
+
+	A system for showing relevant Soldier, Vehicle and Group information on the Map, GPS and HUD.
+	
+Purpose:
+
+	Designed for scenario authors to have a powerful, high-performance and highly flexible solution to presenting player, vehicle and group information on the map, GPS and HUD interfaces.
+	
+Features:
+
+	- Large selection of flexible configuration options.
+	- No Mod dependencies, is fully vanilla compatible.
+	- Fully MP / Dedicated / SP / Host-Server Compatible.
+	- Debug / Development setting to reveal all objects, vehicles and units.
+	- Integrated with BIS Dynamic Groups for dynamic group naming.
+	- Integrated with 3rd Party Medical systems including BIS and ACE 3 Systems.
+	- Can show Only Groups and No vehicle/unit positions, or not.
+	- Can show Only Groups + Vehicle positions (No unit positions).
+	- Can show Only Unit/Vehicle positions (No group markers).
+	- Can show Only Vehicle positions (No unit or group information).
+	- Can show selected unoccupied vehicles.
+	- Can show or hide AI details across all interfaces.
+	- Can show or hide Unit Roles and vehicle types.
+	- Can show only icons and no names / vehicle types / roles, or both.
+	- Can show friendly factions, or not.
+	- Can show civilians, or not.
+	- Can allow faction alliance changes to affect what is shown.
+	- Can have Interactive Map Icons (Reveal occupants of vehicle by clicking on the occupied vehicle).
+	- Can have Interactive Group Icons (Reveal more group details by clicking on the Group leader).
+	- Can have a delayed unit position update (Sonar Pulse effect), if desired. Only works for Map Icons. GPS and group Icons are always shown real-time.
+	- Configure the colors and sizes and positioning of the Icons (relative to the object) to your liking.
+	- Intuitive map zoom integration. 
+		- Zooming in and out on your map will hide and reveal certain (group/unit/vehicle) elements.
+	- And more ...
+	
+Installation:
+
+	- It is advised to Disable 'Extended Map Info' in your servers difficulty if you are using this script. Map=0; and ExtendedInfoType=0; (arma3Profile). https://community.bistudio.com/wiki/Arma_3_Dedicated_Server
+	- Copy/Paste the below line into your 'initPlayerLocal.sqf' mission directory file as shown in the example mission.
+		[] execVM "scripts\QS_icons.sqf";
+	- Open "QS_icons.sqf" and adjust the Configuration to your liking.
+	- Report any bugs to the Forum Topic.
+	
+Known Bugs / Quirks:
+
+	- When interactive group Map icons are enabled, you have to click on the squad leader, not the actual icon. The squad leader may be offset slightly from the icon (configurable).
+	- If 2 Groups are in the same vehicle, their Icons and Icon Text will overlap. There is no easy solution to this issue.
+	- When clicking on a vehicle to expand and reveal its crew occupants, it is sometimes unstable and selects the wrong vehicle (if two are close by) or none at all. 
+			The click detection spot is actually 50m up and to the left of where the person clicks the map/where the vehicle is. If there are 2 vehicles very near each other, this is useful to know.
+			Doesn't work so well for air vehicles which are high off the ground
+	- Some of the configuration options may nullify one another, especially those with 'Only' in the variable name. In future versions I'll make the config options more modular.
+	- Slight delay when hiding/revealing group icons on the map display, more pronounced in scenarios with many groups.
