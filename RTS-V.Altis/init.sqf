@@ -45,16 +45,16 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_Territory\Zen_RTS_Territory
 call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTerritoryCompile.sqf";
 
 //adding rotation menu
-call compile preProcessFile "ROTATION_MENU_SYSTEM\InitRotationMenuSystem.sqf";
-_null = [] spawn RTMS_InitRotationMenuSystem;
-_null = [] spawn {
-    waitUntil {player == player};
-    waitUntil {!(isNil "RTMS_INITIALIZED")};
-    _menu = (call compile preprocessFile "ROTATION_MENU_SYSTEM\DEFAULT_CLASSES\ManSlay_Class.sqf") call RTMS_CreateMenuObject;
-    [_menu, true] call RTMS_SendRequest;
-    waitUntil {[_menu] call RTMS_IsInstalled};
-    [_menu, false] call RTMS_SendRequest;
-};
+// call compile preProcessFile "ROTATION_MENU_SYSTEM\InitRotationMenuSystem.sqf";
+// _null = [] spawn RTMS_InitRotationMenuSystem;
+// _null = [] spawn {
+    // waitUntil {player == player};
+    // waitUntil {!(isNil "RTMS_INITIALIZED")};
+    // _menu = (call compile preprocessFile "ROTATION_MENU_SYSTEM\DEFAULT_CLASSES\ManSlay_Class.sqf") call RTMS_CreateMenuObject;
+    // [_menu, true] call RTMS_SendRequest;
+    // waitUntil {[_menu] call RTMS_IsInstalled};
+    // [_menu, false] call RTMS_SendRequest;
+// };
 
 // RTS Client ---------------------
 // #include "Zen_RTS_Functions\Zen_RTS_ClientExec.sqf"
@@ -258,8 +258,12 @@ diag_log diag_tickTime;
     _vehicle setVariable ["Zen_RTS_StrategicAssetType", (_assetData select 0), true]; \
     _vehicle setVariable ["Zen_RTS_IsStrategicDebris", false, true]; \
     (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
-    _vehicle addEventHandler ["Killed", { \
-        (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
+    _vehicle addEventHandler ["Dammaged", { \
+        _vehicle = _this select 0; \
+        if (!(canMove _vehicle) || (damage _vehicle > 0.9)) then { \
+            (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
+            _vehicle removeAllEventHandlers "Dammaged"; \
+        }; \
     }];
     // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
 
@@ -268,13 +272,16 @@ diag_log diag_tickTime;
     _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
     _building setVectorUp (surfaceNormal _spawnPos); \
     _height = ZEN_STD_OBJ_BBZ(_building); \
-    ZEN_STD_OBJ_TransformATL(_building, 0, 0, -(_height)) \
     _heightStep = (_height + O) / _buildTime; \
+    _building setPos ((setPos _building) vectorAdd [0, 0, -(_height)]); \
     for "_i" from 0 to _buildTime do { \
         sleep 1; \
         if !(alive _building) exitWith {}; \
-        _building setPosASL ((getPosASL _building) vectorAdd [0, 0, _heightStep]); \
+        _building setPos ((setPos _building) vectorAdd [0, 0, _heightStep]); \
     };
+    // ZEN_STD_OBJ_TransformATL(_building, 0, 0, -(_height)) \
+        // _building setPosWorld ((setPosWorld _building) vectorAdd [0, 0, _heightStep]); \
+        // _building setPosASL ((getPosASL _building) vectorAdd [0, 0, _heightStep]); \
 
 #define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T, S) \
     if !(alive _building) exitWith { \
