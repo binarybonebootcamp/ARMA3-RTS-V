@@ -3,6 +3,7 @@ Strategic
     // Split data
     // Remove Cost parameter, use 'Cost: ' from description
     // Use correct time delay
+    player local queues
 
     Features
         // build for squad
@@ -20,7 +21,7 @@ Strategic
             // recyclers use CJ
             // clean dead AI
             // player claim/release CJ control
-            AI repair destroyed buildings
+            // AI repair destroyed buildings
         AI fire on buildings and unmanned vehicles
         Building Hacking
             // hacked actions and variable
@@ -37,7 +38,8 @@ Strategic
             // AI recycler gets AI owned CJ with spawn
             limit 5 each repairers and recyclers
         // charge per crew member
-        better spawn placement
+        // hint on asset spawn
+        // asset spawn grid
         auto tank
             tracked vehicles
         base-in-a-box
@@ -59,7 +61,10 @@ Strategic
         // buildings come out of ground
         // update to current level when rebuilding
         // handle building destroyed while constructing
-        building placement shows full building
+        // hint on building upgrade
+        // building placement shows full building
+        // building placement allows for asset spawn grid
+        CJ asset placement direction dialog
         tweak building heights
 
         Barracks
@@ -113,6 +118,7 @@ Strategic
             // ammo crate
             // barbed wire
             beacons (tracker)
+            hacking
             // Level 1: Unarmed, small fortifications
             // Level 2: Static weapons, MG, etc.
 Territory

@@ -34,7 +34,7 @@ Zen_RTS_F_East_NavalConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_NavalFactory]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_LightHouse_F", -1)
+    BUILDING_VISUALS("Land_Nav_Boathouse", -5)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_NavalFactory, east)
 
     // to-do: || false condition needs building hacking logic
@@ -80,7 +80,7 @@ UPGRADE(Zen_RTS_F_East_NavalUpgrade01, ASSETS)
 // #define ASSETS []
 // UPGRADE(Zen_RTS_F_East_NavalUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_East_NavalFactory = ["Zen_RTS_F_East_NavalConstructor", "Zen_RTS_F_East_NavalDestructor", ["Zen_RTS_F_East_NavalUpgrade01"], "Naval Factory", "Cost: 2000, Time: 10, Picture: pictures\naval_ca.paa, Classname: Land_LightHouse_F,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_NavalFactory = ["Zen_RTS_F_East_NavalConstructor", "Zen_RTS_F_East_NavalDestructor", ["Zen_RTS_F_East_NavalUpgrade01"], "Naval Factory", "Cost: 2000, Time: 10, Picture: pictures\naval_ca.paa, Classname: Land_Nav_Boathouse,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_NavalFactory;
 
 /////////////////////////////////

@@ -80,7 +80,7 @@ UPGRADE(Zen_RTS_F_East_NavalUpgrade01, ASSETS)
 // #define ASSETS []
 // UPGRADE(Zen_RTS_F_East_NavalUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_East_NavalFactory = ["Zen_RTS_F_East_NavalConstructor", "Zen_RTS_F_East_NavalDestructor", ["Zen_RTS_F_East_NavalUpgrade01"], "Naval Factory", "Cost: 2000, Time: 10, Picture: pictures\naval_ca.paa"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_NavalFactory = ["Zen_RTS_F_East_NavalConstructor", "Zen_RTS_F_East_NavalDestructor", ["Zen_RTS_F_East_NavalUpgrade01"], "Naval Factory", "Cost: 2000, Time: 10, Picture: pictures\naval_ca.paa, Classname: Land_Nav_Boathouse,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack  Zen_RTS_BuildingType_East_NavalFactory;
 
 /////////////////////////////////
@@ -101,6 +101,7 @@ Zen_RTS_BuildingType_East_NavalFactory = ["Zen_RTS_F_East_NavalConstructor", "Ze
         _building = _buildingObjData select 2; \
         _pos = [_building, [10, 30], 0, 2] call Zen_FindGroundPosition; \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
         _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_crewCount > 0) then { \

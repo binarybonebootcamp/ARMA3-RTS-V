@@ -3,11 +3,8 @@ class Mission
 {
 	addOns[]=
 	{
-		"rhs_c_weapons",
-		"rhsusf_c_troops",
-		"rhsusf_c_fmtv",
-		"rhs_c_troops",
-		"rhs_c_cars",
+		"CUP_Creatures_Military_USMC",
+		"CUP_Creatures_People_Military_DummyInfantrySet",
 		"A3_Characters_F_Civil",
 		"a3_map_altis",
 		"a3_soft_f_truckheavy",
@@ -44,6 +41,8 @@ class Mission
 	};
 	addOnsAuto[]=
 	{
+		"CUP_Creatures_Military_USMC",
+		"CUP_Creatures_People_Military_DummyInfantrySet",
 		"A3_Modules_F",
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",

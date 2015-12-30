@@ -85,7 +85,10 @@ N = { \
 #define ASSETS [Zen_RTS_Asset_West_CUP_B_M270_HE_USMC, Zen_RTS_Asset_West_CUP_B_M270_DPICM_USMC]
 UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade01, ASSETS)
 
-Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstructor", "Zen_RTS_F_West_SupportFactoryDestructor", ["Zen_RTS_F_West_SupportFactoryUpgrade01","Zen_RTS_F_West_SupportFactoryUpgrade02"], "Support Factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa"] call Zen_RTS_StrategicBuildingCreate;
+#define ASSETS []
+UPGRADE(Zen_RTS_F_West_SupportFactoryUpgrade02, ASSETS)
+
+Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstructor", "Zen_RTS_F_West_SupportFactoryDestructor", ["Zen_RTS_F_West_SupportFactoryUpgrade01","Zen_RTS_F_West_SupportFactoryUpgrade02"], "Support Factory", "Cost: 2000, Time: 10, Picture: pictures\support_ca.paa, Classname: LAND_CARGO_TOWER_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack  Zen_RTS_BuildingType_West_SupportFactory;
 
 /////////////////////////////////
@@ -104,9 +107,10 @@ Zen_RTS_BuildingType_West_SupportFactory = ["Zen_RTS_F_West_SupportFactoryConstr
         _phi = 0; \
         _theta = 0; \
         _building = _buildingObjData select 2; \
-        _pos = [_building, 20, random 360] call Zen_ExtendPosition; \
+        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
         if (_crewCount > 0) then { \
             _crewGroup = [_vehicle, ([U, 0, (_crewCount - 1) min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
@@ -128,17 +132,14 @@ VEHCILE_CONSTRUCTOR(CUP_B_Ural_Refuel_CDF, "CUP_B_Ural_Refuel_CDF", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(CUP_B_Ural_Repair_CDF, "CUP_B_Ural_Repair_CDF", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(CUP_B_Ural_Reammo_CDF, "CUP_B_Ural_Reammo_CDF", CREW_UNITS)
 
-
 #define CREW_UNITS ["CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Crew_MTP"]
 VEHCILE_CONSTRUCTOR(CUP_B_M270_HE_USMC, "CUP_B_M270_HE_USMC", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(CUP_B_M270_DPICM_USMC, "CUP_B_M270_DPICM_USMC", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(CUP_B_M270_HE_USA, "CUP_B_M270_HE_USA", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(CUP_B_M270_DPICM_USA, "CUP_B_M270_DPICM_USA", CREW_UNITS)
 
-
 Zen_RTS_Asset_West_CUP_B_Ural_Refuel_CDF = ["CUP_B_Ural_Refuel_CDF","Ural Refuel", "Cost: 200, Time: 15, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_Ural_Repair_CDF = ["CUP_B_Ural_Repair_CDF","Ural Repair", "Cost: 200, Time: 15, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_Ural_Reammo_CDF = ["CUP_B_Ural_Reammo_CDF","Ural Reammo", "Cost: 200, Time: 15, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_M270_HE_USMC = ["CUP_B_M270_HE_USMC","M270 HE USMC", "Cost: 8000, Time: 30, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_M270_DPICM_USMC = ["CUP_B_M270_DPICM_USMC","M270 DPICM USMC", "Cost: 8000, Time: 30,Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
-

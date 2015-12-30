@@ -1,10 +1,5 @@
 /**
-    Level 1:
-        Zen_RTS_F_West_Asset_Hummingbird
-        Zen_RTS_F_West_Hummingbird_stripped
-    Level 2:
-        Zen_RTS_F_West_AH_9_Pawnee
-        Zen_RTS_F_West_UH_80_Ghost
+
 
 //*/
 
@@ -21,8 +16,8 @@ Zen_RTS_F_West_AirFactoryConstructor = {
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_West_RHS_UH1Y_UNARMED;
-    _assetsToAdd pushBack Zen_RTS_Asset_West_RHS_UH1Y_UNARMED_d;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_UH1Y_MEV_F;
+    _assetsToAdd pushBack Zen_RTS_Asset_West_CUP_B_MV22_USMC;
 
 
     // if (Zen_RTS_TechFlag_West_BuildEnemy) then {
@@ -80,16 +75,16 @@ N = { \
     (true) \
 };
 
-#define ASSETS [Zen_RTS_Asset_West_RHS_UH1Y, Zen_RTS_Asset_West_RHS_UH1Y_FFAR, Zen_RTS_Asset_West_RHS_UH1Y_FFAR_d]
+#define ASSETS [Zen_RTS_Asset_West_CUP_B_UH60L_US, Zen_RTS_Asset_West_CUP_B_UH60M_US, Zen_RTS_Asset_West_CUP_B_UH1Y_GUNSHIP_F]
 UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade01, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_West_RHS_CH_47F_10, Zen_RTS_Asset_West_RHS_UH60M, Zen_RTS_Asset_West_RHS_UH60M_d, Zen_RTS_Asset_West_RHS_UH60M_MEV2_d]
+#define ASSETS [Zen_RTS_Asset_West_CUP_B_AH1Z, Zen_RTS_Asset_West_CUP_B_AH1Z_14RndHydrax, Zen_RTS_Asset_West_CUP_B_AH1Z_AT,Zen_RTS_Asset_West_CUP_B_AH1_AT_BAF, Zen_RTS_Asset_West_CUP_B_AH1_MR_BAF, Zen_RTS_Asset_West_CUP_B_AH64D_AT_USA]
 UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade02, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_West_RHS_AH64D_GS, Zen_RTS_Asset_West_RHS_AH64D_wd_GS, Zen_RTS_Asset_West_RHS_AH64D_AA, Zen_RTS_Asset_West_RHS_AH64DGrey]
+#define ASSETS [Zen_RTS_Asset_West_CUP_B_AH1_BAF, Zen_RTS_Asset_West_CUP_B_AH1_ES_BAF, Zen_RTS_Asset_West_CUP_B_AH1_NO_BAF, Zen_RTS_Asset_West_CUP_B_AH64D_ES_USA, Zen_RTS_Asset_West_CUP_B_AH64D_MR_USA, Zen_RTS_Asset_West_CUP_B_AH64D_USA, Zen_RTS_Asset_West_CUP_B_AV8B, Zen_RTS_Asset_West_CUP_B_AV8B_FFAR_7, Zen_RTS_Asset_West_CUP_B_AW159_Armed_BAF]
 UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade03, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_West_RHS_C130J, Zen_RTS_Asset_West_RHS_AH1Z, Zen_RTS_Asset_West_RHS_A10]
+#define ASSETS [Zen_RTS_Asset_West_CUP_B_AV8B_Deepstrike, Zen_RTS_Asset_West_CUP_B_AV8B_Hydra19, Zen_RTS_Asset_West_CUP_B_AV8B_FFAR_19, Zen_RTS_Asset_West_CUP_B_AV8B_LGB, Zen_RTS_Asset_West_CUP_B_AV8B_Heavy, Zen_RTS_Asset_West_CUP_B_A10_AT_USA, Zen_RTS_Asset_West_CUP_B_A10_CAS_USA]
 UPGRADE(Zen_RTS_F_West_AirFactoryUpgrade04, ASSETS)
 
 Zen_RTS_BuildingType_West_AirFactory = ["Zen_RTS_F_West_AirFactoryConstructor", "Zen_RTS_F_West_AirFactoryDestructor", ["Zen_RTS_F_West_AirFactoryUpgrade01", "Zen_RTS_F_West_AirFactoryUpgrade02", "Zen_RTS_F_West_AirFactoryUpgrade03", "Zen_RTS_F_West_AirFactoryUpgrade04"], "Air Factory", "Cost: 2000, Time: 10, Picture: pictures\plane_ca.paa, Classname: Land_Airport_Tower_F,"] call Zen_RTS_StrategicBuildingCreate;
@@ -131,45 +126,66 @@ Zen_RTS_BuildingType_West_AirFactory = ["Zen_RTS_F_West_AirFactoryConstructor", 
         }; \
     };
 
-#define CREW_UNITS ["rhsusf_army_ucp_helipilot", "rhsusf_army_ucp_helipilot"]
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_UH1Y_UNARMED, "RHS_UH1Y_UNARMED", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_UH1Y_UNARMED_d , "RHS_UH1Y_UNARMED_d", CREW_UNITS)
+#define CREW_UNITS ["CUP_B_CZ_Pilot", "CUP_B_CZ_Medic_DES"]
+AIR_CONSTRUCTOR(CUP_B_UH1Y_MEV_F, "CUP_B_UH1Y_MEV_F", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_UH1Y_UNA_F, "CUP_B_UH1Y_UNA_F", CREW_UNITS)
 
-#define CREW_UNITS ["rhsusf_usmc_marpat_wd_helipilot", "rhsusf_usmc_marpat_wd_helipilot"]
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_AH64DGrey, "RHS_AH64DGrey", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_AH64D_AA, "RHS_AH64D_AA", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_AH64D_wd_GS, "RHS_AH64D_wd_GS", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_AH64D_GS, "RHS_AH64D_GS", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_AH1Z, "RHS_AH1Z", CREW_UNITS)
+#define CREW_UNITS ["CUP_B_CDF_Pilot", "CUP_B_CDF_Crew"]
+AIR_CONSTRUCTOR(CUP_B_UH60L_US, "CUP_B_UH60L_US", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_UH60M_US, "CUP_B_UH60M_US", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH1Z, "CUP_B_AH1Z", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH1Z_14RndHydrax, "CUP_B_AH1Z_14RndHydrax", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH1Z_AT, "CUP_B_AH1Z_AT", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH1_AT_BAF, "CUP_B_AH1_AT_BAF", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH1_MR_BAF, "CUP_B_AH1_MR_BAF", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH64D_AT_USA, "CUP_B_AH64D_AT_USA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH1_BAF, "CUP_B_AH1_BAF", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH1_ES_BAF, "CUP_B_AH1_ES_BAF", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH1_NO_BAF, "CUP_B_AH1_NO_BAF", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH64D_ES_USA, "CUP_B_AH64D_ES_USA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH64D_MR_USA, "CUP_B_AH64D_MR_USA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AH64D_USA, "CUP_B_AH64D_USA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AW159_Armed_BAF, "CUP_B_AW159_Armed_BAF", CREW_UNITS)
 
-#define CREW_UNITS ["rhsusf_army_ucp_helipilot", "rhsusf_army_ucp_helipilot", "rhsusf_army_ucp_helicrew", "rhsusf_army_ucp_helicrew"]
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_UH1Y, "RHS_UH1Y", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_UH1Y_FFAR_d, "RHS_UH1Y_FFAR_d", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_UH1Y_FFAR, "RHS_UH1Y_FFAR", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_CH_47F_10, "RHS_CH_47F_10", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_UH60M, "RHS_UH60M", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_UH60M_d, "RHS_UH60M_d", CREW_UNITS)
+#define CREW_UNITS ["CUP_B_CDF_Pilot", "CUP_B_CDF_Crew", "CUP_B_CDF_Crew", "CUP_B_CDF_Crew"]
+AIR_CONSTRUCTOR(CUP_B_UH1Y_GUNSHIP_F, "CUP_B_UH1Y_GUNSHIP_F", CREW_UNITS)
 
-#define CREW_UNITS ["rhsusf_usmc_marpat_wd_helipilot", "rhsusf_assault_eagleaiii_coy_medic"]
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_UH60M_MEV2_d, "RHS_UH60M_MEV2_d", CREW_UNITS)
+#define CREW_UNITS ["CUP_B_US_Pilot"]
+AIR_CONSTRUCTOR(CUP_B_MV22_USMC, "CUP_B_MV22_USMC", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_A10_CAS_USA, "CUP_B_A10_CAS_USA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_A10_AT_USA, "CUP_B_A10_AT_USA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AV8B_LGB, "CUP_B_AV8B_LGB", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AV8B_Hydra19, "CUP_B_AV8B_Hydra19", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AV8B_Heavy, "CUP_B_AV8B_Heavy", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AV8B_FFAR_7, "CUP_B_AV8B_FFAR_7", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AV8B_FFAR_19, "CUP_B_AV8B_FFAR_19", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AV8B_Deepstrike, "CUP_B_AV8B_Deepstrike", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_B_AV8B, "CUP_B_AV8B", CREW_UNITS)
 
-#define CREW_UNITS ["rhsusf_airforce_pilot"]
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_A10, "RHS_A10", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_West_Asset_RHS_C130J, "RHS_C130J", CREW_UNITS)
-
-Zen_RTS_Asset_West_RHS_UH1Y_UNARMED = ["Zen_RTS_F_West_Asset_RHS_UH1Y_UNARMED", "UH1Y-UNARMED", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_UH1Y_UNARMED_d = ["Zen_RTS_F_West_Asset_RHS_UH1Y_UNARMED_d", "UH1Y_UNARMED-d", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_UH1Y = ["Zen_RTS_F_West_Asset_RHS_UH1Y", "UH1Y", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_UH1Y_FFAR = ["Zen_RTS_F_West_Asset_RHS_UH1Y_FFAR", "UH1Y-FFAR", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_UH1Y_FFAR_d = ["Zen_RTS_F_West_Asset_RHS_UH1Y_FFAR_d", "UH1Y-FFAR-d", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_CH_47F_10 = ["Zen_RTS_F_West_Asset_RHS_CH_47F_10", "CH-47F-10", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_UH60M = ["Zen_RTS_F_West_Asset_RHS_UH60M", "UH60M", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_UH60M_d = ["Zen_RTS_F_West_Asset_RHS_UH60M_d", "UH60M-d", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_UH60M_MEV2_d = ["Zen_RTS_F_West_Asset_RHS_UH60M_MEV2_d", "UH60M-MEV2-d", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_AH64D_GS = ["Zen_RTS_F_West_Asset_RHS_AH64D_GS", "AH64D-GS", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_AH64D_wd_GS = ["Zen_RTS_F_West_Asset_RHS_AH64D_wd_GS", "AH64D-wd-GS", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_AH64D_AA = ["Zen_RTS_F_West_Asset_RHS_AH64D_AA", "AH64D-AA", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_AH64DGrey = ["Zen_RTS_F_West_Asset_RHS_AH64DGrey", "AH64D-Grey", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_C130J = ["Zen_RTS_F_West_Asset_RHS_C130J", "C130J", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_AH1Z = ["Zen_RTS_F_West_Asset_RHS_AH1Z", "AH1Z", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_West_RHS_A10 = ["Zen_RTS_F_West_Asset_RHS_A10", "A10", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_UH1Y_MEV_F = ["CUP_B_UH1Y_MEV_F", "UH1Y-MEV", "Cost: 800, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_MV22_USMC = ["CUP_B_MV22_USMC", "vetol-mv22", "Cost: 1500, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_UH60L_US = ["CUP_B_UH60L_US", "UH60L", "Cost: 2000, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_UH60M_US = ["CUP_B_UH60M_US", "UH60M", "Cost: 2000, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_UH1Y_GUNSHIP_F = ["CUP_B_UH1Y_GUNSHIP_F", "UH1Y-GUNSHIP", "Cost: 3500, Time: 30,Crew: 4,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH1Z = ["CUP_B_AH1Z", "AH1Z", "Cost: 3500, Time: 30,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH1Z_14RndHydrax = ["CUP_B_AH1Z_14RndHydrax", "AH64D-Hydrax", "Cost: 2700, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH1Z_AT = ["CUP_B_AH1Z_AT", "AH1Z-AT", "Cost: 3000, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH1_AT_BAF = ["CUP_B_AH1_AT_BAF", "AH1-AT-BAF", "Cost: 3200, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH1_MR_BAF = ["CUP_B_AH1_MR_BAF", "AH1-MR-BAF", "Cost: 3300, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH64D_AT_USA = ["CUP_B_AH64D_AT_USA", "AH64D-AT", "Cost: 4200, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH1_BAF = ["CUP_B_AH1_BAF","AH1-BAF", "Cost: 4200, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH1_ES_BAF = ["CUP_B_AH1_ES_BAF", "AH1-ES-BAF", "Cost: 4300, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH1_NO_BAF = ["CUP_B_AH1_NO_BAF","AH1-NO-BAF", "Cost: 4000, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH64D_ES_USA = ["CUP_B_AH64D_ES_USA","AH64D-ES", "Cost: 5200, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH64D_MR_USA = ["CUP_B_AH64D_MR_USA","AH64D_MR", "Cost: 5400, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AH64D_USA = ["CUP_B_AH64D_USA","AH64D", "Cost: 5000, Time: 30,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AW159_Armed_BAF = ["CUP_B_AW159_Armed_BAF","AW159 Armed", "Cost: 5500, Time: 30,Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AV8B = ["CUP_B_AV8B","AV8B", "Cost: 6500, Time: 45,Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AV8B_Deepstrike = ["CUP_B_AV8B_Deepstrike", "AV8B-Deepstrike", "Cost: 7200, Time: 45,Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AV8B_FFAR_19 = ["CUP_B_AV8B_FFAR_19", "AV8B-FFAR-19", "Cost: 6200, Time: 45,Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AV8B_FFAR_7 = ["CUP_B_AV8B_FFAR_7", "AV8B_FFAR_7", "Cost: 5800, Time: 45,Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AV8B_Heavy = ["CUP_B_AV8B_Heavy", "AV8B-Heavy", "Cost: 8000, Time: 45,Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AV8B_Hydra19 = ["CUP_B_AV8B_Hydra19", "AV8B-Hydra19", "Cost: 6300, Time: 45,Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_AV8B_LGB = ["CUP_B_AV8B_LGB", "AV8B-LGB", "Cost: 9000, Time: 45,Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_A10_AT_USA = ["CUP_B_A10_AT_USA", "a10-AT", "Cost: 9200, Time: 45,Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_West_CUP_B_A10_CAS_USA = ["CUP_B_A10_CAS_USA", "a10-cas", "Cost: 9800, Time: 45,Crew: 1,"] call Zen_RTS_StrategicAssetCreate;

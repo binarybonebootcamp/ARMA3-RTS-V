@@ -3,6 +3,7 @@ Strategic
     // Split data
     // Remove Cost parameter, use 'Cost: ' from description
     // Use correct time delay
+    player local queues
 
     Features
         // build for squad
@@ -63,6 +64,7 @@ Strategic
         // hint on building upgrade
         // building placement shows full building
         // building placement allows for asset spawn grid
+        CJ asset placement direction dialog
         tweak building heights
 
         Barracks
@@ -116,6 +118,7 @@ Strategic
             // ammo crate
             // barbed wire
             beacons (tracker)
+            hacking
             // Level 1: Unarmed, small fortifications
             // Level 2: Static weapons, MG, etc.
 Territory

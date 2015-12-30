@@ -25,7 +25,7 @@ Zen_RTS_F_West_RadarConstructor = {
     };
 
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
-    BUILDING_VISUALS("rhs_prv13", -1)
+    BUILDING_VISUALS("LAND_TTOWERBIG_1_F", -2.5)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_West_Radar, West)
 
     if (_level > 0) then {
@@ -57,5 +57,5 @@ UPGRADE(Zen_RTS_F_West_RadarUpgrade01, ASSETS)
 // #define ASSETS []
 // UPGRADE(Zen_RTS_F_West_RadarUpgrade02, ASSETS)
 
-Zen_RTS_BuildingType_West_Radar = ["Zen_RTS_F_West_RadarConstructor", "Zen_RTS_F_West_RadarDestructor", ["Zen_RTS_F_West_RadarUpgrade01"], "Radar", "Cost: 1000, Time: 10, Picture: pictures\target1.paa, Classname: rhs_prv13,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_Radar = ["Zen_RTS_F_West_RadarConstructor", "Zen_RTS_F_West_RadarDestructor", ["Zen_RTS_F_West_RadarUpgrade01"], "Radar", "Cost: 1000, Time: 10, Picture: pictures\target1.paa, Classname: LAND_TTOWERBIG_1_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_Radar;

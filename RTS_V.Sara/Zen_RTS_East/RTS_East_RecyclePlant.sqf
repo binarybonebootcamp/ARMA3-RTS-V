@@ -73,7 +73,7 @@ N = { \
 // #define ASSETS []
 // UPGRADE(, ASSETS)
 
-Zen_RTS_BuildingType_East_RecyclePlant = ["Zen_RTS_F_East_RecyclePlantConstructor", "Zen_RTS_F_East_RecyclePlantDestructor", [], "Recycle Plant", "Cost: 1000, Time: 10, Picture: pictures\depot_ca.paa"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_RecyclePlant = ["Zen_RTS_F_East_RecyclePlantConstructor", "Zen_RTS_F_East_RecyclePlantDestructor", [], "Recycle Plant", "Cost: 1000, Time: 10, Picture: pictures\depot_ca.paa, Classname: LAND_SLUM_HOUSE03_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_RecyclePlant;
 
 /////////////////////////////////
@@ -83,15 +83,17 @@ Zen_RTS_BuildingType_East_RecyclePlant = ["Zen_RTS_F_East_RecyclePlantConstructo
 Zen_RTS_F_East_Repairer = {
     diag_log ("Zen_RTS_F_East_Repairer asset constructor called");
     diag_log _this;
-    _buildingData = (_this select 0);
+    _buildingObjData = (_this select 0);
     _assetData = _this select 1;
+    _referenceUnit = _this select 2; \
     _assetStrRaw = _assetData select 3;
     sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
-    if (alive (_buildingData select 2)) then {
-        _group = [(_buildingData select 2), "C_man_polo_1_F_afro"] call Zen_SpawnGroup;
+    if (alive (_buildingObjData select 2)) then {
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+        _group = [(_buildingObjData select 2), "C_man_polo_1_F_afro"] call Zen_SpawnGroup;
         0 = [_group, "crew"] call Zen_SetAISkill;
         removeAllWeapons (leader _group);
-        (leader _group) setPosATL ([(_buildingData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
+        (leader _group) setPosATL ([(_buildingObjData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
         _group setBehaviour "careless";
         (RTS_Worker_Repair_Queue select 1) pushBack [(leader _group), false, objNull];
     };
@@ -100,15 +102,17 @@ Zen_RTS_F_East_Repairer = {
 Zen_RTS_F_East_Recycler = {
     diag_log ("Zen_RTS_F_East_Recycler asset constructor called");
     diag_log _this;
-    _buildingData = (_this select 0);
+    _buildingObjData = (_this select 0);
     _assetData = _this select 1;
+    _referenceUnit = _this select 2;
     _assetStrRaw = _assetData select 3;
     sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
-    if (alive (_buildingData select 2)) then {
-        _group = [(_buildingData select 2), "C_man_shorts_4_F_afro"] call Zen_SpawnGroup;
-        _vehicleID = [Zen_RTS_BuildingType_East_CJ, [[(_buildingData select 2), 10, random 360] call Zen_ExtendPosition, 0]] call Zen_RTS_StrategicBuildingInvoke;
+    if (alive (_buildingObjData select 2)) then {
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+        _group = [(_buildingObjData select 2), "C_man_shorts_4_F_afro"] call Zen_SpawnGroup;
+        _vehicleID = [Zen_RTS_BuildingType_East_CJ, [[(_buildingObjData select 2), 10, random 360] call Zen_ExtendPosition, 0]] call Zen_RTS_StrategicBuildingInvoke;
 
-        (leader _group) setPosATL ([(_buildingData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
+        (leader _group) setPosATL ([(_buildingObjData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
         0 = [_group, "crew"] call Zen_SetAISkill;
         removeAllWeapons (leader _group);
         _group setBehaviour "careless";

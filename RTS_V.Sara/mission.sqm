@@ -58,6 +58,8 @@ class Mission
 	randomSeed=8127219;
 	class Intel
 	{
+		briefingName="Warfare Unleashed RTS V";
+		overviewText="Warfare Unleashed: WarGames";
 		timeOfChanges=1800.0002;
 		startWeather=0.1;
 		startWind=0.1;

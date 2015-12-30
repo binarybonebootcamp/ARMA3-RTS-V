@@ -21,9 +21,8 @@ Zen_RTS_F_East_AirFactoryConstructor = {
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_ka60_c;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Mi8mt_vvs;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_RHS_Mi8mt_Cargo_vvs;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_CUP_O_Mi8_medevac_RU;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_O_Heli_Light_02_F;
 
     // if (Zen_RTS_TechFlag_East_BuildEnemy) then {
         // ... to do
@@ -80,16 +79,16 @@ N = { \
     (true) \
 };
 
-#define ASSETS [Zen_RTS_Asset_East_RHS_Mi8MTV3_vvs, Zen_RTS_Asset_East_RHS_Mi8MTV3_UPK23_vvs]
+#define ASSETS [Zen_RTS_Asset_East_CUP_O_Ka50_SLA, Zen_RTS_Asset_East_O_Heli_Transport_04_covered_F, Zen_RTS_Asset_East_CUP_O_Mi24_P_RU, Zen_RTS_Asset_East_CUP_O_Mi24_V_RU]
 UPGRADE(Zen_RTS_F_East_AirFactoryUpgrade01, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_East_RHS_Mi8AMT_vvs, Zen_RTS_Asset_East_RHS_Mi8AMTSh_vvs, Zen_RTS_Asset_East_RHS_Mi8AMTSh_UPK23_vvs, Zen_RTS_Asset_East_RHS_Mi8AMTSh_FAB_vvs]
+#define ASSETS [Zen_RTS_Asset_East_CUP_O_Mi17_TK, Zen_RTS_Asset_East_CUP_O_Ka50_AA_SLA, Zen_RTS_Asset_East_CUP_O_MI6A_TKA, Zen_RTS_Asset_East_CUP_O_MI6T_TKA, Zen_RTS_Asset_East_CUP_O_MI6A_RU, Zen_RTS_Asset_East_CUP_O_MI6T_RU]
 UPGRADE(Zen_RTS_F_East_AirFactoryUpgrade02, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_East_RHS_Mi8MTV3_FAB_vvs, Zen_RTS_Asset_East_RHS_Ka52_vvs, Zen_RTS_Asset_East_RHS_Ka52_UPK23_vvs]
+#define ASSETS [Zen_RTS_Asset_East_O_Heli_Transport_04_medevac_F, Zen_RTS_Asset_East_O_Heli_Transport_04_bench_F, Zen_RTS_Asset_East_CUP_Mi8_MTV3_base, Zen_RTS_Asset_East_CUP_O_Mi8_SLA_1, Zen_RTS_Asset_East_CUP_O_Mi8_RU, Zen_RTS_Asset_East_CUP_O_Mi24_D_TK, Zen_RTS_Asset_East_CUP_O_Su25_RU_1]
 UPGRADE(Zen_RTS_F_East_AirFactoryUpgrade03, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_East_RHS_Su25SM_vvs, Zen_RTS_Asset_East_RHS_Su25SM_KH29_vvs, Zen_RTS_Asset_East_rhs_pchela1t_vvs]
+#define ASSETS [Zen_RTS_Asset_East_O_Plane_CAS_02_F, Zen_RTS_Asset_East_CUP_O_Su25_TKA, Zen_RTS_Asset_East_CUP_O_Su25_RU_2, Zen_RTS_Asset_East_CUP_O_Su25_RU_3]
 UPGRADE(Zen_RTS_F_East_AirFactoryUpgrade04, ASSETS)
 
 Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", "Zen_RTS_F_East_AirFactoryDestructor", ["Zen_RTS_F_East_AirFactoryUpgrade01", "Zen_RTS_F_East_AirFactoryUpgrade02", "Zen_RTS_F_East_AirFactoryUpgrade03", "Zen_RTS_F_East_AirFactoryUpgrade04"], "Air Factory", "Cost: 2000, Time: 10, Picture: pictures\plane_ca.paa, Classname: Land_Airport_Tower_F,"] call Zen_RTS_StrategicBuildingCreate;
@@ -131,44 +130,57 @@ Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", 
         }; \
     };
 
-#define CREW_UNITS ["rhs_pilot_transport_heli", "rhs_pilot_transport_heli"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_ka60_c, "rhs_ka60_c", CREW_UNITS)
 
-#define CREW_UNITS ["rhs_pilot_transport_heli", "rhs_pilot_transport_heli", "rhs_msv_rifleman", "rhs_msv_rifleman", "rhs_msv_rifleman"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8mt_vvs, "RHS_Mi8mt_vvsc", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8mt_Cargo_vvs, "RHS_Mi8mt_Cargo_vvs", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_pilot_combat_heli", "rhs_pilot_combat_heli", "rhs_msv_rifleman", "rhs_msv_rifleman", "rhs_msv_rifleman"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8MTV3_vvs, "RHS_Mi8MTV3_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8MTV3_UPK23_vvs, "RHS_Mi8MTV3_UPK23_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8MTV3_FAB_vvs, "RHS_Mi8MTV3_FAB_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8AMT_vvs, "RHS_Mi8AMT_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8AMTSh_vvs, "RHS_Mi8AMTSh_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8AMTSh_UPK23_vvs, "RHS_Mi8AMTSh_UPK23_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8AMTSh_FAB_vvs, "RHS_Mi8AMTSh_FAB_vvs", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_pilot_combat_heli", "rhs_pilot_combat_heli"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Ka52_vvs, "RHS_Ka52_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Ka52_UPK23_vvs, "RHS_Ka52_UPK23_vvs", CREW_UNITS)
-#define CREW_UNITS ["rhs_pilot"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Su25SM_vvs, "RHS_Su25SM_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Su25SM_KH29_vvs, "RHS_Su25SM_KH29_vvs", CREW_UNITS)
-#define CREW_UNITS []
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_pchela1t_vvs, "rhs_pchela1t_vvs", CREW_UNITS)
+#define CREW_UNITS ["CUP_O_RU_Pilot", "CUP_O_RU_Pilot", "CUP_O_RU_Crew", "CUP_O_RU_Crew", "CUP_O_RU_Crew"]
+AIR_CONSTRUCTOR(CUP_O_Mi24_P_RU, "CUP_O_Mi24_P_RU", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Mi24_V_RU, "CUP_O_Mi24_V_RU", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Mi17_TK, "CUP_O_Mi17_TK", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Mi24_D_TK, "CUP_O_Mi24_D_TK", CREW_UNITS)
 
 
-Zen_RTS_Asset_East_rhs_ka60_c = ["Zen_RTS_F_East_Asset_rhs_ka60_c", "Ka-60 Unarmed", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Mi8mt_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8mt_vvs", "Mi-8 Unarmed", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Mi8mt_Cargo_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8mt_Cargo_vvs", "Mi-8 cargo", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Mi8MTV3_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8MTV3_vvs", "Mi8 Rockets", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Mi8MTV3_UPK23_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8MTV3_UPK23_vvs", "Mi8-UPK23", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Mi8AMT_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8AMT_vvs", "Mi8-AMT", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Mi8AMTSh_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8AMTSh_vvs", "Mi8-AMT-Sh", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Mi8AMTSh_UPK23_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8AMTSh_UPK23_vvs", "Mi8-AMT-upk23", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Mi8AMTSh_FAB_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8AMTSh_FAB_vvs", "Mi8AMT-FAB", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Mi8MTV3_FAB_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8MTV3_FAB_vvs", "Mi8-FAB", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Ka52_vvs = ["Zen_RTS_F_East_Asset_RHS_Ka52_vvs", "Ka-52", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Ka52_UPK23_vvs = ["Zen_RTS_F_East_Asset_RHS_Ka52_UPK23_vvs", "Ka-UPK23", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Su25SM_vvs = ["Zen_RTS_F_East_Asset_RHS_Su25SM_vvs", "Su25", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_RHS_Su25SM_KH29_vvs = ["Zen_RTS_F_East_Asset_RHS_Su25SM_KH29_vvs", "Su25-KH29", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_pchela1t_vvs = ["Zen_RTS_F_East_Asset_rhs_pchela1t_vvs", "pchela", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+#define CREW_UNITS ["CUP_O_RU_Pilot", "CUP_O_RU_Crew"]
+AIR_CONSTRUCTOR(CUP_O_Mi8_medevac_RU, "CUP_O_Mi8_medevac_RU", CREW_UNITS)
+AIR_CONSTRUCTOR(O_Heli_Light_02_F, "O_Heli_Light_02_F", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Ka50_SLA, "CUP_O_Ka50_SLA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Ka50_AA_SLA, "CUP_O_Ka50_AA_SLA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_MI6A_TKA, "CUP_O_MI6A_TKA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_MI6T_TKA, "CUP_O_MI6T_TKA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_MI6A_RU, "CUP_O_MI6A_RU", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_MI6T_RU, "CUP_O_MI6T_RU", CREW_UNITS)
+AIR_CONSTRUCTOR(O_Heli_Transport_04_covered_F, "O_Heli_Transport_04_covered_F", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_Mi8_MTV3_base, "CUP_Mi8_MTV3_base", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Mi8_SLA_1, "CUP_O_Mi8_SLA_1", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Mi8_RU, "CUP_O_Mi8_RU", CREW_UNITS)
+
+#define CREW_UNITS ["CUP_O_RU_Pilot"]
+AIR_CONSTRUCTOR(CUP_O_Su25_RU_1, "CUP_O_Su25_RU_1", CREW_UNITS)
+AIR_CONSTRUCTOR(O_Heli_Transport_04_bench_F, "O_Heli_Transport_04_bench_F", CREW_UNITS)
+AIR_CONSTRUCTOR(O_Heli_Transport_04_medevac_F, "O_Heli_Transport_04_medevac_F", CREW_UNITS)
+AIR_CONSTRUCTOR(O_Plane_CAS_02_F, "O_Plane_CAS_02_F", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Su25_TKA, "CUP_O_Su25_TKA", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Su25_RU_2, "CUP_O_Su25_RU_2", CREW_UNITS)
+AIR_CONSTRUCTOR(CUP_O_Su25_RU_3, "CUP_O_Su25_RU_3", CREW_UNITS)
+
+Zen_RTS_Asset_East_CUP_O_Mi8_medevac_RU = ["CUP_O_Mi8_medevac_RU", "Mi8 medevac", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_O_Heli_Light_02_F = ["O_Heli_Light_02_F", "Orca", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Ka50_SLA = ["CUP_O_Ka50_SLA", "Ka50", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_O_Heli_Transport_04_covered_F = ["O_Heli_Transport_04_covered_F", "Mi8 Rockets", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Mi24_P_RU = ["CUP_O_Mi24_P_RU", "Mi24 P", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Mi24_V_RU = ["CUP_O_Mi24_V_RU", "Mi24 V", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Mi17_TK = ["CUP_O_Mi17_TK", "Mi 17", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Ka50_AA_SLA = ["CUP_O_Ka50_AA_SLA", "Ka50 AA", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_MI6A_TKA = ["CUP_O_MI6A_TKA", "MI6A", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_MI6T_TKA = ["CUP_O_MI6T_TKA", "MI6T", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_MI6A_RU = ["CUP_O_MI6A_RU", "MI6A", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_MI6T_RU = ["CUP_O_MI6T_RU", "MI6T", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_O_Heli_Transport_04_medevac_F = ["O_Heli_Transport_04_medevac_F", "medevac dlc", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_O_Heli_Transport_04_bench_F = ["O_Heli_Transport_04_bench_F", "bench dlc", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_Mi8_MTV3_base = ["CUP_Mi8_MTV3_base", "Mi-8MTV3", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Mi8_SLA_1 = ["CUP_O_Mi8_SLA_1", "Mi-8MT", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Mi8_RU = ["CUP_O_Mi8_RU", "Mi8 MTV3", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Mi24_D_TK = ["CUP_O_Mi24_D_TK", "Mi24 D", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Su25_RU_1 = ["CUP_O_Su25_RU_1", "Frogfoot 25T", "Cost: 7600, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_O_Plane_CAS_02_F = ["O_Plane_CAS_02_F", "199 NEO", "Cost: 8000, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Su25_TKA = ["CUP_O_Su25_TKA", "Frogfoot", "Cost: 9200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Su25_RU_2 = ["CUP_O_Su25_RU_2", "Frogfoot 25 TM", "Cost: 9600, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_Su25_RU_3 = ["CUP_O_Su25_RU_3", "Frogfoot 25", "Cost: 9800, Time: 10,"] call Zen_RTS_StrategicAssetCreate;

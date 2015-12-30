@@ -1,13 +1,39 @@
 /**
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_AK74
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_GL
+Zen_RTS_Asset_EastCUP_O_RU_Soldier_Marksman
     Level 1:
-        Zen_RTS_Asset_East_Rifleman
-        Zen_RTS_Asset_East_GLSoldier
-        Zen_RTS_Asset_East_Autorifleman
-        Zen_RTS_Asset_East_Medic
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_AK74, 
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_AR, 
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_MG, 
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_AT, 
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_AA, 
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_Exp, 
+Zen_RTS_Asset_East_CUP_O_INS_Saboteur
+
     Level 2:
-        Zen_RTS_Asset_East_Marksman
-        Zen_RTS_Asset_East_ATSoldier
-        Zen_RTS_Asset_East_AASoldier
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_Saiga, 
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_GL, 
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_Light, 
+Zen_RTS_Asset_East_CUP_O_RU_Officer, 
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_SL, 
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_TL, 
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_MG, 
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_AR, 
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_LAT, 
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_HAT
+
+    Level 3:
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_AT, 
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_AA, 
+Zen_RTS_Asset_East_CUP_O_TK_INS_Soldier_GL, 
+Zen_RTS_Asset_East_CUP_O_RU_Medic, 
+Zen_RTS_Asset_East_CUP_O_RU_Pilot, 
+Zen_RTS_Asset_East_CUP_O_RU_Crew, 
+Zen_RTS_Asset_East_CUP_O_RU_Spotter, 
+Zen_RTS_Asset_East_CUP_O_RU_Sniper, 
+Zen_RTS_Asset_East_CUP_O_RU_Sniper_KSVK, 
+Zen_RTS_Asset_East_CUP_O_INS_Sniper	
 //*/
 
 // (_this select 1) : [array, spawn position, scalar, starting level]
@@ -23,10 +49,10 @@ Zen_RTS_F_East_BarracksConstructor = {
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_msv_rifleman;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_msv_grenadier;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_msv_machinegunner;
-    _assetsToAdd pushBack Zen_RTS_Asset_East_rhs_msv_medic;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_CUP_O_INS_Soldier_AK74;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_CUP_O_INS_Soldier_GL;
+    _assetsToAdd pushBack Zen_RTS_Asset_East_CUP_O_RU_Soldier_Marksman;
+
 
     if (Zen_RTS_TechFlag_East_BuildEnemy) then {
         // ... to do 
@@ -44,7 +70,7 @@ Zen_RTS_F_East_BarracksConstructor = {
         0 = [_ID, [Zen_RTS_Asset_Tech_East_Upgrade_Barracks]] call Zen_RTS_F_StrategicAddAssetGlobal;
     };
 
-    BUILDING_VISUALS("Land_Cargo_House_V1_F", -1)
+    BUILDING_VISUALS("LAND_CARGO_PATROL_V2_F", -2)
     ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(Zen_RTS_BuildingType_East_Barracks, east)
 
     // to-do: || false condition needs building hacking logic
@@ -83,16 +109,16 @@ N = { \
     (true) \
 };
 
-#define ASSETS [Zen_RTS_Asset_East_rhs_msv_marksman, Zen_RTS_Asset_East_rhs_msv_at]
+#define ASSETS [Zen_RTS_Asset_East_CUP_O_INS_Soldier_AK74, Zen_RTS_Asset_East_CUP_O_INS_Soldier_AR, Zen_RTS_Asset_East_CUP_O_INS_Soldier_MG, Zen_RTS_Asset_East_CUP_O_INS_Soldier_AT, Zen_RTS_Asset_East_CUP_O_INS_Soldier_AA, Zen_RTS_Asset_East_CUP_O_INS_Soldier_Exp, Zen_RTS_Asset_East_CUP_O_INS_Saboteur]
 UPGRADE(Zen_RTS_F_East_BarracksUpgrade01, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_East_rhs_msv_aa, Zen_RTS_Asset_East_rhs_msv_officer, Zen_RTS_Asset_East_rhs_msv_sergeant, Zen_RTS_Asset_East_rhs_msv_junior_sergeant, Zen_RTS_Asset_East_rhs_msv_engineer]
+#define ASSETS [Zen_RTS_Asset_East_CUP_O_RU_Soldier_Saiga, Zen_RTS_Asset_East_CUP_O_RU_Soldier_GL, Zen_RTS_Asset_East_CUP_O_RU_Soldier_Light, Zen_RTS_Asset_East_CUP_O_RU_Officer, Zen_RTS_Asset_East_CUP_O_RU_Soldier_SL, Zen_RTS_Asset_East_CUP_O_RU_Soldier_TL, Zen_RTS_Asset_East_CUP_O_RU_Soldier_MG, Zen_RTS_Asset_East_CUP_O_RU_Soldier_AR, Zen_RTS_Asset_East_CUP_O_RU_Soldier_LAT, Zen_RTS_Asset_East_CUP_O_RU_Soldier_HAT]
 UPGRADE(Zen_RTS_F_East_BarracksUpgrade02, ASSETS)
 
-#define ASSETS [Zen_RTS_Asset_East_rhs_msv_LAT, Zen_RTS_Asset_East_rhs_msv_RShG2, Zen_RTS_Asset_East_rhs_msv_strelok_rpg_assist, Zen_RTS_Asset_East_rhs_msv_machinegunner_assistant, Zen_RTS_Asset_East_rhs_msv_grenadier_rpg, Zen_RTS_Asset_East_rhs_msv_efreitor]
+#define ASSETS [Zen_RTS_Asset_East_CUP_O_RU_Soldier_AT, Zen_RTS_Asset_East_CUP_O_RU_Soldier_AA, Zen_RTS_Asset_East_CUP_O_TK_INS_Soldier_GL, Zen_RTS_Asset_East_CUP_O_RU_Medic, Zen_RTS_Asset_East_CUP_O_RU_Pilot, Zen_RTS_Asset_East_CUP_O_RU_Crew, Zen_RTS_Asset_East_CUP_O_RU_Spotter, Zen_RTS_Asset_East_CUP_O_RU_Sniper, Zen_RTS_Asset_East_CUP_O_RU_Sniper_KSVK, Zen_RTS_Asset_East_CUP_O_INS_Sniper]
 UPGRADE(Zen_RTS_F_East_BarracksUpgrade03, ASSETS)
 
-Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01", "Zen_RTS_F_East_BarracksUpgrade02", "Zen_RTS_F_East_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\barraks_ca.paa, Classname: Land_Cargo_House_V1_F,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen_RTS_F_East_BarracksDestructor", ["Zen_RTS_F_East_BarracksUpgrade01", "Zen_RTS_F_East_BarracksUpgrade02", "Zen_RTS_F_East_BarracksUpgrade03"], "Barracks", "Cost: 1000, Time: 10, Picture: pictures\barraks_ca.paa, Classname: LAND_CARGO_PATROL_V2_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 1) pushBack Zen_RTS_BuildingType_East_Barracks;
 
 /////////////////////////////////
@@ -116,38 +142,68 @@ Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen
         }; \
     };
 
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_rifleman, "rhs_msv_rifleman", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_grenadier, "rhs_msv_grenadier", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_machinegunner, "rhs_msv_machinegunner", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_medic, "rhs_msv_medic", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_marksman, "rhs_msv_marksman", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_at, "rhs_msv_at", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_aa, "rhs_msv_aa", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_officer, "rhs_msv_officer", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_sergeant, "rhs_msv_sergeant", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_junior_sergeant, "rhs_msv_junior_sergeant", "infantry") 
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_engineer, "rhs_msv_engineer", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_LAT, "rhs_msv_LAT", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_RShG2, "rhs_msv_RShG2", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_strelok_rpg_assist, "rhs_msv_strelok_rpg_assist", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_machinegunner_assistant, "rhs_msv_machinegunner_assistant", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_grenadier_rpg, "rhs_msv_grenadier_rpg", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_efreitor, "rhs_msv_efreitor", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier, "CUP_O_RU_Soldier", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_AR, "CUP_O_INS_Soldier_AR", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_MG, "CUP_O_INS_Soldier_MG", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_AT, "CUP_O_INS_Soldier_AT", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_AA, "CUP_O_INS_Soldier_AA", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_Exp, "CUP_O_INS_Soldier_Exp", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Saboteur, "CUP_O_INS_Saboteur", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_Saiga, "CUP_O_RU_Soldier_Saiga", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_GL, "CUP_O_RU_Soldier_GL", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_Light, "CUP_O_RU_Soldier_Light", "infantry") 
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Officer, "CUP_O_RU_Officer", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_SL, "CUP_O_RU_Soldier_SL", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_TL, "CUP_O_RU_Soldier_TL", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_MG, "CUP_O_RU_Soldier_MG", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_AR, "CUP_O_RU_Soldier_AR", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_LAT, "CUP_O_RU_Soldier_LAT", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_HAT, "CUP_O_RU_Soldier_HAT", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_AT, "CUP_O_RU_Soldier_AT", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_AA, "CUP_O_RU_Soldier_AA", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_TK_INS_Soldier_GL, "CUP_O_TK_INS_Soldier_GL", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Medic, "CUP_O_RU_Medic", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Pilot, "CUP_O_RU_Pilot", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Crew, "CUP_O_RU_Crew", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Spotter, "CUP_O_RU_Spotter", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Sniper, "CUP_O_RU_Sniper", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Sniper_KSVK, "CUP_O_RU_Sniper_KSVK", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Sniper, "CUP_O_INS_Sniper", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_AK74, "CUP_O_INS_Soldier_AK74", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_GL, "CUP_O_INS_Soldier_GL", "infantry")
+INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_Marksman, "CUP_O_RU_Soldier_Marksman", "infantry")
 
-Zen_RTS_Asset_East_rhs_msv_rifleman = ["Zen_RTS_F_East_Asset_rhs_msv_rifleman", "Rifleman", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_grenadier = ["Zen_RTS_F_East_Asset_rhs_msv_grenadier", "Grenadier", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_machinegunner = ["Zen_RTS_F_East_Asset_rhs_msv_machinegunner", "Autorifleman", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_medic = ["Zen_RTS_F_East_Asset_rhs_msv_medic", "Medic", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_marksman  = ["Zen_RTS_F_East_Asset_rhs_msv_marksman", "Marksman", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_at = ["Zen_RTS_F_East_Asset_rhs_msv_at", "AT Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_aa = ["Zen_RTS_F_East_Asset_rhs_msv_aa", "AA Soldier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_officer = ["Zen_RTS_F_East_Asset_rhs_msv_officer", "officer", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_sergeant = ["Zen_RTS_F_East_Asset_rhs_msv_sergeant", "sergeant", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_junior_sergeant = ["Zen_RTS_F_East_Asset_rhs_msv_junior_sergeant", "junior_sergeant", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_engineer = ["Zen_RTS_F_East_Asset_rhs_msv_engineer", "engineer", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_LAT = ["Zen_RTS_F_East_Asset_rhs_msv_LAT", "LAT", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_RShG2 = ["Zen_RTS_F_East_Asset_rhs_msv_RShG2", "RShG2", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_strelok_rpg_assist = ["Zen_RTS_F_East_Asset_rhs_msv_strelok_rpg_assist", "strelok_rpg_assist", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_machinegunner_assistant = ["Zen_RTS_F_East_Asset_rhs_msv_machinegunner_assistant", "machinegunner_assistant", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_grenadier_rpg = ["Zen_RTS_F_East_Asset_rhs_msv_grenadier_rpg", "grenadier_rpg", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-Zen_RTS_Asset_East_rhs_msv_efreitor = ["Zen_RTS_F_East_Asset_rhs_msv_efreitor", "efreitor", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+//**// LEVEL 0
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_AK74 = ["CUP_O_INS_Soldier_AK74", "Rifleman AK74", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_GL = ["CUP_O_INS_Soldier_GL", "Rifleman GL", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_Marksman = ["CUP_O_RU_Soldier_Marksman", "Marksman", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+//**// LEVEL 1
+Zen_RTS_Asset_East_CUP_O_RU_Soldier = ["CUP_O_RU_Soldier", "Rifleman", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_AR  = ["CUP_O_INS_Soldier_AR", "Rifleman AR", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_MG = ["CUP_O_INS_Soldier_MG", "Rifleman MG", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_AT = ["CUP_O_INS_Soldier_AT", "Rifleman AT", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_AA = ["CUP_O_INS_Soldier_AA", "Rifleman AA", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_INS_Soldier_Exp = ["CUP_O_INS_Soldier_Exp", "Rifleman Exp", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_INS_Saboteur = ["CUP_O_INS_Saboteur", "Saboteur", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+//**// LEVEL 2
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_Saiga = ["CUP_O_RU_Soldier_Saiga", "Soldier Saiga", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_GL = ["CUP_O_RU_Soldier_GL", "Soldier GL", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_Light = ["CUP_O_RU_Soldier_Light", "Soldier Light", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Officer = ["CUP_O_RU_Officer", "Officer", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_SL = ["CUP_O_RU_Soldier_SL", "Soldier SL", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_TL = ["CUP_O_RU_Soldier_TL", "Soldier TL", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_MG = ["CUP_O_RU_Soldier_MG", "Soldier MG", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_AR = ["CUP_O_RU_Soldier_AR", "Soldier AR", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_LAT = ["CUP_O_RU_Soldier_LAT", "Soldier LAT", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_HAT = ["CUP_O_RU_Soldier_HAT", "Soldier HAT", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+//**// LEVEL 3
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_AT = ["CUP_O_RU_Soldier_AT", "Soldier AT", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Soldier_AA = ["CUP_O_RU_Soldier_AA", "Soldier AA", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_TK_INS_Soldier_GL = ["CUP_O_TK_INS_Soldier_GL", "Soldier GL", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Medic = ["CUP_O_RU_Medic", "Medic", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Pilot = ["CUP_O_RU_Pilot", "Pilot", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Crew = ["CUP_O_RU_Crew", "Crew", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Spotter = ["CUP_O_RU_Spotter", "Spotter", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Sniper = ["CUP_O_RU_Sniper", "Sniper", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_RU_Sniper_KSVK = ["CUP_O_RU_Sniper_KSVK", "Sniper KSVK", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
+Zen_RTS_Asset_East_CUP_O_INS_Sniper = ["CUP_O_INS_Sniper", "INS Sniper", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;

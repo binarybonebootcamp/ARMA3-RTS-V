@@ -112,7 +112,7 @@ N = { \
 // #define ASSETS []
 // UPGRADE(Zen_RTS_F_West_CJUpgrade01, ASSETS)
 
-Zen_RTS_BuildingType_West_CJ = ["Zen_RTS_F_West_CJConstructor", "Zen_RTS_F_West_CJDestructor", [], "CJ", "Cost: 1000, Time: 10, picture: pictures\rts_lvs.paa,"] call Zen_RTS_StrategicBuildingCreate;
+Zen_RTS_BuildingType_West_CJ = ["Zen_RTS_F_West_CJConstructor", "Zen_RTS_F_West_CJDestructor", [], "CJ", "Cost: 1000, Time: 10, picture: pictures\rts_lvs.paa, Classname: B_MRAP_01_F,"] call Zen_RTS_StrategicBuildingCreate;
 (RTS_Used_Building_Types select 0) pushBack Zen_RTS_BuildingType_West_CJ;
 
 /////////////////////////////////
@@ -128,7 +128,9 @@ Zen_RTS_BuildingType_West_CJ = ["Zen_RTS_F_West_CJConstructor", "Zen_RTS_F_West_
         _spawnPos = _this select 3; \
         _assetStrRaw = _assetData select 3; \
         _building = _buildingObjData select 2; \
+        _referenceUnit = driver (_buildingObjData select 2); \
         sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
+        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
         _vehicle = [_spawnPos, T, 0, getDir _building, false] call Zen_SpawnVehicle; \
         ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
     };
