@@ -3,7 +3,7 @@ Strategic
     // Split data
     // Remove Cost parameter, use 'Cost: ' from description
     // Use correct time delay
-    player local queues
+    // player local queues
 
     Features
         // build for squad
@@ -88,7 +88,6 @@ Strategic
         // Support
         HQ
             // Research upgrades to all factories, CJ, and Radar (Commander only)
-            show next level # in queue field
             FOB upgrade
             Research special technologies: (Individual only)
                 // HALO
@@ -144,6 +143,10 @@ RTS menus
     // Refresh button
     // Repair/Recycle y/n menu with $$
     // Give money to another player
+    // cannot open MCU build menu while placing a building
+    HQ build menu show next level # in queue field
+    Alpha menu show building max after current level
+    HQ build menu give next upgrade level
     Test AI fly height
     Use radial menu GUI for actions
 Revive/Respawn/JIP
@@ -182,7 +185,7 @@ Loadouts
         // Loadout dialog displays custom loadouts
     // Use RHS equipment
     // Default RHS loadout on mission start
-    need east loadouts:
+    need east RHS loadouts:
         sapper
         SOF
         sniper
@@ -203,3 +206,11 @@ Known MP Issues
             create local building for every client ??
     JIP
         auto tank
+Variants
+    RHS - CUP File Differences
+        mission.sqm
+        Zen_RTS_East
+        Zen_RTS_West
+        Zen_RTS_Functions\Zen_RTS_CustomLoadouts
+    Map Variant File Differences
+        mission.sqm

@@ -87,43 +87,5 @@ Zen_RTS_BuildingType_West_NavalFactory = ["Zen_RTS_F_West_NavalConstructor", "Ze
 // Assets
 /////////////////////////////////
 
-#define VEHCILE_CONSTRUCTOR(N, T, U) \
-    N = { \
-        diag_log ("West " + T + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = _this select 0; \
-        _assetData = _this select 1; \
-        _assetStrRaw = _assetData select 3; \
-        _referenceUnit = _this select 2; \
-        _crewCount = _this select 3; \
-        _phi = 0; \
-        _theta = 0; \
-        _building = _buildingObjData select 2; \
-        _pos = [_building, [10, 30], 0, 2] call Zen_FindGroundPosition; \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, false]  call Zen_SpawnVehicle; \
-        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-        if (_crewCount > 0) then { \
-            _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
-            0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
-            0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
-            0 = [_crewGroup, _referenceUnit] spawn { \
-                _crewGroup = _this select 0; \
-                _referenceUnit = _this select 1; \
-                sleep 1; \
-                (units _crewGroup) join _referenceUnit; \
-                sleep 1; \
-                {doStop _x;} forEach (units _crewGroup); \
-            }; \
-        }; \
-    };
-
-#define CREW_UNITS ["CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Engineer_MTP","CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Engineer_MTP"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetGunBoat, "B_Boat_Armed_01_minigun_F", CREW_UNITS)
-
-#define CREW_UNITS ["CUP_B_BAF_Officer_MTP","CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Engineer_MTP","CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Engineer_MTP"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_AssetZodiac, "B_Boat_Transport_01_F", CREW_UNITS)
-
 Zen_RTS_Asset_West_GunBoat = ["Zen_RTS_F_West_AssetGunBoat","Armed Patrol Boat", "Cost: 200, Time: 10, Crew: 4,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_Zodiac = ["Zen_RTS_F_West_AssetZodiac","Zodiac", "Cost: 100, Time: 10, Crew: 5,"] call Zen_RTS_StrategicAssetCreate;

@@ -28,11 +28,14 @@ diag_log ("Zen_RTS_StrategicBuildingInvoke beginning invoke:  " + str time + "  
 
 _objIdentifier = "Zen_RTS_Strategic_Building_Obj_" + ([10] call Zen_StringGenerateRandom);
 
-Zen_RTS_Strategic_Building_Objects_Local pushBack [_objIdentifier, [], 0];
-publicVariable "Zen_RTS_Strategic_Building_Objects_Local";
+// Zen_RTS_Strategic_Building_Objects_Local pushBack [_objIdentifier, [], 0];
+// publicVariable "Zen_RTS_Strategic_Building_Objects_Local";
 
-_args = [_objIdentifier, [], scriptNull, scriptNull];
-ZEN_FMW_MP_REServerOnly("Zen_RTS_F_StrategicCreateBuildingDataServer", _args, call)
+_args = [_objIdentifier, [], 0, []];
+ZEN_FMW_MP_REAll("Zen_RTS_F_StrategicCreateBuildingDataClient", _args, call)
+
+// _args = [_objIdentifier, [], scriptNull, scriptNull];
+// ZEN_FMW_MP_REServerOnly("Zen_RTS_F_StrategicCreateBuildingDataServer", _args, call)
 
 _index = count Zen_RTS_Strategic_Building_Objects_Global;
 Zen_RTS_Strategic_Building_Objects_Global pushBack ([_typeIdentifier, _objIdentifier, objNull, 0, []]);

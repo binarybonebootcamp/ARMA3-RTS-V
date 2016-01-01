@@ -23,7 +23,8 @@ if ((count _typeData == 0) || (count _objData == 0)) exitWith {
     call Zen_StackRemove;
 };
 
-ZEN_FMW_MP_REServerOnly("Zen_RTS_F_StrategicRemoveBuildingQueueServer", [_identifier], call)
+// ZEN_FMW_MP_REServerOnly("Zen_RTS_F_StrategicRemoveBuildingQueueServer", [_identifier], call)
+ZEN_FMW_MP_REServerOnly("Zen_RTS_F_StrategicRemoveBuildingQueueClient", [_identifier], call)
 [_objData] call (missionNamespace getVariable (_typeData select 2));
 
 _index = ([Zen_RTS_Strategic_Building_Objects_Global, _objData select 1, 1] call Zen_ArrayGetNestedIndex) select 0;

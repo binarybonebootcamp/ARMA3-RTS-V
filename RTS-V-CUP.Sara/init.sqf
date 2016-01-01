@@ -77,12 +77,139 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
     // [] exec "vicpoint\rts-vpInit.sqs";
 // };
 
+#define ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
+    _buildingType = _buildingObjData select 0; \
+    _buildingTypeData = [_buildingType] call Zen_RTS_StrategicBuildingTypeGetData; \
+    _args = ["hintSilent", [("Your " + (_assetData select 2) + " has been created at " + (_buildingTypeData select 4) + ".")]]; \
+    ZEN_FMW_MP_REClient("Zen_ExecuteCommand", _args, call, _referenceUnit)
+
+#define ZEN_RTS_STRATEGIC_BUILDING_UPGRADE_MESSAGE() \
+    _args = ["hintSilent", [((_typeDataOther select 4) + " has been upgraded.")]]; \
+    ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
+
+#define ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
+    _marker = (_buildingObjData select 2 ) getVariable ["Zen_RTS_StrategicBuildingMarker", ""]; \
+    _pos = ([_marker] call Zen_ConvertToPosition); \
+    scopeName "main"; \
+    for "_r" from 10 to 50 step 10 do { \
+        for "_phi" from 0 to 315 step 45 do { \
+            _spawnPos = _pos vectorAdd [_r * round cos _phi, _r * round sin _phi, 0]; \
+            _objects = (nearestObjects [_spawnPos, ["LandVehicle"], 10]) + (nearestObjects [_spawnPos, ["Air"], 10]); \
+            if (count _objects == 0) then { \
+                _pos = _spawnPos; \
+                breakTo "main"; \
+            }; \
+        }; \
+    };
+
+#define DETECT_BUILDING(B, U) \
+    ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
+    if (_ID != "") then { \
+        _assetsToAdd pushBack U; \
+    };
+
+#define ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(N, I) \
+    _objIndexes = [Zen_RTS_Strategic_Building_Objects_Global, N, 0] call Zen_ArrayGetNestedIndex; \
+    I = ""; \
+    if (count _objIndexes > 0) then { \
+        _objData = Zen_RTS_Strategic_Building_Objects_Global select (_objIndexes select 0); \
+        I = _objData select 1; \
+    };
+
+#define ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
+    _vehicle setVariable ["Zen_RTS_StrategicValue", (call compile ([_assetStrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)), true]; \
+    _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
+    _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
+    _vehicle setVariable ["Zen_RTS_StrategicAssetType", (_assetData select 0), true]; \
+    _vehicle setVariable ["Zen_RTS_IsStrategicDebris", false, true]; \
+    ZEN_FMW_MP_REServerOnly("Zen_RTS_F_AddRecycleQueue", [_vehicle], call) \
+    _vehicle addEventHandler ["Dammaged", { \
+        _vehicle = _this select 0; \
+        if (!(canMove _vehicle) || (damage _vehicle > 0.9)) then { \
+            (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
+            _vehicle removeAllEventHandlers "Dammaged"; \
+        }; \
+    }];
+    // (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
+    // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
+
+#define BUILDING_VISUALS(T, O) \
+    _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
+    _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
+    _building setVectorUp (surfaceNormal _spawnPos); \
+    _height = ZEN_STD_OBJ_BBZ(_building); \
+    _heightStep = (_height + O) / _buildTime; \
+    _building setPos ((getPos _building) vectorAdd [0, 0, -(_height)]); \
+    for "_i" from 0 to _buildTime do { \
+        sleep 1; \
+        if !(alive _building) exitWith {}; \
+        _building setPos ((getPos _building) vectorAdd [0, 0, _heightStep]); \
+    };
+    // ZEN_STD_OBJ_TransformATL(_building, 0, 0, -(_height)) \
+        // _building setPosWorld ((setPosWorld _building) vectorAdd [0, 0, _heightStep]); \
+        // _building setPosASL ((getPosASL _building) vectorAdd [0, 0, _heightStep]); \
+
+#define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T, S) \
+    if !(alive _building) exitWith { \
+        0 = [(_buildingObjData select 1)] spawn { \
+            sleep 5; \
+            0 = _this call Zen_RTS_StrategicBuildingDestroy; \
+        }; \
+        (_building) \
+    }; \
+    _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
+    (RTS_Repair_Queue select ([west, east] find S)) pushBack _building; \
+    _buildingSpawnGrid = [_building, "", "colorBlack", [30, 30], "rectangle", getDir _building, 0] call Zen_SpawnMarker; \
+    _args = [_buildingSpawnGrid, S]; \
+    ZEN_FMW_MP_REAll("Zen_RTS_F_AddSpawnGridMarker", _args, call) \
+    _building setVariable ["Zen_RTS_StrategicBuildingMarker", _buildingSpawnGrid, true]; \
+    _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
+    _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
+    _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
+    _building setVariable ["Zen_RTS_StrategicBuildingSide", S, true]; \
+    _building addEventHandler ["Killed", { \
+        0 = _this spawn { \
+            _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
+            _buildingObjData = [T, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal; \
+            diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH  " + T + "  " + str time); \
+            diag_log _buildingObjData; \
+            if (count _buildingObjData > 0) then { \
+                diag_log (_buildingObjData select 1); \
+                0 = [(_buildingObjData select 1)] call Zen_RTS_StrategicBuildingDestroy; \
+            }; \
+            _building = _this select 0; \
+            _pos = getPosATL _building; \
+            sleep 5; \
+            _objects = nearestObjects [_pos, ["All"], 10]; \
+            _deadBuilding = objNull; \
+            { \
+                if (alive _x) exitWith { \
+                    _deadBuilding = _x; \
+                }; \
+            } forEach _objects; \
+            if !(isNull _deadBuilding) then { \
+                diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH found dead building" + str _deadBuilding); \
+                _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
+                _deadBuilding setVariable ["Zen_RTS_StrategicType", "BuildingRuins", true]; \
+                _deadBuilding setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
+                _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
+                _deadBuilding setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
+                _deadBuilding setVariable ["Zen_RTS_StrategicRuinsType", T, true]; \
+                _deadBuilding setVariable ["Zen_RTS_StrategicBuildingSide", S, true]; \
+            } else { \
+                diag_log (" ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH  Destroyed Building" + str _building + " has no dead object"); \
+            }; \
+        }; \
+    }];
+
 [false] execVM "digitalLoadout\client.sqf";
 // Data structure for custom squads, this is local to each player and side specific
 // indexes pair with names/colors, 0 - Alpha, etc.
 RTS_Custom_Squads_Assets = [[], [], [], []];
 
 rts_arrays_initialized = true;
+#include "Zen_RTS_West\RTS_West_AssetConstructors.sqf"
+#include "Zen_RTS_East\RTS_East_AssetConstructors.sqf"
 #include "Zen_RTS_Functions\Zen_RTS_JIPSync.sqf"
 if !(isServer) exitWith {};
 // TitleRsc ["Title","BLACK FADED"];
@@ -130,8 +257,8 @@ Zen_JIP_Args_Server = [overcast, fog, 2000];
 diag_log diag_tickTime;
 {
     // call compile format ["xp%1 = 0", _x];
-    // 0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
     if (isPlayer _x) then {
+        0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
 } forEach ([West, East] call Zen_ConvertToObjectArray);
@@ -212,129 +339,6 @@ _Zen_TerritoryWest_TerritoryMarker = [ListFlag30, "", "colorRed", [0, 0], "recta
 diag_log diag_tickTime;
 // #define ZEN_RTS_STRATEGIC_DEBRIS_THRESHOLD 1.1
 
-#define ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-    _buildingType = _buildingObjData select 0; \
-    _buildingTypeData = [_buildingType] call Zen_RTS_StrategicBuildingTypeGetData; \
-    _args = ["hintSilent", [("Your " + (_assetData select 2) + " has been created at " + (_buildingTypeData select 4) + ".")]]; \
-    ZEN_FMW_MP_REClient("Zen_ExecuteCommand", _args, call, _referenceUnit)
-
-#define ZEN_RTS_STRATEGIC_BUILDING_UPGRADE_MESSAGE() \
-    _args = ["hintSilent", [((_typeDataOther select 4) + " has been upgraded.")]]; \
-    ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
-
-#define ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
-    _marker = (_buildingObjData select 2 ) getVariable "Zen_RTS_StrategicBuildingMarker"; \
-    _pos = ([_marker] call Zen_ConvertToPosition); \
-    scopeName "main"; \
-    for "_r" from 10 to 50 step 10 do { \
-        for "_phi" from 0 to 315 step 45 do { \
-            _spawnPos = _pos vectorAdd [_r * round cos _phi, _r * round sin _phi, 0]; \
-            _objects = (nearestObjects [_spawnPos, ["LandVehicle"], 10]) + (nearestObjects [_spawnPos, ["Air"], 10]); \
-            if (count _objects == 0) then { \
-                _pos = _spawnPos; \
-                breakTo "main"; \
-            }; \
-        }; \
-    };
-
-#define DETECT_BUILDING(B, U) \
-    ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
-    if (_ID != "") then { \
-        _assetsToAdd pushBack U; \
-    };
-
-#define ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(N, I) \
-    _objIndexes = [Zen_RTS_Strategic_Building_Objects_Global, N, 0] call Zen_ArrayGetNestedIndex; \
-    I = ""; \
-    if (count _objIndexes > 0) then { \
-        _objData = Zen_RTS_Strategic_Building_Objects_Global select (_objIndexes select 0); \
-        I = _objData select 1; \
-    };
-
-#define ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-    _vehicle setVariable ["Zen_RTS_StrategicValue", (call compile ([_assetStrRaw, "Cost: ", ","] call Zen_StringGetDelimitedPart)), true]; \
-    _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
-    _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
-    _vehicle setVariable ["Zen_RTS_StrategicAssetType", (_assetData select 0), true]; \
-    _vehicle setVariable ["Zen_RTS_IsStrategicDebris", false, true]; \
-    (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
-    _vehicle addEventHandler ["Dammaged", { \
-        _vehicle = _this select 0; \
-        if (!(canMove _vehicle) || (damage _vehicle > 0.9)) then { \
-            (_this select 0) setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
-            _vehicle removeAllEventHandlers "Dammaged"; \
-        }; \
-    }];
-    // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
-
-#define BUILDING_VISUALS(T, O) \
-    _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
-    _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
-    _building setVectorUp (surfaceNormal _spawnPos); \
-    _height = ZEN_STD_OBJ_BBZ(_building); \
-    _heightStep = (_height + O) / _buildTime; \
-    _building setPos ((getPos _building) vectorAdd [0, 0, -(_height)]); \
-    for "_i" from 0 to _buildTime do { \
-        sleep 1; \
-        if !(alive _building) exitWith {}; \
-        _building setPos ((getPos _building) vectorAdd [0, 0, _heightStep]); \
-    };
-    // ZEN_STD_OBJ_TransformATL(_building, 0, 0, -(_height)) \
-        // _building setPosWorld ((setPosWorld _building) vectorAdd [0, 0, _heightStep]); \
-        // _building setPosASL ((getPosASL _building) vectorAdd [0, 0, _heightStep]); \
-
-#define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T, S) \
-    if !(alive _building) exitWith { \
-        0 = [(_buildingObjData select 1)] spawn { \
-            sleep 5; \
-            0 = _this call Zen_RTS_StrategicBuildingDestroy; \
-        }; \
-        (_building) \
-    }; \
-    _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
-    (RTS_Repair_Queue select ([west, east] find S)) pushBack _building; \
-    _buildingSpawnGrid = [_building, "", "colorBlack", [30, 30], "rectangle", getDir _building, 0] call Zen_SpawnMarker; \
-    (RTS_Building_Spawn_Grid_Markers select ([west, east] find S)) pushBack _buildingSpawnGrid; \
-    _building setVariable ["Zen_RTS_StrategicBuildingMarker", _buildingSpawnGrid, true]; \
-    _building setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
-    _building setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
-    _building setVariable ["Zen_RTS_StrategicType", "Building", true]; \
-    _building setVariable ["Zen_RTS_StrategicBuildingSide", S, true]; \
-    _building addEventHandler ["Killed", { \
-        0 = _this spawn { \
-            _buildingTypeData = [T] call Zen_RTS_StrategicBuildingTypeGetData; \
-            _buildingObjData = [T, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal; \
-            diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH  " + T + "  " + str time); \
-            diag_log _buildingObjData; \
-            if (count _buildingObjData > 0) then { \
-                diag_log (_buildingObjData select 1); \
-                0 = [(_buildingObjData select 1)] call Zen_RTS_StrategicBuildingDestroy; \
-            }; \
-            _building = _this select 0; \
-            _pos = getPosATL _building; \
-            sleep 5; \
-            _objects = nearestObjects [_pos, ["All"], 10]; \
-            _deadBuilding = objNull; \
-            { \
-                if (alive _x) exitWith { \
-                    _deadBuilding = _x; \
-                }; \
-            } forEach _objects; \
-            if !(isNull _deadBuilding) then { \
-                diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH found dead building" + str _deadBuilding); \
-                _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
-                _deadBuilding setVariable ["Zen_RTS_StrategicType", "BuildingRuins", true]; \
-                _deadBuilding setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
-                _deadBuilding setVariable ["Zen_RTS_IsStrategicDebris", true, true]; \
-                _deadBuilding setVariable ["Zen_RTS_StrategicValue", _cost, true]; \
-                _deadBuilding setVariable ["Zen_RTS_StrategicRuinsType", T, true]; \
-                _deadBuilding setVariable ["Zen_RTS_StrategicBuildingSide", S, true]; \
-            } else { \
-                diag_log (" ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH  Destroyed Building" + str _building + " has no dead object"); \
-            }; \
-        }; \
-    }];
-
 // all building types must be added here, or they will not be considered
 // must be [[west building types], [east '']]
 RTS_Used_Building_Types = [[], []]; // global
@@ -358,6 +362,7 @@ RTS_Used_Asset_Types = [[], []]; // global
 // must be [[West markers, [East '']]
 // every building object has its marker recorded as the Zen_RTS_StrategicBuildingMarker variable
 RTS_Building_Spawn_Grid_Markers = [[], []];
+publicVariable "RTS_Building_Spawn_Grid_Markers";
 
 #include "Zen_RTS_West\RTS_West_HQ.sqf"
 #include "Zen_RTS_West\RTS_West_Barracks.sqf"
@@ -392,7 +397,10 @@ publicVariable "RTS_Building_Type_Levels";
 // publicVariable "RTS_Used_Asset_Types";
 
 publicVariable "Zen_RTS_BuildingType_West_HQ";
+publicVariable "Zen_RTS_BuildingType_West_CJ";
+
 publicVariable "Zen_RTS_BuildingType_East_HQ";
+publicVariable "Zen_RTS_BuildingType_East_CJ";
 
 rts_Initialized = true;
 publicVariable "rts_Initialized";

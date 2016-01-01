@@ -3,8 +3,6 @@ class Mission
 {
 	addOns[]=
 	{
-		"CUP_Creatures_Military_USMC",
-		"CUP_Creatures_People_Military_DummyInfantrySet",
 		"A3_Characters_F_Civil",
 		"a3_map_altis",
 		"a3_soft_f_truckheavy",
@@ -41,8 +39,6 @@ class Mission
 	};
 	addOnsAuto[]=
 	{
-		"CUP_Creatures_Military_USMC",
-		"CUP_Creatures_People_Military_DummyInfantrySet",
 		"A3_Modules_F",
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
@@ -70,7 +66,7 @@ class Mission
 	randomSeed=7333891;
 	class Intel
 	{
-		briefingName="Warfare Unleashed RTS V";
+		briefingName="Warfare Unleashed RTS V -- CUP";
 		overviewText="Warfare Unleashed: WarGames";
 		resistanceWest=0;
 		startWeather=0;

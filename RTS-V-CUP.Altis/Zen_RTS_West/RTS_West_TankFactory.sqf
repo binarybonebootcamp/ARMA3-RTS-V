@@ -140,91 +140,6 @@ Zen_RTS_BuildingType_West_TankFactory = ["Zen_RTS_F_West_TankFactoryConstructor"
 // Assets
 /////////////////////////////////
 
-#define VEHCILE_CONSTRUCTOR(N, T, U) \
-    N = { \
-        diag_log ("West " + T + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = _this select 0; \
-        _assetData = _this select 1; \
-        _assetStrRaw = _assetData select 3; \
-        _referenceUnit = _this select 2; \
-        _crewCount = _this select 3; \
-        _phi = 0; \
-        _theta = 0; \
-        _building = _buildingObjData select 2; \
-        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, true] call Zen_SpawnVehicle; \
-        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-        if (_crewCount > 0) then { \
-            _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
-            0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
-            0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
-            0 = [_crewGroup, _referenceUnit] spawn { \
-                _crewGroup = _this select 0; \
-                _referenceUnit = _this select 1; \
-                sleep 1; \
-                (units _crewGroup) join _referenceUnit; \
-                sleep 1; \
-                {doStop _x;} forEach (units _crewGroup); \
-            }; \
-        }; \
-        if (T in ["rhsusf_m1025_w_s_m2", "rhsusf_m113d_usarmy", "RHS_M2A3_BUSKIII", "m1a2sep1tuskiid_usarmy"]) then { \
-            ZEN_FMW_MP_REAll("FNC_AUTOTANK", _vehicle, call) \
-        }; \
-    };
-
-#define CREW_UNITS ["CUP_B_BAF_Officer_MTP"]
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_Unarmed_USA, "CUP_B_HMMWV_Unarmed_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_UAZ_Open_CDF, "CUP_B_UAZ_Open_CDF", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_Transport_USA, "CUP_B_HMMWV_Transport_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_Dingo_Des, "CUP_B_Dingo_Des", CREW_UNITS)
-
-#define CREW_UNITS ["CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Crew_MTP"]
-VEHCILE_CONSTRUCTOR(CUP_LR_MG_Base, "CUP_LR_MG_Base", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_LR_Special_Base, "CUP_LR_Special_Base", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_LR_SPG9_Base, "CUP_LR_SPG9_Base", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_Dingo_Wdl, "CUP_B_Dingo_Wdl", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_MK19_USA, "CUP_B_HMMWV_MK19_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_UAZ_AGS30_CDF, "CUP_B_UAZ_AGS30_CDF", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_TOW_USA, "CUP_B_HMMWV_TOW_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_BM21_CDF, "CUP_B_BM21_CDF", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_UAZ_SPG9_CDF, "CUP_B_UAZ_SPG9_CDF", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_Avenger_USA, "CUP_B_HMMWV_Avenger_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_M2_GPK_USA, "CUP_B_HMMWV_M2_GPK_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_Avenger_USMC, "CUP_B_HMMWV_Avenger_USMC", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_SOV_USA, "CUP_B_HMMWV_SOV_USA", CREW_UNITS)
-
-#define CREW_UNITS ["CUP_B_BAF_Medic_MTP", "CUP_B_BAF_Medic_MTP"]
-VEHCILE_CONSTRUCTOR(CUP_B_M113_Med_USA, "CUP_B_M113_Med_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_Ambulance_USA, "CUP_B_HMMWV_Ambulance_USA", CREW_UNITS)
-
-
-#define CREW_UNITS ["CUP_B_BAF_Officer_MTP", "CUP_B_BAF_Crew_MTP", "CUP_B_BAF_Engineer_MTP"]
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_Crows_M2_USA, "CUP_B_HMMWV_Crows_M2_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_Crows_MK19_USA, "CUP_B_HMMWV_Crows_MK19_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_M113_USA, "CUP_B_M113_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_M163_USA, "CUP_B_M163_USA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_HMMWV_M1114_USMC, "CUP_B_HMMWV_M1114_USMC", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_BAF_Jackal2_GMG_D, "CUP_BAF_Jackal2_GMG_D", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_BAF_Jackal2_L2A1_D, "CUP_BAF_Jackal2_L2A1_D", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_BAF_Jackal2_GMG_W, "CUP_BAF_Jackal2_GMG_W", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_BAF_Jackal2_L2A1_W, "CUP_BAF_Jackal2_L2A1_W", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_LAV25_USMC, "CUP_B_LAV25_USMC", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_LAV25M240_USMC, "CUP_B_LAV25M240_USMC", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_AAV_USMC, "CUP_B_AAV_USMC", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_BRDM2_CDF, "CUP_B_BRDM2_CDF", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_BRDM2_ATGM_CDF, "CUP_B_BRDM2_ATGM_CDF", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_BRDM2_HQ_CDF, "CUP_B_BRDM2_HQ_CDF", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_ZSU23_CDF, "CUP_B_ZSU23_CDF", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_M1A1_Woodland_USMC, "CUP_B_M1A1_Woodland_USMC", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_M1A1_Woodland_US_Army, "CUP_B_M1A1_Woodland_US_Army", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_M1A1_DES_USMC, "CUP_B_M1A1_DES_USMC", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_M1A1_DES_US_Army, "CUP_B_M1A1_DES_US_Army", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_M1A2_TUSK_MG_DES_US_Army, "CUP_B_M1A2_TUSK_MG_DES_US_Army", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_B_M1A2_TUSK_MG_USMC, "CUP_B_M1A2_TUSK_MG_USMC", CREW_UNITS)
-
 Zen_RTS_Asset_West_CUP_B_HMMWV_Unarmed_USA = ["CUP_B_HMMWV_Unarmed_USA","HMMWV Unarmed", "Cost: 100, Time: 10, Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_UAZ_Open_CDF = ["CUP_B_UAZ_Open_CDF","UAZ Open CDF", "Cost: 150, Time: 10, Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_HMMWV_Transport_USA = ["CUP_B_HMMWV_Transport_USA","HMMWV Transport", "Cost: 100, Time: 10, Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
@@ -269,17 +184,5 @@ Zen_RTS_Asset_West_CUP_B_M1A1_DES_US_Army = ["CUP_B_M1A1_DES_US_Army","M1A1 DES 
 Zen_RTS_Asset_West_CUP_B_M1A2_TUSK_MG_DES_US_Army = ["CUP_B_M1A2_TUSK_MG_DES_US_Army","M1A2_TUSK MG DES Army", "Cost: 4000, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_M1A2_TUSK_MG_USMC = ["CUP_B_M1A2_TUSK_MG_USMC","M1A2 TUSK MG USMC", "Cost: 4500, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_BM21_CDF = ["CUP_B_BM21_CDF","BM21", "Cost: 8000, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
-
-
-
-Zen_RTS_F_West_Asset_CJ = {
-    diag_log ("West CJ asset proxy constructor called");
-    diag_log _this;
-
-    _buildingObjData = _this select 0;
-    _building = _buildingObjData select 2;
-    ZEN_RTS_STRATEGIC_ASSET_PLACEMENT()
-    0 = [Zen_RTS_BuildingType_West_CJ, [_pos, 0]] call Zen_RTS_StrategicBuildingInvoke;
-};
 
 Zen_RTS_Asset_West_CJ = ["Zen_RTS_F_West_Asset_CJ","CJ", "Cost: 500, Time: 10, Crew: 0,"] call Zen_RTS_StrategicAssetCreate;

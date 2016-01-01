@@ -143,3 +143,5 @@ if (rts_debug) then {
     Eastsupply = 100000;
     WestSupply = 100000;
 };
+
+Zen_RTS_Show_Preview = false;

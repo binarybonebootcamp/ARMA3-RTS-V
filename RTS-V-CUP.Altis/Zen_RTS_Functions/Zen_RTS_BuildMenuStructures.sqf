@@ -5,8 +5,10 @@
 
 0 = _this spawn {
     _Zen_stack_Trace = ["Zen_RTS_BuildMenuStructures", _this] call Zen_StackAdd;
-    _mcu = _this select 0;
+    // _mcu = _this select 0;
     _player = _this select 1;
+
+    _mcu = vehicle _player;
 
     // ActionUnit = _mcu;
     // Activator = _player;

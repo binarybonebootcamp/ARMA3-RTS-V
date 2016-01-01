@@ -102,96 +102,6 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
 // Assets
 /////////////////////////////////
 
-#define VEHCILE_CONSTRUCTOR(N, T, U) \
-    N = { \
-        diag_log ("West " + T + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = _this select 0; \
-        _assetData = _this select 1; \
-        _assetStrRaw = _assetData select 3; \
-        _referenceUnit = _this select 2; \
-        _crewCount = _this select 3; \
-        _phi = 0; \
-        _theta = 0; \
-        _building = _buildingObjData select 2; \
-        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
-        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-        if (_crewCount > 0) then { \
-            _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
-            0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
-            0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
-            0 = [_crewGroup, _referenceUnit] spawn { \
-                _crewGroup = _this select 0; \
-                _referenceUnit = _this select 1; \
-                sleep 1; \
-                (units _crewGroup) join _referenceUnit; \
-                sleep 1; \
-                {doStop _x;} forEach (units _crewGroup); \
-            }; \
-        }; \
-        if (T in ["rhs_bmp3mera_msv"]) then { \
-            ZEN_FMW_MP_REAll("FNC_AUTOTANK", _vehicle, call) \
-        }; \
-    };
-
-#define CREW_UNITS ["rhs_msv_driver"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_uaz_open_vdv, "rhs_uaz_open_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_vdv, "rhs_gaz66_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_uaz_vdv, "rhs_uaz_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66o_flat_vdv, "rhs_gaz66o_flat_vdv", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_vdv_driver_armored", "rhs_vdv_crew_commander", "rhs_vdv_armoredcrew", "rhs_vdv_combatcrew"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1k_vdv, "rhs_bmp1k_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1d_vdv, "rhs_bmp1d_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1p_vdv, "rhs_bmp1p_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp2e_vdv, "rhs_bmp2e_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp2k_vdv, "rhs_bmp2k_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp2d_vdv, "rhs_bmp2d_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp3_late_msv, "rhs_bmp3_late_msv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp3mera_msv, "rhs_bmp3mera_msv", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_msv_driver", "rhs_msv_crew"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_AssetTigr, "rhs_tigr_ffv_msv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr60_vmf, "rhs_btr60_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmp1_vmf, "rhs_bmp1_vmf", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_vdv_driver_armored", "rhs_vdv_officer_armored", "rhs_vdv_crew"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_ap2_vdv, "rhs_gaz66_ap2_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr60_vmf, "rhs_btr60_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr80_vdv, "rhs_btr80_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr70_vdv, "rhs_btr70_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_prp3_vdv, "rhs_prp3_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_brm1k_vdv, "rhs_brm1k_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_btr80a_vdv, "rhs_btr80a_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1, "rhs_bmd1", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd2, "rhs_bmd2", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1r, "rhs_bmd1r", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1pk, "rhs_bmd1pk", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1p, "rhs_bmd1p", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd1k, "rhs_bmd1k", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd2k, "rhs_bmd2k", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd4ma_vdv, "rhs_bmd4ma_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_sprut_vdv, "rhs_sprut_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t72bc_tv, "rhs_t72bc_tv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_zsu234_aa, "rhs_zsu234_aa", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_bmd2m, "rhs_bmd2m", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_tigr_3camo_vmf, "rhs_tigr_3camo_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_tigr_ffv_vmf, "rhs_tigr_ffv_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_tigr_ffv_3camo_vmf, "rhs_tigr_ffv_3camo_vmf", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80b, "rhs_t80b", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t72bd_tv, "rhs_t72bd_tv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t72ba_tv, "rhs_t72ba_tv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80bk, "rhs_t80bk", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80bv, "rhs_t80bv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80bvk, "rhs_t80bvk", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80, "rhs_t80", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80a, "rhs_t80a", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t80u, "rhs_t80u", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_t90_tv, "rhs_t90_tv", CREW_UNITS)
-
 //tank 0 upgrade assests
 Zen_RTS_Asset_East_rhs_gaz66o_flat_vdv = ["Zen_RTS_F_East_Asset_rhs_gaz66o_flat_vdv", "Gaz_flat", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_gaz66_vdv = ["Zen_RTS_F_East_Asset_rhs_gaz66_vdv", "Gaz_vdv", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
@@ -242,15 +152,5 @@ Zen_RTS_Asset_East_rhs_t80 = ["Zen_RTS_F_East_Asset_rhs_t80", "t80","Cost: 200, 
 Zen_RTS_Asset_East_rhs_t80a = ["Zen_RTS_F_East_Asset_rhs_t80a", "t80-a","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_t80u = ["Zen_RTS_F_East_Asset_rhs_t80u", "t80-u","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_t90_tv = ["Zen_RTS_F_East_Asset_rhs_t90_tv", "T90","Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
-
-Zen_RTS_F_East_Asset_CJ = {
-    player sideChat str ("East CJ asset proxy constructor called");
-    player sideChat str _this;
-
-    _buildingObjData = _this select 0;
-    _building = _buildingObjData select 2;
-    ZEN_RTS_STRATEGIC_ASSET_PLACEMENT()
-    0 = [Zen_RTS_BuildingType_East_CJ, [_pos, 0]] call Zen_RTS_StrategicBuildingInvoke;
-};
 
 Zen_RTS_Asset_East_CJ = ["Zen_RTS_F_East_Asset_CJ","CJ", "Cost: 500, Time: 10, Crew: 0,"] call Zen_RTS_StrategicAssetCreate;

@@ -80,51 +80,5 @@ Zen_RTS_BuildingType_East_RecyclePlant = ["Zen_RTS_F_East_RecyclePlantConstructo
 // Assets
 /////////////////////////////////
 
-Zen_RTS_F_East_Repairer = {
-    diag_log ("Zen_RTS_F_East_Repairer asset constructor called");
-    diag_log _this;
-    _buildingObjData = (_this select 0);
-    _assetData = _this select 1;
-    _referenceUnit = _this select 2; \
-    _assetStrRaw = _assetData select 3;
-    sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
-    if (alive (_buildingObjData select 2)) then {
-        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _group = [(_buildingObjData select 2), "C_man_polo_1_F_afro"] call Zen_SpawnGroup;
-        0 = [_group, "crew"] call Zen_SetAISkill;
-        removeAllWeapons (leader _group);
-        (leader _group) setPosATL ([(_buildingObjData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
-        _group setBehaviour "careless";
-        (RTS_Worker_Repair_Queue select 1) pushBack [(leader _group), false, objNull];
-    };
-};
-
-Zen_RTS_F_East_Recycler = {
-    diag_log ("Zen_RTS_F_East_Recycler asset constructor called");
-    diag_log _this;
-    _buildingObjData = (_this select 0);
-    _assetData = _this select 1;
-    _referenceUnit = _this select 2;
-    _assetStrRaw = _assetData select 3;
-    sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart));
-    if (alive (_buildingObjData select 2)) then {
-        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _group = [(_buildingObjData select 2), "C_man_shorts_4_F_afro"] call Zen_SpawnGroup;
-        _vehicleID = [Zen_RTS_BuildingType_East_CJ, [[(_buildingObjData select 2), 10, random 360] call Zen_ExtendPosition, 0]] call Zen_RTS_StrategicBuildingInvoke;
-
-        (leader _group) setPosATL ([(_buildingObjData select 2), 5 + random 5, random 360] call Zen_ExtendPosition);
-        0 = [_group, "crew"] call Zen_SetAISkill;
-        removeAllWeapons (leader _group);
-        _group setBehaviour "careless";
-
-        _CJ = ([_vehicleID] call Zen_RTS_StrategicBuildingObjectGetDataGlobal) select 2;
-        _CJ setVariable ["Zen_RTS_StrategicIsAIOwned", true, true];
-        _CJ setVariable ["Zen_RTS_StrategicIsAIAssigned", true, true];
-        0 = [_group, _CJ, "all"] call Zen_MoveInVehicle;
-
-        (RTS_Worker_Recycle_Queue select 1) pushBack [(leader _group), false, _CJ];
-    };
-};
-
 Zen_RTS_Asset_East_Repairer = ["Zen_RTS_F_East_Repairer", "Repairer", "Cost: 50, Time: 10, Classname: C_man_polo_1_F_afro,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_Recycler = ["Zen_RTS_F_East_Recycler", "Recycler", "Cost: 50, Time: 10, Classname: C_man_shorts_4_F_afro,"] call Zen_RTS_StrategicAssetCreate;

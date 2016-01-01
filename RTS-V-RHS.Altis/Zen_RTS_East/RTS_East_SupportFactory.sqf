@@ -95,56 +95,6 @@ Zen_RTS_BuildingType_East_SupportFactory = ["Zen_RTS_F_East_SupportFactoryConstr
 // Assets
 /////////////////////////////////
 
-#define VEHCILE_CONSTRUCTOR(N, T, U) \
-    N = { \
-        diag_log ("East " + T + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = _this select 0; \
-        _assetData = _this select 1; \
-        _assetStrRaw = _assetData select 3; \
-        _referenceUnit = _this select 2; \
-        _crewCount = _this select 3; \
-        _phi = 0; \
-        _theta = 0; \
-        _building = _buildingObjData select 2; \
-        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
-        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-        if (_crewCount > 0) then { \
-            _crewGroup = [_vehicle, ([U, 0, (_crewCount - 1) min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
-            0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
-            0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
-            0 = [_crewGroup, _referenceUnit] spawn { \
-                _crewGroup = _this select 0; \
-                _referenceUnit = _this select 1; \
-                sleep 1; \
-                (units _crewGroup) join _referenceUnit; \
-                sleep 1; \
-                {doStop _x;} forEach (units _crewGroup); \
-            }; \
-        }; \
-    };
-
-#define CREW_UNITS ["rhs_msv_driver"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_ammo_msv, "rhs_gaz66_ammo_msv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_repair_msv, "rhs_gaz66_repair_msv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Ural_Fuel_MSV_01,"RHS_Ural_Fuel_MSV_01", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_typhoon_vdv, "rhs_typhoon_vdv", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Ural_VDV_01, "RHS_Ural_VDV_01", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_gaz66_r142_vdv, "rhs_gaz66_r142_vdv", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_msv_driver", "rhs_msv_crew", "rhs_msv_crew"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_BM21_MSV_01, "RHS_BM21_MSV_01", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_vdv_driver_armored", "rhs_vdv_crew_commander", "rhs_vdv_armoredcrew", "rhs_vdv_combatcrew","rhs_vdv_combatcrew"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_prp3_vdv, "rhs_prp3_vdv", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_vdv_driver_armored", "rhs_vdv_crew_commander", "rhs_vdv_armoredcrew", "rhs_vdv_combatcrew"]
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_9k79_K, "rhs_9k79_k", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_9k79_B, "rhs_9k79_B", CREW_UNITS)
-
 Zen_RTS_Asset_East_rhs_gaz66_ammo_msv = ["Zen_RTS_F_East_Asset_rhs_gaz66_ammo_msv","Ammo", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_gaz66_repair_msv = ["Zen_RTS_F_East_Asset_rhs_gaz66_repair_msv","Repair", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_RHS_Ural_Fuel_MSV_01 = ["Zen_RTS_F_East_Asset_RHS_Ural_Fuel_MSV_01","ReFuel", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
