@@ -88,7 +88,7 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
     ZEN_FMW_MP_REAll("Zen_ExecuteCommand", _args, call)
 
 #define ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
-    _marker = (_buildingObjData select 2 ) getVariable "Zen_RTS_StrategicBuildingMarker"; \
+    _marker = (_buildingObjData select 2 ) getVariable ["Zen_RTS_StrategicBuildingMarker", ""]; \
     _pos = ([_marker] call Zen_ConvertToPosition); \
     scopeName "main"; \
     for "_r" from 10 to 50 step 10 do { \
@@ -122,7 +122,7 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
     _vehicle setVariable ["Zen_RTS_StrategicType", "Asset", true]; \
     _vehicle setVariable ["Zen_RTS_StrategicAssetType", (_assetData select 0), true]; \
     _vehicle setVariable ["Zen_RTS_IsStrategicDebris", false, true]; \
-    (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
+    ZEN_FMW_MP_REServerOnly("Zen_RTS_F_AddRecycleQueue", [_vehicle], call) \
     _vehicle addEventHandler ["Dammaged", { \
         _vehicle = _this select 0; \
         if (!(canMove _vehicle) || (damage _vehicle > 0.9)) then { \
@@ -130,6 +130,7 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
             _vehicle removeAllEventHandlers "Dammaged"; \
         }; \
     }];
+    // (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle; \
     // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
 
 #define BUILDING_VISUALS(T, O) \
@@ -256,8 +257,8 @@ Zen_JIP_Args_Server = [overcast, fog, 2000];
 diag_log diag_tickTime;
 {
     // call compile format ["xp%1 = 0", _x];
-    // 0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
     if (isPlayer _x) then {
+        0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
 } forEach ([West, East] call Zen_ConvertToObjectArray);

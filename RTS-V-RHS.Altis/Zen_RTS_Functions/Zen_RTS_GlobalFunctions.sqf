@@ -122,3 +122,9 @@ Zen_RTS_F_AddSpawnGridMarker = {
 
     (RTS_Building_Spawn_Grid_Markers select ([west, east] find _side)) pushBack _marker;
 };
+
+Zen_RTS_F_AddRecycleQueue = {
+    _vehicle = _this select 0;
+    (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle;
+};
+

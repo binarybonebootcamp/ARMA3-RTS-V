@@ -143,7 +143,7 @@ RTS menus
     // Refresh button
     // Repair/Recycle y/n menu with $$
     // Give money to another player
-    cannot open MCU build menu while placing a building
+    // cannot open MCU build menu while placing a building
     HQ build menu show next level # in queue field
     Alpha menu show building max after current level
     HQ build menu give next upgrade level

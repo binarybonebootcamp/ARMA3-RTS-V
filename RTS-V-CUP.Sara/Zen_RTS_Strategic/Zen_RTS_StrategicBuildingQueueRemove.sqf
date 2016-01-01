@@ -17,9 +17,9 @@ if !([_this, [["STRING"], ["SCALAR"]], [], 2] call Zen_CheckArguments) exitWith 
 _bldObjId = _this select 0;
 _removeIndex = _this select 1;
 
-if !(isServer) exitWith {
-    ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicBuildingQueueRemove", _this, call)
-};
+// if !(isServer) exitWith {
+    // ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicBuildingQueueRemove", _this, call)
+// };
 
 // _bldObjData = [_bldObjId] call Zen_RTS_StrategicBuildingObjectGetDataServer;
 // _queue = _bldObjData select 1;
