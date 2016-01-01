@@ -99,64 +99,6 @@ Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", 
 // Assets
 /////////////////////////////////
 
-#define AIR_CONSTRUCTOR(N, T, U) \
-    N = { \
-        diag_log (#N + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = _this select 0; \
-        _assetData = _this select 1; \
-        _assetStrRaw = _assetData select 3; \
-        _referenceUnit = _this select 2; \
-        _crewCount = _this select 3; \
-        _phi = 0; \
-        _theta = 0; \
-        _building = _buildingObjData select 2; \
-        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
-        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-        if (_crewCount > 0) then { \
-            _crewGroup = [_vehicle, ([U, 0, (_crewCount - 1) min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
-            0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
-            0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
-            0 = [_crewGroup, _referenceUnit] spawn { \
-                _crewGroup = _this select 0; \
-                _referenceUnit = _this select 1; \
-                sleep 1; \
-                (units _crewGroup) join _referenceUnit; \
-                sleep 1; \
-                {doStop _x;} forEach (units _crewGroup); \
-            }; \
-        }; \
-    };
-
-#define CREW_UNITS ["rhs_pilot_transport_heli", "rhs_pilot_transport_heli"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_ka60_c, "rhs_ka60_c", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_pilot_transport_heli", "rhs_pilot_transport_heli", "rhs_msv_rifleman", "rhs_msv_rifleman", "rhs_msv_rifleman"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8mt_vvs, "RHS_Mi8mt_vvsc", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8mt_Cargo_vvs, "RHS_Mi8mt_Cargo_vvs", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_pilot_combat_heli", "rhs_pilot_combat_heli", "rhs_msv_rifleman", "rhs_msv_rifleman", "rhs_msv_rifleman"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8MTV3_vvs, "RHS_Mi8MTV3_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8MTV3_UPK23_vvs, "RHS_Mi8MTV3_UPK23_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8MTV3_FAB_vvs, "RHS_Mi8MTV3_FAB_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8AMT_vvs, "RHS_Mi8AMT_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8AMTSh_vvs, "RHS_Mi8AMTSh_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8AMTSh_UPK23_vvs, "RHS_Mi8AMTSh_UPK23_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Mi8AMTSh_FAB_vvs, "RHS_Mi8AMTSh_FAB_vvs", CREW_UNITS)
-
-#define CREW_UNITS ["rhs_pilot_combat_heli", "rhs_pilot_combat_heli"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Ka52_vvs, "RHS_Ka52_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Ka52_UPK23_vvs, "RHS_Ka52_UPK23_vvs", CREW_UNITS)
-#define CREW_UNITS ["rhs_pilot"]
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Su25SM_vvs, "RHS_Su25SM_vvs", CREW_UNITS)
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_RHS_Su25SM_KH29_vvs, "RHS_Su25SM_KH29_vvs", CREW_UNITS)
-#define CREW_UNITS []
-AIR_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_pchela1t_vvs, "rhs_pchela1t_vvs", CREW_UNITS)
-
-
 Zen_RTS_Asset_East_rhs_ka60_c = ["Zen_RTS_F_East_Asset_rhs_ka60_c", "Ka-60 Unarmed", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_RHS_Mi8mt_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8mt_vvs", "Mi-8 Unarmed", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_RHS_Mi8mt_Cargo_vvs = ["Zen_RTS_F_East_Asset_RHS_Mi8mt_Cargo_vvs", "Mi-8 cargo", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;

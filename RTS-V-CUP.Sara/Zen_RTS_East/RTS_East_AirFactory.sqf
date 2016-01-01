@@ -98,69 +98,6 @@ Zen_RTS_BuildingType_East_AirFactory = ["Zen_RTS_F_East_AirFactoryConstructor", 
 // Assets
 /////////////////////////////////
 
-#define AIR_CONSTRUCTOR(N, T, U) \
-    N = { \
-        diag_log (#N + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = _this select 0; \
-        _assetData = _this select 1; \
-        _assetStrRaw = _assetData select 3; \
-        _referenceUnit = _this select 2; \
-        _crewCount = _this select 3; \
-        _phi = 0; \
-        _theta = 0; \
-        _building = _buildingObjData select 2; \
-        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
-        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-        if (_crewCount > 0) then { \
-            _crewGroup = [_vehicle, ([U, 0, (_crewCount - 1) min ((count U) - 1)] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
-            0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
-            0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
-            0 = [_crewGroup, _referenceUnit] spawn { \
-                _crewGroup = _this select 0; \
-                _referenceUnit = _this select 1; \
-                sleep 1; \
-                (units _crewGroup) join _referenceUnit; \
-                sleep 1; \
-                {doStop _x;} forEach (units _crewGroup); \
-            }; \
-        }; \
-    };
-
-
-#define CREW_UNITS ["CUP_O_RU_Pilot", "CUP_O_RU_Pilot", "CUP_O_RU_Crew", "CUP_O_RU_Crew", "CUP_O_RU_Crew"]
-AIR_CONSTRUCTOR(CUP_O_Mi24_P_RU, "CUP_O_Mi24_P_RU", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Mi24_V_RU, "CUP_O_Mi24_V_RU", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Mi17_TK, "CUP_O_Mi17_TK", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Mi24_D_TK, "CUP_O_Mi24_D_TK", CREW_UNITS)
-
-
-#define CREW_UNITS ["CUP_O_RU_Pilot", "CUP_O_RU_Crew"]
-AIR_CONSTRUCTOR(CUP_O_Mi8_medevac_RU, "CUP_O_Mi8_medevac_RU", CREW_UNITS)
-AIR_CONSTRUCTOR(O_Heli_Light_02_F, "O_Heli_Light_02_F", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Ka50_SLA, "CUP_O_Ka50_SLA", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Ka50_AA_SLA, "CUP_O_Ka50_AA_SLA", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_MI6A_TKA, "CUP_O_MI6A_TKA", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_MI6T_TKA, "CUP_O_MI6T_TKA", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_MI6A_RU, "CUP_O_MI6A_RU", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_MI6T_RU, "CUP_O_MI6T_RU", CREW_UNITS)
-AIR_CONSTRUCTOR(O_Heli_Transport_04_covered_F, "O_Heli_Transport_04_covered_F", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_Mi8_MTV3_base, "CUP_Mi8_MTV3_base", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Mi8_SLA_1, "CUP_O_Mi8_SLA_1", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Mi8_RU, "CUP_O_Mi8_RU", CREW_UNITS)
-
-#define CREW_UNITS ["CUP_O_RU_Pilot"]
-AIR_CONSTRUCTOR(CUP_O_Su25_RU_1, "CUP_O_Su25_RU_1", CREW_UNITS)
-AIR_CONSTRUCTOR(O_Heli_Transport_04_bench_F, "O_Heli_Transport_04_bench_F", CREW_UNITS)
-AIR_CONSTRUCTOR(O_Heli_Transport_04_medevac_F, "O_Heli_Transport_04_medevac_F", CREW_UNITS)
-AIR_CONSTRUCTOR(O_Plane_CAS_02_F, "O_Plane_CAS_02_F", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Su25_TKA, "CUP_O_Su25_TKA", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Su25_RU_2, "CUP_O_Su25_RU_2", CREW_UNITS)
-AIR_CONSTRUCTOR(CUP_O_Su25_RU_3, "CUP_O_Su25_RU_3", CREW_UNITS)
-
 Zen_RTS_Asset_East_CUP_O_Mi8_medevac_RU = ["CUP_O_Mi8_medevac_RU", "Mi8 medevac", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_O_Heli_Light_02_F = ["O_Heli_Light_02_F", "Orca", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_CUP_O_Ka50_SLA = ["CUP_O_Ka50_SLA", "Ka50", "Cost: 200, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
