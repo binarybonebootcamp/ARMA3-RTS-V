@@ -64,61 +64,6 @@ Zen_RTS_BuildingType_West_HQ = ["Zen_RTS_F_West_HQConstructor", "Zen_RTS_F_West_
 
 Zen_RTS_TechFlag_West_BuildEnemy = false;
 publicVariable "Zen_RTS_TechFlag_West_BuildEnemy";
-Zen_RTS_F_West_Tech_Enemy = {
-    diag_log "Build enemy East asset by West called";
-
-    Zen_RTS_TechFlag_West_BuildEnemy = true;
-    // publicVariable "Zen_RTS_TechFlag_West_BuildEnemy";
-
-    _buildingData = _this select 0;
-    _buildingObjID = _buildingData select 1;
-
-    _dataLocal = [_buildingObjID] call Zen_RTS_StrategicBuildingObjectGetDataLocal;
-    _assets = _dataLocal select 1;
-    0 = [_assets, Zen_RTS_Asset_Tech_West_Enemy] call Zen_ArrayRemoveValue;
-
-    {
-        _typeData = [_x] call Zen_RTS_StrategicBuildingTypeGetData;
-
-        _indexes = [Zen_RTS_Strategic_Building_Objects_Global, _x, 0] call Zen_ArrayGetNestedIndex;
-        _objData = Zen_RTS_Strategic_Building_Objects_Global select (_indexes select 0);
-
-        _level = _objData select 3;
-        for "_i" from 0 to _level do {
-            [_objData] call (missionNamespace getVariable ((_typeData select 3) select _i));
-        };
-    } forEach (RTS_Used_Building_Types select 0);
-};
-
-#define UPGRADE_CONSTRUCTOR(N, B, A) \
-    N = { \
-        diag_log ("upgrade " + #N + " called"); \
-        ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
-        _buildingDataHQ = _this select 0; \
-        _assetData = _this select 1; \
-        _assetStrRaw = _assetData select 3; \
-        _buildingDataOther = [B, true] call Zen_RTS_StrategicBuildingObjectGetDataGlobal; \
-        if (count _buildingDataOther == 0) exitWith { \
-            diag_log ("upgrade " + #N + " type has no existing objects  " + str _this + "  "+ str time); \
-        }; \
-        _typeDataOther = [(_buildingDataOther select 0)] call Zen_RTS_StrategicBuildingTypeGetData; \
-        _level = _buildingDataOther select 3; \
-        _maxLevel = count (_typeDataOther select 3); \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        if ((_level + 1) == _maxLevel) then { \
-            _assets = _buildingDataHQ select 4; \
-            0 = [_assets, A] call Zen_ArrayRemoveValue; \
-        }; \
-        ZEN_RTS_STRATEGIC_BUILDING_UPGRADE_MESSAGE() \
-        0 = [(_buildingDataOther select 1)] call Zen_RTS_StrategicBuildingUpgrade; \
-    };
-
-UPGRADE_CONSTRUCTOR(Zen_RTS_F_West_Tech_Upgrade_TankFactory, Zen_RTS_BuildingType_West_TankFactory, Zen_RTS_Asset_Tech_West_Upgrade_TankFactory)
-UPGRADE_CONSTRUCTOR(Zen_RTS_F_West_Tech_Upgrade_Barracks, Zen_RTS_BuildingType_West_Barracks, Zen_RTS_Asset_Tech_West_Upgrade_Barracks)
-UPGRADE_CONSTRUCTOR(Zen_RTS_F_West_Tech_Upgrade_Radar, Zen_RTS_BuildingType_West_Radar, Zen_RTS_Asset_Tech_West_Upgrade_Radar)
-UPGRADE_CONSTRUCTOR(Zen_RTS_F_West_Tech_Upgrade_AirFactory, Zen_RTS_BuildingType_West_AirFactory, Zen_RTS_Asset_Tech_West_Upgrade_AirFactory)
-UPGRADE_CONSTRUCTOR(Zen_RTS_F_West_Tech_Upgrade_NavalFactory, Zen_RTS_BuildingType_West_NavalFactory, Zen_RTS_Asset_Tech_West_Upgrade_NavalFactory)
-UPGRADE_CONSTRUCTOR(Zen_RTS_F_West_Tech_Upgrade_SupportFactory, Zen_RTS_BuildingType_West_SupportFactory, Zen_RTS_Asset_Tech_West_Upgrade_SupportFactory)
 
 Zen_RTS_Asset_Tech_West_Enemy = ["Zen_RTS_F_West_Tech_Enemy", "Build Enemy Units", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_Tech_West_Upgrade_TankFactory = ["Zen_RTS_F_West_Tech_Upgrade_TankFactory", "Upgrade Tank Factory", "Cost: 50, Time: 10,", "Commander"] call Zen_RTS_StrategicAssetCreate;

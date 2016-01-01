@@ -26,7 +26,7 @@ Zen_RTS_StrategicBuildingDestroy = compileFinal preprocessFileLineNumbers "Zen_R
 Zen_RTS_StrategicBuildingInvoke = compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicBuildingInvoke.sqf";
 Zen_RTS_StrategicBuildingObjectGetDataGlobal = compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicBuildingObjectGetDataGlobal.sqf";
 Zen_RTS_StrategicBuildingObjectGetDataLocal = compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicBuildingObjectGetDataLocal.sqf";
-Zen_RTS_StrategicBuildingObjectGetDataServer = compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicBuildingObjectGetDataServer.sqf";
+// Zen_RTS_StrategicBuildingObjectGetDataServer = compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicBuildingObjectGetDataServer.sqf";
 // Zen_RTS_StrategicBuildingObjectUpdate = compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicBuildingObjectUpdate.sqf";
 Zen_RTS_StrategicBuildingUpgrade = compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_StrategicBuildingUpgrade.sqf";
 
@@ -76,49 +76,78 @@ Zen_RTS_F_StrategicAddAssetLocal = {
     } forEach _assetsToAdd;
 };
 
-Zen_RTS_F_StrategicCreateBuildingDataServer = {
+// Zen_RTS_F_StrategicCreateBuildingDataServer = {
+    // private ["_h_queue"];
+
+    // _h_queue = [(_this select 0)] spawn Zen_RTS_StrategicBuildingQueueManager;
+    // _this set [2, _h_queue];
+
+    // Zen_RTS_Strategic_Building_Objects_Server pushBack _this;
+// };
+
+Zen_RTS_F_StrategicCreateBuildingDataClient = {
     private ["_h_queue"];
 
     _h_queue = [(_this select 0)] spawn Zen_RTS_StrategicBuildingQueueManager;
-    _this set [2, _h_queue];
+    _this set [4, _h_queue];
+    _this set [5, scriptNull];
 
-    Zen_RTS_Strategic_Building_Objects_Server pushBack _this;
+    Zen_RTS_Strategic_Building_Objects_Local pushBack _this;
 };
 
 Zen_RTS_F_StrategicRemoveBuildingDataLocal = {
     0 = [Zen_RTS_Strategic_Building_Objects_Local, _this] call Zen_ArrayRemoveIndex;
 };
 
-Zen_RTS_F_StrategicRemoveBuildingQueueServer = {
+// Zen_RTS_F_StrategicRemoveBuildingQueueServer = {
+    // private ["_identifier", "_objData"];
+
+    // _identifier = _this select 0;
+    // _objData = [_identifier] call Zen_RTS_StrategicBuildingObjectGetDataServer;
+
+    // terminate (_objData select 2);
+    // terminate (_objData select 3);
+// };
+
+Zen_RTS_F_StrategicRemoveBuildingQueueClient = {
     private ["_identifier", "_objData"];
 
     _identifier = _this select 0;
-    _objData = [_identifier] call Zen_RTS_StrategicBuildingObjectGetDataServer;
+    _objData = [_identifier] call Zen_RTS_StrategicBuildingObjectGetDataLocal;
 
-    terminate (_objData select 2);
-    terminate (_objData select 3);
+    terminate (_objData select 4);
+    terminate (_objData select 5);
 };
 
-Zen_RTS_F_StrategicRequestCurrentAssetServer = {
-    private ["_buildingObjID", "_objData"];
+// Zen_RTS_F_StrategicRequestCurrentAssetServer = {
+    // private ["_buildingObjID", "_objData"];
 
-    _buildingObjID = _this select 0;
+    // _buildingObjID = _this select 0;
 
-    _buildingObjDataServer = [_buildingObjID] call Zen_RTS_StrategicBuildingObjectGetDataServer;
-    _queue = _buildingObjDataServer select 1;
-    Zen_RTS_Strategic_Current_Asset_Data = [];
-    if (count _queue > 0) then {
-        Zen_RTS_Strategic_Current_Asset_Data = (_queue select 0);
-    };
-    publicVariable "Zen_RTS_Strategic_Current_Asset_Data";
-};
+    // _buildingObjDataServer = [_buildingObjID] call Zen_RTS_StrategicBuildingObjectGetDataServer;
+    // _queue = _buildingObjDataServer select 1;
+    // Zen_RTS_Strategic_Current_Asset_Data = [];
+    // if (count _queue > 0) then {
+        // Zen_RTS_Strategic_Current_Asset_Data = (_queue select 0);
+    // };
+    // publicVariable "Zen_RTS_Strategic_Current_Asset_Data";
+// };
 
 Zen_RTS_F_StrategicRequestCurrentAssetClient = {
-    Zen_RTS_Strategic_Current_Asset_Data = nil;
-    ZEN_FMW_MP_REServerOnly("Zen_RTS_F_StrategicRequestCurrentAssetServer", _this, call)
-    waitUntil {
-        !(isNil "Zen_RTS_Strategic_Current_Asset_Data")
-    };
+    // Zen_RTS_Strategic_Current_Asset_Data = nil;
+    // ZEN_FMW_MP_REServerOnly("Zen_RTS_F_StrategicRequestCurrentAssetServer", _this, call)
+    // waitUntil {
+        // !(isNil "Zen_RTS_Strategic_Current_Asset_Data")
+    // };
 
-    (Zen_RTS_Strategic_Current_Asset_Data)
+    // (Zen_RTS_Strategic_Current_Asset_Data)
+
+    _objData = [(_this select 0)] call Zen_RTS_StrategicBuildingObjectGetDataLocal;
+    _queue = _objData select 3;
+
+    (if (count _queue > 0) then {
+        (_queue select 0)
+    } else {
+        ([])
+    })
 };

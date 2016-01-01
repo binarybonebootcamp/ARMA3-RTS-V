@@ -111,3 +111,14 @@ Zen_RTS_F_GiveMoneyDialogRefresh = {
     0 = [] call Zen_CloseDialog;
     0 = [] spawn Zen_RTS_GiveMoney;
 };
+
+Zen_RTS_F_AddSpawnGridMarker = {
+    _marker = _this select 0;
+    _side = _this select 1;
+
+    if (isNil "RTS_Building_Spawn_Grid_Markers") then {
+        RTS_Building_Spawn_Grid_Markers = [[], []];
+    };
+
+    (RTS_Building_Spawn_Grid_Markers select ([west, east] find _side)) pushBack _marker;
+};

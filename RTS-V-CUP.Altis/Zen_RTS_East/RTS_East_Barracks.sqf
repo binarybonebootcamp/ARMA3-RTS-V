@@ -125,54 +125,6 @@ Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen
 // Assets
 /////////////////////////////////
 
-#define INFANTRY_CONSTRUCTOR(N, T, S) \
-    N = { \
-        diag_log (#N + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = (_this select 0); \
-        _assetData = _this select 1; \
-        _referenceUnit = _this select 2; \
-        _assetStrRaw = _assetData select 3; \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        if (alive (_buildingObjData select 2)) then { \
-            ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-            _group = [([(_buildingObjData select 2), 10 + random 10, random 360] call Zen_ExtendPosition), T] call Zen_SpawnGroup; \
-            0 = [_group, S] call Zen_SetAISkill; \
-            (units _group) join _referenceUnit; \
-        }; \
-    };
-
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier, "CUP_O_RU_Soldier", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_AR, "CUP_O_INS_Soldier_AR", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_MG, "CUP_O_INS_Soldier_MG", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_AT, "CUP_O_INS_Soldier_AT", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_AA, "CUP_O_INS_Soldier_AA", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_Exp, "CUP_O_INS_Soldier_Exp", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_INS_Saboteur, "CUP_O_INS_Saboteur", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_Saiga, "CUP_O_RU_Soldier_Saiga", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_GL, "CUP_O_RU_Soldier_GL", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_Light, "CUP_O_RU_Soldier_Light", "infantry") 
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Officer, "CUP_O_RU_Officer", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_SL, "CUP_O_RU_Soldier_SL", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_TL, "CUP_O_RU_Soldier_TL", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_MG, "CUP_O_RU_Soldier_MG", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_AR, "CUP_O_RU_Soldier_AR", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_LAT, "CUP_O_RU_Soldier_LAT", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_HAT, "CUP_O_RU_Soldier_HAT", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_AT, "CUP_O_RU_Soldier_AT", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_AA, "CUP_O_RU_Soldier_AA", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_TK_INS_Soldier_GL, "CUP_O_TK_INS_Soldier_GL", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Medic, "CUP_O_RU_Medic", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Pilot, "CUP_O_RU_Pilot", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Crew, "CUP_O_RU_Crew", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Spotter, "CUP_O_RU_Spotter", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Sniper, "CUP_O_RU_Sniper", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Sniper_KSVK, "CUP_O_RU_Sniper_KSVK", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_INS_Sniper, "CUP_O_INS_Sniper", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_AK74, "CUP_O_INS_Soldier_AK74", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_INS_Soldier_GL, "CUP_O_INS_Soldier_GL", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_O_RU_Soldier_Marksman, "CUP_O_RU_Soldier_Marksman", "infantry")
-
 //**// LEVEL 0
 Zen_RTS_Asset_East_CUP_O_INS_Soldier_AK74 = ["CUP_O_INS_Soldier_AK74", "Rifleman AK74", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_CUP_O_INS_Soldier_GL = ["CUP_O_INS_Soldier_GL", "Rifleman GL", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;

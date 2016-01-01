@@ -99,41 +99,6 @@ Zen_RTS_BuildingType_East_Barracks = ["Zen_RTS_F_East_BarracksConstructor", "Zen
 // Assets
 /////////////////////////////////
 
-#define INFANTRY_CONSTRUCTOR(N, T, S) \
-    N = { \
-        diag_log (#N + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = (_this select 0); \
-        _assetData = _this select 1; \
-        _referenceUnit = _this select 2; \
-        _assetStrRaw = _assetData select 3; \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        if (alive (_buildingObjData select 2)) then { \
-            ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-            _group = [([(_buildingObjData select 2), 10 + random 10, random 360] call Zen_ExtendPosition), T] call Zen_SpawnGroup; \
-            0 = [_group, S] call Zen_SetAISkill; \
-            (units _group) join _referenceUnit; \
-        }; \
-    };
-
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_rifleman, "rhs_msv_rifleman", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_grenadier, "rhs_msv_grenadier", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_machinegunner, "rhs_msv_machinegunner", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_medic, "rhs_msv_medic", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_marksman, "rhs_msv_marksman", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_at, "rhs_msv_at", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_aa, "rhs_msv_aa", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_officer, "rhs_msv_officer", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_sergeant, "rhs_msv_sergeant", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_junior_sergeant, "rhs_msv_junior_sergeant", "infantry") 
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_engineer, "rhs_msv_engineer", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_LAT, "rhs_msv_LAT", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_RShG2, "rhs_msv_RShG2", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_strelok_rpg_assist, "rhs_msv_strelok_rpg_assist", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_machinegunner_assistant, "rhs_msv_machinegunner_assistant", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_grenadier_rpg, "rhs_msv_grenadier_rpg", "infantry")
-INFANTRY_CONSTRUCTOR(Zen_RTS_F_East_Asset_rhs_msv_efreitor, "rhs_msv_efreitor", "infantry")
-
 Zen_RTS_Asset_East_rhs_msv_rifleman = ["Zen_RTS_F_East_Asset_rhs_msv_rifleman", "Rifleman", "Cost: 50, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_msv_grenadier = ["Zen_RTS_F_East_Asset_rhs_msv_grenadier", "Grenadier", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_rhs_msv_machinegunner = ["Zen_RTS_F_East_Asset_rhs_msv_machinegunner", "Autorifleman", "Cost: 100, Time: 10,"] call Zen_RTS_StrategicAssetCreate;

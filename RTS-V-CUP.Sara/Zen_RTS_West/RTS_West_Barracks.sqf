@@ -131,53 +131,6 @@ Zen_RTS_BuildingType_West_Barracks = ["Zen_RTS_F_West_BarracksConstructor", "Zen
 // Assets
 /////////////////////////////////
 
-#define INFANTRY_CONSTRUCTOR(N, T, S) \
-    N = { \
-        diag_log (#N + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = (_this select 0); \
-        _assetData = _this select 1; \
-        _referenceUnit = _this select 2; \
-        _assetStrRaw = _assetData select 3; \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        if (alive (_buildingObjData select 2)) then { \
-            ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-            _group = [([(_buildingObjData select 2), 10 + random 10, random 360] call Zen_ExtendPosition), T] call Zen_SpawnGroup; \
-            0 = [_group, S] call Zen_SetAISkill; \
-            (units _group) join _referenceUnit; \
-        }; \
-    };
-
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_MTP, "CUP_B_BAF_Soldier_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_GL_MTP, "CUP_B_BAF_Soldier_GL_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_Marksman_MTP, "CUP_B_BAF_Soldier_Marksman_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_Light_MTP, "CUP_B_BAF_Soldier_Light_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_Backpack_MTP, "CUP_B_BAF_Soldier_Backpack_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AAR_MTP, "CUP_B_BAF_Soldier_AAR_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AMG_MTP, "CUP_B_BAF_Soldier_AMG_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AAT_MTP, "CUP_B_BAF_Soldier_AAT_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AHAT_MTP, "CUP_B_BAF_Soldier_AHAT_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AAA_MTP, "CUP_B_BAF_Soldier_AAA_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Officer_MTP, "CUP_B_BAF_Officer_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_SL_MTP, "CUP_B_BAF_Soldier_SL_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_TL_MTP, "CUP_B_BAF_Soldier_TL_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AR_MTP, "CUP_B_BAF_Soldier_AR_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_MG_MTP, "CUP_B_BAF_Soldier_MG_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AT_MTP, "CUP_B_BAF_Soldier_AT_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_HAT_MTP, "CUP_B_BAF_Soldier_HAT_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_AA_MTP, "CUP_B_BAF_Soldier_AA_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_Night_MTP, "CUP_B_BAF_Soldier_Night_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_scout_MTP, "CUP_B_BAF_Soldier_scout_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Spotter_MTP, "CUP_B_BAF_Spotter_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Spotter_L85TWS_MTP, "CUP_B_BAF_Spotter_L85TWS_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Pilot_MTP, "CUP_B_BAF_Pilot_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Crew_MTP, "CUP_B_BAF_Crew_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Medic_MTP, "CUP_B_BAF_Medic_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Soldier_JTAC_MTP, "CUP_B_BAF_Soldier_JTAC_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Engineer_MTP, "CUP_B_BAF_Engineer_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Sniper_MTP, "CUP_B_BAF_Sniper_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(CUP_B_BAF_Sniper_AS50_MTP, "CUP_B_BAF_Sniper_AS50_MTP", "infantry")
-INFANTRY_CONSTRUCTOR(UP_B_BAF_Sniper_AS50_TWS_MTP, "UP_B_BAF_Sniper_AS50_TWS_MTP", "infantry")
 //**// LEVEL 0
 Zen_RTS_Asset_West_CUP_B_BAF_Soldier_MTP = ["CUP_B_BAF_Soldier_MTP", "Soldier", "Cost: 150, Time: 10, Classname: b_soldier_02_f,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_West_CUP_B_BAF_Soldier_GL_MTP = ["CUP_B_BAF_Soldier_GL_MTP", "Grenadier", "Cost: 150, Time: 10,"] call Zen_RTS_StrategicAssetCreate;

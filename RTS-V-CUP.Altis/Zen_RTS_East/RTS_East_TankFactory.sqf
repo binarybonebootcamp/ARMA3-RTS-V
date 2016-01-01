@@ -140,88 +140,6 @@ Zen_RTS_BuildingType_East_TankFactory = ["Zen_RTS_F_East_TankFactoryConstructor"
 // Assets
 /////////////////////////////////
 
-#define VEHCILE_CONSTRUCTOR(N, T, U) \
-    N = { \
-        diag_log ("West " + T + " asset constructor called"); \
-        diag_log _this; \
-        _buildingObjData = _this select 0; \
-        _assetData = _this select 1; \
-        _assetStrRaw = _assetData select 3; \
-        _referenceUnit = _this select 2; \
-        _crewCount = _this select 3; \
-        _phi = 0; \
-        _theta = 0; \
-        _building = _buildingObjData select 2; \
-        ZEN_RTS_STRATEGIC_ASSET_PLACEMENT() \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
-        ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
-        _vehicle = [_pos, T, 0, getDir _building + _theta, true]  call Zen_SpawnVehicle; \
-        ZEN_RTS_STRATEGIC_ASSET_DESTROYED_EH \
-        if (_crewCount > 0) then { \
-            _crewGroup = [_vehicle, ([U, 0, _crewCount - 1] call Zen_ArrayGetIndexedSlice)] call Zen_SpawnGroup; \
-            0 = [_crewGroup, "crew"] call Zen_SetAISkill; \
-            0 = [_crewGroup, _vehicle, "All"] call Zen_MoveInVehicle; \
-            0 = [_crewGroup, _referenceUnit] spawn { \
-                _crewGroup = _this select 0; \
-                _referenceUnit = _this select 1; \
-                sleep 1; \
-                (units _crewGroup) join _referenceUnit; \
-                sleep 1; \
-                {doStop _x;} forEach (units _crewGroup); \
-            }; \
-        }; \
-        if (T in ["rhs_bmp3mera_msv"]) then { \
-            ZEN_FMW_MP_REAll("FNC_AUTOTANK", _vehicle, call) \
-        }; \
-    };
-
-#define CREW_UNITS ["CUP_O_RU_Soldier_Saiga"]
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_Unarmed_RU, "CUP_O_UAZ_Unarmed_RU", CREW_UNITS)
-
-#define CREW_UNITS ["CUP_O_RU_Soldier_Saiga", "CUP_O_RU_Crew", "CUP_O_RU_Crew", "CUP_O_RU_Crew"]
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_Unarmed_TKA, "CUP_O_UAZ_Unarmed_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_LR_Transport_TKA, "CUP_O_LR_Transport_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_LR_MG_TKA, "CUP_O_LR_MG_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_LR_SPG9_TKA, "CUP_O_LR_SPG9_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_LR_Transport_TKM, "CUP_O_LR_Transport_TKM", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_LR_MG_TKM, "CUP_O_LR_MG_TKM", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_LR_SPG9_TKM, "CUP_O_LR_SPG9_TKM", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_Datsun_PK, "CUP_O_Datsun_PK", CREW_UNITS)
-
-#define CREW_UNITS ["CUP_O_RU_Soldier_Saiga", "CUP_O_RU_Crew"]
-VEHCILE_CONSTRUCTOR(CUP_O_Datsun_PK_Random, "CUP_O_Datsun_PK_Random", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_MG_CHDKZ, "CUP_O_UAZ_MG_CHDKZ", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_AGS30_CHDKZ, "CUP_O_UAZ_AGS30_CHDKZ", CREW_UNITS)
-
-#define CREW_UNITS ["CUP_O_RU_Soldier_Saiga", "CUP_O_RU_Soldier_Saiga", "CUP_O_RU_Crew"]
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_SPG9_CHDKZ, "CUP_O_UAZ_SPG9_CHDKZ", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_Open_RU, "CUP_O_UAZ_Open_RU", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_MG_RU, "CUP_O_UAZ_MG_RU", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_AGS30_RU, "CUP_O_UAZ_AGS30_RU", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_SPG9_RU, "CUP_O_UAZ_SPG9_RU", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_MG_TKA, "CUP_O_UAZ_MG_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_AGS30_TKA, "CUP_O_UAZ_AGS30_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_UAZ_SPG9_TKA, "CUP_O_UAZ_SPG9_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_BTR60_TK, "CUP_O_BTR60_TK", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_BTR90_RU, "CUP_O_BTR90_RU", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_BTR90_HQ_RU, "CUP_O_BTR90_HQ_RU", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_BRDM2_TKA, "CUP_O_BRDM2_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_BRDM2_ATGM_TKA, "CUP_O_BRDM2_ATGM_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_BRDM2_HQ_TKA, "CUP_O_BRDM2_HQ_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(O_APC_Wheeled_02_rcws_F, "O_APC_Wheeled_02_rcws_F", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_T72_TKA, "CUP_O_T72_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_T72_RU, "CUP_O_T72_RU", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_M113_TKA, "CUP_O_M113_TKA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(O_APC_Tracked_02_AA_F, "O_APC_Tracked_02_AA_F", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(O_APC_Tracked_02_cannon_F, "O_APC_Tracked_02_cannon_F", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_ZSU23_TK, "CUP_O_ZSU23_TK", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_ZSU23_SLA, "CUP_O_ZSU23_SLA", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_T55_TK, "CUP_O_T55_TK", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(O_MBT_02_cannon_F, "O_MBT_02_cannon_F", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_BM21_RU, "CUP_O_BM21_RU", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(CUP_O_BM21_TKA, "CUP_O_BM21_TKA", CREW_UNITS)
-
-
 //tank 0 upgrade assests
 Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_RU = ["CUP_O_UAZ_Unarmed_RU", "UAZ (unarmed)RU", "Cost: 200, Time: 10, Crew: 1,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_CUP_O_UAZ_Unarmed_TKA = ["CUP_O_UAZ_Unarmed_TKA", "UAZ Unarmed TKA", "Cost: 200, Time: 10, Crew: 2,"] call Zen_RTS_StrategicAssetCreate;
@@ -271,15 +189,5 @@ Zen_RTS_Asset_East_CUP_O_T55_TK = ["CUP_O_T55_TK", "T55","Cost: 200, Time: 10, C
 Zen_RTS_Asset_East_O_MBT_02_cannon_F = ["O_MBT_02_cannon_F", "Varsuk","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_CUP_O_BM21_RU = ["CUP_O_BM21_RU", "BM21","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
 Zen_RTS_Asset_East_CUP_O_BM21_TKA = ["CUP_O_BM21_TKA", "BM21 TKA","Cost: 200, Time: 10, Crew: 3,"] call Zen_RTS_StrategicAssetCreate;
-
-Zen_RTS_F_East_Asset_CJ = {
-    player sideChat str ("East CJ asset proxy constructor called");
-    player sideChat str _this;
-
-    _buildingObjData = _this select 0;
-    _building = _buildingObjData select 2;
-    ZEN_RTS_STRATEGIC_ASSET_PLACEMENT()
-    0 = [Zen_RTS_BuildingType_East_CJ, [_pos, 0]] call Zen_RTS_StrategicBuildingInvoke;
-};
 
 Zen_RTS_Asset_East_CJ = ["Zen_RTS_F_East_Asset_CJ","CJ", "Cost: 500, Time: 10, Crew: 0,"] call Zen_RTS_StrategicAssetCreate;

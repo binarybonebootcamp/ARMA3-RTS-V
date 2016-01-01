@@ -67,7 +67,7 @@
 
         PROCESS_PURCHASE
         // closeDialog 0;
-        _buildingObjDataLocal set [3, (_buildingObjDataLocal select 3) + 1];
+        _buildingObjDataLocal set [2, (_buildingObjDataLocal select 2) + 1];
 
         if (_forSquad) then {
             _playerArray = [_side] call Zen_ConvertToObjectArray;
@@ -80,7 +80,8 @@
             _unit = _playerArray select _index;
 
             _args = [_buildingObjId, _assetType, _unit, _actualCrewCount];
-            ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
+            // ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
+            _args call Zen_RTS_StrategicAssetInvoke;
         } else {
             if ((_buildingTypeData select 4) isEqualTo "CJ") then {
                 closeDialog 0;
@@ -93,12 +94,15 @@
                     _redArrow setPosATL ([_building, 10, getDir _building, "compass", 1] call Zen_ExtendPosition);
                     (Zen_RTS_CJ_DoPlace)
                 };
-                _args = [_buildingObjId, _assetType, player, getPosATL _redArrow];
+
                 deleteVehicle _redArrow;
-                ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
+                _args = [_buildingObjId, _assetType, player, getPosATL _redArrow];
+                // ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
+                _args call Zen_RTS_StrategicAssetInvoke;
             } else {
                 _args = [_buildingObjId, _assetType, player, _actualCrewCount];
-                ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
+                // ZEN_FMW_MP_REServerOnly("Zen_RTS_StrategicAssetInvoke", _args, call)
+                _args call Zen_RTS_StrategicAssetInvoke;
             };
         };
     // };
