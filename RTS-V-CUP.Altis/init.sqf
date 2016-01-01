@@ -178,6 +178,8 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
                 0 = [(_buildingObjData select 1)] call Zen_RTS_StrategicBuildingDestroy; \
             }; \
             _building = _this select 0; \
+            _buildingSpawnGrid = _building getVariable "Zen_RTS_StrategicBuildingMarker"; \
+            0 = [(RTS_Repair_Queue select ([west, east] find S)), _building] call Zen_ArrayRemoveValue; \
             _pos = getPosATL _building; \
             sleep 5; \
             _objects = nearestObjects [_pos, ["All"], 10]; \
@@ -189,6 +191,9 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
             } forEach _objects; \
             if !(isNull _deadBuilding) then { \
                 diag_log ("ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH found dead building" + str _deadBuilding); \
+                (RTS_Repair_Queue select ([west, east] find S)) pushBack _deadBuilding; \
+                _args = [_buildingSpawnGrid, S]; \
+                ZEN_FMW_MP_REAll("Zen_RTS_F_RemoveSpawnGridMarker", _args, call) \
                 _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
                 _deadBuilding setVariable ["Zen_RTS_StrategicType", "BuildingRuins", true]; \
                 _deadBuilding setVariable ["Zen_RTS_IsStrategicRepairable", true, true]; \
