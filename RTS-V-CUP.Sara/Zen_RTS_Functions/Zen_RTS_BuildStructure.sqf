@@ -93,7 +93,7 @@
 
         _slope = [_pos, 32] call Zen_FindTerrainSlope;
         _clutter = [_pos, 32] call Zen_GetAmbientClutterCount;
-        _objects = nearestObjects [_pos, [""], 30];
+        _objects = nearestObjects [_pos, [""], 10];
 
         {
             if ((BB_Volume(_x) < 1) || (BB_AreaXY(_x) < 0.5)) then {

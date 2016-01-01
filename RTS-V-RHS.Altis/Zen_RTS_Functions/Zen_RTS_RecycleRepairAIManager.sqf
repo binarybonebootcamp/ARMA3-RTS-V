@@ -18,6 +18,18 @@
         ZEN_FMW_Array_RemoveIndexes(_array, _indexesToRemove) \
     } forEach [0, 1];
 
+#define CLEAN_QUEUE(A) \
+    { \
+        _array = _x; \
+        _toRemove = []; \
+        { \
+            if (isNull _x) then { \
+                _toRemove pushBack _forEachIndex; \
+            }; \
+        } forEach _array; \
+        ZEN_FMW_Array_RemoveIndexes(_array, _toRemove) \
+    } forEach A;
+
 #define TASK_WORKERS(W, O, S, T) \
     _workerArray = W; \
     { \
@@ -26,22 +38,23 @@
             _repairQueueReady = []; \
             _condition = if (S == "Repair") then { \
                 _repairQueueReady = [_workerArray, {(_this select 1)}] call Zen_ArrayFilterCondition; \
-                (damage _x > 0.1) \
+                (((_x getVariable ["Zen_RTS_StrategicType", ""]) in T) && ((damage _x > 0.1) || (toUpper (_x getVariable ["Zen_RTS_StrategicType", ""]) == "BuildingRuins"))) \
             } else { \
                 _repairQueueReady = [_workerArray, {(_this select 1) || ((isNull (_this select 2)) || {!((_this select 0) in (_this select 2))})}] call Zen_ArrayFilterCondition; \
                 (_x getVariable ["Zen_RTS_IsStrategicDebris", false]) \
             }; \
             if (_condition) then { \
                 if (count _repairQueueReady == 0) exitWith {}; \
-                diag_log ("Zen_RTS_RecycleRepairAIManager  All ready workers  " + S + "  " + T + str _repairQueueReady); \
+                diag_log ("Zen_RTS_RecycleRepairAIManager  All ready workers  " + S + "  " + (T select 0) + str _repairQueueReady); \
                 _assignedWorkerArray = [_repairQueueReady, compile format ["-1 * ((_this select 0) distanceSqr %1)", getPosATL _x]] call Zen_ArrayFindExtremum; \
                 _globalIndex = [_assignedWorkerArray, _workerArray] call Zen_ValueFindInArray; \
                 _assignedWorkerArray = _workerArray select 0; \
                 _assignedWorkerArray set [1, true]; \
-                diag_log ("Zen_RTS_RecycleRepairAIManager  selected task worker  " + S + "  " + T + str _assignedWorkerArray); \
-                0 = [_assignedWorkerArray, _x] spawn { \
+                diag_log ("Zen_RTS_RecycleRepairAIManager  selected task worker  " + S + "  " + (T select 0) + str _assignedWorkerArray); \
+                0 = [_assignedWorkerArray, _x, T] spawn { \
                     _assignedWorkerArray = _this select 0; \
                     _objToRepair = _this select 1; \
+                    _buildingRepairTypes = _this select 2; \
                     _worker = _assignedWorkerArray select 0; \
                     _cancelled = false; \
                     while {true} do { \
@@ -57,7 +70,7 @@
                     _assignedWorkerArray set [1, false]; \
                     if !(_cancelled) then { \
                         diag_log (S + " complete: " + str _objToRepair + str _assignedWorkerArray); \
-                        _h_repair = [S, [T], true, _worker] spawn Zen_RTS_RecycleRepair; \
+                        _h_repair = [S, _buildingRepairTypes, true, _worker] spawn Zen_RTS_RecycleRepair; \
                     }; \
                 }; \
             }; \
@@ -72,16 +85,8 @@ while {true} do {
     CLEAN_WORKERS(RTS_Worker_Recycle_Queue, (_x select 0), true)
     CLEAN_WORKERS(RTS_CJ_Repair_Queue, _x, false)
 
-    {
-        _array = _x;
-        _toRemove = [];
-        {
-            if (isNull _x) then {
-                _toRemove pushBack _forEachIndex;
-            };
-        } forEach _array;
-        ZEN_FMW_Array_RemoveIndexes(_array, _toRemove)
-    } forEach RTS_Recycle_Queue;
+    CLEAN_QUEUE(RTS_Recycle_Queue)
+    CLEAN_QUEUE(RTS_Repair_Queue)
 
     {
         _CJArray = RTS_CJ_Repair_Queue select _x;
@@ -118,9 +123,12 @@ while {true} do {
         } forEach (RTS_Worker_Recycle_Queue select _x);
     } forEach [0, 1];
 
-    TASK_WORKERS((RTS_Worker_Repair_Queue select 0), (RTS_Repair_Queue select 0), "Repair", "Building")
-    TASK_WORKERS((RTS_Worker_Recycle_Queue select 0), (RTS_Recycle_Queue select 0), "Recycle", "Asset")
+    private ["_buildingRepairTypes"];
+    _buildingRepairTypes = ["Building", "BuildingRuins"];
 
-    TASK_WORKERS((RTS_Worker_Repair_Queue select 1), (RTS_Repair_Queue select 1), "Repair", "Building")
-    TASK_WORKERS((RTS_Worker_Recycle_Queue select 1), (RTS_Recycle_Queue select 1), "Recycle", "Asset")
+    TASK_WORKERS((RTS_Worker_Repair_Queue select 0), (RTS_Repair_Queue select 0), "Repair", _buildingRepairTypes)
+    TASK_WORKERS((RTS_Worker_Recycle_Queue select 0), (RTS_Recycle_Queue select 0), "Recycle", ["Asset"])
+
+    TASK_WORKERS((RTS_Worker_Repair_Queue select 1), (RTS_Repair_Queue select 1), "Repair", _buildingRepairTypes)
+    TASK_WORKERS((RTS_Worker_Recycle_Queue select 1), (RTS_Recycle_Queue select 1), "Recycle", ["Asset"])
 };
