@@ -123,8 +123,28 @@ Zen_RTS_F_AddSpawnGridMarker = {
     (RTS_Building_Spawn_Grid_Markers select ([west, east] find _side)) pushBack _marker;
 };
 
+Zen_RTS_F_RemoveSpawnGridMarker = {
+    _marker = _this select 0;
+    _side = _this select 1;
+
+    0 = [(RTS_Building_Spawn_Grid_Markers select ([west, east] find _side)), _marker] call Zen_ArrayRemoveValue;
+};
+
 Zen_RTS_F_AddRecycleQueue = {
     _vehicle = _this select 0;
     (RTS_Recycle_Queue select (([west, east] find ([_vehicle] call Zen_GetSide)) max 0)) pushBack _vehicle;
 };
 
+Zen_RTS_F_RemoveRepairQueue = {
+    _building = _this select 0;
+    _side = _this select 1;
+
+    0 = [(RTS_Repair_Queue select ([west, east] find _side)), _building] call Zen_ArrayRemoveValue;
+};
+
+// Zen_RTS_F_RemoveRecycleQueue = {
+    // _vehicle = _this select 0;
+    // _side = _this select 1;
+
+    // 0 = [(RTS_Recycle_Queue select ([west, east] find _side)), _vehicle] call Zen_ArrayRemoveValue;
+// };

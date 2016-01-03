@@ -80,9 +80,12 @@ if (_actionType == "Repair") then {
             _nearestObj setDamage 0; \
         }; \
         case "BuildingRuins": { \
+            _args = [_nearestObj, _nearestObj getVariable "Zen_RTS_StrategicBuildingSide"]; \
+            ZEN_FMW_MP_REServerOnly("Zen_RTS_F_RemoveRepairQueue", _args, call) \
             _type = _nearestObj getVariable "Zen_RTS_StrategicRuinsType"; \
             _side = _nearestObj getVariable "Zen_RTS_StrategicBuildingSide"; \
             _pos = getPosATL _nearestObj; \
+            sleep 1; \
             deleteVehicle _nearestObj; \
             _index = [_type, (RTS_Used_Building_Types select ([west, east] find _side))] call Zen_ValueFindInArray; \
             _level = RTS_Building_Type_Levels select ([west, east] find _side) select _index; \
@@ -101,6 +104,8 @@ if (_isAI) then {
         if (({alive _x} count (crew _nearestObj)) == 0) then {
             // playerMoney = playerMoney + _value;
             deleteVehicle _nearestObj;
+            // _args = [_nearestObj, side _nearestObj];
+            // ZEN_FMW_MP_REServerOnly("Zen_RTS_F_RemoveRecycleQueue", _args, call)
         };
     };
 } else {
@@ -131,9 +136,7 @@ if (_isAI) then {
             if (playerMoney > _value) then {
                 playerMoney = playerMoney - _value;
                 _unit groupChat ("You have paid: $" + (str round _value) + " to repair this object.");
-                
                 PROCESS_REPAIR
-
             } else {
                 _unit groupChat ("Insufficient funds, you need $" + (str round _value) + " to repair this object.");
             };
@@ -142,6 +145,8 @@ if (_isAI) then {
                 playerMoney = playerMoney + _value;
                 _unit groupChat ("You have received: $" + (str round _value) + " from recycling this object.");
                 deleteVehicle _nearestObj;
+                // _args = [_nearestObj, side _nearestObj];
+                // ZEN_FMW_MP_REServerOnly("Zen_RTS_F_RemoveRecycleQueue", _args, call)
             } else {
                 _unit groupChat ("You cannot recycle a vehicle with a crew in it!");
             };
