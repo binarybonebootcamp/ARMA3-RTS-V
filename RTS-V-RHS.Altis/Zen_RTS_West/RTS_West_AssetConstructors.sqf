@@ -164,11 +164,20 @@ Zen_RTS_F_West_Tech_Enemy = {
 
 #define UPGRADE_CONSTRUCTOR(N, B, A) \
     N = { \
-        diag_log ("upgrade " + #N + " called"); \
-        ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
+        diag_log ("upgrade " + #N + " called  " + str _this); \
         _buildingDataHQ = _this select 0; \
         _assetData = _this select 1; \
         _assetStrRaw = _assetData select 3; \
+        private ["_isOriginal"]; \
+        ZEN_STD_Parse_GetSetArgumentOptional(_isOriginal, 4, true, false) \
+        if (_isOriginal) then { \
+            sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
+        }; \
+        if !(isServer) exitWith { \
+            _string = #N; \
+            ZEN_FMW_MP_REServerOnly(_string, _this, call) \
+        }; \
+        ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(B, _ID) \
         _buildingDataOther = [B, true] call Zen_RTS_StrategicBuildingObjectGetDataGlobal; \
         if (count _buildingDataOther == 0) exitWith { \
             diag_log ("upgrade " + #N + " type has no existing objects  " + str _this + "  "+ str time); \
@@ -176,7 +185,6 @@ Zen_RTS_F_West_Tech_Enemy = {
         _typeDataOther = [(_buildingDataOther select 0)] call Zen_RTS_StrategicBuildingTypeGetData; \
         _level = _buildingDataOther select 3; \
         _maxLevel = count (_typeDataOther select 3); \
-        sleep (call compile ([_assetStrRaw, "Time: ", ","] call Zen_StringGetDelimitedPart)); \
         if ((_level + 1) == _maxLevel) then { \
             _assets = _buildingDataHQ select 4; \
             0 = [_assets, A] call Zen_ArrayRemoveValue; \
@@ -392,7 +400,7 @@ VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_w_s_m2, "rhsusf_m1025_w_s_
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m1025_w_mk19, "rhsusf_m1025_w_mk19", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_rg33_usmc_d, "rhsusf_rg33_usmc_d", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_rg33_usmc_wd, "rhsusf_rg33_usmc_wd", CREW_UNITS)
-VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rg33_m2_usmc_wd, "rg33_m2_usmc_wd", CREW_UNITS)
+VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rg33_m2_usmc_wd, "rhsusf_rg33_m2_wd", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_m113d_usarmy, "rhsusf_m113d_usarmy", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M1078A1P2_B_M2_wd_fmtv_usarmy, "rhsusf_M1078A1P2_B_M2_wd_fmtv_usarmy", CREW_UNITS)
 VEHCILE_CONSTRUCTOR(Zen_RTS_F_West_Asset_rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy, "rhsusf_M1083A1P2_B_M2_d_fmtv_usarmy", CREW_UNITS)
