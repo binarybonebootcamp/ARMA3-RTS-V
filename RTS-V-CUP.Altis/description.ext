@@ -2,9 +2,6 @@
 class CfgNotifications {
     #include "Zen_FrameworkFunctions\Zen_TaskSystem\Zen_TaskNotifications.hpp"
 };
-class CfgCommunicationMenu {
-    #include "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_FireSupportMenu.hpp"
-};
 
 respawn = 3;
 respawndelay = 3;

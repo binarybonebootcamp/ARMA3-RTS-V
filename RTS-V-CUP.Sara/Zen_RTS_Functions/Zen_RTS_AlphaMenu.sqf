@@ -150,15 +150,16 @@
         {
             _buildingTypeData = [_x] call Zen_RTS_StrategicBuildingTypeGetData;
             _buildingName = _buildingTypeData select 4;
+            _maxLevel = count (_buildingTypeData select 3);
             if !(_buildingName isEqualTo "CJ") then {
                 _buildingObjData = [_x, true, false] call Zen_RTS_StrategicBuildingObjectGetDataGlobal;
                 _descrRaw = _buildingTypeData select 5;
 
                 _info = "";
                 if ((count _buildingObjData == 0) || {isNull (_buildingObjData select 2)}) then {
-                    _info = (_buildingName + " - Offline");
+                    _info = _buildingName + " - Offline";
                 } else {
-                    _info = (_buildingName + " - Online - Level " + str (_buildingObjData select 3));
+                    _info = _buildingName + " - Online - Level " + str (_buildingObjData select 3) + "/" + str _maxLevel;
                 };
 
                 _index = lbAdd [_idassetlist,_info];

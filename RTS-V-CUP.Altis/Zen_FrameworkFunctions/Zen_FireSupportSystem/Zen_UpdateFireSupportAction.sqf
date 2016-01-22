@@ -6,9 +6,9 @@
 #include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_UpdateFireSupportAction", _this] call Zen_StackAdd;
-private ["_nameString", "_unitsToAdd", "_maxCalls", "_supportString", "_guideObj", "_guideType", "_indexes", "_oldData", "_args", "_newSupportTemplateData"];
+private ["_nameString", "_unitsToAdd", "_maxCalls", "_supportString", "_guideObj", "_guideType", "_indexes", "_oldData", "_args", "_newSupportTemplateData", "_descr"];
 
-if !([_this, [["STRING"], ["VOID"], ["STRING", "SCALAR"], ["SCALAR", "STRING", "OBJECT"], ["STRING", "SCALAR"], ["SCALAR"]], [], 2] call Zen_CheckArguments) exitWith {
+if !([_this, [["STRING"], ["VOID"], ["STRING", "SCALAR"], ["SCALAR", "STRING", "OBJECT"], ["STRING", "SCALAR"], ["SCALAR"], ["STRING"]], [], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -19,6 +19,7 @@ ZEN_STD_Parse_GetArgumentDefault(_supportString, 2, 0)
 ZEN_STD_Parse_GetArgumentDefault(_guideObj, 3, 0)
 ZEN_STD_Parse_GetArgumentDefault(_guideType, 4, 0)
 ZEN_STD_Parse_GetArgumentDefault(_maxCalls, 5, 0)
+ZEN_STD_Parse_GetArgumentDefault(_descr, 6, "")
 
 if (typeName _unitsToAdd != "SCALAR") then {
     _unitsToAdd = [_unitsToAdd] call Zen_ConvertToObjectArray;
@@ -32,10 +33,6 @@ if (count _indexes == 0) exitWith {
 _oldData = Zen_Fire_Support_Action_Array_Global select (_indexes select 0);
 
 if (typeName _unitsToAdd != "SCALAR") then {
-    _args =+ _oldData;
-    _args set [1, _unitsToAdd];
-    ZEN_FMW_MP_REAll("Zen_AddFireSupportAction_AddAction_MP", _args, call)
-
     _oldUnits = _oldData select 1;
     0 = [_oldUnits, _unitsToAdd] call Zen_ArrayAppendNested;
 };
@@ -55,6 +52,10 @@ if (typeName _guideType != "SCALAR") then {
 
 if (_maxCalls != 0) then {
     _oldData set [6, _maxCalls];
+};
+
+if (_descr != "") then {
+    _oldData set [7, _descr];
 };
 
 publicVariable "Zen_Fire_Support_Action_Array_Global";

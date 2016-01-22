@@ -19,11 +19,13 @@ _supportTemplate = _data select 3;
 _guideObj = _data select 4;
 _guideType = _data select 5;
 
-if (typeName _guideObj == "STRING") then {
+if ((typeName _guideObj == "STRING") && {(toUpper _guideObj isEqualTo "PLAYER")}) then {
     _guideObj = player;
 };
 
-ZEN_FMW_MP_REServerOnly("Zen_InvokeFireSupportAction_CheckCount_Server_MP", [_nameString], call)
+if ((_data select 6) == (_data select 7)) exitWith {
+    player groupChat "This support has been used the maximum number of times.";
+};
 
 openMap true;
 hintSilent "Hold Left-click on the desired fire support target.";
@@ -42,11 +44,19 @@ hintSilent "";
 _templateData = [_supportTemplate] call Zen_GetFireSupportData;
 if (count _templateData == 0) exitWith {};
 
+_args = [[_pos, _supportTemplate, _guideObj, _guideType], player, _nameString];
+if ((typeName _guideObj == "STRING") && {(toUpper _guideObj isEqualTo "NULL")}) then {
+    0 = _args spawn Zen_InvokeFireSupportAction_Fire_MP;
+    // ZEN_FMW_MP_REServerOnly("Zen_InvokeFireSupportAction_Fire_MP", _args, spawn)
+} else {
+    ZEN_FMW_MP_REClient("Zen_InvokeFireSupportAction_Fire_MP", _args, spawn, _guideObj)
+};
+
 _salvoTime = _templateData select 4;
 _fireSupportTime = 2 * ([_salvoTime select 0, _salvoTime select 1] call Zen_FindInRange);
 
 _args = [player, _pos, _fireSupportTime];
-ZEN_FMW_MP_REAll("Zen_InvokeFireSupportAction_SideChat_MP", _args)
+ZEN_FMW_MP_REAll("Zen_InvokeFireSupportAction_SideChat_MP", _args, call)
 
 _marker = [_pos, "Fire Support Target", "colorRed", [0.6, 0.6], "mil_destroy", 45, 0] call Zen_SpawnMarker;
 0 = [_marker, player] call Zen_ShowHideMarkers;
@@ -56,12 +66,8 @@ _marker = [_pos, "Fire Support Target", "colorRed", [0.6, 0.6], "mil_destroy", 4
     deleteMarker _this;
 };
 
-_args = [[_pos, _supportTemplate, _guideObj, _guideType], player];
-if (isNull _guideObj) then {
-    ZEN_FMW_MP_REServerOnly("Zen_InvokeFireSupportAction_Fire_MP", _args, spawn)
-} else {
-    ZEN_FMW_MP_REClient("Zen_InvokeFireSupportAction_Fire_MP", _args, spawn, _guideObj)
-};
+_args = [_nameString, player];
+ZEN_FMW_MP_REServerOnly("Zen_InvokeFireSupportAction_CheckCount_Server_MP", _args, call)
 
 call Zen_StackRemove;
 if (true) exitWith {};

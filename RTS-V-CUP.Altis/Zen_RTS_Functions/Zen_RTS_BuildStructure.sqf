@@ -88,17 +88,17 @@
 
         _inSafezone = false;
         {
-            if ([_pos, markerPos _x, [60, 60], markerDir _x, "rectangle"] call Zen_IsPointInPoly) exitWith {
+            if ([_pos, _x] call Zen_IsPointInPoly) exitWith {
                 _inSafezone = true;
             };
         } forEach _safezoneMarkers;
 
-        _slope = [_pos, 32] call Zen_FindTerrainSlope;
+        _slope = [_pos, 10] call Zen_FindTerrainSlope;
         _clutter = [_pos, 32] call Zen_GetAmbientClutterCount;
         _objects = nearestObjects [_pos, [""], 10];
 
         {
-            if ((BB_Volume(_x) < 1) || (BB_AreaXY(_x) < 0.5)) then {
+            if ((BB_Volume(_x) < 4) || (BB_AreaXY(_x) < 1)) then {
                 _objects set [_forEachIndex, 0];
             };
         } forEach _objects;
@@ -111,9 +111,9 @@
         // player sidechat str _safezoneMarkers;
         // player sidechat str _inSafezone;
         _canPlace = (if (_isNaval) then {
-            (!(_inSafezone) && (!(surfaceIsWater _pos) && {([_pos, 10, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 1)})})
+            (!(_inSafezone) && (!(surfaceIsWater _pos) && {([_pos, 10, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 6) && {((_clutter vectorDotProduct [1, 0, 0]) < 6)})})
         } else {
-            (!(_inSafezone) && (!(surfaceIsWater _pos) && {!([_pos, 35, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 1)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 300)})})
+            (!(_inSafezone) && (!(surfaceIsWater _pos) && {!([_pos, 35, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 6) && {((_clutter vectorDotProduct [1, 0, 0]) < 6)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 300)})})
         });
 
         if (_canPlace) then {
