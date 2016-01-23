@@ -73,16 +73,18 @@
     _safezoneMarkers = RTS_Building_Spawn_Grid_Markers select ([west, east] find (side player));
 
     hintSilent "When the preview appears,\nplacement is valid\nUse confirm action to build";
-    _heliPad = _buildingPreviewType createVehicleLocal [0,0,0];
     _vehicle = vehicle player;
-    _vehicle disableCollisionWith _heliPad;
+    _heliPad = _buildingPreviewType createVehicleLocal ([_vehicle, 31, getDir _vehicle, "compass", 0] call Zen_ExtendPosition);
+
+    _modelCenter = _heliPad modelToWorld [0,0,0];
+    _heliPad attachTo [_vehicle, [0, 31, (_modelCenter select 2) - 2]];
 
     Zen_RTS_Show_Preview = true;
     player addAction ["Confirm Building Placement", {Zen_RTS_Show_Preview = false; (_this select 0) removeAction (_this select 2);}];
 
     scopeName "main";
     while {true} do {
-        _pos = [_vehicle, 31, getDir _vehicle, "compass", 0] call Zen_ExtendPosition;
+        _pos = getPosATL _heliPad;
 
         _inSafezone = false;
         {
@@ -118,8 +120,11 @@
             // if (_isNaval) then {
                 // _heliPad setPosASL _pos;
             // } else {
-                _heliPad setPosATL _pos;
+                // _heliPad setPosATL _pos;
             // };
+
+            _heliPad hideObject false;
+            _heliPad setVectorUp (surfaceNormal (getPosATL _heliPad));
 
             if !(Zen_RTS_Show_Preview) then {
                 deleteVehicle _heliPad;
@@ -140,7 +145,9 @@
             if ((([_pos, _HQObject] call Zen_Find2dDistance) > 300) && {!(_isNaval)}) then {
                 hintSilent "Placing this building more than 300 meters from the HQ is not allowed.";
             };
-            _heliPad setPosATL [0,0,0];
+
+            // _heliPad setPosATL [0,0,0];
+            _heliPad hideObject true;
             if !(Zen_RTS_Show_Preview) then {
                 player sideChat "Building here is not allowed";
                 breakTo "main";
