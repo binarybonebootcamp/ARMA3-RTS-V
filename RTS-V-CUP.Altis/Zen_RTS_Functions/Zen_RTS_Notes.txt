@@ -64,6 +64,10 @@ Strategic
         // hint on building upgrade
         // building placement shows full building
         // building placement allows for asset spawn grid
+        // HQ, Radar have no safezone
+        !! Buildings get side visible map marker
+        !! Placement avoids buildings
+        !! Placed buildings face MCU
         CJ asset placement direction dialog
         tweak building heights
 
@@ -144,10 +148,9 @@ RTS menus
     // Repair/Recycle y/n menu with $$
     // Give money to another player
     // cannot open MCU build menu while placing a building
+    // Alpha menu show building max after current level
     HQ build menu show next level # in queue field
-    Alpha menu show building max after current level
     HQ build menu give next upgrade level
-    Test AI fly height
     Use radial menu GUI for actions
 Revive/Respawn/JIP
     // rewrite rts-init-SetRandomPos.sqs in SQF
@@ -165,7 +168,6 @@ Economy
         resources = (resource per flag) * (flag count)  + (resource per territory) * (territory count) + (number of miners) * (resource per second per miner) * (1 second)
         time = (max time) - resources / (resources maximum) * (max time - min time) ??
     add JIP player to money data
-    handle respawned player money data
 AI
     // rewrite rts-init-commandermonitor.sqs in SQF
     // Chain of command selection queue
@@ -192,6 +194,7 @@ Loadouts
     assign money value
 Known MP Issues
     // Add more debug
+    CJ spawning
     Logic Issues
         // AI recycle tasking
         // AI Repair activation
@@ -202,10 +205,15 @@ Known MP Issues
         // CJ remote actions missing
         // Commander definition synch
         // 20 second init delay
-        buildings coming out of the ground don't sync
-            create local building for every client ??
-    JIP
-        auto tank
+        // create local building for every client
+    !! JIP
+        all client data
+            PV'd strategic names
+            Economy
+        loadout
+        spawn and respawn locations
+        considered by commander, economy manager
+        local buildings
 Variants
     RHS - CUP File Differences
         mission.sqm
