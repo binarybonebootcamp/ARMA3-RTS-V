@@ -44,12 +44,11 @@ hintSilent "";
 _templateData = [_supportTemplate] call Zen_GetFireSupportData;
 if (count _templateData == 0) exitWith {};
 
-_args = [[_pos, _supportTemplate, _guideObj, _guideType], player, _nameString];
-if ((typeName _guideObj == "STRING") && {(toUpper _guideObj isEqualTo "NULL")}) then {
-    0 = _args spawn Zen_InvokeFireSupportAction_Fire_MP;
-    // ZEN_FMW_MP_REServerOnly("Zen_InvokeFireSupportAction_Fire_MP", _args, spawn)
-} else {
+_args = [[_pos, _supportTemplate, _guideObj, _guideType], player, _nameString, false, []];
+if ((typeName _guideObj == "OBJECT") && {(_guideType == "designator")}) then {
     ZEN_FMW_MP_REClient("Zen_InvokeFireSupportAction_Fire_MP", _args, spawn, _guideObj)
+} else {
+    0 = _args spawn Zen_InvokeFireSupportAction_Fire_MP;
 };
 
 _salvoTime = _templateData select 4;

@@ -26,6 +26,10 @@ Strategic
         Building Hacking
             // hacked actions and variable
             y/n menu with dynamic timer
+        // Remove AI repair workers
+        Top-down building placement
+            CJ asset placement direction dialog
+            Placement avoids buildings
 
     Assets
         // constructor macros
@@ -36,7 +40,7 @@ Strategic
         // CJ, with repair and recycle
             // placement for assets
             // AI recycler gets AI owned CJ with spawn
-            limit 5 each repairers and recyclers
+            !! limit 5 recyclers
         // charge per crew member
         // hint on asset spawn
         // asset spawn grid
@@ -65,10 +69,8 @@ Strategic
         // building placement shows full building
         // building placement allows for asset spawn grid
         // HQ, Radar have no safezone
-        !! Buildings get side visible map marker
-        !! Placement avoids buildings
-        !! Placed buildings face MCU
-        CJ asset placement direction dialog
+        Buildings get side visible map marker
+        Placed buildings face MCU
         tweak building heights
 
         Barracks
@@ -122,6 +124,7 @@ Strategic
             // barbed wire
             beacons (tracker)
             hacking
+            add CUP buildings for FOB
             // Level 1: Unarmed, small fortifications
             // Level 2: Static weapons, MG, etc.
 Territory

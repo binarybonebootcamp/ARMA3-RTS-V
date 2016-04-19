@@ -5,7 +5,7 @@
 _Zen_stack_Trace = ["Zen_AreNotInVehicle", _this] call Zen_StackAdd;
 private ["_unitsArray", "_areNotInVehicle", "_vehicle"];
 
-if !([_this, [["VOID"]], [], 1] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["OBJECT"]], [], 1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     (false)
 };

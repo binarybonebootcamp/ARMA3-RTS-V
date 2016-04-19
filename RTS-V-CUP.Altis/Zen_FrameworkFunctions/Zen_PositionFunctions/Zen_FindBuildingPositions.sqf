@@ -4,6 +4,14 @@
 
 #include "..\Zen_StandardLibrary.sqf"
 
+#define COUNT_RAYCAST_SPIN(XY, Z1, Z2, A) \
+    _wallCount = 0; \
+    for "_k" from 0 to (360 - A) step A do { \
+        if (lineIntersects [ZEN_STD_Math_VectTransform(_3dPos, 0, 0, Z1), ZEN_STD_Math_VectTransform(_3dPos, XY * cos _k, XY * sin _k, Z2), objNull, objNull]) then { \
+            _wallCount = _wallCount + 1; \
+        }; \
+    };
+
 _Zen_stack_Trace = ["Zen_FindBuildingPositions", _this] call Zen_StackAdd;
 private ["_building", "_allowRoof", "_Xdist", "_Ydist", "_points", "_positions", "_i", "_2dPos", "_floorPositions", "_j", "_3dPos", "_wallCount"];
 
@@ -32,36 +40,33 @@ for "_i" from 1 to _points do {
 
     if (_allowRoof || (lineIntersects [ZEN_STD_Math_VectTransform(_2dPos, 0, 0, 0.1), ZEN_STD_Math_VectTransform(_2dPos, 0, 0, 50), objNull, objNull])) then {
         _3dPos =+ _2dPos;
-        for "_j" from 1 to 200 do {
+        COUNT_RAYCAST_SPIN(3, 0.1, 5, 30)
+        if (_wallCount > 8) then {
+            for "_j" from 1 to 200 do {
+                if (!(lineIntersects [_3dPos, ZEN_STD_Math_VectTransform(_3dPos, 0, 0, -2), objNull, objNull]) && {!(lineIntersects [_3dPos, ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 50), objNull, objNull])}) exitWith {};
 
-            if (!(lineIntersects [_3dPos, ZEN_STD_Math_VectTransform(_3dPos, 0, 0, -2), objNull, objNull]) && {!(lineIntersects [_3dPos, ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 50), objNull, objNull])}) exitWith {};
-
-            if (((lineIntersects [_3dPos, ZEN_STD_Math_VectTransform(_3dPos, 0, 0, -0.2), objNull, objNull]) || (((ASLtoATL _3dPos) select 2) < 0.2)) && {!(lineIntersects [_3dPos, ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 1.6), objNull, objNull])}) then {
-                if (_allowRoof) then {
-                    _floorPositions pushBack _3dPos;
-                } else {
-                    if !(lineIntersects [ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 0.5), ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 50), objNull, objNull]) then {
-                        _wallCount = 0;
-                        for "_k" from 0 to 330 step 30 do {
-                            if (lineIntersects [ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 0.1), ZEN_STD_Math_VectTransform(_3dPos, 10 * cos _k, 10 * sin _k, 0.1), objNull, objNull]) then {
-                                _wallCount = _wallCount + 1;
+                if ((lineIntersects [_3dPos, ZEN_STD_Math_VectTransform(_3dPos, 0, 0, -0.25), objNull, objNull]) && {!(lineIntersects [_3dPos, ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 1.5), objNull, objNull])}) then {
+                    COUNT_RAYCAST_SPIN(0.3, 0.5, 0.5, 30)
+                    if (_wallCount == 0) then {
+                        if (_allowRoof) then {
+                            if (((ASLtoATL _3dPos) select 2) > 2) then {
+                                _floorPositions pushBack _3dPos;
+                            };
+                        } else {
+                            if (lineIntersects [ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 0.5), ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 50), objNull, objNull]) then {
+                                COUNT_RAYCAST_SPIN(10, 0.5, 0.5, 30)
+                                if (_wallCount > 9) then {
+                                    _floorPositions pushBack _3dPos;
+                                };
                             };
                         };
-
-                        if (_wallCount > 12) then {
-                            _floorPositions pushBack _3dPos;
-                        };
-                    } else {
-                        _floorPositions pushBack _3dPos;
                     };
                 };
+                _3dPos = ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 0.2);
             };
-
-            _3dPos = ZEN_STD_Math_VectTransform(_3dPos, 0, 0, 0.2);
         };
+        0 = [_positions, _floorPositions] call Zen_ArrayAppendNested;
     };
-
-    0 = [_positions, _floorPositions] call Zen_ArrayAppendNested;
 };
 
 {

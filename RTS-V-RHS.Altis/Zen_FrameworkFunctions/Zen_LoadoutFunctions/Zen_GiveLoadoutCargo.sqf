@@ -50,7 +50,7 @@ ZEN_STD_Parse_ToArray(_units)
 
     GIVE_GEAR_SINGLE("uniform", addItemCargoGlobal)
     GIVE_GEAR_SINGLE("vest", addItemCargoGlobal)
-    GIVE_GEAR_SINGLE("backpack", addItemCargoGlobal)
+    GIVE_GEAR_SINGLE("backpack", addBackpackCargoGlobal)
     GIVE_GEAR_SINGLE("headgear", addItemCargoGlobal)
     GIVE_GEAR_SINGLE("goggles", addItemCargoGlobal)
 

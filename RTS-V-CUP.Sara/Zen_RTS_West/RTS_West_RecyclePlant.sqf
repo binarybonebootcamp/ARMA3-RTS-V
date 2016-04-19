@@ -13,7 +13,7 @@ Zen_RTS_F_West_RecyclePlantConstructor = {
     _buildingTypeData = [(_buildingObjData select 0)] call Zen_RTS_StrategicBuildingTypeGetData;
 
     _assetsToAdd = [];
-    _assetsToAdd pushBack Zen_RTS_Asset_West_Repairer;
+    // _assetsToAdd pushBack Zen_RTS_Asset_West_Repairer;
     _assetsToAdd pushBack Zen_RTS_Asset_West_Recycler;
 
     // if (Zen_RTS_TechFlag_West_BuildEnemy) then {

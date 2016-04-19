@@ -58,7 +58,7 @@
         };
 
         if ((([vehicle player, _HQObject] call Zen_Find2dDistance) > HQ_MAX_DIST) && {!(_isNaval)}) exitWith {
-            player sideChat "This building must be constructed within "+ #HQ_MAX_DIST + " meters of the HQ.";
+            player sideChat "This building must be constructed within " + str HQ_MAX_DIST + " meters of the HQ.";
             _exit = true;
         };
     };
@@ -145,7 +145,7 @@
             };
         } else {
             if ((([_pos, _HQObject] call Zen_Find2dDistance) > HQ_MAX_DIST) && {!(_isNaval)}) then {
-                hintSilent "Placing this building more than " + #HQ_MAX_DIST + " meters from the HQ is not allowed.";
+                hintSilent "Placing this building more than " + str HQ_MAX_DIST + " meters from the HQ is not allowed.";
             };
 
             // _heliPad setPosATL [0,0,0];

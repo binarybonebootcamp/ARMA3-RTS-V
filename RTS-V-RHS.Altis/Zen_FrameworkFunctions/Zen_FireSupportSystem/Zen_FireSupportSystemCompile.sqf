@@ -12,6 +12,7 @@ Zen_Fire_Support_Action_Array_Local = [];
 Zen_Fire_Support_Action_Dialog_Data = ["", "", ""];
 
 Zen_AddFireSupportAction = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_AddFireSupportAction.sqf";
+Zen_AddSupportActionCustom = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_AddSupportActionCustom.sqf";
 Zen_CreateFireSupport = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_CreateFireSupport.sqf";
 Zen_GetFireSupportActionData = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_GetFireSupportActionData.sqf";
 Zen_GetFireSupportData = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_GetFireSupportData.sqf";
@@ -26,15 +27,9 @@ Zen_UpdateFireSupportAction = compileFinal preprocessFileLineNumbers "Zen_Framew
 
 Zen_AddFireSupportAction_AddLocal_MP = {
     if (isDedicated || !hasInterface) exitWith {};
-    private ["_nameString", "_units", "_titleString", "_supportString", "_guideObj", "_guideType", "_maxCalls", "_IDs", "_actionID", "_indexes", "_oldData", "_oldUnits", "_oldIDs"];
+    private ["_nameString"];
 
     _nameString = _this select 0;
-    // _units = _this select 1;
-    // _titleString = _this select 2;
-    // _supportString = _this select 3;
-    // _guideObj = _this select 4;
-    // _guideType = _this select 5;
-    // _maxCalls = _this select 6;
 
     Zen_Fire_Support_Action_Array_Local pushBack [_nameString, scriptNull, scriptNull];
     if (true) exitWith {};
@@ -77,8 +72,48 @@ Zen_AddFireSupportAction_DialogOK_MP = {
     if (count _indexes > 0) then {
         _data = Zen_Fire_Support_Action_Array_Global select (_indexes select 0);
 
-        if (player in (_data select 1)) then {
-            0 = [_nameString] spawn Zen_InvokeFireSupportAction;
+        _isCustom = _data select 9;
+        if (_isCustom) then {
+            if ((_data select 6) == (_data select 7)) exitWith {
+                player groupChat "This support has been used the maximum number of times.";
+            };
+
+            call Zen_CloseDialog;
+            openMap true;
+            hintSilent "Hold Left-click on the desired fire support target.";
+            Zen_Fire_Support_Target_Pos_Local = [];
+            _EHID = "Zen_Fire_Support_Map_EH" + ([10] call Zen_StringGenerateRandom);
+            0 = [_EHID, "onMapSingleClick", {Zen_Fire_Support_Target_Pos_Local = _pos;}] call BIS_fnc_AddStackedEventHandler;
+
+            waitUntil {
+                ((count Zen_Fire_Support_Target_Pos_Local) > 0)
+            };
+
+            _pos =+ Zen_Fire_Support_Target_Pos_Local;
+            0 = [_EHID, "onMapSingleClick"] call BIS_fnc_RemoveStackedEventHandler;
+            hintSilent "";
+
+            _args = [[_pos, "", objNull, ""], player, _nameString, true, (_data select 10)];
+            // ZEN_FMW_MP_REServerOnly("Zen_InvokeFireSupportAction_Fire_MP", _args, spawn)
+            0 = _args call Zen_InvokeFireSupportAction_Fire_MP;
+
+            _args = [player, _pos, -1];
+            ZEN_FMW_MP_REAll("Zen_InvokeFireSupportAction_SideChat_MP", _args, spawn)
+
+            _marker = [_pos, "Support Target", "colorRed", [0.6, 0.6], "mil_destroy", 45, 0] call Zen_SpawnMarker;
+            0 = [_marker, player] call Zen_ShowHideMarkers;
+
+            0 = _marker spawn {
+                sleep 60;
+                deleteMarker _this;
+            };
+
+            _args = [_nameString, player];
+            ZEN_FMW_MP_REServerOnly("Zen_InvokeFireSupportAction_CheckCount_Server_MP", _args, call)
+        } else {
+            if (player in (_data select 1)) then {
+                0 = [_nameString] spawn Zen_InvokeFireSupportAction;
+            };
         };
     } else {
         player groupChat "That support is invalid.";
@@ -164,27 +199,34 @@ Zen_InvokeFireSupportAction_CheckCount_Server_MP = {
     _count = (_data select 7) + 1;
     _data set [7, _count];
 
-    _args = [_nameString, _count, _maxCount];
+    _args = [_nameString, _count, _maxCount, (_data select 3), (_data select 9)];
     ZEN_FMW_MP_REClient("Zen_InvokeFireSupportAction_Remove_MP", _args, call, _player)
     publicVariable "Zen_Fire_Support_Action_Array_Global";
     if (true) exitWith {};
 };
 
 Zen_InvokeFireSupportAction_Remove_MP = {
-    private ["_nameString", "_count", "_maxCount", "_h_remove", "_indexes", "_data"];
+    private ["_nameString", "_count", "_maxCount", "_h_remove", "_indexes", "_data", "_isCustom", "_templateName"];
     _nameString = _this select 0;
     _count = _this select 1;
     _maxCount = _this select 2;
+    _templateName = _this select 3;
+    _isCustom = _this select 4;
 
-    _h_remove = [_nameString, _count, _maxCount] spawn {
+    _h_remove = [_nameString, _count, _maxCount, _templateName, _isCustom] spawn {
         _nameString = _this select 0;
         _count = _this select 1;
         _maxCount = _this select 2;
+        _templateName = _this select 3;
+        _isCustom = _this select 4;
 
-        _actionData = [_nameString] call Zen_GetFireSupportActionData;
-        _templateData = [(_actionData select 3)] call Zen_GetFireSupportData;
+        if (_isCustom) then {
+            sleep 11;
+        } else {
+            _templateData = [_templateName] call Zen_GetFireSupportData;
+            sleep (2*((_templateData select 5) select 0));
+        };
 
-        sleep (2*((_templateData select 5) select 0));
         if ((_count >= _maxCount) && {_maxCount != -1}) then {
             0 = [_nameString] call Zen_RemoveFireSupportAction;
         };
@@ -197,11 +239,24 @@ Zen_InvokeFireSupportAction_Remove_MP = {
 };
 
 Zen_InvokeFireSupportAction_Fire_MP = {
+    private ["_h_support"];
+    _pos = (_this select 0) select 0;
     _supportTemplate = (_this select 0) select 1;
     _guideObj = (_this select 0) select 2;
     _nameString = _this select 2;
+    _isCustom = _this select 3;
+    _customArgs = _this select 4;
 
-    _h_support = (_this select 0) spawn Zen_InvokeFireSupport;
+    _h_support = scriptNull;
+    if (_isCustom) then {
+        _indexes = [Zen_Fire_Support_Action_Array_Global, _nameString, 0] call Zen_ArrayGetNestedIndex;
+        _data = Zen_Fire_Support_Action_Array_Global select (_indexes select 0);
+        _function = _data select 3;
+
+        _h_support = [_nameString, _pos, player, _customArgs] spawn (missionNamespace getVariable _function);
+    } else {
+        _h_support = (_this select 0) spawn Zen_InvokeFireSupport;
+    };
 
     // _threadID = "Zen_FireSupportAction_ID_" + ([5] call Zen_StringGenerateRandom);
     // missionNamespace setVariable [_threadID, _h_support];
@@ -231,9 +286,13 @@ Zen_InvokeFireSupportAction_SideChat_MP = {
     _group = toArray str group _unit;
     _group = toString ([_group, 2] call Zen_ArrayGetIndexedSlice);
 
-    _unit sideChat format ["HQ, %1, Request fire support at grid %2, over.", _group, (mapGridPosition _pos)];
+    _unit sideChat format ["HQ, %1, Request support at grid %2, over.", _group, (mapGridPosition _pos)];
     sleep 7;
-    [_side, "base"] sideChat format ["%1, HQ, Fire support inbound in %2 seconds, out.", _group, _sentTime];
+    if (_sentTime < 0) then {
+        [_side, "base"] sideChat format ["%1, HQ, Support inbound, out.", _group];
+    } else {
+        [_side, "base"] sideChat format ["%1, HQ, Support inbound in %2 seconds, out.", _group, _sentTime];
+    };
 
     if (true) exitWith {};
 };

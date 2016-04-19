@@ -4,13 +4,6 @@
 #include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
 0 = _this spawn {
-    // re-init the most basic vars in case JIP doesn't.
-    rts_hq = [side player,"HQ"];
-
-    GUER = resistance;
-    CIV = civilian;
-    undefined_var = "scalar bool array string 0xe0ffffef";
-
     // sleep 0.2;
     closeDialog 0;
 

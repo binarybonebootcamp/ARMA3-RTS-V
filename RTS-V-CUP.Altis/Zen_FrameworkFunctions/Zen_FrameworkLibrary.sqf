@@ -48,7 +48,11 @@
     _Zen_Vehicle = [S, T] call Zen_SpawnVehicle; \
     0 = [_Zen_Vehicle] call Zen_SpawnVehicleCrew; \
     0 = [G, _Zen_Vehicle] call Zen_MoveInVehicle; \
-    0 = [_Zen_Vehicle, [([M] call Zen_FindGroundPosition), _Zen_HeliStart], G, "normal", 40, "fastrope", true] spawn Zen_OrderInsertion; \
+    if (_Zen_Vehicle isKindOf "Air") then { \
+        0 = [_Zen_Vehicle, [([M] call Zen_FindGroundPosition), S], G, "normal", 40, "fastrope", true] spawn Zen_OrderInsertion; \
+    } else { \
+        0 = [_Zen_Vehicle, [([M] call Zen_FindGroundPosition), S], G] spawn Zen_OrderInsertion; \
+    }; \
     0 = [G, M] spawn { \
         waitUntil { \
             sleep 5; \

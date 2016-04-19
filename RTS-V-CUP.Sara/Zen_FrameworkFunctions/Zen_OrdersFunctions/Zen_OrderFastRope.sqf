@@ -6,14 +6,27 @@
 #include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_OrderFastRope", _this] call Zen_StackAdd;
-private ["_heli", "_offsetL", "_rope", "_heliPosition", "_heliGround", "_ropeThread", "_buildings", "_stopHeight", "_testCan"];
+private ["_heli", "_activator", "_units", "_h_holdPos", "_offsetL", "_stopHeight", "_ropeStartPos", "_groundPos", "_linkGround", "_ropeGround", "_linkAir", "_ropeAir", "_args"];
 
 if !([_this, [["OBJECT"], ["VOID"]], [], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
 _heli = _this select 0;
-_units = [(_this select 1)] call Zen_ConvertToObjectArray;
+
+if (count _this > 2) then {
+    _activator = _this select 1;
+    _units = [_activator];
+    if (_activator == leader group _activator) then {
+        {
+            if (!(isPlayer _x) && (_x in _heli) && (_x in assignedCargo _heli)) then {
+                _units pushBack _x;
+            };
+        } forEach (units group _activator);
+    };
+} else {
+    _units = [(_this select 1)] call Zen_ConvertToObjectArray;
+};
 
 _h_holdPos = _heli spawn {
     while {true} do {
@@ -23,16 +36,6 @@ _h_holdPos = _heli spawn {
             _this setVectorUp [0, 0, 1];
         };
         sleep 0.1;
-    };
-};
-
-if (count _this > 2) then {
-    if ((isPlayer (_units select 0)) && {((_units select 0) == leader group (_units select 0))}) then {
-        {
-            if (!(_x in _units) && !(isPlayer _x) && (_x in _heli) && (_x in assignedCargo _heli)) then {
-                _units pushBack _x;
-            };
-        } forEach (units group (_units select 0));
     };
 };
 
@@ -95,7 +98,6 @@ _linkGround = [_groundPos, "Land_PenBlack_F", 0, 0, true] call Zen_SpawnVehicle;
 _linkGround allowDamage false;
 
 _ropeGround = ropeCreate [_heli, _offsetL, _linkGround, [0,0,0], ZEN_STD_OBJ_ATLPositionZ(_heli) + 2];
-
 {
     COMPUTE_GROUND_POS
     _linkGround setPosATL _groundPos;

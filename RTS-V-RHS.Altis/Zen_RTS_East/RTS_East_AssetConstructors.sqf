@@ -126,8 +126,8 @@ FORT_CONSTRUCTOR(Zen_RTS_F_East_AssetLAND_CARGO_PATROL_V1_F, "LAND_CARGO_PATROL_
 FORT_CONSTRUCTOR(Zen_RTS_F_East_AssetB_SLINGLOAD_01_MEDEVAC_F, "B_SLINGLOAD_01_MEDEVAC_F")
 FORT_CONSTRUCTOR(Zen_RTS_F_East_AssetB_SLINGLOAD_01_FUEL_F, "B_SLINGLOAD_01_FUEL_F")
 FORT_CONSTRUCTOR(Zen_RTS_F_East_AssetBox_East_WpsSpecial_F, "Box_East_WpsSpecial_F")
-//FORT_CONSTRUCTOR(Zen_RTS_F_East_AssetB_Slingload_01_Ammo_F, "B_Slingload_01_Ammo_F")
-//FORT_CONSTRUCTOR(Zen_RTS_F_East_AssetB_Slingload_01_Repair_F, "B_Slingload_01_Repair_F")
+// FORT_CONSTRUCTOR(Zen_RTS_F_East_AssetB_Slingload_01_Ammo_F, "B_Slingload_01_Ammo_F")
+// FORT_CONSTRUCTOR(Zen_RTS_F_East_AssetB_Slingload_01_Repair_F, "B_Slingload_01_Repair_F")
 FORT_CONSTRUCTOR(Zen_RTS_F_East_Asset_Land_BagFence_Corner_F, "Land_BagFence_Corner_F")
 FORT_CONSTRUCTOR(Zen_RTS_F_West_Asset_Land_CncWall4_F, "Land_CncWall4_F")
 
@@ -291,7 +291,8 @@ Zen_RTS_F_East_Recycler = {
         _CJ setVariable ["Zen_RTS_StrategicIsAIAssigned", true, true];
         0 = [_group, _CJ, "all"] call Zen_MoveInVehicle;
 
-        (RTS_Worker_Recycle_Queue select 1) pushBack [(leader _group), false, _CJ];
+        _args = [(RTS_Worker_Recycle_Queue select 1), [(leader _group), false, _CJ]];
+        ZEN_FMW_MP_REServerOnly("Zen_ArrayAppend", _args, call)
     };
 };
 

@@ -73,9 +73,9 @@ if !(_isCrash) then {
         _drop = [_vehicle, _className, (ZEN_STD_OBJ_ATLPositionZ(_vehicle) - 10)] call Zen_SpawnVehicle;
     } else {
         _drop = _className;
-        0 = [_drop, _vehicle, -10, ZEN_STD_Math_VectCartCyl((velocity _vehicle)), (random 360)] call Zen_TransformObject;
     };
 
+    0 = [_drop, _vehicle, -10, ZEN_STD_Math_VectCartCyl((velocity _vehicle)), (random 360)] call Zen_TransformObject;
     sleep 2;
     0 = [_drop] spawn Zen_SpawnParachute;
     sleep 5;

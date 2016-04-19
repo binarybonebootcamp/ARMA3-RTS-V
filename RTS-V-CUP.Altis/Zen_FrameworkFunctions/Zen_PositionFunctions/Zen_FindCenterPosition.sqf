@@ -28,6 +28,7 @@ if (count _positions < 2) exitWith {
     ([_positions select 0] call Zen_ConvertToPosition)
 };
 
+_positions = +(_this select 0);
 {
     _positions set [_forEachIndex, ([_x] call Zen_ConvertToPosition)];
 } forEach _positions;
@@ -37,7 +38,7 @@ if (count _positions < 2) exitWith {
     _xMax = ([_positions, (compile format ["_this select %1", _x])] call Zen_ArrayFindExtremum) select _x;
     _xDistArray = [];
 
-    player commandChat str _xMax;
+    // player commandChat str _xMax;
     _step = (_xMax - _xMin) / 200;
     if (_step > 0.01) then {
         for "_x0" from _xMin to _xMax step _step do {

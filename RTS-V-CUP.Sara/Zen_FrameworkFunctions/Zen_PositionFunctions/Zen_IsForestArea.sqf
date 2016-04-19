@@ -28,13 +28,15 @@ if ((typeName (_this select 0)) == "STRING") then {
 };
 
 _radiusMax = (_XYSizeArray select 0) max (_XYSizeArray select 1);
-_trees = [];
+// _trees = [];
 
-{
-    if (["t_", (str _x)] call Zen_StringIsInString) then {
-        0 = [_trees, _x] call Zen_ArrayAppend;
-    };
-} forEach (nearestObjects [_center, [], _radiusMax]);
+// {
+    // if (["t_", (str _x)] call Zen_StringIsInString) then {
+        // 0 = [_trees, _x] call Zen_ArrayAppend;
+    // };
+// } forEach (nearestObjects [_center, [], _radiusMax]);
+
+_trees = nearestTerrainObjects[_center, ["Tree", "Small Tree"], _radiusMax];
 
 if (count _trees < 2) exitWith {
     call Zen_StackRemove;

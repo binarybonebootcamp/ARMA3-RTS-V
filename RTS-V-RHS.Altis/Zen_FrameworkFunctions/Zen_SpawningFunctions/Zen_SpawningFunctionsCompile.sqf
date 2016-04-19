@@ -16,6 +16,7 @@ Zen_SpawnInfantry = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctio
 Zen_SpawnInfantryGarrison = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_SpawningFunctions\Zen_SpawnInfantryGarrison.sqf";
 Zen_SpawnItemsOnTable = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_SpawningFunctions\Zen_SpawnItemsOnTable.sqf";
 Zen_SpawnParachute = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_SpawningFunctions\Zen_SpawnParachute.sqf";
+Zen_SpawnTemplate = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_SpawningFunctions\Zen_SpawnTemplate.sqf";
 Zen_SpawnVehicle = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_SpawningFunctions\Zen_SpawnVehicle.sqf";
 Zen_SpawnVehicleCrew = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_SpawningFunctions\Zen_SpawnVehicleCrew.sqf";
 

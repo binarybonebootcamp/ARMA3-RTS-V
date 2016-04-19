@@ -6,7 +6,7 @@
 #include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_GetFreeSeats", _this] call Zen_StackAdd;
-private ["_vehicle", "_turrets", "_turretTypes", "_args", "_unUsedTurrets", "_unUsedCargo", "_dummyUnit", "_hasDriver"];
+private ["_vehicle", "_turrets", "_turretTypes", "_args", "_unUsedTurrets", "_unUsedCargo", "_dummyUnit", "_hasDriver", "_group"];
 
 if !([_this, [["OBJECT"], ["ARRAY", "STRING"]], [[], ["STRING"]], 1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
