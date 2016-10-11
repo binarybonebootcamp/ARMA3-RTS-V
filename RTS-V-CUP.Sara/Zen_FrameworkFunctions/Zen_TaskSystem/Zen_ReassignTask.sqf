@@ -26,14 +26,14 @@ if (count _taskArray == 0) exitWith {
     call Zen_StackRemove;
 };
 
-0 = [_unitsAdded, (_taskArray select 4), (_taskArray select 5), (_taskArray select 3), false, _nameString, (_taskArray select 6)] call Zen_InvokeTaskClient;
+0 = [_unitsAdded, (_taskArray select 4), (_taskArray select 5), (_taskArray select 3), false, _nameString, (_taskArray select 6), (_taskArray select 8)] call Zen_InvokeTaskClient;
 
 if (count _unitsRemoved > 0) then {
     0 = [_nameString, _unitsRemoved] call Zen_RemoveTaskClient;
 };
 
 if (isMultiplayer) then {
-    Zen_MP_Closure_Packet = ["Zen_InvokeTaskClient", [_unitsAdded, (_taskArray select 4), (_taskArray select 5), (_taskArray select 3), false, _nameString, (_taskArray select 6)]];
+    Zen_MP_Closure_Packet = ["Zen_InvokeTaskClient", [_unitsAdded, (_taskArray select 4), (_taskArray select 5), (_taskArray select 3), false, _nameString, (_taskArray select 6), (_taskArray select 8)]];
     publicVariable "Zen_MP_Closure_Packet";
 
     if (count _unitsRemoved > 0) then {

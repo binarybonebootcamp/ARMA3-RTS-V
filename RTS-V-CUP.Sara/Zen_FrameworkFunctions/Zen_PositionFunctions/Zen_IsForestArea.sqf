@@ -50,7 +50,8 @@ _treeArea = 0;
     if (([_tree] + _this) call Zen_IsPointInPoly) then {
         _isBlacklisted = false;
         {
-            _isBlacklisted = ([_tree, _x]) call Zen_IsPointInPoly;
+            // _isBlacklisted = ([_tree, _x]) call Zen_IsPointInPoly;
+            _isBlacklisted = (getPosATL _tree) inArea _x;
             if (_isBlacklisted) exitWith {};
         } forEach _blacklist;
 
@@ -62,7 +63,7 @@ _treeArea = 0;
 } forEach _trees;
 
 if (_markerShape == "Ellipse") then {
-    _totalArea = ([_XYSizeArray] call Zen_ArrayFindAverage)^2 * pi;
+    _totalArea = pi * (_XYSizeArray select 0) * (_XYSizeArray select 1);
 } else {
     _totalArea = 4 * (_XYSizeArray select 0) * (_XYSizeArray select 1);
 };

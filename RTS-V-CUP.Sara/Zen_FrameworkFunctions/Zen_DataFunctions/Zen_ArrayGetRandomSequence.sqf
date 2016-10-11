@@ -17,25 +17,23 @@ _array = _this select 0;
 _number = _this select 1;
 ZEN_STD_Parse_GetArgumentDefault(_remove, 2, false)
 
-_iterator = [];
-for "_i" from 0 to (count _array - 1) do {
-    _iterator pushBack _i;
-};
-
-0 = [_iterator] call Zen_ArrayShuffle;
 _return = [];
-
-for "_i" from 1 to _number do {
-    _return pushBack (_array select (_iterator select (_i - 1)));
-};
-
 if (_remove) then {
-    _iterator resize _number;
-    _iterator = [_iterator, {_this}, "hash"] call Zen_ArraySort;
+    for "i" from 1 to _number do {
+        _index = ZEN_STD_Array_RandIndex(_array);
+        _return pushBack (_array select _index);
+        0 = [_array, _index] call Zen_ArrayRemoveIndex;
+    };
+} else {
+    _iterator = [];
+    for "_i" from 0 to (count _array - 1) do {
+        _iterator pushBack _i;
+    };
 
-    {
-        0 = [_array, _x - _forEachIndex] call Zen_ArrayRemoveIndex;
-    } forEach _iterator;
+    0 = [_iterator] call Zen_ArrayShuffle;
+    for "_i" from 1 to _number do {
+        _return pushBack (_array select (_iterator select (_i - 1)));
+    };
 };
 
 call Zen_StackRemove;

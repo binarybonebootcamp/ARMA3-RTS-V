@@ -79,6 +79,9 @@ switch (toLower _cmd) do {
     case "setoxygenremaining": {
         (_args select 0) setOxygenRemaining (_args select 1);
     };
+    case "enablefatigue": {
+        (_args select 0) enableFatigue (_args select 1);
+    };
     default {
         0 = ["Zen_ExecuteCommand", "Unsupported command sequence identifier given", _this] call Zen_PrintError;
         call Zen_StackPrint;

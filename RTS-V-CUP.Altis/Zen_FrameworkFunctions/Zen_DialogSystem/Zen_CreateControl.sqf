@@ -22,7 +22,7 @@ if !([_controlType, _controlTypes] call Zen_ValueIsInArray) exitWith {
     ZEN_FMW_Code_ErrorExitValue("Zen_CreateControl", "Invalid control type given", (""))
 };
 
-_dataTypes = ["LinksTo","Text","FontColor","Position","Size","ActivationFunction", "SelectionFunction","List","ListData","Data","FontSize", "Font", "FontColorSelected", "ListTooltip", "ForegroundColor", "BackgroundColor", "Tooltip", "TooltipFontColor", "TooltipBackgroundColor", "TooltipBorderColor", "Picture", "PictureColor", "PictureColorSelected", "SliderPositions", "Progress"];
+_dataTypes = ["LinksTo","Text","FontColor","Position","Size","ActivationFunction", "SelectionFunction","List","ListData","Data","FontSize", "Font", "FontColorSelected", "ListTooltip", "ForegroundColor", "BackgroundColor", "Tooltip", "TooltipFontColor", "TooltipBackgroundColor", "TooltipBorderColor", "Picture", "PictureColor", "PictureColorSelected", "SliderPositions", "Progress", "Angle"];
 _dataArray = [];
 
 {

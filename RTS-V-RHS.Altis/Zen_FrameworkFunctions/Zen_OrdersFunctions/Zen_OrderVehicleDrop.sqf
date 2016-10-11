@@ -6,9 +6,9 @@
 #include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_OrderVehicleDrop", _this] call Zen_StackAdd;
-private ["_vehicle", "_posArray", "_className", "_speed", "_heliZ", "_dropPoint", "_dirToDrop", "_destination", "_landScript", "_drop", "_vehicleGrp", "_isCrash", "_vehicleGrp", "_vehicleGrp", "_cleanupCrash"];
+private ["_vehicle", "_posArray", "_className", "_speed", "_heliZ", "_dropPoint", "_dirToDrop", "_destination", "_landScript", "_drop", "_vehicleGrp", "_isCrash", "_vehicleGrp", "_vehicleGrp", "_cleanupCrash", "_cleanupEnd"];
 
-if !([_this, [["OBJECT"], ["VOID"], ["OBJECT", "STRING"], ["STRING"], ["SCALAR"], ["BOOL"]], [], 3] call Zen_CheckArguments) exitWith {
+if !([_this, [["OBJECT"], ["ARRAY"], ["OBJECT", "STRING"], ["STRING"], ["SCALAR"], ["BOOL"], ["BOOL"]], [[], ["ARRAY", "OBJECT", "GROUP", "STRING"]], 3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -28,6 +28,7 @@ if (count _this > 4) then {
 };
 
 ZEN_STD_Parse_GetArgumentDefault(_cleanupCrash, 5, false)
+ZEN_STD_Parse_GetArgumentDefault(_cleanupEnd, 6, false)
 
 {
     _posArray set [_forEachIndex, ([_x] call Zen_ConvertToPosition)];
@@ -82,7 +83,11 @@ if !(_isCrash) then {
     terminate _landScript;
 
     ZEN_STD_OBJ_AnimateDoors(_vehicle, 0)
-    _landScript = [_vehicle, (_posArray select 1), _speed, _heliZ, false, true] spawn Zen_OrderHelicopterLand;
+    if (_cleanupEnd) then {
+        _landScript = [_vehicle, (_posArray select 1), _speed, _heliZ, true, true] spawn Zen_OrderVehicleMove;
+    } else {
+        _landScript = [_vehicle, (_posArray select 1), _speed, _heliZ, false, true] spawn Zen_OrderHelicopterLand;
+    };
 
     waitUntil {
         sleep 2;

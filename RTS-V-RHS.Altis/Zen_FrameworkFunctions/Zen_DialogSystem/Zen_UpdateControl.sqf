@@ -14,7 +14,7 @@ if !([_this, [["STRING"], ["ARRAY"], ["ARRAY"], ["ARRAY"], ["ARRAY"], ["ARRAY"],
 
 _controlID = _this select 0;
 _controlTypes = ["Button","List","Text", "BACKGROUND", "DROPLIST", "SLIDER", "PICTURE", "CHECKBOXES", "RADIOBUTTONS", "TEXTFIELD", "PROGRESSBAR"];
-_dataTypes = ["LinksTo","Text","FontColor","Position","Size","ActivationFunction", "SelectionFunction","List","ListData","Data","FontSize", "Font", "FontColorSelected", "ListTooltip", "ForegroundColor", "BackgroundColor", "Tooltip", "TooltipFontColor", "TooltipBackgroundColor", "TooltipBorderColor", "Picture", "PictureColor", "PictureColorSelected", "SliderPositions", "Progress"];
+_dataTypes = ["LinksTo","Text","FontColor","Position","Size","ActivationFunction", "SelectionFunction","List","ListData","Data","FontSize", "Font", "FontColorSelected", "ListTooltip", "ForegroundColor", "BackgroundColor", "Tooltip", "TooltipFontColor", "TooltipBackgroundColor", "TooltipBorderColor", "Picture", "PictureColor", "PictureColorSelected", "SliderPositions", "Progress", "Angle"];
 
 _index = [Zen_Control_Classes_Global, _controlID, 0] call Zen_ArrayGetNestedIndex;
 if (count _index == 0) exitWith {

@@ -14,10 +14,18 @@ _objectArray = [(_this select 0)] call Zen_ConvertToObjectArray;
 _returnObjectArray = [];
 
 {
-    if ((typeName _x == "OBJECT") && {(local _x)}) then {
-        _returnObjectArray pushBack _x;
-    } else {
-        if (typeName _x == "ARRAY") then {
+    switch (typeName _x) do {
+        case "OBJECT": {
+            if (local _x) then {
+                _returnObjectArray pushBack _x;
+            };
+        };
+        case "GROUP": {
+            if (local _x) then {
+                _returnObjectArray pushBack _x;
+            };
+        };
+        case "ARRAY": {
             _returnObjectArray pushBack ([_x] call Zen_ArrayRemoveNonLocal);
         };
     };

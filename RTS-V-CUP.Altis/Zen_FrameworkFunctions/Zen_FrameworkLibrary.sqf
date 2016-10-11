@@ -113,7 +113,7 @@
     };
 
 #define ZEN_FMW_MP_REClient(F, A, I, O) \
-    if (local O) then { \
+    if (local (O)) then { \
         A I (missionNamespace getVariable F); \
     } else { \
         if (isMultiplayer) then { \
@@ -194,3 +194,5 @@
 
 #define ZEN_FMW_Loadout_DefaultPreset (["Rifleman", "AT Rifleman", "Assistant AA", "Assistant AT", "Assistant AR", "Team Leader", "Squad Leader", "Grenadier", "Auto Rifleman", "Marksman", "Medic", "AA Specialist", "AT Specialist", "Sapper", "Miner", "EOD Specialist"])
 #define ZEN_FMW_Loadout_StdInfantryPreset (["Rifleman", "Rifleman", "Rifleman", "AT Rifleman", "Assistant AR", "Team Leader", "Squad Leader", "Grenadier", "Grenadier", "Auto Rifleman", "Auto Rifleman", "Marksman", "Medic"])
+#define ZEN_FMW_Loadout_BasicInfantryPreset (["Rifleman", "Rifleman", "Rifleman", "Assistant AR", "Team Leader", "Grenadier", "Auto Rifleman", "Medic"])
+#define ZEN_FMW_Loadout_HeavyInfantryPreset (["Team Leader", "Grenadier", "Auto Rifleman", "AT Rifleman", "AT Rifleman", "AT Specialist", "AT Specialist", "AA Specialist", "AA Specialist", "Assistant AT", "Assistant AA", "Sapper", "Miner"])

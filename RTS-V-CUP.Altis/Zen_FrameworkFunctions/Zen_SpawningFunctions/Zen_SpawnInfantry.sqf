@@ -78,7 +78,7 @@ _group = [_spawnPos, _soldierlistrand] call Zen_SpawnGroup;
 
 (leader _group) setUnitRank "CORPORAL";
 0 = [(units _group), _skill] call Zen_SetAISkill;
-_group allowFleeing 0;
+// _group allowFleeing 0;
 
 call Zen_StackRemove;
 (_group)

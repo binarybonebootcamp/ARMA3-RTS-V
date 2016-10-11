@@ -30,6 +30,7 @@ Strategic
         Top-down building placement
             CJ asset placement direction dialog
             Placement avoids buildings
+            getMousePosition
 
     Assets
         // constructor macros
@@ -209,14 +210,15 @@ Known MP Issues
         // Commander definition synch
         // 20 second init delay
         // create local building for every client
-    !! JIP
-        all client data
-            PV'd strategic names
-            Economy
-        loadout
-        spawn and respawn locations
-        considered by commander, economy manager
-        local buildings
+    JIP
+        // all client data
+            // PV'd strategic names
+            // Economy
+        // loadouts
+        // spawn and respawn locations
+        // considered by commander, economy manager
+        // local buildings
+        test
 Variants
     RHS - CUP File Differences
         mission.sqm
@@ -225,3 +227,28 @@ Variants
         Zen_RTS_Functions\Zen_RTS_CustomLoadouts
     Map Variant File Differences
         mission.sqm
+
+
+Here's a draft of the introduction we might post.  I didn't include things like a download links section, contact info for feedback etc, so it's still incomplete.  We also need to update and correct the github page so an potential contributors can fork/pull easily.  If anything looks wrong or there's more you want to add, just say so.
+
+[spoiler]
+[code]
+RTS V is a 32 player PvP mission spanning all of Altis, in which players work as a team in a boots-on-the-ground twist on traditional real time strategy games.  Take strategic points on the island to earn resources for your team and money for yourself.  Create buildings when you are the commander to allow your teammates to purchase soldiers, vehicles, and aircraft with which to defeat the enemy team.  Lead your custom platoon of AI soldiers and vehicles, or take control of your most powerful asset directly to engage other players.
+
+Despite a long development time and rigorous testing, RTS V is still in the Beta stage of development.  This means that most major features are functional, but numerous minor features and tweaks are unfinished.  There are undoubtedly bugs and issues we have yet to discover, so your bug reports and feedback are vital to improving the mission.  We are also interested in subjective feedback about the design and gameplay of the mission.
+
+We present a list of the major known issues and an estimated time we can fix them.  We will be updating this list as new issues are reported or fixed.  For the sanity of the development team, please do not report issues that we are already aware of.
+
+Known Issues
+    Building visuals
+        we are trying workarounds in MP now
+    Client synch delay on mission start
+        this appears to be server/client/ping dependent
+        As a workaround, restart the mission once or twice; this seems to reduce the lag
+        this affects every mission with server-client scripting
+    Individual upgrades/techs are missed or not functional
+        We'll fix this system when we add more techs
+
+Due to the complexity of the mission's features (we have thousands of lines of code written specifically for this mission), we invite players to join the development process as either a tester (you'll test and fill out bug reports in a semi-serious fashion) or a coder (you'll track down bugs or add minor features).  No prior experience with mission making or programming is required, just a desire to help and learn.  Also, feel free to fork the project on github and commit fixes; if your code works, we'll merge it and credit you as a developer of the mission.
+[/code]
+[/spoiler]

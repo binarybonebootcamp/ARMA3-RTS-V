@@ -33,6 +33,11 @@ _returnObjectArray = [];
                 };
             };
         };
+        case "SCRIPT": {
+            if !(scriptDone _x) then {
+                _returnObjectArray pushBack _x;
+            };
+        };
         default {
             _returnObjectArray pushBack _x;
         };

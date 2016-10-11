@@ -72,5 +72,11 @@ if (local _vehicle) then {
     };
 };
 
+_result = [_vehicle getVariable "Zen_Unused_Driver", _vehicle getVariable "Zen_Unused_Turret", _vehicle getVariable "Zen_Unused_Cargo"];
+
+_vehicle setVariable ["Zen_Unused_Driver", nil, true];
+_vehicle setVariable ["Zen_Unused_Turret", nil, true];
+_vehicle setVariable ["Zen_Unused_Cargo", nil, true];
+
 call Zen_StackRemove;
-([_vehicle getVariable "Zen_Unused_Driver", _vehicle getVariable "Zen_Unused_Turret", _vehicle getVariable "Zen_Unused_Cargo"])
+(_result)

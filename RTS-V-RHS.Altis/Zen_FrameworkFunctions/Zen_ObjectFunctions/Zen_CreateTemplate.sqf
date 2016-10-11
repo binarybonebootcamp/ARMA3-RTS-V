@@ -6,12 +6,12 @@
 #include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_CreateTemplate", _this] call Zen_StackAdd;
-private ["_pos", "_radius", "_objRaw", "_objResult", "_center", "_objData", "_filterWithMarker", "_marker"];
+private ["_pos", "_radius", "_objRaw", "_objResult", "_center", "_templateData", "_filterWithMarker", "_marker", "_damage", "_loadoutData", "_loadout", "_veh", "_anims"];
 
 if (count _this == 1) then {
     if !([_this, [["STRING"]], [], 1] call Zen_CheckArguments) exitWith {
         call Zen_StackRemove;
-        ([])
+        ("")
     };
 
     _marker = _this select 0;
@@ -22,7 +22,7 @@ if (count _this == 1) then {
 } else {
     if !([_this, [["VOID"], ["SCALAR"]], [], 2] call Zen_CheckArguments) exitWith {
         call Zen_StackRemove;
-        ([])
+        ("")
     };
 
     _pos = [(_this select 0)] call Zen_ConvertToPosition;
@@ -33,7 +33,7 @@ if (count _this == 1) then {
 
 _objRaw = [];
 _objResult = [];
-_objData = [];
+_templateData = [];
 
 // if (_pos nearObjectsReady _radius) then {
     _objRaw = _pos nearObjects ["All", _radius];
@@ -45,7 +45,8 @@ if (_filterWithMarker) then {
     private ["_objRawFilter"];
     _objRawFilter = [];
     {
-        if ([_x, _marker] call Zen_IsPointInPoly) then {
+        // if ([_x, _marker] call Zen_IsPointInPoly) then {
+        if ((getPosATL _x) inArea _marker) then {
             _objRawFilter pushBack _x;
         };
     } forEach _objRaw;
@@ -60,10 +61,53 @@ if (_filterWithMarker) then {
     };
 } forEach (_objRaw - (nearestTerrainObjects [_pos, [], _radius]));
 
+if (count _objResult == 0) exitWith {
+    ZEN_FMW_Code_ErrorExitValue("Zen_CreateTemplate", "No valid objects in given search area.", "")
+};
+
 _center = [_objResult] call Zen_FindCenterPosition;
+_center set [2, (getPosATL ([_objResult, {-((getPosATL _this) select 2)}] call Zen_ArrayFindExtremum)) select 2];
 {
-    _objData pushBack ([typeOf _x, (getPosATL _x) vectorDiff _center, getDir _x]);
+    if (_x isKindOf "static" ||_x isKindOf "building" || _x isKindOf "thing") then {
+        _templateData pushBack (["Zen_Template_Object_Type_Simple", typeOf _x, (getPosATL _x) vectorDiff _center, getDir _x, [vectorDir _x, vectorUp _x], getDammage _x, simulationEnabled _x]);
+    } else {
+        if (_x isKindOf "WeaponHolder") then {
+            _loadoutData = [_x] call Zen_GetUnitLoadout;
+            _loadout = [_loadoutData] call Zen_CreateLoadout;
+            _templateData pushBack (["Zen_Template_Object_Type_WeaponHolder", typeOf _x, (getPosATL _x) vectorDiff _center, getDir _x, [vectorDir _x, vectorUp _x], getDammage _x, simulationEnabled _x, _loadout]);
+        } else {
+            _damage = getDammage _x;
+            if (count (getAllHitPointsDamage _x) > 0) then {
+                _damage = (getAllHitPointsDamage _x) select 2;
+            };
+
+            _loadoutData = [_x] call Zen_GetUnitLoadout;
+            _loadout = [_loadoutData] call Zen_CreateLoadout;
+
+            _veh = _x;
+            _anims = [];
+            {
+                _anims pushBack (_veh animationPhase _x);
+            } forEach animationNames _x;
+
+            _templateData pushBack (["Zen_Template_Object_Type_Vehicle", typeOf _x, (getPosATL _x) vectorDiff _center, getDir _x, [vectorDir _x, vectorUp _x], _damage, simulationEnabled _x, _loadout, fuel _x, _anims]);
+        };
+    };
 } forEach _objResult;
 
+_nameString = format ["Zen_template_%1",([10] call Zen_StringGenerateRandom)];
+Zen_Template_Array_Global pushBack [_nameString, _templateData, []];
+publicVariable "Zen_Template_Array_Global";
+
 call Zen_StackRemove;
-(_objData)
+(_nameString)
+
+/**
+["template_name"
+    [
+        ["object type simple", "object classname", vector difference from center, vector direction, vector up, damage]
+        ["object type vehicle", "object classname", vector difference from center, vector direction, vector up, damage selections, fuel, "loadout", animation phases]
+        ...
+    ]
+]
+//*/

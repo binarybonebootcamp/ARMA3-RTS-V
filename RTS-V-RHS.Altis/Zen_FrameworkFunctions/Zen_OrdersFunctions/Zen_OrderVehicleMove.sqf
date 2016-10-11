@@ -41,6 +41,7 @@ if (_vehicle isKindOf "AIR") then {
     _inPos = [_vehicle, _inPos, 75] call Zen_ExtendRay;
 };
 
+(group _vehicleDriver) setCurrentWaypoint ((group _vehicleDriver) addWaypoint [_inPos, -1]);
 (group _vehicleDriver) move _inPos;
 
 _vehicleGrp setBehaviour "safe";
@@ -91,10 +92,8 @@ waitUntil {
 };
 
 _vehicleDriver enableAI "Move";
-// _vehicle move (getPosATL _vehicle);
 
 sleep 2;
-
 if (_cleanupEnd && {(([_vehicle, _inPos] call Zen_Find2dDistance) < _completionDistance)}) then {
     ZEN_STD_OBJ_DeleteVehCrew(_vehicle);
 };

@@ -17,9 +17,19 @@ _heli = _this select 0;
 if (count _this > 2) then {
     _activator = _this select 1;
     _units = [_activator];
+
+    _turrets = [_heli, "CargoFFV"] call Zen_GetTurretPaths;
+    _turretUnits = [];
+    {
+        _turretUnits pushBack (_heli turretUnit _x);
+    } forEach _turrets;
+
+    // player commandChat str _turrets;
+    // player commandChat str _turretUnits;
+    _turretUnits = [_turretUnits] call Zen_ArrayRemoveDead;
     if (_activator == leader group _activator) then {
         {
-            if (!(isPlayer _x) && (_x in _heli) && (_x in assignedCargo _heli)) then {
+            if (!(isPlayer _x) && (_x in _heli) && {((_x in assignedCargo _heli) || (_x in _turretUnits))}) then {
                 _units pushBack _x;
             };
         } forEach (units group _activator);
@@ -27,6 +37,8 @@ if (count _this > 2) then {
 } else {
     _units = [(_this select 1)] call Zen_ConvertToObjectArray;
 };
+
+// player commandChat str _units;
 
 _h_holdPos = _heli spawn {
     while {true} do {

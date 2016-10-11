@@ -3,9 +3,9 @@
 // See Legal.txt
 
 _Zen_stack_Trace = ["Zen_InvokeTaskClient", _this] call Zen_StackAdd;
-private ["_descriptionLong", "_descriptionShort", "_destination", "_isCurrent", "_nameString", "_task", "_units", "_localTaskArray", "_parentTaskLocal", "_parentTask", "_parentDataLocal", "_taskIndex", "_localTaskData", "_taskIndexes"];
+private ["_descriptionLong", "_descriptionShort", "_destination", "_isCurrent", "_nameString", "_task", "_units", "_localTaskArray", "_parentTaskLocal", "_parentTask", "_parentDataLocal", "_taskIndex", "_localTaskData", "_taskIndexes", "_taskType"];
 
-if !([_this, [["ARRAY"], ["STRING"], ["STRING"], ["ARRAY"], ["BOOL"], ["STRING"], ["STRING"]], [["OBJECT"], [], [], ["SCALAR"]], 7] call Zen_CheckArguments) exitWith {
+if !([_this, [["ARRAY"], ["STRING"], ["STRING"], ["ARRAY"], ["BOOL"], ["STRING"], ["STRING"], ["STRING"]], [["OBJECT"], [], [], ["SCALAR"]], 7] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -16,6 +16,7 @@ _destination = _this select 3;
 _isCurrent = _this select 4;
 _nameString = _this select 5;
 _parentTask = _this select 6;
+_taskType = _this select 7;
 
 if (count _units == 0) exitWith {
     call Zen_StackRemove;
@@ -55,6 +56,7 @@ _parentTaskLocal = taskNull;
 
     _task = _unit createSimpleTask [(format ["Zen_task_local_%1",([10] call Zen_StringGenerateRandom)]), _parentTaskLocal];
     _task setSimpleTaskDescription [_descriptionLong, _descriptionShort, _descriptionShort];
+    _task setSimpleTaskType _taskType;
 
     if !([_destination, [0,0,0]] call Zen_ValuesAreEqual) then {
         _task setSimpleTaskDestination _destination;

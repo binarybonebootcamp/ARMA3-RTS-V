@@ -41,7 +41,8 @@ _areInArea = true;
     _isInBlacklist = false;
     if (count _blacklist > 0) then {
         {
-            _isInBlacklist = [_unit, _x] call Zen_IsPointInPoly;
+            // _isInBlacklist = [_unit, _x] call Zen_IsPointInPoly;
+            _isInBlacklist = (getPosATL _unit) inArea _x;
             if (_isInBlacklist) exitWith {};
         } forEach _blacklist;
     };

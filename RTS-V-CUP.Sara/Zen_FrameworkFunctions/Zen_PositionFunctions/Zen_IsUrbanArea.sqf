@@ -71,7 +71,7 @@ _urbanArea = 0;
 } forEach _roads;
 
 if (_markerShape == "Ellipse") then {
-    _totalArea = ([_XYSizeArray] call Zen_ArrayFindAverage)^2 * pi;
+    _totalArea = pi * (_XYSizeArray select 0) * (_XYSizeArray select 1);
 } else {
     _totalArea = 4 * (_XYSizeArray select 0) * (_XYSizeArray select 1);
 };

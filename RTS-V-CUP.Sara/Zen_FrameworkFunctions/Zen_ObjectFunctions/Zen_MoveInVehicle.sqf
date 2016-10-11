@@ -46,7 +46,8 @@ switch (toLower _vehicleSlot) do {
             };
         };
 
-        _unitsArray = [_unitsArray, {(vehicle _this != _this)}] call Zen_ArrayFilterCondition;
+        _unitsArray = _unitsArray select {(vehicle _x == _x)};
+        // _unitsArray = [_unitsArray, {(vehicle _this != _this)}] call Zen_ArrayFilterCondition;
         if ((count _unitsArray > 0) && {count _unUsedCargo > 0}) then {
             {
                 if (_forEachIndex == count _unitsArray) exitWith {};
@@ -101,11 +102,13 @@ switch (toLower _vehicleSlot) do {
     };
     case "all": {
         0 = [(_unitsArray select 0), _vehicle, "driver"] call Zen_MoveInVehicle;
-        _unitsArray = [_unitsArray, {(vehicle _this != _this)}] call Zen_ArrayFilterCondition;
+        // _unitsArray = [_unitsArray, {(vehicle _this != _this)}] call Zen_ArrayFilterCondition;
+        _unitsArray = _unitsArray select {(vehicle _x == _x)};
 
         if (count _unitsArray > 0) then {
             0 = [_unitsArray, _vehicle, "turret"] call Zen_MoveInVehicle;
-            _unitsArray = [_unitsArray, {(vehicle _this != _this)}] call Zen_ArrayFilterCondition;
+            // _unitsArray = [_unitsArray, {(vehicle _this != _this)}] call Zen_ArrayFilterCondition;
+            _unitsArray = _unitsArray select {(vehicle _x == _x)};
             if (count _unitsArray > 0) then {
                 _h_move = [_unitsArray, _vehicle, "cargo"] call Zen_MoveInVehicle;
             };

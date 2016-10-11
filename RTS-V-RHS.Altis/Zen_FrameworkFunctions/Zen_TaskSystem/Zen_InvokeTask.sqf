@@ -2,10 +2,13 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
-_Zen_stack_Trace = ["Zen_InvokeTask", _this] call Zen_StackAdd;
-private ["_units", "_descriptionLong", "_descriptionShort", "_destination", "_isCurrent", "_nameString", "_vars", "_parentTask"];
+#include "..\Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
 
-if !([_this, [["VOID"], ["STRING"], ["STRING"], ["VOID"], ["BOOL"], ["STRING"], ["STRING"]], [], 3] call Zen_CheckArguments) exitWith {
+_Zen_stack_Trace = ["Zen_InvokeTask", _this] call Zen_StackAdd;
+private ["_units", "_descriptionLong", "_descriptionShort", "_destination", "_isCurrent", "_nameString", "_vars", "_parentTask", "_taskIcon"];
+
+if !([_this, [["VOID"], ["STRING"], ["STRING"], ["VOID"], ["BOOL"], ["STRING"], ["STRING"], ["STRING"]], [], 3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
     ("")
 };
@@ -15,8 +18,6 @@ _descriptionLong = _this select 1;
 _descriptionShort = _this select 2;
 
 _destination = [0,0,0];
-_isCurrent = false;
-_parentTask = "";
 _nameString = format ["Zen_task_global_%1",([10] call Zen_StringGenerateRandom)];
 
 if (count _this > 3) then {
@@ -25,17 +26,10 @@ if (count _this > 3) then {
     };
 };
 
-if (count _this > 4) then {
-    _isCurrent = _this select 4;
-};
-
-if (count _this > 5) then {
-    _parentTask = _this select 5;
-};
-
-if (count _this > 6) then {
-    _nameString = _this select 6;
-};
+ZEN_STD_Parse_GetArgumentDefault(_isCurrent, 4, false)
+ZEN_STD_Parse_GetArgumentDefault(_parentTask, 5, "")
+ZEN_STD_Parse_GetArgumentDefault(_taskIcon, 6, "default")
+ZEN_STD_Parse_GetArgumentDefault(_nameString, 7, _nameString)
 
 _oldData = [_nameString, false] call Zen_GetTaskDataGlobal;
 
@@ -46,10 +40,10 @@ if (count _oldData > 0) exitWith {
     (_nameString)
 };
 
-Zen_Task_Array_Global pushBack [_nameString, _units, "created", _destination, _descriptionLong, _descriptionShort, _parentTask, []];
+Zen_Task_Array_Global pushBack [_nameString, _units, "created", _destination, _descriptionLong, _descriptionShort, _parentTask, [], _taskIcon];
 publicVariable "Zen_Task_Array_Global";
 
-_vars = [_units, _descriptionLong, _descriptionShort, _destination, _isCurrent, _nameString, _parentTask];
+_vars = [_units, _descriptionLong, _descriptionShort, _destination, _isCurrent, _nameString, _parentTask, _taskIcon];
 0 = _vars call Zen_InvokeTaskClient;
 
 if (isMultiplayer) then {
@@ -62,7 +56,7 @@ if (_isCurrent) then {
 };
 
 if !([_parentTask, ""] call Zen_ValuesAreEqual) then {
-    0 = [_parentTask, 0, 0, 0, 0, false, false, _nameString] call Zen_UpdateTask;
+    0 = [_parentTask, 0, 0, 0, 0, false, false, _taskIcon, _nameString] call Zen_UpdateTask;
 };
 
 call Zen_StackRemove;

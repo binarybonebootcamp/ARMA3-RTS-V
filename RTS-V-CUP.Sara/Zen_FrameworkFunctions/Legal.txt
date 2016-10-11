@@ -3,7 +3,7 @@ This file is released under Creative Commons Attribution-NonCommercial-NoDerivat
 
 Legal
 
-All source code and documentation (this software) remain the sole property of its creator, Zenophon (author).
+All source code and documentation (this software) remain the sole property of its creator (author), who is assumed to be Zenophon unless explicitly stated otherwise.
 This software is not an official product of Bohemia Interactive, nor will they provide any support for this software.
 This software is provided without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement.
 In no event shall the author be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with this software or the use or other dealings in or with this software.

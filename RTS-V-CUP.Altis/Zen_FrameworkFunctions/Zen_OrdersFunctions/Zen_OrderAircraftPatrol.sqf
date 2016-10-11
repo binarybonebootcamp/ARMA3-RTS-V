@@ -71,7 +71,8 @@ _crewGroupArray = [];
     _heliDirToLand = [_veh,_mpos] call Zen_FindDirection;
     _mposCorrected = [_mpos, 100, _heliDirToLand, "trig"] call Zen_ExtendPosition;
 
-    _veh move _mposCorrected;
+    (group driver _veh) setCurrentWaypoint ((group driver _veh) addWaypoint [_mposCorrected, -1]);
+    (group driver _veh) move _mposCorrected;
     _veh flyInHeight _heliHeight;
     _veh setBehaviour _behavior;
     _veh setCombatMode "Red";
@@ -105,7 +106,8 @@ while {(count _vehicleArray != 0)} do {
                     CALC_POS
 
                     _mposCorrected = [_veh, _mpos, 100] call Zen_ExtendRay;
-                    _veh move _mposCorrected;
+                    (group driver _veh) setCurrentWaypoint ((group driver _veh) addWaypoint [_mposCorrected, -1]);
+                    (group driver _veh) move _mposCorrected;
                     _veh flyInHeight _heliHeight;
                     _veh setBehaviour _behavior;
                     _veh setCombatMode "Red";

@@ -22,6 +22,7 @@ if (typeName _group == "OBJECT") then {
     _group = group _group;
 };
 
+_group setCurrentWaypoint (_group addWaypoint [_movePos, -1]);
 _group move _movePos;
 _group setBehaviour _behaviorMode;
 _group setCombatMode _combatMode;

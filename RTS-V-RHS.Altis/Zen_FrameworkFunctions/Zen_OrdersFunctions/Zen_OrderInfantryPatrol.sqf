@@ -15,8 +15,6 @@ if !([_this, [["VOID"], ["ARRAY", "OBJECT", "GROUP", "STRING"], ["ARRAY"], ["ARR
 _grpsArray = [(_this select 0)] call Zen_ConvertToGroupArray;
 _movecenters = _this select 1;
 
-// _maxx = 200;
-
 if !((typeName _movecenters == "ARRAY") && {typeName (_movecenters select 0) != "SCALAR"}) then {
     if (count _this > 2) then {
         _positionFilterArgs = [_this select 2];
@@ -90,6 +88,7 @@ _grpsArray = [_grpsArray] call Zen_ArrayRemoveDead;
             } forEach (units _group);
         };
 
+        _group setCurrentWaypoint (_group addWaypoint [_mpos, -1]);
         _group move _mpos;
         _group setCombatMode "Red";
         _group setSpeedMode _speedMode;
@@ -131,6 +130,7 @@ while {(count _grpsArray != 0)} do {
                             } forEach (units _group);
                         };
 
+                        _group setCurrentWaypoint (_group addWaypoint [_mpos, -1]);
                         _group move _mpos;
                         _group setBehaviour _behaviorMode;
                         _group setCombatMode "Red";
@@ -160,11 +160,14 @@ while {(count _grpsArray != 0)} do {
                                     } forEach (units _group);
                                 };
 
-                                _man move _mpos;
-                                _group setCombatMode "Red";
+                                _group setCurrentWaypoint (_group addWaypoint [_mpos, -1]);
+                                _group move _mpos;
                                 _group setSpeedMode _speedMode;
+                                _group setCombatMode "Red";
                                 if (side _group == civilian) then {
                                     _group setBehaviour "careless";
+                                } else {
+                                    _group setBehaviour "combat";
                                 };
                             };
                         };
