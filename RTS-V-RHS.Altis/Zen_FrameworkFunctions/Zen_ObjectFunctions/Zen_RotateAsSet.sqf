@@ -5,7 +5,7 @@
 #include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_RotateAsSet", _this] call Zen_StackAdd;
-private ["_moveObjects", "_center", "_moveMarkers", "_newPos", "_rotateAngle"];
+private ["_moveObjects", "_center", "_moveMarkers", "_newPos", "_rotateAngle", "_redir"];
 
 if !([_this, [["VOID"], ["SCALAR"]], [], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
@@ -13,13 +13,16 @@ if !([_this, [["VOID"], ["SCALAR"]], [], 2] call Zen_CheckArguments) exitWith {
 
 _moveEntities = _this select 0;
 _rotateAngle = _this select 1;
+ZEN_STD_Parse_GetArgumentDefault(_redir, 2, false)
 
 if (typeName _moveEntities != "ARRAY") then {
     _moveEntities = [_moveEntities];
 };
 
 _moveMarkers = [_moveEntities, ""] call Zen_ArrayGetType;
-_moveObjects = [_moveEntities] call Zen_ConvertToObjectArray;
+
+_moveObjects = [_moveEntities, {typeName _this == "STRING"}, true] call Zen_ArrayFilterCondition;
+_moveObjects = [_moveObjects] call Zen_ConvertToObjectArray;
 
 0 = [_moveObjects, _moveMarkers] call Zen_ArrayAppendNested;
 _center = _moveObjects call Zen_FindAveragePosition;
@@ -31,8 +34,15 @@ _center = _moveObjects call Zen_FindAveragePosition;
 
     if (typeName _x == "STRING") then {
         _x setMarkerPos _newPos;
+        if (_redir) then {
+            _x setMarkerDir (markerDir _x + _rotateAngle);
+        };
     } else {
-        0 = [_x, _newPos, (if (_x isKindOf "LandVehicle") then {(0.2)} else {(0)}), 0, (getDir _x), true] call Zen_TransformObject;
+        if (_redir) then {
+            0 = [_x, _newPos, (if (_x isKindOf "LandVehicle") then {(0.2)} else {(0)}), 0, (getDir _x) + _rotateAngle, true] call Zen_TransformObject;
+        } else {
+            0 = [_x, _newPos, (if (_x isKindOf "LandVehicle") then {(0.2)} else {(0)}), 0, (getDir _x), true] call Zen_TransformObject;
+        };
     };
 } forEach _moveObjects;
 

@@ -17,17 +17,21 @@ _positions = _this select 0;
 _coord = [0, 0, 0];
 
 if (typeName _positions != "ARRAY") exitWith {
+    call Zen_StackRemove;
     ([_positions] call Zen_ConvertToPosition)
 };
 
 if ((typeName (_positions select 0)) == "SCALAR") exitWith {
+    call Zen_StackRemove;
     (_positions)
 };
 
 if (count _positions < 2) exitWith {
+    call Zen_StackRemove;
     ([_positions select 0] call Zen_ConvertToPosition)
 };
 
+_positions = +(_this select 0);
 {
     _positions set [_forEachIndex, ([_x] call Zen_ConvertToPosition)];
 } forEach _positions;
@@ -37,7 +41,6 @@ if (count _positions < 2) exitWith {
     _xMax = ([_positions, (compile format ["_this select %1", _x])] call Zen_ArrayFindExtremum) select _x;
     _xDistArray = [];
 
-    player commandChat str _xMax;
     _step = (_xMax - _xMin) / 200;
     if (_step > 0.01) then {
         for "_x0" from _xMin to _xMax step _step do {

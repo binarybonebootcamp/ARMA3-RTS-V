@@ -28,13 +28,15 @@ if ((typeName (_this select 0)) == "STRING") then {
 };
 
 _radiusMax = (_XYSizeArray select 0) max (_XYSizeArray select 1);
-_trees = [];
+// _trees = [];
 
-{
-    if (["t_", (str _x)] call Zen_StringIsInString) then {
-        0 = [_trees, _x] call Zen_ArrayAppend;
-    };
-} forEach (nearestObjects [_center, [], _radiusMax]);
+// {
+    // if (["t_", (str _x)] call Zen_StringIsInString) then {
+        // 0 = [_trees, _x] call Zen_ArrayAppend;
+    // };
+// } forEach (nearestObjects [_center, [], _radiusMax]);
+
+_trees = nearestTerrainObjects[_center, ["Tree", "Small Tree"], _radiusMax];
 
 if (count _trees < 2) exitWith {
     call Zen_StackRemove;
@@ -48,7 +50,8 @@ _treeArea = 0;
     if (([_tree] + _this) call Zen_IsPointInPoly) then {
         _isBlacklisted = false;
         {
-            _isBlacklisted = ([_tree, _x]) call Zen_IsPointInPoly;
+            // _isBlacklisted = ([_tree, _x]) call Zen_IsPointInPoly;
+            _isBlacklisted = (getPosATL _tree) inArea _x;
             if (_isBlacklisted) exitWith {};
         } forEach _blacklist;
 
@@ -60,7 +63,7 @@ _treeArea = 0;
 } forEach _trees;
 
 if (_markerShape == "Ellipse") then {
-    _totalArea = ([_XYSizeArray] call Zen_ArrayFindAverage)^2 * pi;
+    _totalArea = pi * (_XYSizeArray select 0) * (_XYSizeArray select 1);
 } else {
     _totalArea = 4 * (_XYSizeArray select 0) * (_XYSizeArray select 1);
 };

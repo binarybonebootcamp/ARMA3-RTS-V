@@ -2,8 +2,16 @@
 // This file is released under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
 // See Legal.txt
 
+#include "..\Zen_FrameworkLibrary.sqf"
+#include "..\Zen_StandardLibrary.sqf"
+
 _Zen_stack_Trace = ["Zen_ConvertToGroupArray", _this] call Zen_StackAdd;
 private ["_dataToConvert", "_returnArray", "_allGroups"];
+
+if !([_this, [["VOID"]], [], 1] call Zen_CheckArguments) exitWith {
+    call Zen_StackRemove;
+    ([])
+};
 
 _dataToConvert = _this select 0;
 
@@ -43,7 +51,9 @@ switch (typeName _dataToConvert) do {
                     };
                 };
                 case "ARRAY": {
-                    0 = [_returnArray, (_x call Zen_ConvertToGroupArray)] call Zen_ArrayAppendNested;
+                    if (count _x > 0) then {
+                        0 = [_returnArray, (_x call Zen_ConvertToGroupArray)] call Zen_ArrayAppendNested;
+                    };
                 };
                 case "GROUP": {
                     if !(isNull _x) then {
@@ -52,6 +62,10 @@ switch (typeName _dataToConvert) do {
                 };
                 case "SIDE": {
                     0 = [_returnArray, ([_x] call Zen_ConvertToGroupArray)] call Zen_ArrayAppendNested;
+                };
+                default {
+                    0 = ["Zen_ConvertToGroupArray", "Given value in nested array cannot be converted to an array of groups", _x] call Zen_PrintError;
+                    call Zen_StackPrint;
                 };
             };
         } forEach _dataToConvert;

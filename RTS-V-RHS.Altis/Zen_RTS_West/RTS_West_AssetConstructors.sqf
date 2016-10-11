@@ -292,7 +292,9 @@ Zen_RTS_F_West_Recycler = {
         _CJ setVariable ["Zen_RTS_StrategicIsAIAssigned", true, true];
         0 = [_group, _CJ, "all"] call Zen_MoveInVehicle;
 
-        (RTS_Worker_Recycle_Queue select 0) pushBack [(leader _group), false, _CJ];
+        _args = [(RTS_Worker_Recycle_Queue select 1), [(leader _group), false, _CJ]];
+        ZEN_FMW_MP_REServerOnly("Zen_ArrayAppend", _args, call)
+
     };
 };
 

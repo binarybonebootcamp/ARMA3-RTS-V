@@ -28,7 +28,9 @@ if ((typeName (_this select 0)) == "STRING") then {
 };
 
 _radiusMax = (_XYSizeArray select 0) max (_XYSizeArray select 1);
-_buildings = nearestObjects [_center, ["house"], _radiusMax];
+// _buildings = nearestObjects [_center, ["house"], _radiusMax];
+_buildings = nearestTerrainObjects [_center, ["Building", "House", "Church", "Chapel", "Fountain", "View-Tower", "FuelStation", "Hospital", "WaterTower"], _radiusMax];
+
 _roads = _center nearRoads _radiusMax;
 
 if (count _buildings < 1) exitWith {
@@ -69,7 +71,7 @@ _urbanArea = 0;
 } forEach _roads;
 
 if (_markerShape == "Ellipse") then {
-    _totalArea = ([_XYSizeArray] call Zen_ArrayFindAverage)^2 * pi;
+    _totalArea = pi * (_XYSizeArray select 0) * (_XYSizeArray select 1);
 } else {
     _totalArea = 4 * (_XYSizeArray select 0) * (_XYSizeArray select 1);
 };

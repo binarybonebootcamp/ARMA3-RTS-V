@@ -31,7 +31,7 @@ _objectArray = [];
     if ((((getPosATL _x select 2) > 2) || {([_x] call Zen_AreIndoors)}) && {(side _x) in _sidesAllowed}) then {
         _objectArray pushBack _x;
     };
-} forEach ((getPosATL _building) nearEntities [["Man"], (sqrt (2*(_buidingSize^2)))]);
+} forEach ((getPosATL _building) nearEntities [["Man"], (sqrt 2 * _buidingSize)]);
 
 call Zen_StackRemove;
 (_objectArray)

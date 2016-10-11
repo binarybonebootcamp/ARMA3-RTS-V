@@ -6,7 +6,7 @@
 #include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_RemoveFireSupportAction", _this] call Zen_StackAdd;
-private ["_nameString", "_indexes", "_globalData", "_IDs", "_unitsToRemove", "_unitsRemaining"];
+private ["_nameString", "_indexes", "_globalData", "_unitsToRemove"];
 
 if !([_this, [["STRING"], ["VOID"]], [], 1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
@@ -20,18 +20,23 @@ if (count _indexes == 0) exitWith {
 };
 
 _globalData = Zen_Fire_Support_Action_Array_Global select (_indexes select 0);
+_globalUnits = _globalData select 1;
 
 if (count _this > 1) then {
     _unitsToRemove = [(_this select 1)] call Zen_ConvertToObjectArray;
-    _unitsRemaining =+ (_globalData select 1);
 } else {
     _unitsToRemove = _globalData select 1;
-    _unitsRemaining = [];
-    _this set [1, _unitsToRemove];
 };
 
-_args = [_nameString, _unitsToRemove, _unitsRemaining];
-ZEN_FMW_MP_REAll("Zen_RemoveFireSupportAction_RemoveAction_MP", _args, call)
+{
+    0 = [_globalUnits, _x] call Zen_ArrayRemoveValue;
+} forEach _unitsToRemove;
+
+if (count _globalUnits == 0) then {
+    ZEN_STD_Array_UnorderedRemove(Zen_Fire_Support_Action_Array_Global, (_indexes select 0))
+};
+
+publicVariable "Zen_Fire_Support_Action_Array_Global";
 
 call Zen_StackRemove;
 if (true) exitWith {};

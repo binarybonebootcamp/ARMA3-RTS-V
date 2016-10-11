@@ -6,18 +6,18 @@
 #include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_SpawnAmbientVehicles", _this] call Zen_StackAdd;
-private ["_center", "_distance", "_numCarsRange", "_townMarkers", "_carPos", "_carType", "_car", "_carClasses", "_carsMin", "_carsMax", "_numCars", "_carObjs", "_roadDir", "_DLC"];
+private ["_center", "_distance", "_numCarsRange", "_townMarkers", "_carPos", "_carType", "_car", "_carClasses", "_carsMin", "_carsMax", "_numCars", "_carObjs", "_roadDir", "_customClasses"];
 
-if !([_this, [["VOID"], ["SCALAR"], ["ARRAY", "SCALAR"]], [[], [], ["SCALAR"]], 3] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["SCALAR"], ["ARRAY", "SCALAR"], ["STRING", "ARRAY"]], [[], [], ["SCALAR"], ["STRING"]], 3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
-    ([objNull])
+    ([])
 };
 
 _center = [(_this select 0)] call Zen_ConvertToPosition;
 _distance = _this select 1;
 _numCarsRange = _this select 2;
 
-ZEN_STD_Parse_GetArgumentDefault(_DLC, 3, "")
+ZEN_STD_Parse_GetArgumentDefault(_customClasses, 3, "")
 
 _townMarkers = [["NameVillage", "NameCity", "NameCityCapital"]] call Zen_ConfigGetLocations;
 _townMarkers = [_townMarkers, (compile format ["(getMarkerPos _this) distance %1", _center]), "hash"] call Zen_ArraySort;
@@ -29,9 +29,17 @@ if (typeName _numCarsRange != "ARRAY") then {
 _carsMin = _numCarsRange select 0;
 _carsMax = _numCarsRange select 1;
 
-_carClasses = ["car", civilian, "all", "all", "all", "both", _DLC] call Zen_ConfigGetVehicleClasses;
-_carObjs = [];
+if ((typeName _customClasses == "ARRAY") && {({isClass (configFile >> "CfgVehicles" >> _x)} count _customClasses) == (count _customClasses)}) then {
+    _carClasses = _customClasses;
+} else {
+    _carClasses = ["car", civilian, "all", "all", "all", "both", _customClasses] call Zen_ConfigGetVehicleClasses;
+};
 
+if (count _carClasses == 0) exitWith {
+    ZEN_FMW_Code_ErrorExitValue("Zen_SpawnAmbientVehicles", "No vehicle classnames found to spawn.", [])
+};
+
+_carObjs = [];
 {
     if (([_x, _center] call Zen_Find2dDistance) > _distance) exitWith {};
     _numCars = [_carsMin, _carsMax, true] call Zen_FindInRange;

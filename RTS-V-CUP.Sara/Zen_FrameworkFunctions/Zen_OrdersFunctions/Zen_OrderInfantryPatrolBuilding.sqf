@@ -19,7 +19,11 @@ ZEN_STD_Parse_GetArgumentDefault(_behavior, 3, "aware")
 ZEN_STD_Parse_GetArgumentDefault(_houseCount, 4, 1)
 
 _nearBuilding = nearestBuilding _centerPos;
-_housesArray = nearestObjects [getPosATL _nearBuilding, ["House"], 100];
+// _housesArray = nearestObjects [getPosATL _nearBuilding, ["House"], 100];
+_housesArray = nearestTerrainObjects[getPosATL _nearBuilding, ["Building", "House"], 100];
+// player sideChat str (nearestTerrainObjects[getPosATL player, ["BUILDING", "HOUSE"], 100]);
+// player sideChat str (nearestObjects [getPosATL player, ["House"], 100]);
+
 _housesArray resize _houseCount;
 
 _housePosArray = [];

@@ -52,7 +52,8 @@ for "_i" from 1 to _repeat do {
 
     _isBlacklisted = false;
     {
-        _isBlacklisted = ([_pos, _x]) call Zen_IsPointInPoly;
+        // _isBlacklisted = ([_pos, _x]) call Zen_IsPointInPoly;
+        _isBlacklisted = _pos inArea _x;
         if (_isBlacklisted) exitWith {};
     } forEach _blacklist;
 

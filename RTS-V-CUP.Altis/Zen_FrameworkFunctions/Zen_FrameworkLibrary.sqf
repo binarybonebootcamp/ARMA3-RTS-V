@@ -48,7 +48,11 @@
     _Zen_Vehicle = [S, T] call Zen_SpawnVehicle; \
     0 = [_Zen_Vehicle] call Zen_SpawnVehicleCrew; \
     0 = [G, _Zen_Vehicle] call Zen_MoveInVehicle; \
-    0 = [_Zen_Vehicle, [([M] call Zen_FindGroundPosition), _Zen_HeliStart], G, "normal", 40, "fastrope", true] spawn Zen_OrderInsertion; \
+    if (_Zen_Vehicle isKindOf "Air") then { \
+        0 = [_Zen_Vehicle, [([M] call Zen_FindGroundPosition), S], G, "normal", 40, "fastrope", true] spawn Zen_OrderInsertion; \
+    } else { \
+        0 = [_Zen_Vehicle, [([M] call Zen_FindGroundPosition), S], G] spawn Zen_OrderInsertion; \
+    }; \
     0 = [G, M] spawn { \
         waitUntil { \
             sleep 5; \
@@ -109,7 +113,7 @@
     };
 
 #define ZEN_FMW_MP_REClient(F, A, I, O) \
-    if (local O) then { \
+    if (local (O)) then { \
         A I (missionNamespace getVariable F); \
     } else { \
         if (isMultiplayer) then { \
@@ -190,3 +194,5 @@
 
 #define ZEN_FMW_Loadout_DefaultPreset (["Rifleman", "AT Rifleman", "Assistant AA", "Assistant AT", "Assistant AR", "Team Leader", "Squad Leader", "Grenadier", "Auto Rifleman", "Marksman", "Medic", "AA Specialist", "AT Specialist", "Sapper", "Miner", "EOD Specialist"])
 #define ZEN_FMW_Loadout_StdInfantryPreset (["Rifleman", "Rifleman", "Rifleman", "AT Rifleman", "Assistant AR", "Team Leader", "Squad Leader", "Grenadier", "Grenadier", "Auto Rifleman", "Auto Rifleman", "Marksman", "Medic"])
+#define ZEN_FMW_Loadout_BasicInfantryPreset (["Rifleman", "Rifleman", "Rifleman", "Assistant AR", "Team Leader", "Grenadier", "Auto Rifleman", "Medic"])
+#define ZEN_FMW_Loadout_HeavyInfantryPreset (["Team Leader", "Grenadier", "Auto Rifleman", "AT Rifleman", "AT Rifleman", "AT Specialist", "AT Specialist", "AA Specialist", "AA Specialist", "Assistant AT", "Assistant AA", "Sapper", "Miner"])

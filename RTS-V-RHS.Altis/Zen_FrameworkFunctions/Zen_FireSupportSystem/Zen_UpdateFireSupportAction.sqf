@@ -6,9 +6,9 @@
 #include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_UpdateFireSupportAction", _this] call Zen_StackAdd;
-private ["_nameString", "_unitsToAdd", "_maxCalls", "_supportString", "_guideObj", "_guideType", "_indexes", "_oldData", "_args", "_newSupportTemplateData"];
+private ["_nameString", "_unitsToAdd", "_maxCalls", "_supportString", "_guideObj", "_guideType", "_indexes", "_data", "_args", "_newSupportTemplateData", "_descr", "_customArgs"];
 
-if !([_this, [["STRING"], ["VOID"], ["STRING", "SCALAR"], ["SCALAR", "STRING", "OBJECT"], ["STRING", "SCALAR"], ["SCALAR"]], [], 2] call Zen_CheckArguments) exitWith {
+if !([_this, [["STRING"], ["VOID"], ["STRING", "SCALAR"], ["SCALAR", "STRING", "OBJECT"], ["STRING", "SCALAR"], ["SCALAR"], ["STRING"], ["VOID"]], [], 2] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -19,6 +19,8 @@ ZEN_STD_Parse_GetArgumentDefault(_supportString, 2, 0)
 ZEN_STD_Parse_GetArgumentDefault(_guideObj, 3, 0)
 ZEN_STD_Parse_GetArgumentDefault(_guideType, 4, 0)
 ZEN_STD_Parse_GetArgumentDefault(_maxCalls, 5, 0)
+ZEN_STD_Parse_GetArgumentDefault(_descr, 6, 0)
+ZEN_STD_Parse_GetArgumentDefault(_customArgs, 7, [])
 
 if (typeName _unitsToAdd != "SCALAR") then {
     _unitsToAdd = [_unitsToAdd] call Zen_ConvertToObjectArray;
@@ -29,32 +31,36 @@ if (count _indexes == 0) exitWith {
     ZEN_FMW_Code_Error("Zen_UpdateFireSupportAction", "Given action identifier does not exist.")
 };
 
-_oldData = Zen_Fire_Support_Action_Array_Global select (_indexes select 0);
+_data = Zen_Fire_Support_Action_Array_Global select (_indexes select 0);
 
 if (typeName _unitsToAdd != "SCALAR") then {
-    _args =+ _oldData;
-    _args set [1, _unitsToAdd];
-    ZEN_FMW_MP_REAll("Zen_AddFireSupportAction_AddAction_MP", _args, call)
-
-    _oldUnits = _oldData select 1;
+    _oldUnits = _data select 1;
     0 = [_oldUnits, _unitsToAdd] call Zen_ArrayAppendNested;
 };
 
 if (typeName _supportString != "SCALAR") then {
     _newSupportTemplateData = [_supportString] call Zen_GetFireSupportData;
-    _oldData set [3, _supportString];
+    _data set [3, _supportString];
 };
 
 if (typeName _guideObj != "SCALAR") then {
-    _oldData set [4, _guideObj];
+    _data set [4, _guideObj];
 };
 
 if (typeName _guideType != "SCALAR") then {
-    _oldData set [5, _guideType];
+    _data set [5, _guideType];
 };
 
 if (_maxCalls != 0) then {
-    _oldData set [6, _maxCalls];
+    _data set [6, _maxCalls];
+};
+
+if (typeName _descr != "SCALAR") then {
+    _data set [7, _descr];
+};
+
+if (_customArgs != []) then {
+    _data set [10, _customArgs];
 };
 
 publicVariable "Zen_Fire_Support_Action_Array_Global";

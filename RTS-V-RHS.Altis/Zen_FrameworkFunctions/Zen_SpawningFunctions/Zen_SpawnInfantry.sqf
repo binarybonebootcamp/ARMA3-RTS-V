@@ -23,10 +23,20 @@ if (typeName _spawnNumber != "ARRAY") then {
 };
 
 _menType = "Men";
-_faction = "All";
 
-if (_side == West) then {
-    _faction = "BLU_F";
+switch (_side) do {
+    case west : {
+        _faction = "BLU_F";
+    };
+    case east: {
+        _faction = "OPF_F";
+    };
+    case resistance: {
+        _faction = "IND_F";
+    };
+    default {
+        _faction = "All";
+    };
 };
 
 if (count _this > 4) then {
@@ -68,7 +78,7 @@ _group = [_spawnPos, _soldierlistrand] call Zen_SpawnGroup;
 
 (leader _group) setUnitRank "CORPORAL";
 0 = [(units _group), _skill] call Zen_SetAISkill;
-_group allowFleeing 0;
+// _group allowFleeing 0;
 
 call Zen_StackRemove;
 (_group)

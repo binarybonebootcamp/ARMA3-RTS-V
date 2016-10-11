@@ -3,6 +3,8 @@
 #include "..\Zen_FrameworkFunctions\Zen_StandardLibrary.sqf"
 #include "..\Zen_FrameworkFunctions\Zen_FrameworkLibrary.sqf"
 
+#define HQ_MAX_DIST 500
+
 #define ZEN_RTS_STRATEGIC_GET_BUILDING_OBJ_ID(N, I) \
     _objIndexes = [Zen_RTS_Strategic_Building_Objects_Global, N, 0] call Zen_ArrayGetNestedIndex; \
     I = ""; \
@@ -55,8 +57,8 @@
             _exit = true;
         };
 
-        if ((([vehicle player, _HQObject] call Zen_Find2dDistance) > 200) && {!(_isNaval)}) exitWith {
-            player sideChat "This building must be constructed within 300 meters of the HQ.";
+        if ((([vehicle player, _HQObject] call Zen_Find2dDistance) > HQ_MAX_DIST) && {!(_isNaval)}) exitWith {
+            player sideChat "This building must be constructed within "+ #HQ_MAX_DIST + " meters of the HQ.";
             _exit = true;
         };
     };
@@ -88,17 +90,17 @@
 
         _inSafezone = false;
         {
-            if ([_pos, markerPos _x, [60, 60], markerDir _x, "rectangle"] call Zen_IsPointInPoly) exitWith {
+            if ([_pos, _x] call Zen_IsPointInPoly) exitWith {
                 _inSafezone = true;
             };
         } forEach _safezoneMarkers;
 
-        _slope = [_pos, 32] call Zen_FindTerrainSlope;
+        _slope = [_pos, 10] call Zen_FindTerrainSlope;
         _clutter = [_pos, 32] call Zen_GetAmbientClutterCount;
         _objects = nearestObjects [_pos, [""], 10];
 
         {
-            if ((BB_Volume(_x) < 1) || (BB_AreaXY(_x) < 0.5)) then {
+            if ((BB_Volume(_x) < 4) || (BB_AreaXY(_x) < 1)) then {
                 _objects set [_forEachIndex, 0];
             };
         } forEach _objects;
@@ -111,9 +113,9 @@
         // player sidechat str _safezoneMarkers;
         // player sidechat str _inSafezone;
         _canPlace = (if (_isNaval) then {
-            (!(_inSafezone) && (!(surfaceIsWater _pos) && {([_pos, 10, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 1)})})
+            (!(_inSafezone) && (!(surfaceIsWater _pos) && {([_pos, 10, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 6) && {((_clutter vectorDotProduct [1, 0, 0]) < 6)})})
         } else {
-            (!(_inSafezone) && (!(surfaceIsWater _pos) && {!([_pos, 35, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 2) && {((_clutter vectorDotProduct [1, 0, 0]) < 1)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < 300)})})
+            (!(_inSafezone) && (!(surfaceIsWater _pos) && {!([_pos, 35, "water"] call Zen_IsNearTerrain)}) && {((_slope < 15) && (count _objects < 6) && {((_clutter vectorDotProduct [1, 0, 0]) < 6)} && {(([_pos, _HQObject] call Zen_Find2dDistance) < HQ_MAX_DIST)})})
         });
 
         if (_canPlace) then {
@@ -142,8 +144,8 @@
                 breakTo "main";
             };
         } else {
-            if ((([_pos, _HQObject] call Zen_Find2dDistance) > 300) && {!(_isNaval)}) then {
-                hintSilent "Placing this building more than 300 meters from the HQ is not allowed.";
+            if ((([_pos, _HQObject] call Zen_Find2dDistance) > HQ_MAX_DIST) && {!(_isNaval)}) then {
+                hintSilent "Placing this building more than " + #HQ_MAX_DIST + " meters from the HQ is not allowed.";
             };
 
             // _heliPad setPosATL [0,0,0];

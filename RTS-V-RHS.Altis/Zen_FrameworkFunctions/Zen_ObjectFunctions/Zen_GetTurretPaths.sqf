@@ -42,10 +42,10 @@ _turretTypeRef = [_commanderTurrets, _gunnerTurrets, _cargoFFVTurrets];
         _turretWeapons = [_turretWeapons, ZEN_FMW_ZAF_String(_x)] call Zen_ArrayFilterCondition; \
     } forEach ["smoke", "horn", "laser", "flare", "throw", "put"]; \
     if (isClass T) then { \
-        if (((getNumber (T >> "primaryGunner")) == 1) || (count _turretWeapons > 0)) then { \
+        if (((getNumber (T >> "primaryGunner")) == 1) || {(count _turretWeapons > 0)}) then { \
             _turretType = "gunner"; \
         } else { \
-            if (((getNumber (T >> "isCopilot")) == 1) || ((getNumber (T >> "primaryObserver")) == 1)) then { \
+            if (((getNumber (T >> "isCopilot")) == 1) || {((getNumber (T >> "primaryObserver")) == 1)}) then { \
                 _turretType = "commander"; \
             } else { \
                 if ((getNumber (T >> "isPersonTurret")) == 1) then { \
@@ -70,12 +70,14 @@ if (isClass _turretClass) then {
             };
 
             {
-                GET_TURRET_TYPE(_x)
-                switch (_turretType) do {
-                    case "commander": {ADD_SUBTURRET(_commanderTurrets)};
-                    case "gunner": {ADD_SUBTURRET(_gunnerTurrets)};
-                    case "cargo": {ADD_SUBTURRET(_cargoFFVTurrets)};
-                    default {ADD_SUBTURRET(_cargoFFVTurrets)};
+                if (isClass _x) then {
+                    GET_TURRET_TYPE(_x)
+                    switch (_turretType) do {
+                        case "commander": {ADD_SUBTURRET(_commanderTurrets)};
+                        case "gunner": {ADD_SUBTURRET(_gunnerTurrets)};
+                        case "cargo": {ADD_SUBTURRET(_cargoFFVTurrets)};
+                        default {ADD_SUBTURRET(_cargoFFVTurrets)};
+                    };
                 };
             } forEach ("true" configClasses (_turretEntry >> "Turrets"));
 

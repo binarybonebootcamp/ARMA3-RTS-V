@@ -41,20 +41,23 @@ _pos = _this select 29;
 _failures = 0;
 
 {
-    if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {([_pos, _x] call Zen_IsPointInPoly)}) exitWith {
+    // if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {([_pos, _x] call Zen_IsPointInPoly)}) exitWith {
+    if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {_pos inArea _x}) exitWith {
         FAIL
     };
 } forEach _allBlacklist;
 
 {
-    if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {!([_pos, _x] call Zen_IsPointInPoly)}) exitWith {
+    // if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {!([_pos, _x] call Zen_IsPointInPoly)}) exitWith {
+    if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {!(_pos inArea _x)}) exitWith {
         FAIL
     };
 } forEach _allWhitelist;
 
 _pointIn = false || (count _oneWhitelist == 0);
 {
-    if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {([_pos, _x] call Zen_IsPointInPoly)}) exitWith {
+    // if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {([_pos, _x] call Zen_IsPointInPoly)}) exitWith {
+    if (([_x, allMapMarkers] call Zen_ValueIsInArray) && {_pos inArea _x}) exitWith {
         _pointIn = true;
     };
 } forEach _oneWhitelist;
@@ -96,11 +99,13 @@ if !(_minAngle == _maxAngle) then {
 
 FAIL_CHECK
 if (_objSwitch == 1) then {
-    _nearObjHouse = nearestObjects [_pos, ["House", "Building", "Ruins"], _objDist];
+    // _nearObjHouse = nearestObjects [_pos, ["House", "Building", "Ruins"], _objDist];
+    _nearObjHouse = nearestTerrainObjects[_pos, ["Building", "House", "Church", "Chapel", "Bunker", "Fortress", "Fountain", "View-Tower", "Lighthouse", "FuelStation", "Hospital", "Wall", "WaterTower"], _objDist];
     if ((count _nearObjHouse) > _objLimit) then {FAIL};
 } else {
     if (_objSwitch == 2) then {
-        _nearObjHouse = nearestObjects [_pos, ["House", "Building", "Ruins"], _objDist];
+        // _nearObjHouse = nearestObjects [_pos, ["House", "Building", "Ruins"], _objDist];
+       _nearObjHouse = nearestTerrainObjects[_pos, ["Building", "House", "Church", "Chapel", "Bunker", "Fortress", "Fountain", "View-Tower", "Lighthouse", "FuelStation", "Hospital", "Wall", "WaterTower"], _objDist];
         if ((count _nearObjHouse) < _objLimit) then {FAIL};
     };
 };

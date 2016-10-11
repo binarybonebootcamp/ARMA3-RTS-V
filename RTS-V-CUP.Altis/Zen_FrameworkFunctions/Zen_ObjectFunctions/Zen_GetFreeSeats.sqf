@@ -6,7 +6,7 @@
 #include "..\Zen_FrameworkLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_GetFreeSeats", _this] call Zen_StackAdd;
-private ["_vehicle", "_turrets", "_turretTypes", "_args", "_unUsedTurrets", "_unUsedCargo", "_dummyUnit", "_hasDriver"];
+private ["_vehicle", "_turrets", "_turretTypes", "_args", "_unUsedTurrets", "_unUsedCargo", "_dummyUnit", "_hasDriver", "_group"];
 
 if !([_this, [["OBJECT"], ["ARRAY", "STRING"]], [[], ["STRING"]], 1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
@@ -72,5 +72,11 @@ if (local _vehicle) then {
     };
 };
 
+_result = [_vehicle getVariable "Zen_Unused_Driver", _vehicle getVariable "Zen_Unused_Turret", _vehicle getVariable "Zen_Unused_Cargo"];
+
+_vehicle setVariable ["Zen_Unused_Driver", nil, true];
+_vehicle setVariable ["Zen_Unused_Turret", nil, true];
+_vehicle setVariable ["Zen_Unused_Cargo", nil, true];
+
 call Zen_StackRemove;
-([_vehicle getVariable "Zen_Unused_Driver", _vehicle getVariable "Zen_Unused_Turret", _vehicle getVariable "Zen_Unused_Cargo"])
+(_result)

@@ -65,15 +65,17 @@ if ((isServer) && {(_unit != player)} && {(local _unit)}) then {
     _side = side player;
     player addEventHandler rts_killedSld;
     (group Player) selectLeader player;
-    0 = [player] call Zen_AddRepackMagazines;
     // [player,"Death"] call BIS_fnc_setUnitInsignia;
     execVM "RTS_JUMPACTIONS.sqf";
+    onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
+
 
     player addEventHandler ["fired","_count = player ammo (currentWeapon player); if(_count != 0) then {magazineClass = currentMagazine player;};  if(_count == 0) then {player addMagazine magazineClass; reload player;};"];
     player enableFatigue false;
     player addEventHandler ["Respawn", {player enableFatigue false}];
 
-    onMapSingleClick "[_pos, _units, _shift, _alt] exec ""onMapSingleClick.sqs""";
+    0 = [player] call Zen_AddRepackMagazines;
+    0 = [player, str side player + "rifleman", "complete", false] call Zen_GiveLoadoutCustom;
 
     _args = [player, side player];
     ZEN_FMW_MP_REServerOnly("Zen_RTS_F_CommanderQueueAdd", _args, call)

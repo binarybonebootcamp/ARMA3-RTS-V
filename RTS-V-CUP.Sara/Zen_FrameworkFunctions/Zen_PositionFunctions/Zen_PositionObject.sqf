@@ -12,5 +12,6 @@ _maxAngle = _this select 4;
 
 _phi = _minAngle + random (_maxAngle - _minAngle);
 _distance = _radiusMin + ((sqrt random 1) * (_radiusMax - _radiusMin));
+// _distance = _radiusMin + ((random 1)^(1/(sqrt 2)) * (_radiusMax - _radiusMin));
 
 ([(_centerXY select 0) + (cos _phi) * _distance, (_centerXY select 1) + (sin _phi) * _distance, 0])
