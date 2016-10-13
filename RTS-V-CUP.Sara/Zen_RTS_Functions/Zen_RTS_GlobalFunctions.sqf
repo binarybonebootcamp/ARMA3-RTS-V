@@ -148,3 +148,27 @@ Zen_RTS_F_RemoveRepairQueue = {
 
     // 0 = [(RTS_Recycle_Queue select ([west, east] find _side)), _vehicle] call Zen_ArrayRemoveValue;
 // };
+
+Zen_RTS_F_StrategicBuildingVisualLocal = {
+    _dir = _this select 0;
+    _buildingTypeData = _this select 1;
+    _spawnPos = _this select 2;
+    _type = _this select 3;
+    _offset = _this select 4;
+
+    _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart);
+    _building = _type createVehicleLocal _spawnPos;
+    _building setDir _dir;
+
+    _building setVectorUp (surfaceNormal _spawnPos);
+    _height = ZEN_STD_OBJ_BBZ(_building);
+    _heightStep = (_height + _offset) / _buildTime;
+
+    ZEN_STD_OBJ_TransformATL(_building, 0, 0, -(_height))
+    for "_i" from 0 to _buildTime do {
+        sleep 1;
+        if !(alive _building) exitWith {};
+        _building setPosATL ((getPosATL _building) vectorAdd [0, 0, _heightStep]);
+    };
+    deleteVehicle _building;
+};

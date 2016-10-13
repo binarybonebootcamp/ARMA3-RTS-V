@@ -5,7 +5,7 @@
 _Zen_stack_Trace = ["Zen_ArrayInsertSlice", _this] call Zen_StackAdd;
 private ["_array", "_index", "_value", "_i"];
 
-if !([_this, [["ARRAY"], ["SCALAR"], ["VOID"]], [], 3] call Zen_CheckArguments) exitWith {
+if !([_this, [["VOID"], ["SCALAR"], ["VOID"]], [], 3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 

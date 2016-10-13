@@ -93,6 +93,9 @@ if !(_doRefresh) then {
                 _blockID = _x select 0;
                 _data = _x select 1;
                 switch (toUpper _blockID) do {
+                    case "ANGLE": {
+                        _control ctrlSetAngle _data;
+                    };
                     case "PROGRESS": {
                         _control progressSetPosition (((_data max 0) min 255) / 255);
                     };

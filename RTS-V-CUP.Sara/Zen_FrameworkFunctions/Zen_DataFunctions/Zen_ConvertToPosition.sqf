@@ -45,7 +45,7 @@ switch (typeName _dataToConvert) do {
         {
             if (typeName _x != "SCALAR") exitWith {
                 _returnPosition = [0,0,0];
-                0 = ["Zen_ConvertToPosition", "Given array does not contain valid x,y,z numerical coordinates", _this] call Zen_PrintError;
+                0 = ["Zen_ConvertToPosition", "Given array does not contain valid x,y,z scalar coordinates", _this] call Zen_PrintError;
                 call Zen_StackPrint;
             };
         } forEach _returnPosition;

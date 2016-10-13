@@ -13,7 +13,7 @@ if !([_this, [["VOID"], ["VOID"]], [], 2] call Zen_CheckArguments) exitWith {
 _value1 = _this select 0;
 _value2 = _this select 1;
 
-if ((typeName _value1 == "STRING") && (typeName _value2 == "STRING")) then {
+if ((typeName _value1 == "STRING") && {(typeName _value2 == "STRING")}) then {
     _value1 = toLower _value1;
     _value2 = toLower _value2;
 };

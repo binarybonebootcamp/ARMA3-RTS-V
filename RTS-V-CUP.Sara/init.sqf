@@ -134,20 +134,16 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
     // _vehicle setVariable ["Zen_RTS_IsStrategicRepairable", false, true]; \
 
 #define BUILDING_VISUALS(T, O) \
+    _dir = random 360; \
     _buildTime = call compile ([(_buildingTypeData select 5), "Time: ", ","] call Zen_StringGetDelimitedPart); \
-    _building = [_spawnPos, T, 0, random 360, true] call Zen_SpawnVehicle; \
-    _building setVectorUp (surfaceNormal _spawnPos); \
-    _height = ZEN_STD_OBJ_BBZ(_building); \
-    _heightStep = (_height + O) / _buildTime; \
-    _building setPos ((getPos _building) vectorAdd [0, 0, -(_height)]); \
-    for "_i" from 0 to _buildTime do { \
-        sleep 1; \
-        if !(alive _building) exitWith {}; \
-        _building setPos ((getPos _building) vectorAdd [0, 0, _heightStep]); \
-    };
-    // ZEN_STD_OBJ_TransformATL(_building, 0, 0, -(_height)) \
-        // _building setPosWorld ((setPosWorld _building) vectorAdd [0, 0, _heightStep]); \
-        // _building setPosASL ((getPosASL _building) vectorAdd [0, 0, _heightStep]); \
+    _building = [_spawnPos, T, 0, _dir, true] call Zen_SpawnVehicle; \
+    _building hideObjectGlobal true; \
+    _building hideObject true; \
+    _args = [_dir, _buildingTypeData, _spawnPos, T, O]; \
+    ZEN_FMW_MP_REAll("Zen_RTS_F_StrategicBuildingVisualLocal", _args, spawn) \
+    sleep _buildTime; \
+    _building hideObjectGlobal false; \
+    _building hideObject false;
 
 #define ZEN_RTS_STRATEGIC_BUILDING_DESTROYED_EH(T, S) \
     if !(alive _building) exitWith { \
@@ -159,7 +155,12 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTer
     }; \
     _cost = call compile ([(_buildingTypeData select 5), "Cost: ", ","] call Zen_StringGetDelimitedPart); \
     (RTS_Repair_Queue select ([west, east] find S)) pushBack _building; \
-    _buildingSpawnGrid = [_building, "", "colorBlack", [30, 30], "rectangle", getDir _building, 0] call Zen_SpawnMarker; \
+    _buildingSpawnGrid = ""; \
+    if (T in [Zen_RTS_BuildingType_East_HQ, Zen_RTS_BuildingType_East_Radar, Zen_RTS_BuildingType_West_HQ, Zen_RTS_BuildingType_West_Radar]) then { \
+        _buildingSpawnGrid = [_building, "", "colorBlack", [5, 5], "rectangle", getDir _building, 0] call Zen_SpawnMarker; \
+    } else { \
+        _buildingSpawnGrid = [_building, "", "colorBlack", [30, 30], "rectangle", getDir _building, 0] call Zen_SpawnMarker; \
+    }; \
     _args = [_buildingSpawnGrid, S]; \
     ZEN_FMW_MP_REAll("Zen_RTS_F_AddSpawnGridMarker", _args, call) \
     _building setVariable ["Zen_RTS_StrategicBuildingMarker", _buildingSpawnGrid, true]; \
@@ -263,7 +264,6 @@ diag_log diag_tickTime;
 {
     // call compile format ["xp%1 = 0", _x];
     if (isPlayer _x) then {
-        0 = [_x, str side _x + "rifleman"] call Zen_GiveLoadoutCustom;
         ZEN_FMW_MP_REClient("Zen_RTS_F_RespawnActions", _x, spawn, _x)
     };
 } forEach ([West, East] call Zen_ConvertToObjectArray);

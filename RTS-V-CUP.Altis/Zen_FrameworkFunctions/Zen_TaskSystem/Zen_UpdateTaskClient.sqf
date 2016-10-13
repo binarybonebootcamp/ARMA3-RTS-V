@@ -6,9 +6,9 @@ if ((count Zen_Task_Array_Global) == 0) exitWith {};
 if ((count Zen_Task_Array_Local) == 0) exitWith {};
 
 _Zen_stack_Trace = ["Zen_UpdateTaskClient", _this] call Zen_StackAdd;
-private ["_unitsTasksArrayGlobal", "_unitsTasksArrayLocal", "_nameString", "_currentTaskArray", "_destination", "_state", "_taskState", "_description", "_title", "_cfgNotifyClass", "_units", "_showNotification"];
+private ["_unitsTasksArrayGlobal", "_unitsTasksArrayLocal", "_nameString", "_currentTaskArray", "_destination", "_state", "_taskState", "_description", "_title", "_cfgNotifyClass", "_units", "_showNotification", "_taskIcon"];
 
-if !([_this, [["STRING"], ["STRING", "SCALAR"], ["BOOL"]], [], 3] call Zen_CheckArguments) exitWith {
+if !([_this, [["STRING"], ["STRING", "SCALAR"], ["BOOL"], ["STRING"]], [], 3] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
 };
 
@@ -34,6 +34,7 @@ _state = _unitsTasksArrayGlobal select 2;
 _destination = _unitsTasksArrayGlobal select 3;
 _description = _unitsTasksArrayGlobal select 4;
 _title = _unitsTasksArrayGlobal select 5;
+_taskIcon = _unitsTasksArrayGlobal select 8;
 
 if !([_destination, [0,0,0]] call Zen_ValuesAreEqual) then {
     {
@@ -49,7 +50,9 @@ if !([_destination, [0,0,0]] call Zen_ValuesAreEqual) then {
     if !((_x == currentTask player) && {(_state == "created")}) then {
         _x setTaskState _state;
     };
+
     _x setSimpleTaskDescription [_description, _title, _title];
+    _x setSimpleTaskType _taskIcon;
 } forEach _currentTaskArray;
 
 if (!(isDedicated && hasInterface) && {_showNotification}) then {

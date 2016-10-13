@@ -54,6 +54,8 @@ if (_Zen_Is_JIP) then {
             sleep 0.1;
         } forEach Zen_Task_Array_Global;
     };
+
+    0 = [player] spawn Zen_RTS_F_RespawnActions;
 };
 
 if (isServer) then {
@@ -63,57 +65,39 @@ if (isServer) then {
 
         (owner _this) publicVariableClient "Zen_Task_Array_Global";
         (owner _this) publicVariableClient "Zen_Fire_Support_Array_Global";
+        (owner _this) publicVariableClient "Zen_Fire_Support_Action_Array_Global";
         (owner _this) publicVariableClient "Zen_Loadout_Array_Global";
         (owner _this) publicVariableClient "Zen_Damage_Increase";
+        (owner _this) publicVariableClient "Zen_Dialog_Classes_Global";
+        (owner _this) publicVariableClient "Zen_Control_Classes_Global";
+        (owner _this) publicVariableClient "Zen_Fire_Support_Action_Dialog_Data";
+
+        (owner _this) publicVariableClient "Zen_RTS_Territory_Data";
+        (owner _this) publicVariableClient "Zen_RTS_SubTerritory_Data";
+        (owner _this) publicVariableClient "Zen_RTS_Strategic_Building_Types";
+        (owner _this) publicVariableClient "Zen_RTS_Strategic_Building_Objects_Global";
+        (owner _this) publicVariableClient "Zen_RTS_Strategic_Asset_Types";
+        (owner _this) publicVariableClient "Zen_RTS_TechFlag_East_BuildEnemy";
+
+        (owner _this) publicVariableClient "Zen_RTS_BuildingType_West_HQ";
+        (owner _this) publicVariableClient "Zen_RTS_BuildingType_West_CJ";
+        (owner _this) publicVariableClient "Zen_RTS_BuildingType_East_HQ";
+        (owner _this) publicVariableClient "Zen_RTS_BuildingType_East_CJ";
+
+        (owner _this) publicVariableClient "RTS_Used_Building_Types";
+        (owner _this) publicVariableClient "RTS_Building_Type_Levels";
+        (owner _this) publicVariableClient "RTS_Building_Spawn_Grid_Markers";
+        (owner _this) publicVariableClient "RTS_Used_Building_Types";
+        (owner _this) publicVariableClient "RTS_Used_Asset_Types";
+
+        (owner _this) publicVariableClient "Zen_RTS_GiveMoneyDialog_Current_Money_Control";
+        (owner _this) publicVariableClient "Zen_RTS_GiveMoneyDialog_Player_List";
+        (owner _this) publicVariableClient "Zen_RTS_GiveMoneyDialog_Dialog";
+
+        (owner _this) publicVariableClient "WestCommander";
+        (owner _this) publicVariableClient "EastCommander";
+
+        (owner _this) publicVariableClient "rts_Initialized";
         (owner _this) publicVariableClient "Zen_JIP_Args_Server";
-
-        // Territory Information for JIP Clients
-        (owner _this) publicVariableClient "WestFC";
-        (owner _this) publicVariableClient "EastFC";
-        (owner _this) publicVariableClient "GuerFC";
-        (owner _this) publicVariableClient "CivFC";
-        (owner _this) publicVariableClient "FlagNumber";
-
-        // Victory Point Information for JIP Clients
-        (owner _this) publicVariableClient "rts_vpTickerWest";
-        (owner _this) publicVariableClient "rts_vpTickerEast";
-
-        // Resource variables for JIP clients
-        // (owner _this) publicVariableClient "WestSupplyFactor";
-        (owner _this) publicVariableClient "WestSupply";
-
-        // (owner _this) publicVariableClient "EastSupplyFactor";
-        (owner _this) publicVariableClient "EastSupply";
-
-        // Building Placeholder Vars so JIP clients will have base buildings
-        // (owner _this) publicVariableClient "WestBarracksTmp";
-        // (owner _this) publicVariableClient "WestLightFacTmp";
-        // (owner _this) publicVariableClient "WestHeavyFacTmp";
-        // (owner _this) publicVariableClient "WestAirFacTmp";
-        // (owner _this) publicVariableClient "WestNavalFacTmp";
-
-        // (owner _this) publicVariableClient"EastBarracksTmp";
-        // (owner _this) publicVariableClient"EastHeavyFacTmp";
-        // (owner _this) publicVariableClient"EastLightFacTmp";
-        // (owner _this) publicVariableClient"EastAirFacTmp";
-        // (owner _this) publicVariableClient"EastNavalFacTmp";
-        // ;
-        // (owner _this) publicVariableClient"WestBarracksLevel";
-        // (owner _this) publicVariableClient"WestLightFacLevel";
-        // (owner _this) publicVariableClient"WestHeavyFacLevel";
-        // (owner _this) publicVariableClient"WestAirFacLevel";
-        // ;
-        // (owner _this) publicVariableClient"EastBarracksLevel";
-        // (owner _this) publicVariableClient"EastLightFacLevel";
-        // (owner _this) publicVariableClient"EastHeavyFacLevel";
-        // (owner _this) publicVariableClient"EastAirFacLevel";
-
-        // Update West Assets with public array
-        // rts_updateArray = str [West,WestAssets];
-        // (owner _this) publicVariableClient "rts_updateArray";
-
-        // Update East Assets with public array
-        // rts_updateArray = str [East,EastAssets];
-        // (owner _this) publicVariableClient "rts_updateArray";
     };
 };

@@ -5,7 +5,7 @@
 #include "..\Zen_StandardLibrary.sqf"
 
 _Zen_stack_Trace = ["Zen_SpawnParachute", _this] call Zen_StackAdd;
-private ["_object", "_parachute", "_height", "_signalGrenadeClass"];
+private ["_object", "_parachute", "_height", "_signalGrenadeClass", "_velocity"];
 
 if !([_this, [["OBJECT"], ["STRING"]], [], 1] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
@@ -15,6 +15,7 @@ _object = _this select 0;
 
 ZEN_STD_Parse_GetArgumentDefault(_signalGrenadeClass, 1, "SmokeShell")
 
+_velocity = ZEN_STD_Math_VectCartCyl((velocity _object) vectorMultiply 0.33);
 _parachute = createVehicle ["B_Parachute_02_F", getPosATL _object, [], 0, "CAN_COLLIDE"];
 _parachute setPosATL getPosATL _object;
 
@@ -26,6 +27,7 @@ sleep 2;
 _object attachTo [_parachute, [0, 0, -_height]];
 _object enableSimulation true;
 _parachute setMass (getMass _object + getMass _parachute);
+0 = [_parachute, _parachute, 0, _velocity] call Zen_TransformObject;
 
 _stopHeight = ((getPos _object) vectorDiff (getPosATL _object)) select 2;
 sleep 2;

@@ -22,7 +22,6 @@ if (typeName _type != "STRING") then {
 };
 
 _return = [];
-
 {
     if ((_type != "ARRAY") && {(typeName _x == "ARRAY")}) then {
         0 = [_x, _type] call Zen_ArrayGetType;

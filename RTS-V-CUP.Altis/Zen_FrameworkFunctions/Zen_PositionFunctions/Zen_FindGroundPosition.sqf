@@ -224,7 +224,7 @@ if (count _worldSizeXY > 0) then {
         call Zen_StackPrint;
     };
 } else {
-    if (((_pos select 0) < 0) || ((_pos select 1) < 0)) then {
+    if (((_pos select 0) < 0) || {((_pos select 1) < 0)}) then {
         0 = ["Zen_FindGroundPosition", "Returned position is off the map", _this] call Zen_PrintError;
         call Zen_StackPrint;
     };

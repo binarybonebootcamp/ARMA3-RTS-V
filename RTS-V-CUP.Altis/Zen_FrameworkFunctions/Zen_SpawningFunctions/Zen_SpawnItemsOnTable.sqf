@@ -32,8 +32,8 @@ _itemArray = [];
         (_this select 0) setVectorUp (_this select 1);
     };
 
-    _item enableSimulation false;
-    _table enableSimulation false;
+    _item enableSimulationGlobal false;
+    _table enableSimulationGlobal false;
 
     _offset = [[0,0,0], [((ZEN_STD_OBJ_BBX(_table)) / 2), ((ZEN_STD_OBJ_BBY(_table)) / 2)], getDir _table, "rectangle", [random 360]] call Zen_FindPositionPoly;
     ZEN_STD_OBJ_TransformATL(_item, (_offset select 0), (_offset select 1), 0)

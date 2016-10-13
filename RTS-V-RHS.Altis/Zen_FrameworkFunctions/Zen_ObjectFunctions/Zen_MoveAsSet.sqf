@@ -19,17 +19,20 @@ if (typeName _moveEntities != "ARRAY") then {
 };
 
 _moveMarkers = [_moveEntities, ""] call Zen_ArrayGetType;
-_moveObjects = [_moveEntities] call Zen_ConvertToObjectArray;
+
+_moveObjects = [_moveEntities, {typeName _this == "STRING"}, true] call Zen_ArrayFilterCondition;
+_moveObjects = [_moveObjects] call Zen_ConvertToObjectArray;
 
 0 = [_moveObjects, _moveMarkers] call Zen_ArrayAppendNested;
 _avgCenter = _moveObjects call Zen_FindAveragePosition;
+_lowestHeight = (getPosATL ([_moveObjects, {-((getPosATL _this) select 2)}] call Zen_ArrayFindExtremum)) select 2;
 
 {
-    _newPos = [_newCenter, ([_avgCenter, _x] call Zen_Find2dDistance), ([_avgCenter, _x] call Zen_FindDirection), "trig", 0.02] call Zen_ExtendPosition;
+    _newPos = [_newCenter, ([_avgCenter, _x] call Zen_Find2dDistance), ([_avgCenter, _x] call Zen_FindDirection), "trig", (_newCenter select 2)] call Zen_ExtendPosition;
     if (typeName _x == "STRING") then {
         _x setMarkerPos _newPos;
     } else {
-        0 = [_x, _newPos, 0, 0, (getDir _x), true] call Zen_TransformObject;
+        0 = [_x, _newPos, ((getPosATL _x) select 2) - _lowestHeight, 0, (getDir _x), true] call Zen_TransformObject;
     };
 } forEach _moveObjects;
 

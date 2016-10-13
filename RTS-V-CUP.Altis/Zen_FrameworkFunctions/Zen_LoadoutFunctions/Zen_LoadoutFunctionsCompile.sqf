@@ -13,7 +13,6 @@ Zen_GetLoadoutData = compileFinal preprocessFileLineNumbers "Zen_FrameworkFuncti
 Zen_GetUnitLoadout = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_GetUnitLoadout.sqf";
 Zen_GiveLoadout = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_GiveLoadout.sqf";
 Zen_GiveLoadoutBlufor = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_GiveLoadoutBlufor.sqf";
-Zen_GiveLoadoutCargo = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_GiveLoadoutCargo.sqf";
 Zen_GiveLoadoutCustom = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_GiveLoadoutCustom.sqf";
 Zen_GiveLoadoutIndfor = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_GiveLoadoutIndfor.sqf";
 Zen_GiveLoadoutOpfor = compileFinal preprocessFileLineNumbers "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_GiveLoadoutOpfor.sqf";

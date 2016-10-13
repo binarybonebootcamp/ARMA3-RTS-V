@@ -14,10 +14,12 @@ _array = _this select 0;
 _function = _this select 1;
 
 if (count _array == 0) exitWith {
+    call Zen_StackRemove;
     (0)
 };
 
 if (count _array == 1) exitWith {
+    call Zen_StackRemove;
     (_array select 0)
 };
 

@@ -4,8 +4,8 @@
 
 #include "..\Zen_StandardLibrary.sqf"
 
-_Zen_stack_Trace = ["Zen_ArraySearch(", _this] call Zen_StackAdd;
-private ["_arrays", "_indexes", "_ranges", "_hashes", "_counts", "_returnIndexes", "_arrayIndex", "_array", "_checksPassed", "_element", "_range", "_hashFunc", "_elementHash", "_lowerBound", "_upperBound"];
+_Zen_stack_Trace = ["Zen_ArraySearch", _this] call Zen_StackAdd;
+private ["_arrays", "_indexes", "_ranges", "_hashes", "_returnIndexes", "_arrayIndex", "_array", "_checksPassed", "_element", "_range", "_hashFunc", "_elementHash", "_lowerBound", "_upperBound"];
 
 if !([_this, [["ARRAY"], ["ARRAY"], ["ARRAY"], ["ARRAY"]], [["ARRAY"], ["SCALAR"], ["ARRAY"], ["CODE", "STRING"]], 4] call Zen_CheckArguments) exitWith {
     call Zen_StackRemove;
@@ -17,9 +17,7 @@ _indexes = _this select 1;
 _ranges = _this select 2;
 _hashes = _this select 3;
 
-_counts = [count _indexes, count _ranges, count _hashes];
-0 = [_counts, count _indexes] call Zen_ArrayRemoveValue;
-if (count _counts != 0) exitWith {
+if ((([[count _indexes, count _ranges, count _hashes]] call Zen_ArrayFindSum) / 3) != count _indexes) exitWith {
     0 = ["Zen_ArraySearch", "Given index, value range, and hash function arrays are different lengths.", _this] call Zen_PrintError;
     call Zen_StackRemove;
     ([])

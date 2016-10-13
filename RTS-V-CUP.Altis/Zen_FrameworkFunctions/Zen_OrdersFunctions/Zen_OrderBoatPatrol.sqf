@@ -67,7 +67,8 @@ _crewGroupArray = [];
 
     CALC_POS
 
-    _veh move _mpos;
+    (group driver _veh) setCurrentWaypoint ((group driver _veh) addWaypoint [_mpos, -1]);
+    (group driver _veh) move _mpos;
     _veh setBehaviour _behavior;
     _veh setCombatMode "Red";
     _veh setSpeedMode _speedMode;
@@ -99,7 +100,8 @@ while {(count _vehicleArray != 0)} do {
                     _mpos = [0,0,0];
                     CALC_POS
 
-                    _veh move _mpos;
+                    (group driver _veh) setCurrentWaypoint ((group driver _veh) addWaypoint [_mpos, -1]);
+                    (group driver _veh) move _mpos;
                     _veh setBehaviour _behavior;
                     _veh setCombatMode "Red";
                     _veh setSpeedMode _speedMode;
