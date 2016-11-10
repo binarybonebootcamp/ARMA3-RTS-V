@@ -629,10 +629,10 @@
 	colorFocused[] = {0,0,0,1};
 	colorShadow[] = COLOR_TRANSPARENT;
 	colorBorder[] = {0,0,0,1};
-	soundEnter[] = {"a3\sounds_f\weapons\closure\sfx1.wss",0.09,1};
-	soundPush[] = {"\A3\ui_f\data\sound\Button\soundPush",0.09,1};
-	soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss",0.09,1};
-	soundEscape[] = {"a3\sounds_f\weapons\closure\sfx11.wss",0.09,1};
+	soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+	soundPush[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+	soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss",0.45,1};
+	soundEscape[] = {"a3\sounds_f\weapons\closure\sfx2.wss",0.09,1};
 
 	x = 0;
 	y = 0;
