@@ -71,14 +71,11 @@ class IceButton
     colorFocused[] = {0.75,0.75,0.75,0.1};
     colorShadow[] = {0,0,0,0};
     colorBorder[] = {0,0,0,0};
-    soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
-    soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
-    soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
-    soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
-    x = 0;
-    y = 0;
-    w = 0;
-    h = 0;
+	soundEnter[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+	soundPush[] = {"a3\sounds_f\weapons\closure\sfx4.wss",0.45,1};
+	soundClick[] = {"a3\sounds_f\weapons\closure\sfx3.wss",0.45,1};
+	soundEscape[] = {"a3\sounds_f\weapons\closure\sfx2.wss",0.09,1};
+
     shadow = 2;
     font = "puristaMedium";
     sizeEx = "0.03 / (getResolution select 5)";
@@ -88,6 +85,10 @@ class IceButton
     offsetPressedY = 0.001;
     borderSize = 1;
     moving = 1;
+	x = 0;
+    y = 0;
+    w = 0;
+    h = 0;
 };
 
 class IceText

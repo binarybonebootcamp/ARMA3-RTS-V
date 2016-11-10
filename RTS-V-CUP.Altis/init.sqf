@@ -44,39 +44,6 @@ call compileFinal preprocessFileLineNumbers "Zen_RTS_Strategic\Zen_RTS_Strategic
 call compileFinal preprocessFileLineNumbers "Zen_RTS_Territory\Zen_RTS_TerritoryCompile.sqf";
 call compileFinal preprocessFileLineNumbers "Zen_RTS_SubTerritory\Zen_RTS_SubTerritoryCompile.sqf";
 
-//adding rotation menu
-// call compile preProcessFile "ROTATION_MENU_SYSTEM\InitRotationMenuSystem.sqf";
-// _null = [] spawn RTMS_InitRotationMenuSystem;
-// _null = [] spawn {
-    // waitUntil {player == player};
-    // waitUntil {!(isNil "RTMS_INITIALIZED")};
-    // _menu = (call compile preprocessFile "ROTATION_MENU_SYSTEM\DEFAULT_CLASSES\ManSlay_Class.sqf") call RTMS_CreateMenuObject;
-    // [_menu, true] call RTMS_SendRequest;
-    // waitUntil {[_menu] call RTMS_IsInstalled};
-    // [_menu, false] call RTMS_SendRequest;
-// };
-
-// RTS Client ---------------------
-// #include "Zen_RTS_Functions\Zen_RTS_ClientExec.sqf"
-//[] exec "Karr-SquadMarkers.sqs";
-// [] exec "rts-build-addAction.sqs";
-// [] execVM "territory\rts-territoryInit.sqf";
-// [] exec "economy\rts-moneyMonitor.sqs";
-// [] exec "rts-vcl-special.sqs";
-
-// [] exec "rts-build-unitarrays.sqs";
-// [] exec "rts-client-updateArrays.sqs";
-// [] exec "rts-build-structurePosExec.sqs";
-// [] exec "rts-z-endmission.sqs";
-
-// [] execVM "rts-z-intro.sqf";
-// [] exec "rts-showMsg.sqs";
-// [] exec "rts-init-SetRandomPos.sqs";
-// 1 setRadioMsg "Null";
-// if (param3 > 0) then {
-    // [] exec "vicpoint\rts-vpInit.sqs";
-// };
-
 #define ZEN_RTS_STRATEGIC_ASSET_SPAWN_MESSAGE() \
     _buildingType = _buildingObjData select 0; \
     _buildingTypeData = [_buildingType] call Zen_RTS_StrategicBuildingTypeGetData; \
